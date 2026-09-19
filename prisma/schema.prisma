@@ -1,0 +1,133 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  CUSTOMER
+  PROFESSIONAL
+  ADMIN
+}
+
+enum TrustLinkState {
+  REQUESTED
+  ACCEPTED
+  DISCOVERY
+  DOCUMENTS_REQUESTED
+  DOCUMENTS_SUBMITTED
+  UNDER_REVIEW
+  PROPOSAL
+  CUSTOMER_APPROVAL
+  IN_PROGRESS
+  COMPLETED
+  REJECTED
+  CANCELLED
+  ON_HOLD
+}
+
+enum DocumentVisibility {
+  PRIVATE
+  SHARED_WITH_TRUSTLINK
+  SHARED_WITH_PROFESSIONAL
+}
+
+model User {
+  id             String         @id @default(uuid())
+  email          String         @unique
+  name           String
+  phone          String?
+  role           Role           @default(CUSTOMER)
+  
+  properties     Property[]
+  trustLinks     TrustLink[]    @relation("CustomerTrustLinks")
+  documents      Document[]
+  
+  professionalProfile Professional?
+  
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+}
+
+model Professional {
+  id             String         @id @default(uuid())
+  userId         String         @unique
+  user           User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  companyName    String
+  category       String         // e.g., "BUILDER"
+  description    String?
+  isVerified     Boolean        @default(false)
+  
+  trustLinks     TrustLink[]    @relation("ProfessionalTrustLinks")
+}
+
+model Property {
+  id             String         @id @default(uuid())
+  propId         String         @unique
+  ownerId        String
+  owner          User           @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  
+  type           String         // e.g., "Apartment", "House"
+  address        String
+  location       String
+  approxValue    Float?
+  
+  trustLinks     TrustLink[]
+  documents      Document[]
+  
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+}
+
+model TrustLink {
+  id               String         @id @default(uuid())
+  customerId       String
+  customer         User           @relation("CustomerTrustLinks", fields: [customerId], references: [id])
+  
+  professionalId   String
+  professional     Professional   @relation("ProfessionalTrustLinks", fields: [professionalId], references: [id])
+  
+  propertyId       String?
+  property         Property?      @relation(fields: [propertyId], references: [id], onDelete: SetNull)
+  
+  status           TrustLinkState @default(REQUESTED)
+  
+  documents        Document[]
+  activityLogs     ActivityLog[]
+  
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+}
+
+model Document {
+  id               String             @id @default(uuid())
+  name             String
+  type             String
+  url              String
+  visibility       DocumentVisibility @default(PRIVATE)
+  
+  ownerId          String
+  owner            User               @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  
+  propertyId       String?
+  property         Property?          @relation(fields: [propertyId], references: [id], onDelete: SetNull)
+  
+  trustLinkId      String?
+  trustLink        TrustLink?         @relation(fields: [trustLinkId], references: [id], onDelete: SetNull)
+  
+  createdAt        DateTime           @default(now())
+}
+
+model ActivityLog {
+  id           String      @id @default(uuid())
+  trustLinkId  String
+  trustLink    TrustLink   @relation(fields: [trustLinkId], references: [id], onDelete: Cascade)
+  actorId      String
+  action       String
+  metadata     Json?
+  createdAt    DateTime    @default(now())
+}
