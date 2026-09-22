@@ -2,168 +2,297 @@
 import Link from "next/link";
 import React, { useState } from "react";
 
-const MOCK_TRUSTLINKS = [
+interface TrustLinkItem {
+  id: string;
+  name: string;
+  initials: string;
+  avatarTone: "blue" | "green" | "sand";
+  role: string;
+  business: string;
+  purpose: string;
+  property: string;
+  propertyType: "Prop ID" | "Saved space";
+  status: "active" | "pending" | "paused" | "ended";
+  statusLabel: string;
+  sharedDocsCount: number;
+  expiry: string;
+}
+
+const TRUSTLINKS: TrustLinkItem[] = [
   {
-    id: "TL-99214-B",
-    proName: "Banksia Homes Pty Ltd",
-    proCategory: "Licensed Builder (QBCC #150821)",
-    propId: "TPH-KEN-018",
-    property: "18 Banksia Crescent, Kenmore QLD",
-    stage: "Practical Completion & Digital Handover",
-    status: "Handover Ready",
-    statusColor: "emerald",
-    date: "Updated 34m ago",
-    badge: "Action Required",
+    id: "welcome",
+    name: "Olivia Hart",
+    initials: "OH",
+    avatarTone: "blue",
+    role: "Builder & handover contact",
+    business: "Hart Homes · Example business",
+    purpose: "New home handover",
+    property: "18 Banksia Crescent, Kenmore",
+    propertyType: "Prop ID",
+    status: "active",
+    statusLabel: "Active",
+    sharedDocsCount: 3,
+    expiry: "in 30 days",
   },
   {
     id: "TL-88301-A",
-    proName: "Chen & Associates Conveyancing",
-    proCategory: "Certified PEXA Conveyancers",
-    propId: "TPH-KEN-018",
-    property: "18 Banksia Crescent, Kenmore QLD",
-    stage: "Settlement Contract & PEXA Workspace",
-    status: "Active",
-    statusColor: "blue",
-    date: "Updated yesterday",
-    badge: "2 Docs Pending",
+    name: "Lachlan Vance",
+    initials: "LV",
+    avatarTone: "green",
+    role: "Licensed Conveyancer",
+    business: "River City Conveyancing",
+    purpose: "Settlement contract & PEXA workspace",
+    property: "18 Banksia Crescent, Kenmore",
+    propertyType: "Prop ID",
+    status: "active",
+    statusLabel: "Active",
+    sharedDocsCount: 4,
+    expiry: "in 45 days",
   },
   {
     id: "TL-76100-C",
-    proName: "Miller Building & Pest Inspections",
-    proCategory: "Lead Inspector (AS 4349.1)",
-    propId: "TPH-TOW-029",
-    property: "14 Fernberg Court, Toowong QLD",
-    stage: "Deliverable Ready for Vault Deposit",
-    status: "Action Required",
-    statusColor: "amber",
-    date: "Updated 2h ago",
-    badge: "Review Report",
+    name: "Claire Dupont",
+    initials: "CD",
+    avatarTone: "sand",
+    role: "Lead Building & Pest Inspector",
+    business: "Dupont Property Inspections",
+    purpose: "Pre-purchase AS 4349.1 timber pest audit",
+    property: "7 Cedar Street, Graceville",
+    propertyType: "Saved space",
+    status: "pending",
+    statusLabel: "Awaiting reply",
+    sharedDocsCount: 2,
+    expiry: "in 14 days",
   },
 ];
 
 export default function TrustLinksListPage() {
-  const [filter, setFilter] = useState("All");
+  const [filter, setFilter] = useState<string>("all");
+  const [propertyFilter, setPropertyFilter] = useState<string>("all");
 
-  const filtered = MOCK_TRUSTLINKS.filter((tl) => {
-    if (filter === "Active") return tl.status === "Active" || tl.status === "Handover Ready";
-    if (filter === "Handover") return tl.status === "Handover Ready";
-    if (filter === "Action Required") return tl.status === "Action Required" || tl.status === "Handover Ready";
+  const filtered = TRUSTLINKS.filter((tl) => {
+    if (filter === "open" && !["active", "pending"].includes(tl.status)) return false;
+    if (filter === "pending" && tl.status !== "pending") return false;
+    if (filter === "paused" && tl.status !== "paused") return false;
+    if (filter === "ended" && tl.status !== "ended") return false;
+
+    if (propertyFilter !== "all" && !tl.property.toLowerCase().includes(propertyFilter.toLowerCase())) {
+      return false;
+    }
     return true;
   });
 
   return (
-    <div className="max-w-6xl mx-auto px-4 lg:px-8 py-8 w-full">
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
-        <div>
-          <div className="text-[10px] font-bold text-verified uppercase tracking-widest mb-1.5">
-            My Property World · Encrypted Connections
+    <div className="w-full flex-1 flex flex-col bg-[#f4f6f8] text-[#102645]">
+      <div className="max-w-[1240px] mx-auto px-6 lg:px-9 py-8 w-full flex-1">
+
+        {/* ── Breadcrumb ─────────────────────────────────────────────── */}
+        <nav className="flex items-center gap-2 text-[11px] text-[#68788e] mb-6" aria-label="Breadcrumb">
+          <Link href="/properties" className="hover:underline">My Property World</Link>
+          <span>›</span>
+          <span className="text-[#102645] font-semibold">Trust Link</span>
+        </nav>
+
+        {/* ── Page Header ────────────────────────────────────────────── */}
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-7">
+          <div>
+            <div className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c] mb-1">
+              People &amp; permissions
+            </div>
+            <h1 className="text-3xl sm:text-4xl font-semibold tracking-[-0.8px] text-[#102645]">
+              Trust Link
+            </h1>
+            <p className="text-[13px] text-[#68788e] mt-1">
+              See who has access, what is shared and when it ends.
+            </p>
           </div>
-          <h1 className="text-3xl font-display font-bold text-slate-900 dark:text-white mb-2">
-            My TrustLinks
-          </h1>
-          <p className="text-sm text-slate-600 dark:text-slate-400">
-            Scoped, sovereign workspaces connecting your Prop ID to Australian builders, conveyancers, and inspectors.
-          </p>
+
+          <Link
+            href="/explore"
+            className="px-4 py-2.5 bg-[#071d3b] hover:bg-[#102d59] text-white rounded-xl text-[12px] font-semibold transition-colors flex items-center gap-2 shadow-sm self-start sm:self-auto"
+          >
+            <span>+ Find someone to connect</span>
+          </Link>
         </div>
-        <Link
-          href="/explore"
-          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold text-white shadow-sm hover:opacity-90 transition-all flex-shrink-0"
-          style={{ background: "linear-gradient(135deg, #0c2340, #143865)" }}
-        >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
-          Find New Professional
-        </Link>
-      </div>
 
-      {/* Security notice chip */}
-      <div className="flex items-center gap-3 p-3.5 bg-green-50 dark:bg-green-900/10 border border-green-200 dark:border-green-800/30 rounded-xl mb-6">
-        <div className="w-2 h-2 rounded-full bg-verified animate-pulse flex-shrink-0" />
-        <span className="text-xs font-bold text-verified uppercase tracking-wider">TrustLink Sovereignty Active</span>
-        <span className="text-xs text-green-700 dark:text-green-400">
-          You retain unilateral authority. You can pause or revoke access keys at any time without losing documents deposited to your Prop ID Vault.
-        </span>
-      </div>
-
-      {/* Filters */}
-      <div className="flex gap-2 overflow-x-auto pb-3 mb-6">
-        {["All", "Action Required", "Active", "Handover"].map((f) => (
-          <button
-            key={f}
-            onClick={() => setFilter(f)}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
-              filter === f
-                ? "bg-brand-navy text-white shadow-sm"
-                : "bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50"
-            }`}
-          >
-            {f === "Handover" ? "🎁 Handover Ready (1)" : f}
-          </button>
-        ))}
-      </div>
-
-      {/* TrustLink list */}
-      <div className="grid gap-5">
-        {filtered.map((tl) => (
-          <div
-            key={tl.id}
-            className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col md:flex-row md:items-center justify-between gap-5"
-          >
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-3 mb-2 flex-wrap">
-                <span className="font-mono text-xs font-bold px-2.5 py-1 rounded bg-brand-navy text-white">
-                  {tl.id}
-                </span>
-                <span className={`text-[10px] uppercase tracking-wider font-bold px-2.5 py-0.5 rounded-full ${
-                  tl.statusColor === "emerald"
-                    ? "bg-green-100 text-green-800"
-                    : tl.statusColor === "amber"
-                    ? "bg-amber-100 text-amber-800"
-                    : "bg-blue-100 text-blue-800"
-                }`}>
-                  {tl.status}
-                </span>
-                <span className="text-xs text-slate-400">{tl.date}</span>
-              </div>
-
-              <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2 flex-wrap mb-1">
-                {tl.proName}
-                <span className="text-xs font-normal text-slate-500 border border-slate-200 dark:border-slate-700 rounded-lg px-2 py-0.5">
-                  {tl.proCategory}
-                </span>
-              </h2>
-
-              <div className="text-xs text-slate-500 mb-3">
-                📍 {tl.property}
-              </div>
-
-              <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-                <div className="flex items-center gap-1.5 text-xs font-bold text-brand-gold">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  {tl.stage}
-                </div>
-                <div className="hidden sm:block text-slate-300">&bull;</div>
-                <div className="flex items-center gap-1.5 text-xs font-mono text-slate-600 dark:text-slate-400">
-                  <span className="text-[10px] uppercase font-bold text-slate-400">Prop ID:</span>
-                  <span className="font-bold text-brand-navy dark:text-brand-gold">{tl.propId}</span>
-                </div>
-              </div>
+        {/* ── Summary Counters (Prototype 3-col record summary) ──────── */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+          <div className="bg-white border border-[#dfe6ef] rounded-xl p-5 shadow-sm">
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-2xl sm:text-3xl font-bold tracking-tight text-[#102645]">
+                {TRUSTLINKS.filter((t) => t.status === "active").length}
+              </span>
+              <span className="text-lg">🛡️</span>
             </div>
-
-            <div className="flex flex-col sm:flex-row gap-2.5 items-stretch sm:items-center sm:flex-shrink-0">
-              <Link
-                href={`/trustlinks/${tl.id}`}
-                className="px-5 py-3 bg-brand-navy hover:bg-brand-navy-light text-white text-xs font-bold rounded-xl shadow-sm transition-colors text-center"
-              >
-                Open Workspace →
-              </Link>
-            </div>
+            <span className="text-[12px] text-[#68788e]">Connected</span>
           </div>
-        ))}
+
+          <div className="bg-white border border-[#dfe6ef] rounded-xl p-5 shadow-sm">
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-2xl sm:text-3xl font-bold tracking-tight text-[#102645]">
+                {TRUSTLINKS.filter((t) => t.status === "pending").length}
+              </span>
+              <span className="text-lg">🕒</span>
+            </div>
+            <span className="text-[12px] text-[#68788e]">Awaiting reply</span>
+          </div>
+
+          <div className="bg-white border border-[#dfe6ef] rounded-xl p-5 shadow-sm">
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-2xl sm:text-3xl font-bold tracking-tight text-[#102645]">
+                {TRUSTLINKS.filter((t) => t.status === "paused").length}
+              </span>
+              <span className="text-lg">⏸️</span>
+            </div>
+            <span className="text-[12px] text-[#68788e]">Paused by you</span>
+          </div>
+        </div>
+
+        {/* ── Filters & Property Selector Bar ────────────────────────── */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+          <div className="flex items-center gap-2 overflow-x-auto pb-1">
+            {[
+              { id: "all", label: "All" },
+              { id: "open", label: "Open" },
+              { id: "pending", label: "Awaiting reply" },
+              { id: "paused", label: "Paused" },
+              { id: "ended", label: "Ended" },
+            ].map((f) => (
+              <button
+                key={f.id}
+                onClick={() => setFilter(f.id)}
+                className={`px-3.5 py-1.5 rounded-full text-[12px] font-medium transition-all whitespace-nowrap ${
+                  filter === f.id
+                    ? "bg-[#071d3b] text-white"
+                    : "bg-white border border-[#dfe6ef] text-[#68788e] hover:bg-[#f3f6fb]"
+                }`}
+              >
+                {f.label}
+              </button>
+            ))}
+          </div>
+
+          <div>
+            <label htmlFor="property-filter" className="sr-only">Filter by property</label>
+            <select
+              id="property-filter"
+              value={propertyFilter}
+              onChange={(e) => setPropertyFilter(e.target.value)}
+              className="bg-white border border-[#dfe6ef] rounded-xl px-3 py-1.5 text-[12px] text-[#102645] font-medium focus:outline-none"
+            >
+              <option value="all">All properties &amp; enquiries</option>
+              <option value="Banksia">18 Banksia Crescent, Kenmore</option>
+              <option value="Cedar">7 Cedar Street, Graceville</option>
+            </select>
+          </div>
+        </div>
+
+        {/* ── TrustLink Cards Grid ───────────────────────────────────── */}
+        {filtered.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+            {filtered.map((tl) => (
+              <article
+                key={tl.id}
+                className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow"
+              >
+                <div>
+                  <div className="flex items-start justify-between gap-3 mb-3">
+                    <div className="flex items-center gap-3">
+                      <div className={`w-12 h-12 rounded-xl font-serif font-bold text-lg flex items-center justify-center flex-shrink-0 ${
+                        tl.avatarTone === "blue"
+                          ? "bg-[#e6eaf3] text-[#425b7c]"
+                          : tl.avatarTone === "green"
+                          ? "bg-[#eaf5ef] text-[#24754c]"
+                          : "bg-[#eee8dc] text-[#76623f]"
+                      }`}>
+                        {tl.initials}
+                      </div>
+                      <div>
+                        <span className="text-[9px] font-bold uppercase tracking-[1px] text-[#68788e] block">
+                          TRUST LINK
+                        </span>
+                        <h3 className="text-base font-bold text-[#102645] leading-tight">
+                          {tl.name}
+                        </h3>
+                        <p className="text-[11px] text-[#68788e]">
+                          {tl.role}
+                        </p>
+                      </div>
+                    </div>
+
+                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${
+                      tl.status === "active"
+                        ? "bg-[#eaf5ef] text-[#24754c]"
+                        : tl.status === "pending"
+                        ? "bg-[#fff4df] text-[#8b641c]"
+                        : "bg-[#fbeeee] text-[#a44042]"
+                    }`}>
+                      {tl.statusLabel}
+                    </span>
+                  </div>
+
+                  <p className="text-[13px] font-medium text-[#102645] mb-3">
+                    {tl.purpose}
+                  </p>
+
+                  <div className="bg-[#f3f6fb] p-2.5 rounded-lg flex items-center gap-2 text-[11px] text-[#102645] mb-4">
+                    <span>{tl.propertyType === "Prop ID" ? "🏠" : "❤️"}</span>
+                    <span>{tl.property} · {tl.propertyType}</span>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4 text-[11px] text-[#68788e] py-3 border-t border-[#dfe6ef] mb-4">
+                    <div>
+                      <span className="block text-[9px] uppercase tracking-[0.7px] text-[#8a97a7]">Shared documents</span>
+                      <strong className="text-[#102645] font-semibold">{tl.sharedDocsCount} selected</strong>
+                    </div>
+                    <div>
+                      <span className="block text-[9px] uppercase tracking-[0.7px] text-[#8a97a7]">Permission ends</span>
+                      <strong className="text-[#102645] font-semibold">{tl.expiry}</strong>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-3 border-t border-[#dfe6ef] flex items-center justify-between text-[11px]">
+                  <Link
+                    href={`/trustlinks/${tl.id}`}
+                    className="px-3.5 py-1.5 bg-[#f3f6fb] hover:bg-[#e4ebf5] text-[#071d3b] font-bold rounded-lg transition-colors"
+                  >
+                    Open Trust Link →
+                  </Link>
+                  <Link
+                    href={`/trustlinks/${tl.id}?tab=conversation`}
+                    className="text-[#68788e] hover:text-[#102645] font-semibold flex items-center gap-1"
+                  >
+                    <span>💬 Message</span>
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <div className="bg-white border border-[#dfe6ef] rounded-2xl p-12 text-center my-6">
+            <span className="text-3xl block mb-2">🛡️</span>
+            <h3 className="text-base font-bold text-[#102645]">No connections in this view</h3>
+            <p className="text-[12px] text-[#68788e] mt-1 mb-4">
+              Change the filter or start with a professional who fits what you need.
+            </p>
+            <button
+              onClick={() => { setFilter("all"); setPropertyFilter("all"); }}
+              className="px-4 py-2 bg-[#071d3b] text-white text-[12px] font-semibold rounded-xl"
+            >
+              Show all Trust Links
+            </button>
+          </div>
+        )}
+
+        {/* ── Sovereignty Notice at Bottom ───────────────────────────── */}
+        <div className="p-4 rounded-xl bg-[#eaf0f6] border border-[#dfe6ef] flex items-center gap-3 text-[12px] text-[#4e6582] mb-8">
+          <span className="text-base flex-shrink-0">🔒</span>
+          <span>
+            Your property record stays with you when a connection ends. Professional access is specific to the information and time period you approve.
+          </span>
+        </div>
+
       </div>
     </div>
   );

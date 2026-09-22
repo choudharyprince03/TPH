@@ -7,130 +7,155 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
   const isAuth = pathname.startsWith("/login") || pathname.startsWith("/signup");
-  if (isAuth) return null;
+  const isPro = pathname.startsWith("/pro");
+  if (isAuth || isPro) return null;
+
+  const isWorld = pathname.startsWith("/properties") || pathname.startsWith("/trustlinks") || pathname.startsWith("/vault");
+  const isFind = pathname.startsWith("/explore") || pathname.startsWith("/inquiry");
+  const isLearn = pathname.startsWith("/learn");
 
   return (
-    <header className="fixed top-0 left-0 right-0 w-full z-50 glass-nav">
-      <div className="h-16 max-w-7xl mx-auto px-4 lg:px-8 flex items-center justify-between gap-4">
-
-        {/* Logo + Nav */}
-        <div className="flex items-center gap-6">
-          <Link href="/" className="flex items-center gap-2.5 flex-shrink-0">
-            <div
-              className="h-9 w-9 flex items-center justify-center font-bold text-xs text-[#061221] shadow-sm"
-              style={{ background: "linear-gradient(135deg, #10b981, #16a34a)", borderRadius: "8px 8px 8px 2px" }}
-            >
-              TPH
-            </div>
-            <div className="hidden sm:block leading-tight">
-              <div className="font-display text-sm font-bold text-brand-navy dark:text-white tracking-tight leading-none">
-                The Property Helpline
-              </div>
-              <div className="text-[9px] font-bold text-green-600 dark:text-green-400 uppercase tracking-widest leading-none mt-0.5">
-                Australia
-              </div>
-            </div>
-          </Link>
-
-          <nav className="hidden md:flex items-center gap-1 text-sm font-medium">
-            <Link href="/explore"
-              className="text-slate-600 dark:text-slate-300 hover:text-brand-navy dark:hover:text-white hover:bg-slate-50 dark:hover:bg-brand-navy-dark px-3 py-1.5 rounded-lg transition-colors">
-              Find a Professional
-            </Link>
-            <Link href="/properties"
-              className="text-slate-600 dark:text-slate-300 hover:text-brand-navy dark:hover:text-white hover:bg-slate-50 dark:hover:bg-brand-navy-dark px-3 py-1.5 rounded-lg transition-colors font-semibold">
-              My Property World
-            </Link>
-            <div className="w-px h-4 bg-slate-200 dark:bg-slate-700 mx-1" />
-            <Link href="/pro"
-              className="flex items-center gap-1.5 text-slate-600 dark:text-slate-300 hover:text-verified hover:bg-green-50 dark:hover:bg-green-900/20 px-3 py-1.5 rounded-lg transition-colors font-semibold border border-slate-200 dark:border-slate-700">
-              <span className="text-xs">🏗️</span>
-              Pro Hub
-            </Link>
-          </nav>
-        </div>
-
-        {/* Right actions */}
-        <div className="flex items-center gap-2">
-          {/* Search */}
-          <Link href="/explore"
-            className="hidden sm:flex w-9 h-9 items-center justify-center rounded-full text-slate-500 hover:text-brand-navy hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-          </Link>
-
-          {/* Notifications */}
-          <Link href="/notifications"
-            className="relative hidden sm:flex w-9 h-9 items-center justify-center rounded-full text-slate-500 hover:text-brand-navy hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-            </svg>
-            <span className="absolute top-2 right-2 w-1.5 h-1.5 rounded-full bg-brand-emerald" />
-          </Link>
-
-          {/* Auth CTAs */}
-          <Link href="/login"
-            className="hidden md:inline-flex items-center px-4 py-2 text-xs font-bold text-slate-700 dark:text-slate-300 hover:text-brand-navy dark:hover:text-white transition-colors">
-            Log In
-          </Link>
-          <Link href="/signup"
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-bold text-white shadow transition-all hover:opacity-90"
-            style={{ background: "linear-gradient(135deg, #0c2340, #143865)" }}>
-            Get Started
-          </Link>
-
-          {/* User avatar (logged in state demo) */}
-          <Link href="/profile"
-            className="hidden sm:flex w-8 h-8 rounded-full bg-brand-navy text-white text-xs font-bold items-center justify-center ring-2 ring-slate-200 dark:ring-slate-700 ml-1">
-            JD
-          </Link>
-
-          {/* Mobile menu */}
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden w-9 h-9 flex items-center justify-center rounded-lg text-slate-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-          >
-            {mobileOpen ? (
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            ) : (
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            )}
-          </button>
-        </div>
+    <>
+      {/* Prototype Demobar */}
+      <div className="bg-[#eaf0f6] text-[#556b83] text-[11px] py-1.5 px-4 text-center border-b border-[#dfe6ef] flex items-center justify-center gap-2 font-medium">
+        <span className="w-2 h-2 rounded-full bg-[#24754c] inline-block flex-shrink-0 animate-pulse" />
+        <span>
+          <strong className="text-[#102645] font-semibold">Australian English</strong> · Prototype Demonstration · Verified Prop ID &amp; TrustLink Systems
+        </span>
       </div>
 
-      {/* Mobile nav */}
-      {mobileOpen && (
-        <div className="md:hidden bg-white dark:bg-brand-navy-dark border-t border-slate-200 dark:border-slate-800 px-4 py-4 space-y-1">
-          {[
-            { href: "/explore", label: "Find a Professional" },
-            { href: "/properties", label: "My Property World" },
-            { href: "/trustlinks", label: "TrustLinks" },
-            { href: "/pro", label: "🏗️ Pro Hub" },
-          ].map(({ href, label }) => (
-            <Link key={href} href={href} onClick={() => setMobileOpen(false)}
-              className="block px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
-              {label}
+      {/* Main Consumer Header */}
+      <header className="w-full bg-[#071d3b] text-white border-b border-[#0f2d59] sticky top-0 z-50">
+        <div className="max-w-[1360px] mx-auto px-6 lg:px-10 h-[78px] flex items-center justify-between gap-6">
+
+          {/* Brand Logo */}
+          <Link href="/" className="flex items-center gap-3 flex-shrink-0 group">
+            <div className="h-10 w-9 rounded-[7px] bg-[#fcfbf8] flex items-center justify-center text-[#071d3b] shadow-sm p-1.5 transition-transform group-hover:scale-105">
+              <svg className="w-6 h-6 text-[#071d3b]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+              </svg>
+            </div>
+            <div className="text-left">
+              <div className="font-semibold text-[15px] tracking-tight leading-tight text-white">
+                The Property Helpline
+              </div>
+              <div className="text-[8px] font-semibold uppercase tracking-[2.6px] text-[#b6c4d6] leading-tight mt-0.5">
+                AUSTRALIA · INDEPENDENT
+              </div>
+            </div>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-7 text-[13px] font-medium ml-4">
+            <Link
+              href="/explore"
+              className={`transition-colors py-2 relative ${
+                isFind ? "text-white font-semibold after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-[#efbd66]" : "text-[#d4dce8] hover:text-white"
+              }`}
+            >
+              Find help
             </Link>
-          ))}
-          <div className="border-t border-slate-100 dark:border-slate-800 pt-3 mt-3 flex gap-3">
-            <Link href="/login" onClick={() => setMobileOpen(false)}
-              className="flex-1 py-2.5 text-center text-xs font-bold border border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-300">
-              Log In
+
+            <Link
+              href="/learn"
+              className={`transition-colors py-2 relative ${
+                isLearn ? "text-white font-semibold after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-[#efbd66]" : "text-[#d4dce8] hover:text-white"
+              }`}
+            >
+              Learn
             </Link>
-            <Link href="/signup" onClick={() => setMobileOpen(false)}
-              className="flex-1 py-2.5 text-center text-xs font-bold rounded-lg text-white"
-              style={{ background: "linear-gradient(135deg, #0c2340, #143865)" }}>
-              Get Started
+
+            <Link
+              href="/properties"
+              className={`px-3.5 py-1.5 rounded-[7px] text-[13px] font-semibold transition-all border ${
+                isWorld
+                  ? "bg-[#efbd66] text-[#071d3b] border-[#efbd66] shadow-sm"
+                  : "bg-white/10 text-white border-white/20 hover:bg-white/15"
+              }`}
+            >
+              My Property World
             </Link>
+          </nav>
+
+          {/* Right Action & Account */}
+          <div className="flex items-center gap-4 ml-auto">
+            <Link
+              href="/pro"
+              className="text-[12px] text-[#adbed3] hover:text-white transition-colors flex items-center gap-1 font-medium hidden sm:flex"
+            >
+              I’m a Pro <span className="text-[11px]">↗</span>
+            </Link>
+
+            <Link
+              href="/properties"
+              className="flex items-center gap-2 border border-white/25 hover:border-white/40 text-white px-3.5 py-1.5 rounded-[8px] text-[12px] font-semibold transition-all bg-white/5 hover:bg-white/10"
+            >
+              <svg className="w-4 h-4 text-[#efbd66]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+              <span>Alex</span>
+            </Link>
+
+            {/* Mobile menu trigger */}
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="md:hidden p-2 text-white/80 hover:text-white"
+              aria-label="Toggle menu"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {mobileOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
           </div>
         </div>
-      )}
-    </header>
+
+        {/* Mobile Dropdown */}
+        {mobileOpen && (
+          <div className="md:hidden bg-[#0a2347] border-t border-white/10 px-6 py-4 space-y-3">
+            <Link
+              href="/explore"
+              onClick={() => setMobileOpen(false)}
+              className="block text-sm py-2 text-[#d4dce8] hover:text-white"
+            >
+              Find help
+            </Link>
+            <Link
+              href="/learn"
+              onClick={() => setMobileOpen(false)}
+              className="block text-sm py-2 text-[#d4dce8] hover:text-white"
+            >
+              Learn (Home Compass)
+            </Link>
+            <Link
+              href="/properties"
+              onClick={() => setMobileOpen(false)}
+              className="block text-sm py-2 text-[#efbd66] font-semibold"
+            >
+              My Property World
+            </Link>
+            <div className="pt-2 border-t border-white/10 flex items-center justify-between">
+              <Link
+                href="/pro"
+                onClick={() => setMobileOpen(false)}
+                className="text-xs text-[#adbed3]"
+              >
+                I’m a Pro ↗
+              </Link>
+              <Link
+                href="/login"
+                onClick={() => setMobileOpen(false)}
+                className="text-xs text-white"
+              >
+                Log Out
+              </Link>
+            </div>
+          </div>
+        )}
+      </header>
+    </>
   );
 }

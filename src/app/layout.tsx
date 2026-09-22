@@ -3,8 +3,8 @@ import "./globals.css";
 import { Header } from "@/components/layout/Header";
 
 export const metadata: Metadata = {
-  title: "The Property Helpline",
-  description: "Property Helpline connects customers with property professionals.",
+  title: "The Property Helpline · Your property, made simpler",
+  description: "Find the right help. Keep the important things together. Stay in control, every step of the way.",
 };
 
 export default function RootLayout({
@@ -13,10 +13,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className={`font-sans antialiased min-h-screen flex flex-col`}>
+    <html lang="en-AU" className="scroll-smooth">
+      <body className="font-sans antialiased min-h-screen flex flex-col bg-[#f3f6fb] text-[#102645]">
         <Header />
-        <main className="w-full pt-16 flex-1 flex flex-col">
+        <main className="w-full flex-1 flex flex-col">
           {children}
         </main>
       </body>

@@ -13,26 +13,32 @@ interface Lead {
   budget: string;
   financeStatus: string;
   date: string;
-  status: "New" | "Contacted" | "Qualified" | "TrustLink Issued";
-  statusColor: "red" | "blue" | "amber" | "emerald";
+  status: "New" | "In Review" | "TrustLink Issued";
+  statusColor: string;
+  soilClass: string;
+  lotSize: string;
+  zoning: string;
   messageSnippet: string;
 }
 
 const LEADS: Lead[] = [
   {
     id: "L-101",
-    name: "James Davidson",
+    name: "James & Sarah Davidson",
     initials: "JD",
-    type: "New Custom Home (4 Bed, 3 Bath, Pool)",
+    type: "New Custom Home (4 Bed, 3 Bath, Double Garage, In-ground Pool)",
     suburb: "Bardon",
-    state: "QLD",
-    propId: "TPH-BAR-019 (Land Titled)",
+    state: "QLD 4065",
+    propId: "TPH-BAR-019",
     budget: "$950,000 – $1,100,000 AUD",
     financeStatus: "Macquarie Bank Pre-Approved",
     date: "Today, 10:45 AM",
     status: "New",
-    statusColor: "red",
-    messageSnippet: "We have bought a 580m² block in Bardon with soil class H1. Looking for a high-spec builder experienced with sloping sites.",
+    statusColor: "bg-[#fff4df] text-[#8b641c]",
+    soilClass: "Class H1 (Highly Reactive)",
+    lotSize: "580 m² (2.8m Site Slope)",
+    zoning: "Low Density Residential (BCC)",
+    messageSnippet: "Settled on titled block on Simpsons Road. Contour survey shows 2.8m slope. Looking to review architectural drawings in TrustLink.",
   },
   {
     id: "L-102",
@@ -40,44 +46,53 @@ const LEADS: Lead[] = [
     initials: "AK",
     type: "Knockdown & Architectural Rebuild",
     suburb: "Newstead",
-    state: "QLD",
-    propId: "Pending Prop ID",
+    state: "QLD 4006",
+    propId: "TPH-NWS-041",
     budget: "$800,000 – $950,000 AUD",
     financeStatus: "CBA Construction Loan Ready",
     date: "Yesterday, 3:20 PM",
     status: "New",
-    statusColor: "red",
-    messageSnippet: "Planning to demolish existing 1960s post-war cottage and build a contemporary modern home. Need council BA guidance.",
+    statusColor: "bg-[#fff4df] text-[#8b641c]",
+    soilClass: "Class M (Moderately Reactive)",
+    lotSize: "420 m² Flat Post-War Lot",
+    zoning: "Character Residential (CR2)",
+    messageSnippet: "Planning demolition of existing post-war cottage and building contemporary 2-storey home. Need council BA guidance.",
   },
   {
     id: "L-103",
     name: "Thomas Murray",
     initials: "TM",
-    type: "Ground Floor Extension & Outdoor Pavilion",
+    type: "Master Wing Extension & Covered Alfresco Pavilion",
     suburb: "Fig Tree Pocket",
-    state: "QLD",
+    state: "QLD 4069",
     propId: "TPH-FTP-004",
     budget: "$380,000 – $450,000 AUD",
-    financeStatus: "Self-Funded / Cash",
+    financeStatus: "Self-Funded / Cash Ready",
     date: "2 days ago",
-    status: "Qualified",
-    statusColor: "amber",
-    messageSnippet: "Expanding master wing and building a covered alfresco pavilion with outdoor kitchen. DA approval already in place.",
+    status: "In Review",
+    statusColor: "bg-[#eaf5ef] text-[#24754c]",
+    soilClass: "Class S (Slightly Reactive)",
+    lotSize: "1,120 m² Riverfront Lot",
+    zoning: "Low Density Residential",
+    messageSnippet: "Expanding master suite and building outdoor kitchen pavilion. DA approval already granted by Brisbane City Council.",
   },
   {
     id: "L-104",
     name: "Lachlan & Sophie Taylor",
     initials: "LT",
-    type: "Victorian Terrace Heritage Renovation",
+    type: "Victorian Terrace Structural Renovation",
     suburb: "Paddington",
-    state: "NSW",
+    state: "QLD 4064",
     propId: "TPH-PAD-088",
     budget: "$720,000 AUD",
     financeStatus: "ANZ Wealth Pre-Approval",
     date: "4 days ago",
     status: "TrustLink Issued",
-    statusColor: "emerald",
-    messageSnippet: "Full internal remodel with rear glass atrium and DA compliance for heritage conservation zone.",
+    statusColor: "bg-[#f3f6fb] text-[#68788e]",
+    soilClass: "Rock / Class M",
+    lotSize: "310 m² Narrow Terrace",
+    zoning: "Traditional Building Character",
+    messageSnippet: "Internal structural remodel with rear glass atrium. TrustLink TL-99214-B issued and plans shared.",
   },
 ];
 
@@ -89,126 +104,197 @@ export default function LeadsPage() {
     const matchesFilter =
       filter === "All" ||
       (filter === "New" && lead.status === "New") ||
-      (filter === "Qualified" && lead.status === "Qualified") ||
+      (filter === "In Review" && lead.status === "In Review") ||
       (filter === "TrustLink Issued" && lead.status === "TrustLink Issued");
     const matchesSearch =
       lead.name.toLowerCase().includes(search.toLowerCase()) ||
       lead.suburb.toLowerCase().includes(search.toLowerCase()) ||
+      lead.propId.toLowerCase().includes(search.toLowerCase()) ||
       lead.type.toLowerCase().includes(search.toLowerCase());
     return matchesFilter && matchesSearch;
   });
 
   return (
-    <div className="p-6 lg:p-10 max-w-6xl mx-auto">
-      {/* Header */}
-      <div className="mb-8">
-        <div className="text-[10px] font-bold text-verified uppercase tracking-widest mb-1.5">
-          Pro Hub · Client Acquisition CRM
-        </div>
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <div>
-            <h1 className="text-3xl font-display font-bold text-slate-900 dark:text-white mb-1">
-              Qualified Inquiries & Project Leads
-            </h1>
-            <p className="text-sm text-slate-500 dark:text-slate-400">
-              Direct homeowner inquiries across Australia with verified finance and site context.
-            </p>
+    <div className="p-6 sm:p-9 lg:p-11 max-w-[1240px] w-full font-sans">
+      {/* ── Page Header ────────────────────────────────────────────── */}
+      <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
+        <div>
+          <div className="text-[9px] font-bold uppercase tracking-[1.4px] text-[#24754c] mb-1">
+            Pro Hub · Data &amp; Lead Management (DLM)
           </div>
+          <h1 className="text-3xl sm:text-4xl font-semibold tracking-[-0.8px] text-[#102645]">
+            Incoming Enquiries &amp; Leads
+          </h1>
+          <p className="text-[13px] text-[#68788e] mt-1">
+            Verified inbound homeowner connections with structured property data, soil parameters, and bank pre-approvals.
+          </p>
+        </div>
+
+        <div className="flex items-center gap-2 self-start sm:self-auto">
+          <Link
+            href="/pro/customers"
+            className="px-4 py-2.5 bg-white border border-[#cbd5e2] hover:bg-[#f3f6fb] text-[#102645] rounded-xl text-[12px] font-semibold transition-colors shadow-sm"
+          >
+            Property Data Records
+          </Link>
+          <Link
+            href="/pro/trustlinks"
+            className="px-4 py-2.5 bg-[#071d3b] hover:bg-[#102d59] text-white rounded-xl text-[12px] font-semibold transition-colors shadow-sm flex items-center gap-1.5"
+          >
+            <span>Active TrustLinks →</span>
+          </Link>
         </div>
       </div>
 
-      <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-sm overflow-hidden">
-        {/* Toolbar */}
-        <div className="p-4 border-b border-slate-200 dark:border-slate-700 flex flex-col sm:flex-row gap-4 justify-between items-center bg-slate-50 dark:bg-slate-800/50">
-          <div className="flex items-center gap-2 overflow-x-auto w-full sm:w-auto">
-            {["All", "New", "Qualified", "TrustLink Issued"].map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setFilter(tab)}
-                className={`px-3.5 py-1.5 text-xs font-bold rounded-lg transition-colors whitespace-nowrap ${
-                  filter === tab
-                    ? "bg-brand-navy text-white shadow-sm"
-                    : "text-slate-600 hover:bg-slate-200 dark:text-slate-400 dark:hover:bg-slate-700"
-                }`}
-              >
-                {tab === "New" ? "🔥 New Inquiries (2)" : tab}
-              </button>
-            ))}
+      {/* ── DLM Metrics Bar ─────────────────────────────────────────── */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-8">
+        <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm">
+          <div className="flex items-center justify-between mb-1">
+            <span className="text-3xl font-bold tracking-tight text-[#102645]">3</span>
+            <span className="text-lg">📥</span>
           </div>
-          <div className="w-full sm:w-72">
-            <input
-              type="text"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search leads by name, suburb, project..."
-              className="w-full px-3.5 py-1.5 border border-slate-200 dark:border-slate-700 rounded-lg text-xs bg-white dark:bg-slate-900 text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-navy/20"
-            />
-          </div>
+          <strong className="block text-[13px] text-[#102645]">New Inbound Enquiries</strong>
+          <small className="text-[11px] text-[#68788e]">2 with complete cadastral and soil data</small>
         </div>
 
-        {/* Table */}
-        <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse">
-            <thead>
-              <tr className="border-b border-slate-200 dark:border-slate-700 text-[10px] uppercase tracking-widest text-slate-500 font-bold bg-white dark:bg-slate-900">
-                <th className="p-4">Customer</th>
-                <th className="p-4">Inquiry / Property Scope</th>
-                <th className="p-4 hidden md:table-cell">Budget & Finance</th>
-                <th className="p-4">Status</th>
-                <th className="p-4 text-right">Action</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-sm">
-              {filtered.map((lead) => (
-                <tr key={lead.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
-                  <td className="p-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-9 h-9 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 flex items-center justify-center text-xs font-bold flex-shrink-0">
-                        {lead.initials}
-                      </div>
-                      <div>
-                        <div className="font-bold text-slate-900 dark:text-white leading-snug">{lead.name}</div>
-                        <div className="text-[11px] text-slate-500">{lead.suburb}, {lead.state}</div>
-                        <div className="text-[10px] text-slate-400 mt-0.5">{lead.date}</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="p-4">
-                    <div className="font-semibold text-slate-900 dark:text-white text-xs">{lead.type}</div>
-                    <div className="text-[11px] text-slate-500 line-clamp-1 max-w-sm mt-0.5">{lead.messageSnippet}</div>
-                    <div className="text-[10px] text-brand-navy dark:text-brand-gold font-mono font-bold mt-1">
-                      {lead.propId}
-                    </div>
-                  </td>
-                  <td className="p-4 hidden md:table-cell">
-                    <div className="font-bold text-slate-900 dark:text-white text-xs">{lead.budget}</div>
-                    <div className="text-[10px] text-green-600 dark:text-green-400 font-semibold mt-0.5">
-                      ✓ {lead.financeStatus}
-                    </div>
-                  </td>
-                  <td className="p-4">
-                    <span className={`inline-flex items-center gap-1 text-[9px] font-bold px-2 py-0.5 rounded uppercase tracking-wider ${
-                      lead.status === "New"
-                        ? "bg-red-100 text-red-700 font-bold"
-                        : lead.status === "TrustLink Issued"
-                        ? "bg-green-100 text-green-800"
-                        : "bg-amber-100 text-amber-800"
-                    }`}>
-                      {lead.status}
-                    </span>
-                  </td>
-                  <td className="p-4 text-right">
-                    <Link
-                      href={`/pro/leads/${lead.id}`}
-                      className="inline-flex items-center justify-center px-4 py-1.5 bg-brand-navy hover:bg-brand-navy-light text-white text-xs font-bold rounded-lg transition-colors shadow-sm"
-                    >
-                      Review Lead
-                    </Link>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm">
+          <div className="flex items-center justify-between mb-1">
+            <span className="text-3xl font-bold tracking-tight text-[#24754c]">100%</span>
+            <span className="text-lg">📐</span>
+          </div>
+          <strong className="block text-[13px] text-[#102645]">Site Data Attached</strong>
+          <small className="text-[11px] text-[#68788e]">Zero manual chasing for zoning &amp; slope</small>
+        </div>
+
+        <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm">
+          <div className="flex items-center justify-between mb-1">
+            <span className="text-3xl font-bold tracking-tight text-[#102645]">1-Click</span>
+            <span className="text-lg">⚡</span>
+          </div>
+          <strong className="block text-[13px] text-[#102645]">TrustLink Issuance</strong>
+          <small className="text-[11px] text-[#68788e]">Instant sovereign workspace onboarding</small>
+        </div>
+      </div>
+
+      {/* ── Search & Filter Bar ──────────────────────────────────────── */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+        <div className="flex items-center gap-2 overflow-x-auto pb-1">
+          {[
+            { id: "All", label: "All Enquiries" },
+            { id: "New", label: "🔥 New with Site Data (2)" },
+            { id: "In Review", label: "In Review" },
+            { id: "TrustLink Issued", label: "TrustLink Issued" },
+          ].map((f) => (
+            <button
+              key={f.id}
+              onClick={() => setFilter(f.id)}
+              className={`px-3.5 py-1.5 rounded-full text-[12px] font-medium transition-all whitespace-nowrap ${
+                filter === f.id
+                  ? "bg-[#071d3b] text-white font-semibold shadow-sm"
+                  : "bg-white border border-[#dfe6ef] text-[#68788e] hover:bg-[#f3f6fb]"
+              }`}
+            >
+              {f.label}
+            </button>
+          ))}
+        </div>
+
+        <div className="w-full sm:w-72">
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search by client, suburb, or Prop ID..."
+            className="w-full bg-white border border-[#dfe6ef] rounded-xl px-3.5 py-2 text-[12px] text-[#102645] focus:outline-none"
+          />
+        </div>
+      </div>
+
+      {/* ── DLM Lead Cards List ──────────────────────────────────────── */}
+      <div className="space-y-4 mb-10">
+        {filtered.map((lead) => (
+          <article
+            key={lead.id}
+            className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col lg:flex-row lg:items-center justify-between gap-6"
+          >
+            {/* Left Column: Client & Project Scope */}
+            <div className="flex items-start gap-4 min-w-0 max-w-xl">
+              <div className="w-12 h-12 rounded-xl bg-[#e6eaf3] text-[#425b7c] font-serif font-bold text-lg flex items-center justify-center flex-shrink-0">
+                {lead.initials}
+              </div>
+              <div className="min-w-0">
+                <div className="flex items-center gap-2.5 flex-wrap">
+                  <h2 className="text-base font-bold text-[#102645]">
+                    {lead.name}
+                  </h2>
+                  <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${lead.statusColor}`}>
+                    {lead.status === "New" ? "🔥 New Lead" : lead.status}
+                  </span>
+                  <span className="text-[11px] text-[#8a97a7]">
+                    {lead.date}
+                  </span>
+                </div>
+
+                <div className="text-[13px] font-semibold text-[#102645] mt-1">
+                  {lead.type}
+                </div>
+
+                <p className="text-[12px] text-[#68788e] italic mt-1 line-clamp-2">
+                  &ldquo;{lead.messageSnippet}&rdquo;
+                </p>
+
+                {/* Attached Property Data Badges */}
+                <div className="flex items-center gap-2 flex-wrap mt-3 pt-3 border-t border-[#f0f4f8] text-[11px]">
+                  <span className="font-mono font-bold text-[#071d3b] bg-[#f3f6fb] px-2 py-0.5 rounded">
+                    📍 {lead.propId}
+                  </span>
+                  <span className="bg-[#eaf5ef] text-[#24754c] font-medium px-2 py-0.5 rounded">
+                    🌱 {lead.soilClass}
+                  </span>
+                  <span className="bg-[#f3f6fb] text-[#556b83] px-2 py-0.5 rounded">
+                    📐 {lead.lotSize}
+                  </span>
+                  <span className="bg-[#f3f6fb] text-[#556b83] px-2 py-0.5 rounded">
+                    🏛️ {lead.zoning}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column: Financial Qualification & 1-Click Action */}
+            <div className="lg:text-right flex flex-col sm:flex-row lg:flex-col items-start sm:items-center lg:items-end justify-between gap-4 flex-shrink-0 border-t lg:border-t-0 pt-4 lg:pt-0 border-[#dfe6ef]">
+              <div>
+                <div className="text-[10px] font-bold uppercase tracking-wider text-[#68788e]">
+                  Budget &amp; Funding
+                </div>
+                <div className="text-sm font-bold text-[#102645]">
+                  {lead.budget}
+                </div>
+                <div className="text-[11px] text-[#24754c] font-semibold flex items-center lg:justify-end gap-1 mt-0.5">
+                  <span>✓</span>
+                  <span>{lead.financeStatus}</span>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2.5 w-full sm:w-auto">
+                <Link
+                  href={`/pro/leads/${lead.id}`}
+                  className="w-full sm:w-auto px-4 py-2.5 bg-[#071d3b] hover:bg-[#102d59] text-white font-bold rounded-xl text-[12px] transition-colors shadow-sm flex items-center justify-center gap-1.5 text-center"
+                >
+                  <span>Inspect Data &amp; Respond →</span>
+                </Link>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      {/* ── DLM Builder Guidance Notice ─────────────────────────────── */}
+      <div className="p-5 rounded-2xl bg-[#eaf0f6] border border-[#dfe6ef] flex items-start sm:items-center gap-3.5 text-[12px] text-[#4e6582]">
+        <span className="text-xl flex-shrink-0">💡</span>
+        <div>
+          <strong className="text-[#102645] block mb-0.5">How Data &amp; Lead Management (DLM) saves your daily time:</strong>
+          Every inquiry enters directly from the consumer&apos;s TPH Property Passport. You do not need to request basic site maps, zoning certificates or pre-approval letters—they are already attached to the permanent Prop ID.
         </div>
       </div>
     </div>

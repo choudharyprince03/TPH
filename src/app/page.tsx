@@ -1,588 +1,526 @@
+"use client";
 import Link from "next/link";
-import React from "react";
-
-const SERVICES = [
-  { icon: "🔍", label: "Building & Pest Inspection", count: "1,240+ inspectors" },
-  { icon: "⚖️", label: "Conveyancing & Settlement", count: "890+ conveyancers" },
-  { icon: "🏗️", label: "Builders & Developers", count: "620+ builders" },
-  { icon: "🏠", label: "Property Management", count: "2,100+ PMs" },
-  { icon: "🤝", label: "Buyer&apos;s Agents", count: "480+ agents" },
-  { icon: "🏢", label: "Strata Management", count: "310+ managers" },
-  { icon: "⚡", label: "Electrical & Plumbing", count: "3,400+ tradies" },
-  { icon: "💰", label: "Financial Advice (AFSL)", count: "540+ advisors" },
-];
-
-const HOW_IT_WORKS_OWNER = [
-  { step: "01", title: "Create your Prop ID", desc: "Add your property and receive a permanent digital identity — your Prop ID. All records, professionals and history attach to it forever." },
-  { step: "02", title: "Find a verified professional", desc: "Browse REIQ, MBA and AIBS-verified specialists filtered by service, suburb and reviews. No cold calls, no guesswork." },
-  { step: "03", title: "Connect via TrustLink", desc: "Start a secure, scoped workspace with your chosen professional. Share documents, sign proposals, and track progress — all in one place." },
-  { step: "04", title: "Own your property record", desc: "Every certificate, warranty, report and handover document lives in your Property Vault — accessible forever, transferable at resale." },
-];
-
-const HOW_IT_WORKS_PRO = [
-  { step: "01", title: "Set up your Pro Hub", desc: "Create your verified profile with ABN, QBCC/REIQ licence and service areas. Start receiving qualified leads matched to your expertise." },
-  { step: "02", title: "Open a TrustLink workspace", desc: "Each client gets a scoped, encrypted workspace. Share only what they need to see — never expose commercial margins or other client data." },
-  { step: "03", title: "Run digital handover", desc: "Guide clients through the 5-gate Prop ID handover checklist: evidence, selections, walkthrough, blocking issues, and owner verification." },
-  { step: "04", title: "Transfer the Prop ID vault", desc: "At completion, transfer the permanent digital record to your client. The home&apos;s history, warranties and certificates transfer with it." },
-];
-
-const TESTIMONIALS = [
-  {
-    quote: "The digital handover changed everything for us. Our clients receive their Prop ID and the whole property record at settlement — no more lost documents six months later.",
-    name: "Alex Morgan",
-    role: "Director, Banksia Homes",
-    location: "Brisbane QLD",
-    avatar: "AM",
-  },
-  {
-    quote: "I found our conveyancer, building inspector and buyer's agent all through TPH. The TrustLink kept everything in one place — no chasing emails across three inboxes.",
-    name: "Emily Carter",
-    role: "Property Owner",
-    location: "Kenmore QLD",
-    avatar: "EC",
-  },
-  {
-    quote: "As a conveyancer, TrustLink is brilliant. My clients see exactly what they need to see — PEXA documents, settlement details — nothing more. Privacy by design.",
-    name: "Sarah Chen",
-    role: "Senior Conveyancer",
-    location: "Sydney NSW",
-    avatar: "SC",
-  },
-];
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
+  const [selectedService, setSelectedService] = useState("builder");
+  const [suburb, setSuburb] = useState("Kenmore QLD 4069");
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    router.push(`/explore?service=${encodeURIComponent(selectedService)}&suburb=${encodeURIComponent(suburb)}`);
+  };
+
   return (
-    <div className="w-full flex-1 flex flex-col">
+    <div className="w-full flex-1 flex flex-col bg-[#fcfbf8] text-[#102645]">
 
-      {/* ── HERO ───────────────────────────────────────────── */}
-      <section className="relative w-full overflow-hidden pt-28 pb-20 lg:pt-36 lg:pb-24"
-        style={{ background: "linear-gradient(160deg, #061221 0%, #0c2340 55%, #0c3d2b 100%)" }}>
-        {/* Real Estate Property Background Image (Subtle / Low Opacity) */}
-        <div
-          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-20 pointer-events-none"
-          style={{
-            backgroundImage: "url('/images/hero-real-estate.jpg')",
-          }}
-        />
-        {/* Deep navy-forest gradient overlay to soften image and maintain high contrast */}
-        <div
-          className="absolute inset-0 z-0 pointer-events-none"
-          style={{
-            background: "linear-gradient(180deg, rgba(6,18,33,0.75) 0%, rgba(12,35,64,0.65) 50%, rgba(6,18,33,0.92) 100%)",
-          }}
-        />
-
-        {/* Ambient accent glows */}
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full opacity-10 pointer-events-none"
-          style={{ background: "radial-gradient(circle, #10b981, transparent)" }} />
-        <div className="absolute bottom-0 left-0 w-96 h-96 rounded-full opacity-5 pointer-events-none"
-          style={{ background: "radial-gradient(circle, #e69d24, transparent)" }} />
-
-        <div className="max-w-7xl mx-auto px-4 lg:px-8 relative z-10">
-          <div className="flex flex-col items-center text-center">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 text-xs font-bold"
-              style={{ background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.3)", color: "#4ade80" }}>
-              <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-              AUSTRALIA&apos;S PROPERTY PLATFORM · PROP ID · TRUSTLINK · DIGITAL HANDOVER
+      {/* ── 1. HERO SECTION ────────────────────────────────────────────── */}
+      <section className="bg-[#071d3b] text-white relative pt-10 pb-16 lg:pb-20 overflow-hidden">
+        <div className="max-w-[1240px] mx-auto px-6 lg:px-9 grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] items-center gap-12 lg:gap-16">
+          
+          {/* Left Hero Copy */}
+          <div>
+            <div className="text-[#b7c4d7] text-[10px] font-bold uppercase tracking-[2px] mb-4">
+              Your digital home for every property journey
             </div>
-
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-[64px] max-w-4xl text-white font-extrabold tracking-tight leading-tight mb-6">
-              Every specialist your<br />
-              <span style={{ color: "#4ade80" }}>property needs.</span>
+            <h1 className="text-4xl sm:text-5xl lg:text-[60px] font-normal leading-[1.08] tracking-[-2.2px] text-white mb-6">
+              Your property.<br />
+              <em className="font-serif text-[#efbd66] italic font-normal">Made simpler.</em>
             </h1>
-
-            <p className="text-base lg:text-xl text-slate-300 max-w-2xl mb-10 leading-relaxed">
-              Find verified Australian property professionals, manage your permanent Prop ID, and keep every service, document and handover connected — for life.
+            <p className="text-[#b9c8db] text-[15px] sm:text-[16px] leading-[1.75] max-w-[420px]">
+              Find the right help. Keep the important things together. Stay in control, every step of the way.
             </p>
+          </div>
 
-            {/* Search bar */}
-            <div className="w-full max-w-3xl bg-white/95 dark:bg-slate-800/95 backdrop-blur-md rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.35)] p-2 mb-10 border border-white/20 dark:border-slate-700">
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-2">
-                <div className="md:col-span-5 flex items-center gap-2 px-4 py-3 bg-slate-50 dark:bg-slate-700 rounded-xl">
-                  <svg className="w-4 h-4 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                  </svg>
-                  <input className="w-full bg-transparent text-sm text-slate-800 dark:text-white placeholder:text-slate-400 focus:outline-none"
-                    placeholder="Building inspection, conveyancing, electrical..." type="text" />
-                </div>
-                <div className="md:col-span-4 flex items-center gap-2 px-4 py-3 bg-slate-50 dark:bg-slate-700 rounded-xl">
-                  <svg className="w-4 h-4 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  <input className="w-full bg-transparent text-sm text-slate-800 dark:text-white placeholder:text-slate-400 focus:outline-none"
-                    type="text" placeholder="Suburb, postcode or state" defaultValue="Brisbane QLD" />
-                </div>
-                <div className="md:col-span-3">
-                  <Link href="/explore"
-                    className="w-full h-full min-h-[48px] inline-flex items-center justify-center gap-2 text-white text-sm font-bold rounded-xl transition-all hover:opacity-90"
-                    style={{ background: "linear-gradient(135deg, #0c2340, #143865)" }}>
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                    Find Specialists
-                  </Link>
-                </div>
+          {/* Right Hero Photo with Asymmetric Radius & Floating Badge */}
+          <div className="relative h-[280px] sm:h-[340px] w-full">
+            <img
+              src="/images/hero-real-estate.jpg"
+              alt="Contemporary Australian home surrounded by a subtropical garden"
+              className="w-full h-full object-cover shadow-2xl rounded-tl-[7px] rounded-tr-[56px] rounded-bl-[7px] rounded-br-[7px]"
+            />
+            {/* Floating Photo Caption Badge */}
+            <div className="absolute -bottom-4 sm:bottom-4 -left-3 sm:-left-6 bg-[#fcfbf8] text-[#102645] p-3.5 sm:p-4 rounded-xl shadow-[0_12px_35px_rgba(0,0,0,0.18)] flex items-center gap-3 border border-[#dfe6ef]">
+              <div className="w-8 h-8 rounded-lg bg-[#eaf5ef] text-[#24754c] flex items-center justify-center flex-shrink-0">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+              </div>
+              <div>
+                <strong className="block text-[13px] font-semibold leading-tight text-[#102645]">
+                  More peace of mind. Less running around.
+                </strong>
+                <small className="text-[11px] text-[#68788e] leading-tight">
+                  A home for the story of your property.
+                </small>
               </div>
             </div>
-
-            {/* Trust indicators */}
-            <div className="flex flex-wrap justify-center gap-6 sm:gap-10">
-              {[
-                { icon: "✓", label: "Verified Professionals", color: "#4ade80" },
-                { icon: "🔒", label: "TrustLink Encrypted", color: "#4ade80" },
-                { icon: "🪪", label: "Permanent Prop ID", color: "#e69d24" },
-                { icon: "🇦🇺", label: "Australian Owned & Hosted", color: "#94a3b8" },
-              ].map(({ icon, label, color }) => (
-                <div key={label} className="flex items-center gap-2 text-sm" style={{ color }}>
-                  <span className="font-bold">{icon}</span>
-                  <span className="font-semibold text-white">{label}</span>
-                </div>
-              ))}
-            </div>
           </div>
+
         </div>
       </section>
 
-      {/* ── STATS ──────────────────────────────────────────── */}
-      <section className="bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 lg:px-8 py-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              { value: "12,400+", label: "Verified Professionals", sub: "across all 8 states & territories" },
-              { value: "48,000+", label: "Properties with Prop ID", sub: "permanent digital records" },
-              { value: "130,000+", label: "TrustLinks opened", sub: "secure professional workspaces" },
-              { value: "99.8%", label: "Client satisfaction", sub: "across all completed handovers" },
-            ].map(({ value, label, sub }) => (
-              <div key={label} className="text-center">
-                <div className="text-3xl lg:text-4xl font-bold text-brand-navy dark:text-white mb-1">{value}</div>
-                <div className="text-sm font-semibold text-slate-700 dark:text-slate-300">{label}</div>
-                <div className="text-xs text-slate-400 mt-0.5">{sub}</div>
+      {/* ── 2. SEARCH DOCK & INTENTS ────────────────────────────────────── */}
+      <div className="max-w-[1240px] mx-auto px-6 lg:px-9 w-full">
+        
+        {/* Floating Search Dock */}
+        <div className="relative -mt-8 sm:-mt-10 z-20">
+          <form
+            onSubmit={handleSearch}
+            className="bg-white border border-[#dfe6ef] rounded-2xl p-4 sm:p-6 shadow-[0_16px_40px_rgba(7,29,59,0.08)] grid grid-cols-1 md:grid-cols-[1.1fr_1fr_auto] items-end gap-4 sm:gap-6"
+          >
+            {/* Service selector */}
+            <div className="md:border-r md:border-[#dfe6ef] md:pr-6">
+              <label className="block text-[10px] uppercase font-bold tracking-[1.2px] text-[#68788e] mb-1.5">
+                What would you like help with?
+              </label>
+              <div className="flex items-center gap-2.5">
+                <svg className="w-4 h-4 text-[#68788e] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+                <select
+                  value={selectedService}
+                  onChange={(e) => setSelectedService(e.target.value)}
+                  className="w-full bg-transparent border-0 p-0 text-[15px] font-semibold text-[#102645] focus:outline-none cursor-pointer"
+                >
+                  <option value="builder">Building, renovations or handover</option>
+                  <option value="conveyancer">Conveyancing &amp; contract review</option>
+                  <option value="inspector">Building &amp; pest inspection</option>
+                  <option value="agent">Selling a property</option>
+                  <option value="manager">Property management &amp; leasing</option>
+                  <option value="electrician">Licensed trade specialist</option>
+                </select>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
+            </div>
 
-      {/* ── SERVICE CATEGORIES ─────────────────────────────── */}
-      <section className="py-16 bg-slate-50 dark:bg-[#0a1628]">
-        <div className="max-w-7xl mx-auto px-4 lg:px-8">
-          <div className="text-center mb-10">
-            <div className="text-xs font-bold text-verified uppercase tracking-widest mb-3">Find the Right Professional</div>
-            <h2 className="font-display text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white mb-3">
-              Every property service, verified.
-            </h2>
-            <p className="text-slate-500 dark:text-slate-400 max-w-xl mx-auto text-sm leading-relaxed">
-              All professionals on TPH hold current Australian licences, carry appropriate insurance and are connected to your Prop ID record.
-            </p>
-          </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-            {SERVICES.map(({ icon, label, count }) => (
-              <Link key={label} href="/explore"
-                className="flex flex-col items-center p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl hover:border-brand-navy dark:hover:border-verified hover:shadow-md transition-all text-center group">
-                <span className="text-3xl mb-3">{icon}</span>
-                <div className="font-bold text-sm text-slate-900 dark:text-white mb-1 group-hover:text-brand-navy dark:group-hover:text-verified transition-colors"
-                  dangerouslySetInnerHTML={{ __html: label }} />
-                <div className="text-xs text-slate-400">{count}</div>
-              </Link>
-            ))}
-          </div>
-          <div className="text-center mt-8">
-            <Link href="/explore"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold text-white transition-all hover:opacity-90"
-              style={{ background: "linear-gradient(135deg, #0c2340, #143865)" }}>
-              Browse all professionals
+            {/* Suburb / Postcode */}
+            <div>
+              <label className="block text-[10px] uppercase font-bold tracking-[1.2px] text-[#68788e] mb-1.5">
+                Suburb or postcode
+              </label>
+              <div className="flex items-center gap-2.5">
+                <svg className="w-4 h-4 text-[#68788e] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <input
+                  type="text"
+                  value={suburb}
+                  onChange={(e) => setSuburb(e.target.value)}
+                  placeholder="e.g. Kenmore QLD 4069"
+                  className="w-full bg-transparent border-0 p-0 text-[15px] font-semibold text-[#102645] focus:outline-none"
+                />
+              </div>
+            </div>
+
+            {/* Search Button */}
+            <button
+              type="submit"
+              className="w-full md:w-auto bg-[#071d3b] hover:bg-[#102d59] text-white px-7 py-3 rounded-xl text-[13px] font-semibold transition-colors flex items-center justify-center gap-2 shadow-sm"
+            >
+              <span>Find help</span>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 12h16m-6-6 6 6-6 6" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
+            </button>
+          </form>
+        </div>
+
+        {/* Quick Intent Chips */}
+        <div className="flex items-center justify-center gap-2 mt-5 flex-wrap text-[11px]">
+          <span className="text-[#68788e] mr-1 hidden sm:inline">Or start with your next step</span>
+          {[
+            { label: "I’m selling", service: "agent" },
+            { label: "I’m buying", service: "conveyancer" },
+            { label: "I’m renting", service: "manager" },
+            { label: "Building or renovating", service: "builder" },
+            { label: "Renting out", service: "manager" },
+          ].map((chip) => (
+            <button
+              key={chip.label}
+              onClick={() => {
+                setSelectedService(chip.service);
+                router.push(`/explore?service=${chip.service}`);
+              }}
+              className="border border-[#dfe6ef] bg-white hover:border-[#071d3b] hover:bg-[#071d3b] hover:text-white transition-all px-3.5 py-1.5 rounded-full text-[#102645] font-medium"
+            >
+              {chip.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Prototype Brand Band */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-8 py-4 border-b border-[#dfe6ef] text-[12px] text-[#68788e]">
+          <span className="font-medium">Your property record and connections, together.</span>
+          <div className="flex items-center gap-4">
+            <Link
+              href="/properties/TPH-KEN-018"
+              className="inline-flex items-center gap-2 text-[#071d3b] font-semibold hover:underline"
+            >
+              <svg className="w-4 h-4 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+              </svg>
+              Explore Prop ID &amp; Property DNA →
+            </Link>
+            <Link
+              href="/trustlinks"
+              className="inline-flex items-center gap-2 text-[#071d3b] font-semibold hover:underline"
+            >
+              <svg className="w-4 h-4 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+              Open Trust Link →
             </Link>
           </div>
         </div>
-      </section>
 
-      {/* ── KEY FEATURES ──────────────────────────────────── */}
-      <section className="py-20 bg-white dark:bg-slate-900">
-        <div className="max-w-7xl mx-auto px-4 lg:px-8">
-          <div className="text-center mb-14">
-            <div className="text-xs font-bold text-verified uppercase tracking-widest mb-3">Platform Features</div>
-            <h2 className="font-display text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white mb-3">
-              Built for every side of property.
-            </h2>
-          </div>
-
-          {/* PropID feature */}
-          <div className="grid lg:grid-cols-2 gap-10 items-center mb-20">
+        {/* ── 3. START WHERE YOU ARE (3 Action Cards) ──────────────────── */}
+        <section className="pt-14 pb-12">
+          <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-8">
             <div>
-              <div className="text-xs font-bold text-brand-gold uppercase tracking-widest mb-3">PROP ID</div>
-              <h3 className="font-display text-2xl lg:text-3xl font-bold text-slate-900 dark:text-white mb-4">
-                One permanent digital identity for every Australian property.
-              </h3>
-              <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6">
-                Your Prop ID is created the moment you add a property. Every inspection report, warranty, settlement document, renovation certificate and professional service attaches to it — permanently. When you sell, it transfers.
+              <div className="text-[10px] font-bold uppercase tracking-[1.8px] text-[#24754c] mb-2">
+                Start where you are
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-semibold tracking-[-0.8px] text-[#102645]">
+                A clearer next step.
+              </h2>
+              <p className="text-[#68788e] text-[13px] mt-1.5">
+                One place to get help and keep life with property organised.
               </p>
-              <div className="space-y-3">
-                {[
-                  "Approved building plans & council certificates",
-                  "Warranty deeds & appliance manuals",
-                  "Inspection reports (B&P, electrical, pest)",
-                  "Settlement & PEXA documents",
-                  "Full service history & maintenance log",
-                ].map((item) => (
-                  <div key={item} className="flex items-center gap-2.5 text-sm text-slate-600 dark:text-slate-300">
-                    <svg className="w-4 h-4 text-verified flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="m5 12 4 4L19 6" />
-                    </svg>
-                    {item}
-                  </div>
-                ))}
-              </div>
-              <div className="flex gap-3 mt-8">
-                <Link href="/signup" className="px-5 py-2.5 rounded-xl text-sm font-bold text-white hover:opacity-90 transition-all"
-                  style={{ background: "linear-gradient(135deg, #0c2340, #143865)" }}>
-                  Create your Prop ID
-                </Link>
-                <Link href="/vault" className="px-5 py-2.5 rounded-xl text-sm font-bold text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">
-                  View Vault demo
-                </Link>
-              </div>
-            </div>
-            <div className="rounded-2xl p-8 border"
-              style={{ background: "linear-gradient(135deg, #061221 0%, #0c2340 50%, #0c3d2b 100%)", borderColor: "rgba(16,185,129,0.2)" }}>
-              <div className="text-[10px] font-bold text-green-400 uppercase tracking-widest mb-4">PROP ID · TPH-KEN-018</div>
-              <div className="text-2xl font-bold text-white mb-1">18 Banksia Crescent</div>
-              <div className="text-sm text-slate-400 mb-6">Kenmore QLD 4069 · Created 04 Jan 2024</div>
-              <div className="grid grid-cols-2 gap-3">
-                {[
-                  { icon: "📋", label: "Plans & Specs", count: "4 docs" },
-                  { icon: "🔒", label: "Certificates", count: "6 docs" },
-                  { icon: "🛠️", label: "Warranties", count: "12 items" },
-                  { icon: "📅", label: "Service History", count: "24 events" },
-                ].map(({ icon, label, count }) => (
-                  <div key={label} className="p-3 rounded-xl" style={{ background: "rgba(255,255,255,0.07)" }}>
-                    <div className="text-lg mb-1">{icon}</div>
-                    <div className="text-xs font-bold text-white">{label}</div>
-                    <div className="text-[10px] text-green-400 font-semibold">{count}</div>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-4 flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-green-400" />
-                <span className="text-[10px] font-bold text-green-400 uppercase tracking-wider">TrustLink · Active · 2 professionals connected</span>
-              </div>
             </div>
           </div>
 
-          {/* TrustLink feature */}
-          <div className="grid lg:grid-cols-2 gap-10 items-center mb-20">
-            <div className="rounded-2xl p-8 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 order-2 lg:order-1">
-              <div className="space-y-3">
-                {[
-                  { id: "TL-99214-B", label: "Building Inspection", pro: "SafeCheck Inspectors", status: "Report Ready", color: "emerald" },
-                  { id: "TL-88301-A", label: "Settlement / Conveyancing", pro: "Chen & Associates", status: "Awaiting Docs", color: "amber" },
-                  { id: "TL-76100-C", label: "Property Management", pro: "Ray White Inner West", status: "Active", color: "blue" },
-                ].map(({ id, label, pro, status, color }) => (
-                  <div key={id} className="flex items-center gap-3 p-4 bg-white dark:bg-slate-700 rounded-xl border border-slate-200 dark:border-slate-600">
-                    <div className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold text-white flex-shrink-0"
-                      style={{ background: "linear-gradient(135deg, #0c2340, #143865)" }}>
-                      🔗
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="font-bold text-xs text-slate-900 dark:text-white">{label}</div>
-                      <div className="text-[10px] text-slate-400">{pro}</div>
-                    </div>
-                    <span className={`text-[10px] font-bold px-2 py-1 rounded-lg ${
-                      color === "emerald" ? "bg-emerald-100 text-emerald-800" :
-                      color === "amber" ? "bg-amber-100 text-amber-800" : "bg-blue-100 text-blue-800"
-                    }`}>{status}</span>
-                  </div>
-                ))}
-                <div className="mt-3 p-3 rounded-xl border" style={{ background: "rgba(16,185,129,0.05)", borderColor: "rgba(16,185,129,0.2)" }}>
-                  <div className="text-[10px] font-bold text-verified">🔒 TrustLink Security</div>
-                  <div className="text-[10px] text-slate-500 mt-0.5">Each professional sees only their scoped workspace — never your other service providers or financial details.</div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            {/* Card 1: Organise my property */}
+            <Link
+              href="/properties"
+              className="bg-white border border-[#dfe6ef] hover:border-[#a0b3c6] rounded-2xl p-7 flex flex-col justify-between min-h-[220px] transition-all hover:shadow-[0_12px_40px_rgba(7,29,59,0.06)] group"
+            >
+              <div>
+                <div className="w-10 h-10 rounded-xl bg-[#eaf5ef] text-[#24754c] flex items-center justify-center mb-5">
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                  </svg>
                 </div>
-              </div>
-            </div>
-            <div className="order-1 lg:order-2">
-              <div className="text-xs font-bold text-verified uppercase tracking-widest mb-3">TRUSTLINK</div>
-              <h3 className="font-display text-2xl lg:text-3xl font-bold text-slate-900 dark:text-white mb-4">
-                Secure workspaces for every professional relationship.
-              </h3>
-              <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6">
-                TrustLink creates a scoped, encrypted workspace between you and each professional. Share documents, exchange messages, sign proposals and track progress — without exposing sensitive details to other parties.
-              </p>
-              <div className="space-y-3">
-                {[
-                  "Cryptographic access boundaries — professionals see only their scope",
-                  "Document requests, uploads and reviews in one place",
-                  "PEXA-connected for seamless settlement workflows",
-                  "Full audit log — every action immutably recorded",
-                ].map((item) => (
-                  <div key={item} className="flex items-center gap-2.5 text-sm text-slate-600 dark:text-slate-300">
-                    <svg className="w-4 h-4 text-verified flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="m5 12 4 4L19 6" />
-                    </svg>
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Digital Handover feature */}
-          <div className="rounded-2xl overflow-hidden"
-            style={{ background: "linear-gradient(160deg, #061221 0%, #0c2340 55%, #0c3d2b 100%)", border: "1px solid rgba(16,185,129,0.2)" }}>
-            <div className="grid lg:grid-cols-2 gap-0">
-              <div className="p-10 lg:p-14">
-                <div className="text-xs font-bold text-green-400 uppercase tracking-widest mb-4">PROP ID DIGITAL HANDOVER</div>
-                <h3 className="font-display text-2xl lg:text-3xl font-bold text-white mb-4 leading-tight">
-                  A beautiful finish.<br />
-                  <span className="text-green-400">A better beginning.</span>
+                <h3 className="text-xl font-semibold text-[#102645] mb-2">
+                  Organise my property
                 </h3>
-                <p className="text-slate-400 text-sm leading-relaxed mb-6">
-                  The digital handover replaces the cardboard box of paperwork at settlement. Builders guide clients through 5 verification gates, then transfer the permanent Prop ID vault — plans, warranties, certificates and all.
+                <p className="text-[12px] text-[#68788e] leading-relaxed max-w-[260px]">
+                  Keep documents, jobs and trusted connections together in your living Prop ID record.
                 </p>
-                <div className="space-y-3">
-                  {["Evidence reviewed & certificates verified", "Selections settled & finishes confirmed", "Joint walkthrough recorded", "Blocking issues cleared", "Owner identity verified & Prop ID transferred"].map((gate, i) => (
-                    <div key={gate} className="flex items-center gap-3">
-                      <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 border-2 ${
-                        i < 3 ? "bg-green-900/50 border-green-500 text-green-400" : "bg-amber-900/30 border-amber-500 text-amber-400"
-                      }`}>
-                        {i < 3 ? "✓" : "!"}
-                      </div>
-                      <span className="text-sm text-slate-300">{gate}</span>
-                    </div>
-                  ))}
-                </div>
-                <div className="flex gap-3 mt-8">
-                  <Link href="/pro" className="px-5 py-2.5 rounded-xl text-sm font-bold text-white hover:opacity-90 transition-all"
-                    style={{ background: "rgba(16,185,129,0.3)", border: "1px solid rgba(16,185,129,0.4)" }}>
-                    Open Pro Hub
-                  </Link>
-                  <Link href="/signup?role=pro" className="px-5 py-2.5 rounded-xl text-sm font-bold text-green-400 border border-green-800 hover:bg-green-900/20 transition-all">
-                    Start for free
-                  </Link>
-                </div>
               </div>
-              <div className="p-10 lg:p-14 flex flex-col justify-center" style={{ background: "rgba(255,255,255,0.03)" }}>
-                <div className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">Handover Readiness</div>
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="relative w-20 h-20 flex-shrink-0">
-                    <svg className="w-20 h-20 -rotate-90" viewBox="0 0 80 80">
-                      <circle cx="40" cy="40" r="32" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="8" />
-                      <circle cx="40" cy="40" r="32" fill="none" stroke="#16a34a" strokeWidth="8" strokeLinecap="round"
-                        strokeDasharray={`${2 * Math.PI * 32}`} strokeDashoffset={`${2 * Math.PI * 32 * 0.4}`} />
-                    </svg>
-                    <div className="absolute inset-0 flex flex-col items-center justify-center">
-                      <span className="text-xl font-bold text-white">3/5</span>
-                    </div>
-                  </div>
-                  <div>
-                    <div className="font-bold text-white text-sm">18 Banksia Crescent</div>
-                    <div className="text-xs text-slate-400">Kenmore QLD · PROP ID 018</div>
-                    <div className="text-xs text-slate-400 mt-1">Handover: 24 Sep 2026</div>
-                  </div>
-                </div>
-                {[
-                  { label: "Plans & Certificates", status: "4/4 reviewed", ok: true },
-                  { label: "Client Selections", status: "1 pending variation", ok: false },
-                  { label: "Site Walkthrough", status: "Scheduled Fri 20 Sep", ok: false },
-                ].map(({ label, status, ok }) => (
-                  <div key={label} className="flex items-center justify-between py-2.5 border-b border-white/10 last:border-0">
-                    <span className="text-sm text-slate-300">{label}</span>
-                    <span className={`text-[10px] font-bold px-2 py-1 rounded ${ok ? "bg-green-900/50 text-green-400" : "bg-amber-900/30 text-amber-400"}`}>{status}</span>
-                  </div>
-                ))}
+              <div className="flex items-center gap-1 text-[12px] font-semibold text-[#071d3b] group-hover:translate-x-1 transition-transform mt-4">
+                <span>Open my space</span>
+                <span className="text-[#efbd66]">→</span>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
+            </Link>
 
-      {/* ── HOW IT WORKS ──────────────────────────────────── */}
-      <section className="py-20 bg-slate-50 dark:bg-[#0a1628]">
-        <div className="max-w-7xl mx-auto px-4 lg:px-8">
-          <div className="text-center mb-14">
-            <div className="text-xs font-bold text-verified uppercase tracking-widest mb-3">How It Works</div>
-            <h2 className="font-display text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white">Clear steps for each side.</h2>
-          </div>
-          <div className="grid lg:grid-cols-2 gap-12">
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-400 mb-6">
-                🏡 For Property Owners & Buyers
-              </div>
-              <div className="space-y-6">
-                {HOW_IT_WORKS_OWNER.map(({ step, title, desc }) => (
-                  <div key={step} className="flex gap-4">
-                    <div className="w-8 h-8 rounded-full bg-brand-navy text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">
-                      {step}
-                    </div>
-                    <div>
-                      <div className="font-bold text-slate-900 dark:text-white text-sm mb-1">{title}</div>
-                      <div className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed"
-                        dangerouslySetInnerHTML={{ __html: desc }} />
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <Link href="/signup" className="inline-flex items-center gap-2 mt-8 px-6 py-3 rounded-xl text-sm font-bold text-white hover:opacity-90 transition-all"
-                style={{ background: "linear-gradient(135deg, #0c2340, #143865)" }}>
-                Create My Property World
-              </Link>
-            </div>
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold bg-green-50 text-verified dark:bg-green-900/20 dark:text-green-400 mb-6">
-                🏗️ For Builders & Professionals
-              </div>
-              <div className="space-y-6">
-                {HOW_IT_WORKS_PRO.map(({ step, title, desc }) => (
-                  <div key={step} className="flex gap-4">
-                    <div className="w-8 h-8 rounded-full bg-verified text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">
-                      {step}
-                    </div>
-                    <div>
-                      <div className="font-bold text-slate-900 dark:text-white text-sm mb-1">{title}</div>
-                      <div className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed"
-                        dangerouslySetInnerHTML={{ __html: desc }} />
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <Link href="/signup?role=pro" className="inline-flex items-center gap-2 mt-8 px-6 py-3 rounded-xl text-sm font-bold text-white hover:opacity-90 transition-all"
-                style={{ background: "linear-gradient(135deg, #0c3d2b, #16a34a)" }}>
-                Set Up Pro Hub
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── TESTIMONIALS ──────────────────────────────────── */}
-      <section className="py-20 bg-white dark:bg-slate-900">
-        <div className="max-w-7xl mx-auto px-4 lg:px-8">
-          <div className="text-center mb-12">
-            <div className="text-xs font-bold text-verified uppercase tracking-widest mb-3">Real People. Real Results.</div>
-            <h2 className="font-display text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white">
-              Trusted across Australia.
-            </h2>
-          </div>
-          <div className="grid md:grid-cols-3 gap-6">
-            {TESTIMONIALS.map(({ quote, name, role, location, avatar }) => (
-              <div key={name} className="p-6 rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800">
-                <div className="flex mb-3">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <svg key={i} className="w-4 h-4 text-brand-gold" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                    </svg>
-                  ))}
+            {/* Card 2: Save a property */}
+            <Link
+              href="/properties"
+              className="bg-white border border-[#dfe6ef] hover:border-[#a0b3c6] rounded-2xl p-7 flex flex-col justify-between min-h-[220px] transition-all hover:shadow-[0_12px_40px_rgba(7,29,59,0.06)] group"
+            >
+              <div>
+                <div className="w-10 h-10 rounded-xl bg-[#fbeeee] text-[#a44042] flex items-center justify-center mb-5">
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                  </svg>
                 </div>
-                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-5 italic">
-                  &ldquo;{quote}&rdquo;
+                <h3 className="text-xl font-semibold text-[#102645] mb-2">
+                  Save a property
+                </h3>
+                <p className="text-[12px] text-[#68788e] leading-relaxed max-w-[260px]">
+                  Buying or renting? Keep your notes, checklists and professional connections in a private space.
                 </p>
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full bg-brand-navy text-white flex items-center justify-center text-xs font-bold flex-shrink-0">
-                    {avatar}
-                  </div>
-                  <div>
-                    <div className="font-bold text-sm text-slate-900 dark:text-white">{name}</div>
-                    <div className="text-xs text-slate-400">{role} · {location}</div>
-                  </div>
-                </div>
               </div>
-            ))}
+              <div className="flex items-center gap-1 text-[12px] font-semibold text-[#071d3b] group-hover:translate-x-1 transition-transform mt-4">
+                <span>View saved</span>
+                <span className="text-[#efbd66]">→</span>
+              </div>
+            </Link>
+
+            {/* Card 3: Receive my handover */}
+            <Link
+              href="/trustlinks/welcome"
+              className="bg-white border border-[#dfe6ef] hover:border-[#a0b3c6] rounded-2xl p-7 flex flex-col justify-between min-h-[220px] transition-all hover:shadow-[0_12px_40px_rgba(7,29,59,0.06)] group"
+            >
+              <div>
+                <div className="w-10 h-10 rounded-xl bg-[#fff4df] text-[#8b641c] flex items-center justify-center mb-5">
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold text-[#102645] mb-2">
+                  Receive my handover
+                </h3>
+                <p className="text-[12px] text-[#68788e] leading-relaxed max-w-[260px]">
+                  Your new home’s plans, warranties and practical completion documents from Hart Homes.
+                </p>
+              </div>
+              <div className="flex items-center gap-1 text-[12px] font-semibold text-[#071d3b] group-hover:translate-x-1 transition-transform mt-4">
+                <span>Open handover pack</span>
+                <span className="text-[#efbd66]">→</span>
+              </div>
+            </Link>
+
+          </div>
+        </section>
+
+        {/* ── 4. PROMISE STRIP (3 Values) ─────────────────────────────────── */}
+        <div className="py-6 border-y border-[#dfe6ef] grid grid-cols-1 md:grid-cols-3 gap-6 text-[12px]">
+          <div className="flex items-center gap-3">
+            <svg className="w-5 h-5 text-[#24754c] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+            <div>
+              <strong className="text-[#102645] font-semibold">You choose who gets access</strong>
+              <small className="block text-[#68788e] text-[10px]">Clear permissions, before you share.</small>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <svg className="w-5 h-5 text-[#24754c] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+            </svg>
+            <div>
+              <strong className="text-[#102645] font-semibold">Your property, all together</strong>
+              <small className="block text-[#68788e] text-[10px]">Documents and conversations in context.</small>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <svg className="w-5 h-5 text-[#24754c] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+            <div>
+              <strong className="text-[#102645] font-semibold">People when you need them</strong>
+              <small className="block text-[#68788e] text-[10px]">Choose a professional at your own pace.</small>
+            </div>
           </div>
         </div>
-      </section>
 
-      {/* ── FINAL CTA ─────────────────────────────────────── */}
-      <section className="py-20"
-        style={{ background: "linear-gradient(160deg, #061221 0%, #0c2340 55%, #0c3d2b 100%)" }}>
-        <div className="max-w-3xl mx-auto px-4 text-center">
-          <div className="text-xs font-bold text-green-400 uppercase tracking-widest mb-4">Get Started Today</div>
-          <h2 className="font-display text-3xl lg:text-4xl font-bold text-white mb-4 leading-tight">
-            Your property. Your professionals.<br />
-            <span className="text-green-400">One permanent record.</span>
-          </h2>
-          <p className="text-slate-400 text-sm leading-relaxed mb-10 max-w-xl mx-auto">
-            Join 48,000+ Australian properties already on TPH. Free to get started — no credit card required.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/signup"
-              className="px-8 py-4 rounded-xl text-sm font-bold text-white transition-all hover:opacity-90"
-              style={{ background: "linear-gradient(135deg, #0c3d2b, #16a34a)" }}>
-              🏡 Create My Property World
-            </Link>
-            <Link href="/signup?role=pro"
-              className="px-8 py-4 rounded-xl text-sm font-bold text-white border border-slate-600 hover:bg-white/5 transition-all">
-              🏗️ Set Up Pro Hub
-            </Link>
-          </div>
-          <div className="flex justify-center gap-6 mt-8">
-            {["REIQ Member Network", "MBA Accredited", "AIBS Certified", "AWS Hosted in Australia"].map((badge) => (
-              <span key={badge} className="text-[10px] text-slate-500 font-semibold">{badge}</span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── FOOTER ────────────────────────────────────────── */}
-      <footer className="bg-[#040d18] text-slate-400 py-16">
-        <div className="max-w-7xl mx-auto px-4 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
-            <div className="col-span-2">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-9 h-10 flex items-center justify-center font-bold text-xs text-[#061221]"
-                  style={{ background: "linear-gradient(135deg,#10b981,#16a34a)", borderRadius: "7px 7px 7px 2px" }}>
-                  TPH
-                </div>
-                <div>
-                  <div className="text-white font-bold text-sm">The Property Helpline</div>
-                  <div className="text-[10px] text-green-500 font-bold uppercase tracking-widest">Australia</div>
-                </div>
+        {/* ── 5. FIND YOUR PEOPLE (Featured Specialists) ──────────────────── */}
+        <section className="pt-14 pb-12">
+          <div className="flex items-end justify-between gap-4 mb-8">
+            <div>
+              <div className="text-[10px] font-bold uppercase tracking-[1.8px] text-[#24754c] mb-2">
+                Find your people
               </div>
-              <p className="text-xs leading-relaxed text-slate-500 max-w-xs">
-                Australia&apos;s trusted platform for property professionals and owners. Prop ID · TrustLink · Digital Handover.
+              <h2 className="text-2xl sm:text-3xl font-semibold tracking-[-0.8px] text-[#102645]">
+                A good place to start.
+              </h2>
+              <p className="text-[#68788e] text-[13px] mt-1.5">
+                Explore verified professionals near western Brisbane.
               </p>
-              <div className="flex gap-2 mt-4">
-                {["REIQ", "MBA", "AIBS", "PEXA"].map((badge) => (
-                  <span key={badge} className="text-[9px] font-bold px-2 py-1 rounded border border-slate-800 text-slate-500">{badge}</span>
-                ))}
-              </div>
             </div>
-
-            {[
-              { heading: "For Owners", links: ["My Property World", "Find a Professional", "Property Vault", "TrustLinks", "Prop ID"] },
-              { heading: "For Professionals", links: ["Pro Hub", "Digital Handover", "TrustLink CRM", "Leads & Inquiries", "Get Listed"] },
-              { heading: "Company", links: ["About TPH", "How It Works", "Pricing", "Blog", "Careers"] },
-            ].map(({ heading, links }) => (
-              <div key={heading}>
-                <div className="text-xs font-bold text-white uppercase tracking-widest mb-4">{heading}</div>
-                <ul className="space-y-2">
-                  {links.map((link) => (
-                    <li key={link}>
-                      <Link href="#" className="text-xs text-slate-500 hover:text-white transition-colors">{link}</Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+            <Link href="/explore" className="text-[12px] font-semibold text-[#071d3b] hover:underline flex items-center gap-1">
+              <span>View all</span>
+              <span className="text-[#efbd66]">→</span>
+            </Link>
           </div>
 
-          <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="text-xs text-slate-600">
-              © 2026 The Property Helpline Pty Ltd · ABN 12 345 678 901 · Brisbane QLD, Australia
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+            {/* Pro 1: Olivia Hart */}
+            <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 flex flex-col justify-between shadow-sm">
+              <div>
+                <div className="flex items-center gap-3.5 mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-[#e6eaf3] text-[#425b7c] font-serif font-bold text-xl flex items-center justify-center flex-shrink-0">
+                    OH
+                  </div>
+                  <div>
+                    <h3 className="text-base font-semibold text-[#102645] leading-tight">
+                      Olivia Hart
+                    </h3>
+                    <p className="text-[11px] text-[#68788e]">
+                      Builder &amp; handover contact · Hart Homes
+                    </p>
+                  </div>
+                </div>
+                <p className="text-[12px] text-[#68788e] leading-[1.65] mb-4">
+                  Discuss your build, renovation or the documents for your new home. Clear boundaries before sharing.
+                </p>
+              </div>
+              <div className="pt-4 border-t border-[#dfe6ef] flex items-center justify-between text-[11px]">
+                <span className="text-[#68788e]">Greater Brisbane</span>
+                <Link
+                  href="/trustlinks/welcome"
+                  className="px-3.5 py-1.5 bg-[#f3f6fb] hover:bg-[#e2eaf4] text-[#071d3b] font-semibold rounded-lg transition-colors"
+                >
+                  Connect →
+                </Link>
+              </div>
             </div>
-            <div className="flex gap-4 text-xs text-slate-600">
-              <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
-              <Link href="#" className="hover:text-white transition-colors">Terms of Service</Link>
-              <Link href="#" className="hover:text-white transition-colors">Cookie Policy</Link>
+
+            {/* Pro 2: Lachlan Vance */}
+            <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 flex flex-col justify-between shadow-sm">
+              <div>
+                <div className="flex items-center gap-3.5 mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-[#eaf5ef] text-[#24754c] font-serif font-bold text-xl flex items-center justify-center flex-shrink-0">
+                    LV
+                  </div>
+                  <div>
+                    <h3 className="text-base font-semibold text-[#102645] leading-tight">
+                      Lachlan Vance
+                    </h3>
+                    <p className="text-[11px] text-[#68788e]">
+                      Licensed Conveyancer · River City Conveyancing
+                    </p>
+                  </div>
+                </div>
+                <p className="text-[12px] text-[#68788e] leading-[1.65] mb-4">
+                  Contract advice and settlement guidance for buyers and sellers across Queensland. PEXA certified.
+                </p>
+              </div>
+              <div className="pt-4 border-t border-[#dfe6ef] flex items-center justify-between text-[11px]">
+                <span className="text-[#68788e]">Brisbane &amp; Western Suburbs</span>
+                <Link
+                  href="/trustlinks/TL-88301-A"
+                  className="px-3.5 py-1.5 bg-[#f3f6fb] hover:bg-[#e2eaf4] text-[#071d3b] font-semibold rounded-lg transition-colors"
+                >
+                  Connect →
+                </Link>
+              </div>
             </div>
-            <div className="text-[10px] text-slate-700">
-              🇦🇺 Data hosted in Australia · AWS ap-southeast-2 (Sydney)
+
+            {/* Pro 3: Claire Dupont */}
+            <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 flex flex-col justify-between shadow-sm">
+              <div>
+                <div className="flex items-center gap-3.5 mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-[#eee8dc] text-[#76623f] font-serif font-bold text-xl flex items-center justify-center flex-shrink-0">
+                    CD
+                  </div>
+                  <div>
+                    <h3 className="text-base font-semibold text-[#102645] leading-tight">
+                      Claire Dupont
+                    </h3>
+                    <p className="text-[11px] text-[#68788e]">
+                      Lead Building &amp; Pest Inspector · Dupont Inspections
+                    </p>
+                  </div>
+                </div>
+                <p className="text-[12px] text-[#68788e] leading-[1.65] mb-4">
+                  AS 4349.1 building, pest and thermal diagnostic reports. Objective pre-purchase clarity.
+                </p>
+              </div>
+              <div className="pt-4 border-t border-[#dfe6ef] flex items-center justify-between text-[11px]">
+                <span className="text-[#68788e]">Kenmore &amp; Western Suburbs</span>
+                <Link
+                  href="/trustlinks/TL-76100-C"
+                  className="px-3.5 py-1.5 bg-[#f3f6fb] hover:bg-[#e2eaf4] text-[#071d3b] font-semibold rounded-lg transition-colors"
+                >
+                  Connect →
+                </Link>
+              </div>
             </div>
+
+          </div>
+        </section>
+
+        {/* ── 6. MEET PROP ID (Living Memory Section) ────────────────────── */}
+        <section className="my-10 bg-[#eaf0f6] rounded-2xl p-8 sm:p-12 grid grid-cols-1 lg:grid-cols-[1fr_0.9fr] items-center gap-10">
+          <div>
+            <div className="text-[10px] font-bold uppercase tracking-[1.8px] text-[#24754c] mb-2">
+              Meet Prop ID
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-1px] text-[#102645] mb-4 leading-tight">
+              A living memory<br />of your property.
+            </h2>
+            <p className="text-[13px] text-[#68788e] leading-[1.8] max-w-[400px] mb-6">
+              From the appliance manual you can never find to the work done last year. Give the important things a permanent home, ready for whatever comes next.
+            </p>
+            <Link
+              href="/properties/TPH-KEN-018"
+              className="inline-flex items-center gap-2 bg-[#071d3b] hover:bg-[#102d59] text-white px-6 py-3 rounded-xl text-[13px] font-semibold transition-colors shadow-sm"
+            >
+              <span>Explore a property record</span>
+              <span className="text-[#efbd66]">→</span>
+            </Link>
+          </div>
+
+          {/* Mini-Record Card (Rotated slightly for prototype aesthetic) */}
+          <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-[0_18px_35px_rgba(7,29,59,0.06)] transform lg:rotate-1 transition-transform hover:rotate-0">
+            <div className="flex items-center gap-3 pb-4 border-b border-[#dfe6ef]">
+              <div className="w-10 h-10 rounded-lg bg-[#071d3b] text-[#efbd66] flex items-center justify-center font-bold text-sm">
+                🏠
+              </div>
+              <div>
+                <h3 className="text-base font-bold text-[#102645]">
+                  18 Banksia Crescent
+                </h3>
+                <small className="text-[11px] text-[#68788e]">
+                  Kenmore, Queensland 4069 · Prop ID: TPH-KEN-018
+                </small>
+              </div>
+            </div>
+
+            <div className="divide-y divide-[#dfe6ef] text-[12px] my-3">
+              <div className="py-2.5 flex items-center justify-between">
+                <span className="flex items-center gap-2 text-[#68788e]">
+                  <span>📄</span> Plans &amp; certificates
+                </span>
+                <span className="text-[#24754c] font-semibold text-[11px]">In one place</span>
+              </div>
+              <div className="py-2.5 flex items-center justify-between">
+                <span className="flex items-center gap-2 text-[#68788e]">
+                  <span>🛠️</span> Warranties &amp; manuals
+                </span>
+                <span className="text-[#24754c] font-semibold text-[11px]">Easy to find</span>
+              </div>
+              <div className="py-2.5 flex items-center justify-between">
+                <span className="flex items-center gap-2 text-[#68788e]">
+                  <span>👥</span> People &amp; permissions
+                </span>
+                <span className="text-[#24754c] font-semibold text-[11px]">You’re in control</span>
+              </div>
+            </div>
+
+            <div className="pt-3 border-t border-[#dfe6ef] text-[11px] text-[#68788e] flex items-center gap-1.5">
+              <span>🔒</span> Private until you choose to share.
+            </div>
+          </div>
+        </section>
+
+        {/* ── 7. HOME COMPASS BANNER ─────────────────────────────────────── */}
+        <div className="bg-[#f0ede5] rounded-2xl p-7 sm:p-9 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mb-16">
+          <div>
+            <h3 className="text-xl font-bold text-[#102645] mb-1">
+              Not sure where to start?
+            </h3>
+            <p className="text-[13px] text-[#68788e]">
+              Home Compass helps you understand the next step, at your own pace.
+            </p>
+          </div>
+          <Link
+            href="/learn"
+            className="px-5 py-2.5 bg-white border border-[#cbd5e2] hover:bg-[#f3f6fb] text-[#102645] font-semibold rounded-xl text-[12px] transition-colors flex items-center gap-2 whitespace-nowrap shadow-sm"
+          >
+            <span>Explore the guides</span>
+            <span className="text-[#24754c]">→</span>
+          </Link>
+        </div>
+
+      </div>
+
+      {/* ── FOOTER ──────────────────────────────────────────────────────── */}
+      <footer className="border-t border-[#dfe6ef] bg-[#fcfbf8] py-10 mt-auto text-[11px] text-[#68788e]">
+        <div className="max-w-[1240px] mx-auto px-6 lg:px-9 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+          <div>
+            <div className="font-semibold text-[14px] text-[#071d3b]">The Property Helpline</div>
+            <p className="mt-1 max-w-sm text-[11px]">Your digital home for every property journey. Independent Australian platform.</p>
+          </div>
+          <div className="flex gap-6 flex-wrap">
+            <Link href="/explore" className="hover:underline">Find help</Link>
+            <Link href="/learn" className="hover:underline">Home Compass</Link>
+            <Link href="/properties" className="hover:underline">My Property World</Link>
+            <Link href="/pro" className="hover:underline font-semibold text-[#071d3b]">I’m a Pro ↗</Link>
           </div>
         </div>
       </footer>
+
     </div>
   );
 }
