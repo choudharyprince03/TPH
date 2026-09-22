@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
+import { PROFESSIONALS_DATA } from "@/lib/professionals";
 
 const CATEGORIES = [
   { id: "all", label: "All help" },
@@ -8,85 +9,20 @@ const CATEGORIES = [
   { id: "conveyancer", label: "Conveyancing" },
   { id: "inspector", label: "Inspections" },
   { id: "agent", label: "Selling" },
-  { id: "manager", label: "Renting out" },
   { id: "electrician", label: "Electrical" },
-  { id: "finance", label: "Finance" },
-];
-
-const PROFESSIONALS = [
-  {
-    id: "welcome",
-    category: "builder",
-    initials: "OH",
-    avatarTone: "blue",
-    name: "Olivia Hart",
-    role: "Builder & handover contact",
-    business: "Hart Homes · Example business",
-    areas: "Greater Brisbane",
-    desc: "Discuss your build, renovation or the documents for your new home. Agree the scope and appointment before sharing plans or accepting work.",
-    link: "/trustlinks/welcome",
-  },
-  {
-    id: "TL-88301-A",
-    category: "conveyancer",
-    initials: "LV",
-    avatarTone: "green",
-    name: "Lachlan Vance",
-    role: "Licensed Conveyancer",
-    business: "River City Conveyancing",
-    areas: "Brisbane & Western Suburbs",
-    desc: "Contract advice and settlement guidance for buyers and sellers across Queensland. PEXA certified and TrustLink connected.",
-    link: "/trustlinks/TL-88301-A",
-  },
-  {
-    id: "TL-76100-C",
-    category: "inspector",
-    initials: "CD",
-    avatarTone: "sand",
-    name: "Claire Dupont",
-    role: "Lead Building & Timber Pest Inspector",
-    business: "Dupont Property Inspections",
-    areas: "Kenmore & Western Suburbs",
-    desc: "AS 4349.1 building, pest and thermal diagnostic reports. Objective pre-purchase clarity with reports linked directly to your Prop ID.",
-    link: "/trustlinks/TL-76100-C",
-  },
-  {
-    id: "pro-4",
-    category: "agent",
-    initials: "PB",
-    avatarTone: "blue",
-    name: "Peter Bell",
-    role: "Licensed Real Estate Agent",
-    business: "Bell & Co Residential",
-    areas: "Kenmore, Chapel Hill, Brookfield",
-    desc: "Independent property advice, marketing and sales management with verified progress reporting attached to your Prop ID.",
-    link: "/trustlinks/welcome",
-  },
-  {
-    id: "pro-5",
-    category: "electrician",
-    initials: "BS",
-    avatarTone: "green",
-    name: "Marcus Evans",
-    role: "Master Electrician",
-    business: "Bright Spark Electrical QLD",
-    areas: "Greater Brisbane Metro",
-    desc: "Safety switches, solar connections, switchboard upgrades, and statutory Form 4 compliance certificates.",
-    link: "/trustlinks/welcome",
-  },
 ];
 
 export default function ExplorePage() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("Kenmore QLD 4069");
 
-  const filtered = PROFESSIONALS.filter((p) => {
+  const filtered = PROFESSIONALS_DATA.filter((p) => {
     if (selectedCategory !== "all" && p.category !== selectedCategory) return false;
     return true;
   });
 
   return (
-    <div className="w-full flex-1 flex flex-col bg-[#f4f6f8] text-[#102645]">
+    <div className="w-full flex-1 flex flex-col bg-[#f4f6f8] text-[#102645] font-sans">
       <div className="max-w-[1240px] mx-auto px-6 lg:px-9 py-8 w-full flex-1">
 
         {/* ── Breadcrumb ─────────────────────────────────────────────── */}
@@ -105,7 +41,7 @@ export default function ExplorePage() {
             Find the right help.
           </h1>
           <p className="text-[13px] text-[#68788e] mt-1">
-            Start a conversation. Choose what you share. Decide in your own time.
+            Browse verified professional profiles, review past project photos, and connect safely via TrustLink™.
           </p>
         </div>
 
@@ -150,50 +86,75 @@ export default function ExplorePage() {
 
         {/* ── Result Count ───────────────────────────────────────────── */}
         <div className="flex items-center justify-between text-[11px] text-[#68788e] mb-6">
-          <span>{filtered.length} example professionals near {searchQuery}</span>
-          <span className="hidden sm:inline">Sample profiles, not live availability</span>
+          <span>{filtered.length} verified professionals near {searchQuery}</span>
+          <span className="hidden sm:inline">Click any specialist to view their full profile &amp; project photos</span>
         </div>
 
         {/* ── Professionals Grid ─────────────────────────────────────── */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
           {filtered.map((pro) => (
             <article
               key={pro.id}
-              className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow"
+              className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm flex flex-col justify-between hover:shadow-md transition-all group"
             >
               <div>
-                <div className="flex items-center gap-3.5 mb-4">
-                  <div className={`w-12 h-12 rounded-xl font-serif font-bold text-lg flex items-center justify-center flex-shrink-0 ${
-                    pro.avatarTone === "blue"
-                      ? "bg-[#e6eaf3] text-[#425b7c]"
-                      : pro.avatarTone === "green"
-                      ? "bg-[#eaf5ef] text-[#24754c]"
-                      : "bg-[#eee8dc] text-[#76623f]"
-                  }`}>
-                    {pro.initials}
+                {/* Header with Photo Avatar */}
+                <div className="flex items-start gap-3.5 mb-4">
+                  <div className="w-14 h-14 rounded-xl overflow-hidden bg-[#e6eaf3] border border-[#dfe6ef] flex-shrink-0 shadow-sm">
+                    <img
+                      src={pro.avatarUrl}
+                      alt={pro.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
                   </div>
-                  <div>
-                    <h3 className="text-base font-bold text-[#102645] leading-tight">
+                  <div className="min-w-0">
+                    <Link
+                      href={`/explore/${pro.id}`}
+                      className="text-base font-bold text-[#102645] hover:text-[#071d3b] leading-tight block truncate group-hover:underline"
+                    >
                       {pro.name}
-                    </h3>
-                    <p className="text-[11px] text-[#68788e]">
+                    </Link>
+                    <p className="text-[11px] text-[#071d3b] font-semibold truncate mt-0.5">
                       {pro.role}
+                    </p>
+                    <p className="text-[10px] text-[#68788e] truncate">
+                      {pro.business}
                     </p>
                   </div>
                 </div>
 
-                <p className="text-[12px] text-[#68788e] leading-relaxed mb-4">
+                {/* Rating & Licence snippet */}
+                <div className="flex items-center gap-2 text-[11px] mb-3 text-[#68788e]">
+                  <span className="text-amber-500 font-bold">★ {pro.rating}</span>
+                  <span>•</span>
+                  <span className="font-mono text-[10px] font-semibold text-[#071d3b]">{pro.licence}</span>
+                </div>
+
+                <p className="text-[12px] text-[#556b83] leading-relaxed mb-4 line-clamp-3">
                   {pro.desc}
                 </p>
+
+                {/* Photos Preview Pills */}
+                <div className="flex items-center gap-1.5 mb-4 text-[10px] text-[#68788e]">
+                  <span>📸 {pro.portfolio.length} project photos</span>
+                  <span>•</span>
+                  <span>{pro.portfolio[0]?.tag}</span>
+                </div>
               </div>
 
-              <div className="pt-4 border-t border-[#dfe6ef] flex items-center justify-between text-[11px]">
-                <span className="text-[#68788e]">{pro.areas}</span>
+              {/* Card Footer with View Profile & Connect Buttons */}
+              <div className="pt-4 border-t border-[#dfe6ef] flex flex-col sm:flex-row items-center justify-between gap-2.5">
+                <Link
+                  href={`/explore/${pro.id}`}
+                  className="w-full sm:w-auto px-3 py-1.5 bg-[#f3f6fb] hover:bg-[#e4ebf5] text-[#071d3b] font-bold rounded-lg text-[11px] text-center transition-colors"
+                >
+                  View Profile &amp; Photos →
+                </Link>
                 <Link
                   href={pro.link}
-                  className="px-3.5 py-1.5 bg-[#f3f6fb] hover:bg-[#e4ebf5] text-[#071d3b] font-bold rounded-lg transition-colors"
+                  className="w-full sm:w-auto px-3.5 py-1.5 bg-[#071d3b] hover:bg-[#102d59] text-white font-bold rounded-lg text-[11px] text-center transition-colors"
                 >
-                  Connect via TrustLink →
+                  Connect 🛡️
                 </Link>
               </div>
             </article>
@@ -201,11 +162,12 @@ export default function ExplorePage() {
         </div>
 
         {/* ── Consumer Guidance Notice ───────────────────────────────── */}
-        <div className="p-4 rounded-xl bg-[#eaf0f6] border border-[#dfe6ef] flex items-center gap-3 text-[12px] text-[#4e6582] mb-8">
-          <span className="text-base flex-shrink-0">ℹ️</span>
-          <span>
-            Before engaging a professional, review their identity, relevant licence or authorisation, service scope and written fees. These example profiles demonstrate the TrustLink workflow.
-          </span>
+        <div className="p-5 rounded-2xl bg-[#eaf0f6] border border-[#dfe6ef] flex items-start sm:items-center gap-3.5 text-[12px] text-[#4e6582] mb-8">
+          <span className="text-xl flex-shrink-0">ℹ️</span>
+          <div>
+            <strong className="text-[#102645] block mb-0.5">Verified Australian Specialist Directory</strong>
+            Review trade licences, verified QBCC registrations, and real project photographs before agreeing upon scope. All initial communications through TrustLink™ are encrypted and revocable.
+          </div>
         </div>
 
       </div>
