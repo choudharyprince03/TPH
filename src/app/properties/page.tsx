@@ -549,38 +549,8 @@ function MyPropertyWorldContent() {
                 </div>
               </div>
 
-              {/* 3 Summary Counters */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-8">
-                <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm">
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="text-3xl font-bold tracking-tight text-[#102645]">{PROPERTIES_LIST.length}</span>
-                    <span className="text-lg">🏡</span>
-                  </div>
-                  <strong className="block text-[13px] text-[#102645]">Active Property Spaces</strong>
-                  <small className="text-[11px] text-[#68788e]">All linked to sovereign records</small>
-                </div>
-
-                <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm">
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="text-3xl font-bold tracking-tight text-[#8b641c]">1</span>
-                    <span className="text-lg">🎁</span>
-                  </div>
-                  <strong className="block text-[13px] text-[#102645]">Handover Ready to Review</strong>
-                  <small className="text-[11px] text-[#68788e]">18 Banksia Crescent, Kenmore</small>
-                </div>
-
-                <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm">
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="text-3xl font-bold tracking-tight text-[#24754c]">47</span>
-                    <span className="text-lg">📁</span>
-                  </div>
-                  <strong className="block text-[13px] text-[#102645]">Authenticated Documents</strong>
-                  <small className="text-[11px] text-[#68788e]">Form 16/43 certs, plans &amp; warranties</small>
-                </div>
-              </div>
-
-              {/* Search & Filters */}
-              <div className="bg-white border border-[#dfe6ef] rounded-2xl p-4 sm:p-5 shadow-sm mb-7 flex flex-col sm:flex-row gap-4 items-center justify-between">
+              {/* Search & Filters (Category Pills & Search) */}
+              <div className="bg-white border border-[#dfe6ef] rounded-2xl p-4 sm:p-5 shadow-sm mb-6 sm:mb-8 flex flex-col sm:flex-row gap-4 items-center justify-between">
                 <div className="flex gap-2 overflow-x-auto pb-1 w-full sm:w-auto">
                   {[
                     { id: "all", label: "All Properties" },
@@ -610,6 +580,36 @@ function MyPropertyWorldContent() {
                     placeholder="Search by address, suburb, or Prop ID..."
                     className="w-full bg-[#f4f6f8] border border-[#dfe6ef] rounded-xl px-3.5 py-2 text-[12px] text-[#102645] focus:outline-none"
                   />
+                </div>
+              </div>
+
+              {/* 3 Summary Analytics Counters */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-8">
+                <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-3xl font-bold tracking-tight text-[#102645]">{PROPERTIES_LIST.length}</span>
+                    <span className="text-lg">🏡</span>
+                  </div>
+                  <strong className="block text-[13px] text-[#102645]">Active Property Spaces</strong>
+                  <small className="text-[11px] text-[#68788e]">All linked to sovereign records</small>
+                </div>
+
+                <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-3xl font-bold tracking-tight text-[#8b641c]">1</span>
+                    <span className="text-lg">🎁</span>
+                  </div>
+                  <strong className="block text-[13px] text-[#102645]">Handover Ready to Review</strong>
+                  <small className="text-[11px] text-[#68788e]">18 Banksia Crescent, Kenmore</small>
+                </div>
+
+                <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-3xl font-bold tracking-tight text-[#24754c]">47</span>
+                    <span className="text-lg">📁</span>
+                  </div>
+                  <strong className="block text-[13px] text-[#102645]">Authenticated Documents</strong>
+                  <small className="text-[11px] text-[#68788e]">Form 16/43 certs, plans &amp; warranties</small>
                 </div>
               </div>
 
