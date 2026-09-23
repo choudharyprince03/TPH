@@ -1,10 +1,12 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 type Role = "owner" | "pro";
 
 export default function LoginPage() {
+  const router = useRouter();
   const [role, setRole] = useState<Role>("owner");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -60,7 +62,7 @@ export default function LoginPage() {
           </div>
         )}
 
-        <form onSubmit={(e) => { e.preventDefault(); window.location.href = role === "pro" ? "/pro" : "/properties"; }}>
+        <form onSubmit={(e) => { e.preventDefault(); router.push(role === "pro" ? "/pro" : "/properties"); }}>
           <div className="space-y-4">
             <div>
               <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">

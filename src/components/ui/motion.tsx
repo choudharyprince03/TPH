@@ -6,38 +6,38 @@ import React from "react";
 // ─── Shared Variant Definitions ───────────────────────────────────────────────
 
 export const fadeUpVariants: Variants = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 20 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] },
+    transition: { duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] },
   },
 };
 
 export const scaleInVariants: Variants = {
-  hidden: { opacity: 0, scale: 0.94 },
+  hidden: { opacity: 0, scale: 0.96 },
   show: {
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] },
+    transition: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] },
   },
 };
 
 export const slideLeftVariants: Variants = {
-  hidden: { opacity: 0, x: -28 },
+  hidden: { opacity: 0, x: -24 },
   show: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] },
+    transition: { duration: 0.42, ease: [0.25, 0.46, 0.45, 0.94] },
   },
 };
 
 export const slideRightVariants: Variants = {
-  hidden: { opacity: 0, x: 28 },
+  hidden: { opacity: 0, x: 24 },
   show: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] },
+    transition: { duration: 0.42, ease: [0.25, 0.46, 0.45, 0.94] },
   },
 };
 
@@ -45,7 +45,7 @@ export const staggerContainerVariants: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    transition: { staggerChildren: 0.09, delayChildren: 0.05 },
+    transition: { staggerChildren: 0.08, delayChildren: 0.04 },
   },
 };
 
@@ -53,7 +53,7 @@ export const fastStaggerVariants: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    transition: { staggerChildren: 0.055, delayChildren: 0.02 },
+    transition: { staggerChildren: 0.05, delayChildren: 0.02 },
   },
 };
 
@@ -67,7 +67,7 @@ type MotionDivProps = React.ComponentPropsWithoutRef<typeof motion.div> & {
 
 /**
  * FadeUp — general section / content reveal
- * Fires once as element enters the viewport
+ * Fires once as element enters the viewport (using 10% visibility threshold)
  */
 export function FadeUp({
   children,
@@ -80,14 +80,14 @@ export function FadeUp({
     <motion.div
       initial="hidden"
       whileInView="show"
-      viewport={{ once, margin: "-60px" }}
+      viewport={{ once, amount: 0.1 }}
       variants={{
-        hidden: { opacity: 0, y: 24 },
+        hidden: { opacity: 0, y: 20 },
         show: {
           opacity: 1,
           y: 0,
           transition: {
-            duration: 0.52,
+            duration: 0.48,
             delay,
             ease: [0.25, 0.46, 0.45, 0.94],
           },
@@ -115,14 +115,14 @@ export function ScaleIn({
     <motion.div
       initial="hidden"
       whileInView="show"
-      viewport={{ once, margin: "-60px" }}
+      viewport={{ once, amount: 0.1 }}
       variants={{
-        hidden: { opacity: 0, scale: 0.94 },
+        hidden: { opacity: 0, scale: 0.96 },
         show: {
           opacity: 1,
           scale: 1,
           transition: {
-            duration: 0.48,
+            duration: 0.42,
             delay,
             ease: [0.25, 0.46, 0.45, 0.94],
           },
@@ -147,13 +147,13 @@ export function SlideIn({
   direction = "left",
   ...rest
 }: MotionDivProps & { direction?: "left" | "right" }) {
-  const x = direction === "left" ? -28 : 28;
+  const x = direction === "left" ? -24 : 24;
   return (
     <motion.div
       initial={{ opacity: 0, x }}
       whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once, margin: "-60px" }}
-      transition={{ duration: 0.48, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
+      viewport={{ once, amount: 0.1 }}
+      transition={{ duration: 0.45, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
       className={className}
       {...rest}
     >
@@ -180,12 +180,12 @@ export function StaggerGrid({
     <motion.div
       initial="hidden"
       whileInView="show"
-      viewport={{ once, margin: "-60px" }}
+      viewport={{ once, amount: 0.08 }}
       variants={{
         hidden: { opacity: 0 },
         show: {
           opacity: 1,
-          transition: { staggerChildren: 0.09, delayChildren: delay },
+          transition: { staggerChildren: 0.08, delayChildren: delay },
         },
       }}
       className={className}
@@ -225,9 +225,9 @@ export function CardHover({
   return (
     <motion.div
       whileHover={{
-        y: -4,
-        scale: 1.01,
-        transition: { duration: 0.22, ease: "easeOut" },
+        y: -3,
+        scale: 1.008,
+        transition: { duration: 0.2, ease: "easeOut" },
       }}
       className={className}
     >
@@ -238,7 +238,6 @@ export function CardHover({
 
 /**
  * MagneticButton — subtle magnetic hover transform on any button/link
- * Wraps children and applies a smooth translate on mouse proximity
  */
 export function MagneticButton({
   children,
@@ -249,9 +248,9 @@ export function MagneticButton({
 }) {
   return (
     <motion.div
-      whileHover={{ scale: 1.04 }}
+      whileHover={{ scale: 1.03 }}
       whileTap={{ scale: 0.97 }}
-      transition={{ type: "spring", stiffness: 380, damping: 22 }}
+      transition={{ type: "spring", stiffness: 400, damping: 24 }}
       className={className}
     >
       {children}
@@ -265,8 +264,8 @@ export function MagneticButton({
 export function FloatLoop({
   children,
   className,
-  amplitude = 8,
-  duration = 3.5,
+  amplitude = 6,
+  duration = 3.6,
 }: {
   children: React.ReactNode;
   className?: string;
@@ -285,7 +284,7 @@ export function FloatLoop({
 }
 
 /**
- * PageTransition — wraps page content with a smooth fade+slide-up entrance
+ * PageTransition — smooth page fade-in without unmounting DOM tree
  */
 export function PageTransition({
   children,
@@ -296,9 +295,9 @@ export function PageTransition({
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.28, ease: "easeOut" }}
       className={className}
     >
       {children}
@@ -326,7 +325,7 @@ export function HeroText({
       animate="show"
       variants={{
         hidden: {},
-        show: { transition: { staggerChildren: 0.07, delayChildren: delay } },
+        show: { transition: { staggerChildren: 0.06, delayChildren: delay } },
       }}
     >
       {words.map((word, i) => (
@@ -334,11 +333,11 @@ export function HeroText({
           key={i}
           className="inline-block mr-[0.22em]"
           variants={{
-            hidden: { opacity: 0, y: 18 },
+            hidden: { opacity: 0, y: 14 },
             show: {
               opacity: 1,
               y: 0,
-              transition: { duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] },
+              transition: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] },
             },
           }}
         >
@@ -356,20 +355,21 @@ export function CountUp({
   value,
   suffix = "",
   className,
-  duration = 1.2,
+  duration = 1.0,
 }: {
   value: number;
   suffix?: string;
   className?: string;
   duration?: number;
 }) {
-  const [count, setCount] = React.useState(0);
+  const [count, setCount] = React.useState(value);
   const ref = React.useRef<HTMLSpanElement>(null);
   const started = React.useRef(false);
 
   React.useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    setCount(0);
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !started.current) {
@@ -378,7 +378,6 @@ export function CountUp({
           const step = () => {
             const elapsed = Date.now() - start;
             const progress = Math.min(elapsed / (duration * 1000), 1);
-            // Ease out
             const eased = 1 - Math.pow(1 - progress, 3);
             setCount(Math.round(eased * value));
             if (progress < 1) requestAnimationFrame(step);
@@ -386,7 +385,7 @@ export function CountUp({
           requestAnimationFrame(step);
         }
       },
-      { threshold: 0.5 }
+      { threshold: 0.1 }
     );
     observer.observe(el);
     return () => observer.disconnect();

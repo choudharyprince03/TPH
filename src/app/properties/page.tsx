@@ -27,7 +27,7 @@ function MyPropertyWorldContent() {
   const handleTabChange = (tab: "overview" | "properties") => {
     setActiveRailTab(tab);
     const url = tab === "properties" ? "/properties?tab=properties" : "/properties";
-    window.history.pushState(null, "", url);
+    router.replace(url, { scroll: false });
   };
 
   const filteredProperties = PROPERTIES_LIST.filter((p) => {

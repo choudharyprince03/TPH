@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 type Role = "owner" | "pro";
 type Step = "role" | "form";
@@ -21,6 +22,7 @@ const PRO_TYPES = [
 const AU_STATES = ["QLD", "NSW", "VIC", "SA", "WA", "TAS", "ACT", "NT"];
 
 export default function SignupPage() {
+  const router = useRouter();
   const [step, setStep] = useState<Step>("role");
   const [role, setRole] = useState<Role | null>(null);
   const [proType, setProType] = useState("");
@@ -37,7 +39,7 @@ export default function SignupPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    window.location.href = role === "pro" ? "/pro" : "/properties";
+    router.push(role === "pro" ? "/pro" : "/properties");
   };
 
   const update = (k: string, v: string) => setForm((f) => ({ ...f, [k]: v }));

@@ -8,41 +8,47 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
-  const isAuth = pathname.startsWith("/login") || pathname.startsWith("/signup");
-  const isPro = pathname.startsWith("/pro");
-  if (isAuth || isPro) return null;
 
-  const isWorld = pathname.startsWith("/properties") || pathname.startsWith("/trustlinks") || pathname.startsWith("/vault");
-  const isFind = pathname.startsWith("/explore") || pathname.startsWith("/inquiry");
-  const isLearn = pathname.startsWith("/learn");
-
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+  // ── ALL hooks must be called unconditionally at top level ──
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 12);
     window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Close mobile menu whenever route changes
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
+
+  // ── Early return AFTER all hooks ──
+  const isAuth = pathname.startsWith("/login") || pathname.startsWith("/signup");
+  const isPro = pathname.startsWith("/pro");
+
+  if (isAuth || isPro) return null;
+
+  const isWorld =
+    pathname.startsWith("/properties") ||
+    pathname.startsWith("/trustlinks") ||
+    pathname.startsWith("/vault");
+  const isFind =
+    pathname.startsWith("/explore") || pathname.startsWith("/inquiry");
+  const isLearn = pathname.startsWith("/learn");
 
   return (
     <>
       {/* Prototype Demobar */}
-      <motion.div
-        initial={{ opacity: 0, y: -8 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4 }}
-        className="bg-[#eaf0f6] text-[#556b83] text-[11px] py-1.5 px-4 text-center border-b border-[#dfe6ef] flex items-center justify-center gap-2 font-medium"
-      >
+      <div className="bg-[#eaf0f6] text-[#556b83] text-[11px] py-1.5 px-4 text-center border-b border-[#dfe6ef] flex items-center justify-center gap-2 font-medium">
         <span className="w-2 h-2 rounded-full bg-[#24754c] inline-block flex-shrink-0 animate-pulse" />
         <span>
-          <strong className="text-[#102645] font-semibold">Australian English</strong> · Prototype Demonstration · Verified Prop ID &amp; TrustLink Systems
+          <strong className="text-[#102645] font-semibold">Australian English</strong>{" "}
+          · Prototype Demonstration · Verified Prop ID &amp; TrustLink Systems
         </span>
-      </motion.div>
+      </div>
 
       {/* Main Consumer Header */}
-      <motion.header
-        initial={{ opacity: 0, y: -16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.45, delay: 0.1 }}
+      <header
         className={`w-full text-white relative z-30 transition-all duration-300 ${
           scrolled
             ? "bg-[#041226] shadow-[0_4px_24px_rgba(4,18,38,0.35)] border-b border-[#0f2040]"
@@ -88,13 +94,6 @@ export function Header() {
                 }`}
               >
                 {item.label}
-                {item.active && (
-                  <motion.span
-                    layoutId="nav-indicator"
-                    className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#efbd66]"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                  />
-                )}
               </Link>
             ))}
 
@@ -207,7 +206,7 @@ export function Header() {
             </motion.div>
           )}
         </AnimatePresence>
-      </motion.header>
+      </header>
     </>
   );
 }
