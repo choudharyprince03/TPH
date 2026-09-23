@@ -245,12 +245,6 @@ export default function ProPropertyDataPage() {
 
               <div className="flex items-center gap-2 w-full sm:w-auto">
                 <Link
-                  href={`/properties/${record.propId}`}
-                  className="w-full sm:w-auto px-3.5 py-2 bg-white border border-[#cbd5e2] hover:bg-[#f3f6fb] text-[#102645] font-semibold rounded-xl text-[12px] text-center transition-colors"
-                >
-                  Prop ID Passport
-                </Link>
-                <Link
                   href={`/pro/trustlinks/${record.trustlinkId}`}
                   className="w-full sm:w-auto px-4 py-2 bg-[#071d3b] hover:bg-[#102d59] text-white font-bold rounded-xl text-[12px] text-center transition-colors shadow-sm"
                 >
