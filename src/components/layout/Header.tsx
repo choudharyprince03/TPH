@@ -25,7 +25,7 @@ export function Header() {
       </div>
 
       {/* Main Consumer Header */}
-      <header className="w-full bg-[#071d3b] text-white border-b border-[#0f2d59] sticky top-0 z-50">
+      <header className="w-full bg-[#071d3b] text-white border-b border-[#0f2d59] relative z-30">
         <div className="max-w-[1360px] mx-auto px-6 lg:px-10 h-[78px] flex items-center justify-between gap-6">
 
           {/* Brand Logo */}

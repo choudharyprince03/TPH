@@ -363,7 +363,7 @@ export default function ProfessionalProfilePage({ params }: { params: Promise<{ 
 
           {/* Right Column (4 cols): Sticky TrustLink Action Card */}
           <div className="lg:col-span-4">
-            <aside className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm sticky top-20 space-y-6">
+            <aside className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm sticky top-6 space-y-6">
               <div>
                 <div className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c] mb-1">
                   Connect Directly

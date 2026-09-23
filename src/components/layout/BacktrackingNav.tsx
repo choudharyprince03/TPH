@@ -33,7 +33,7 @@ export function BacktrackingNav({
   };
 
   return (
-    <div className="bg-white border-b border-[#dfe6ef] sticky top-[78px] z-40 shadow-[0_2px_8px_rgba(7,29,59,0.02)]">
+    <div className="bg-white border-b border-[#dfe6ef] sticky top-0 z-40 shadow-[0_2px_8px_rgba(7,29,59,0.02)]">
       <div className="max-w-[1512px] mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-3">
         
         {/* Left: Back Button + Breadcrumb Trail */}

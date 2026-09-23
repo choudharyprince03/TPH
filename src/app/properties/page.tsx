@@ -105,7 +105,7 @@ function MyPropertyWorldContent() {
       <div className="max-w-[1512px] mx-auto w-full grid grid-cols-1 lg:grid-cols-[230px_minmax(0,1fr)] min-h-[calc(100vh-140px)]">
 
         {/* ── LEFT RAIL ─────────────────────────────────────────────── */}
-        <aside className="bg-white border-r border-[#dfe6ef] p-6 lg:p-7 flex flex-col gap-6 sticky top-[128px] h-[calc(100vh-128px)] overflow-y-auto">
+        <aside className="bg-white border-r border-[#dfe6ef] p-6 lg:p-7 flex flex-col gap-6 sticky top-[54px] h-[calc(100vh-54px)] overflow-y-auto">
           
           <div className="px-1">
             <div className="text-[9px] font-bold uppercase tracking-[1.3px] text-[#24754c]">
