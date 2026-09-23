@@ -153,8 +153,12 @@ export function ProSidebar() {
           <span>Switch to Consumer View</span>
           <span>→</span>
         </Link>
-        <div className="px-1 pt-1 text-[10px] text-[#8a97a7]">
-          Master Builders QLD Accredited
+        <div className="flex items-center justify-between px-1 pt-1 text-[10px] text-[#8a97a7]">
+          <span>Master Builders QLD</span>
+          <Link href="/login" className="text-[#a44042] hover:underline font-semibold flex items-center gap-1">
+            <span>Log Out</span>
+            <span>↗</span>
+          </Link>
         </div>
       </div>
 

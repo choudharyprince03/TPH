@@ -130,6 +130,18 @@ export function Header() {
               </Link>
             </motion.div>
 
+            {/* Desktop Log Out Button */}
+            <Link
+              href="/login"
+              className="hidden sm:inline-flex items-center gap-1.5 text-[11px] font-medium text-[#adbed3] hover:text-white px-2.5 py-1.5 rounded-[8px] border border-white/15 hover:border-white/30 hover:bg-white/10 transition-all"
+              title="Sign out of account"
+            >
+              <svg className="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+              </svg>
+              <span>Log Out</span>
+            </Link>
+
             {/* Mobile menu trigger */}
             <motion.button
               whileTap={{ scale: 0.92 }}
