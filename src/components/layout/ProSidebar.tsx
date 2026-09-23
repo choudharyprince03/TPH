@@ -1,7 +1,8 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
+import { ReferralModal } from "@/components/features/ReferralModal";
 
 const NAV_ITEMS = [
   {
@@ -74,6 +75,7 @@ const NAV_ITEMS = [
 
 export function ProSidebar() {
   const pathname = usePathname();
+  const [referralOpen, setReferralOpen] = useState(false);
 
   const isActive = (href: string, exact?: boolean) =>
     exact ? pathname === href : pathname === href || pathname.startsWith(href + "/");
@@ -142,6 +144,22 @@ export function ProSidebar() {
             </Link>
           );
         })}
+
+        {/* Referral & Invite Trigger */}
+        <div className="pt-2 mt-2 border-t border-[#dfe6ef]/60">
+          <button
+            onClick={() => setReferralOpen(true)}
+            className="w-full flex items-center justify-between px-3.5 py-2.5 rounded-lg text-[#071d3b] hover:bg-[#eaf5ef] font-semibold transition-all group border border-transparent hover:border-[#c7e3d1] cursor-pointer"
+          >
+            <div className="flex items-center gap-3">
+              <span className="text-sm">🤝</span>
+              <span className="text-[12px]">Invite &amp; Referrals</span>
+            </div>
+            <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[#eaf5ef] text-[#24754c] group-hover:bg-[#24754c] group-hover:text-white transition-colors">
+              Invite
+            </span>
+          </button>
+        </div>
       </nav>
 
       {/* Sidebar Footer: Switch to Consumer View & Sovereignty */}
@@ -162,6 +180,12 @@ export function ProSidebar() {
         </div>
       </div>
 
+      {/* Professional Referral & Client Onboarding Modal */}
+      <ReferralModal
+        isOpen={referralOpen}
+        onClose={() => setReferralOpen(false)}
+        mode="pro"
+      />
     </aside>
   );
 }

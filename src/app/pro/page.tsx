@@ -1,7 +1,8 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { ReferralModal } from "@/components/features/ReferralModal";
 import {
   PageTransition,
   FadeUp,
@@ -14,6 +15,7 @@ import {
 } from "@/components/ui/motion";
 
 export default function ProDashboard() {
+  const [referralOpen, setReferralOpen] = useState(false);
   return (
     <PageTransition className="p-4 sm:p-6 lg:p-9 xl:p-11 max-w-[1240px] w-full font-sans">
 
@@ -31,7 +33,15 @@ export default function ProDashboard() {
           </p>
         </div>
 
-        <div className="flex items-center gap-2.5 self-start sm:self-auto">
+        <div className="flex items-center gap-2.5 self-start sm:self-auto flex-wrap">
+          <button
+            onClick={() => setReferralOpen(true)}
+            className="px-4 py-2.5 bg-[#eaf5ef] hover:bg-[#d8ecdf] text-[#24754c] border border-[#c7e3d1] rounded-xl text-[12px] font-semibold transition-colors shadow-2xs flex items-center gap-1.5 cursor-pointer"
+            title="Move clients to TPH or invite fellow trade specialists"
+          >
+            <span>🤝</span>
+            <span>+ Invite &amp; Refer</span>
+          </button>
           <Link
             href="/pro/leads"
             className="px-4 py-2.5 bg-white border border-[#cbd5e2] hover:bg-[#f3f6fb] text-[#102645] rounded-xl text-[12px] font-semibold transition-colors shadow-sm flex items-center gap-1.5"
@@ -333,6 +343,13 @@ export default function ProDashboard() {
         </div>
       </section>
       </FadeUp>
+
+      {/* Professional Referral & Client Onboarding Modal */}
+      <ReferralModal
+        isOpen={referralOpen}
+        onClose={() => setReferralOpen(false)}
+        mode="pro"
+      />
 
     </PageTransition>
   );

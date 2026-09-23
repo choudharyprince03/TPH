@@ -3,10 +3,12 @@ import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import { ReferralModal } from "@/components/features/ReferralModal";
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [referralOpen, setReferralOpen] = useState(false);
   const pathname = usePathname();
 
   // ── ALL hooks must be called unconditionally at top level ──
@@ -130,6 +132,16 @@ export function Header() {
               </Link>
             </motion.div>
 
+            {/* Desktop Referral Button */}
+            <button
+              onClick={() => setReferralOpen(true)}
+              className="hidden sm:inline-flex items-center gap-1.5 text-[11px] font-semibold text-[#efbd66] hover:text-white px-2.5 py-1.5 rounded-[8px] border border-[#efbd66]/35 hover:border-[#efbd66] hover:bg-[#efbd66]/10 transition-all cursor-pointer"
+              title="Invite a specialist or refer friends"
+            >
+              <span>🎁</span>
+              <span>Refer / Invite</span>
+            </button>
+
             {/* Desktop Log Out Button */}
             <Link
               href="/login"
@@ -207,6 +219,16 @@ export function Header() {
                   transition={{ delay: 0.18 }}
                   className="pt-3 border-t border-white/10 flex items-center justify-between"
                 >
+                  <button
+                    onClick={() => {
+                      setMobileOpen(false);
+                      setReferralOpen(true);
+                    }}
+                    className="w-full text-left text-xs text-[#efbd66] font-semibold py-1.5 flex items-center gap-1.5 tap-target"
+                  >
+                    <span>🎁</span>
+                    <span>Refer a Friend or Pro</span>
+                  </button>
                   <Link href="/pro" onClick={() => setMobileOpen(false)} className="text-xs text-[#adbed3] tap-target">
                     I'm a Pro ↗
                   </Link>
@@ -219,6 +241,13 @@ export function Header() {
           )}
         </AnimatePresence>
       </header>
+
+      {/* Consumer Referral & Invitation Modal */}
+      <ReferralModal
+        isOpen={referralOpen}
+        onClose={() => setReferralOpen(false)}
+        mode="consumer"
+      />
     </>
   );
 }
