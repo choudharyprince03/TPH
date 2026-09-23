@@ -40,27 +40,244 @@
   --foreground: #102645;
 }
 
+/* ── Base ────────────────────────────────────────────────────────────────── */
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Prototype-aligned Custom Utilities */
-@layer utilities {
-  .glass-nav {
-    background-color: #071d3b;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  
-  .radar-pulse {
-    animation: pulse-ring 2.8s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+/* Mobile safe area for notch / home bar */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
   }
 }
 
+/* ── Keyframe Animations ─────────────────────────────────────────────────── */
+
+/* Pulse ring — used in radar / live indicators */
 @keyframes pulse-ring {
   0% { transform: scale(0.65); opacity: 0.85; }
   80% { transform: scale(1.6); opacity: 0; }
   100% { opacity: 0; }
+}
+
+/* Float up-down — hero badges, decorative elements */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Subtle shimmer — skeleton / loading states */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Gradient shift — hero background orbs */
+@keyframes gradient-shift {
+  0%, 100% { opacity: 0.35; transform: scale(1) translate(0, 0); }
+  33% { opacity: 0.5; transform: scale(1.08) translate(4px, -8px); }
+  66% { opacity: 0.3; transform: scale(0.96) translate(-4px, 4px); }
+}
+
+/* Slide in from bottom — mobile menu drawer */
+@keyframes slide-up {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Fade in */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Count up pulse — draws attention to a stat briefly */
+@keyframes stat-pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+/* Underline slide — nav link active indicator */
+@keyframes underline-slide {
+  from { transform: scaleX(0); transform-origin: left; }
+  to { transform: scaleX(1); transform-origin: left; }
+}
+
+/* ── Custom Utility Classes ──────────────────────────────────────────────── */
+
+@layer utilities {
+
+  /* Navigation & glass effects */
+  .glass-nav {
+    background-color: #071d3b;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Live indicator pulse */
+  .radar-pulse {
+    animation: pulse-ring 2.8s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+  }
+
+  /* Float loop */
+  .animate-float {
+    animation: float 3.5s ease-in-out infinite;
+  }
+
+  .animate-float-slow {
+    animation: float 5s ease-in-out infinite;
+  }
+
+  .animate-float-delayed {
+    animation: float 3.5s ease-in-out 1s infinite;
+  }
+
+  /* Gradient shift for background orbs */
+  .animate-gradient-shift {
+    animation: gradient-shift 8s ease-in-out infinite;
+  }
+
+  .animate-gradient-shift-delayed {
+    animation: gradient-shift 10s ease-in-out 2s infinite;
+  }
+
+  /* Shimmer skeleton */
+  .animate-shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(255,255,255,0) 0%,
+      rgba(255,255,255,0.5) 50%,
+      rgba(255,255,255,0) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.8s linear infinite;
+  }
+
+  /* Fade in utility */
+  .animate-fade-in {
+    animation: fade-in 0.5s ease forwards;
+  }
+
+  /* Slide up from bottom */
+  .animate-slide-up {
+    animation: slide-up 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  /* Stat pop (brief scale bounce) */
+  .animate-stat-pop {
+    animation: stat-pop 0.4s ease-out;
+  }
+
+  /* Card hover lift — CSS-only approach (can augment Framer Motion) */
+  .card-hover {
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(7, 29, 59, 0.10);
+  }
+
+  /* Magnetic button feel — scale on hover */
+  .btn-magnetic {
+    transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.18s ease;
+  }
+
+  .btn-magnetic:hover {
+    transform: scale(1.04) translateY(-1px);
+  }
+
+  .btn-magnetic:active {
+    transform: scale(0.97);
+  }
+
+  /* Smooth underline animation for nav links */
+  .nav-link-underline {
+    position: relative;
+  }
+
+  .nav-link-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #efbd66;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.22s ease;
+  }
+
+  .nav-link-underline:hover::after,
+  .nav-link-underline.active::after {
+    transform: scaleX(1);
+  }
+
+  /* Icon rotate on hover */
+  .icon-hover {
+    transition: transform 0.2s ease;
+  }
+
+  .icon-hover:hover {
+    transform: rotate(12deg) scale(1.1);
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: linear-gradient(135deg, #efbd66 0%, #f8d79b 50%, #efbd66 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Glow effect for badges */
+  .glow-green {
+    box-shadow: 0 0 0 3px rgba(36, 117, 76, 0.15);
+  }
+
+  /* Chip overflow scroll — mobile horizontal scroll */
+  .chip-scroll {
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 0.5rem;
+    padding-bottom: 0.25rem;
+  }
+
+  .chip-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Touch-friendly minimum tap target */
+  .tap-target {
+    min-height: 44px;
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* ── Reduced Motion Support ──────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

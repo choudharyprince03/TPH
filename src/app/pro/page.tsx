@@ -1,13 +1,24 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import {
+  PageTransition,
+  FadeUp,
+  SlideIn,
+  StaggerGrid,
+  StaggerItem,
+  CardHover,
+  MagneticButton,
+  CountUp,
+} from "@/components/ui/motion";
 
 export default function ProDashboard() {
   return (
-    <div className="p-6 sm:p-9 lg:p-11 max-w-[1240px] w-full font-sans">
+    <PageTransition className="p-4 sm:p-6 lg:p-9 xl:p-11 max-w-[1240px] w-full font-sans">
 
       {/* ── Top Header ────────────────────────────────────────────────── */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+      <FadeUp className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 sm:mb-8">
         <div>
           <div className="text-[9px] font-bold uppercase tracking-[1.4px] text-[#24754c] mb-1">
             Pro Hub · Hart Homes (QBCC #150821)
@@ -35,10 +46,11 @@ export default function ProDashboard() {
             <span>+ Issue TrustLink</span>
           </Link>
         </div>
-      </div>
+      </FadeUp>
 
       {/* ── Inbound Enquiries Priority Banner ─────────────────────────── */}
-      <section className="bg-[#071d3b] text-white rounded-2xl p-6 sm:p-8 mb-8 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <SlideIn direction="left">
+      <section className="bg-[#071d3b] text-white rounded-2xl p-5 sm:p-6 lg:p-8 mb-6 sm:mb-8 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-5 sm:gap-6">
         <div>
           <div className="text-[#efbd66] text-[10px] font-bold uppercase tracking-[1.6px] mb-1">
             DLM Intake Action Required · 3 New Leads
@@ -70,42 +82,56 @@ export default function ProDashboard() {
           <span className="text-[10px] text-[#b9c8db]">Site Data Structured</span>
         </div>
       </section>
+      </SlideIn>
 
       {/* ── 3-Card Summary Counters ───────────────────────────────────── */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-9">
-        <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm">
-          <div className="flex items-center justify-between mb-1">
-            <span className="text-3xl font-bold tracking-tight text-[#102645]">3</span>
-            <span className="text-lg">📥</span>
+      <StaggerGrid className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 mb-7 sm:mb-9">
+        <StaggerItem>
+          <CardHover>
+          <div className="bg-white border border-[#dfe6ef] rounded-2xl p-5 sm:p-6 shadow-sm">
+            <div className="flex items-center justify-between mb-1">
+              <CountUp value={3} className="text-3xl font-bold tracking-tight text-[#102645]" />
+              <span className="text-lg">📥</span>
+            </div>
+            <strong className="block text-[13px] text-[#102645]">Inbound Enquiries</strong>
+            <small className="text-[11px] text-[#68788e]">2 require quick review &amp; reply</small>
           </div>
-          <strong className="block text-[13px] text-[#102645]">Inbound Enquiries</strong>
-          <small className="text-[11px] text-[#68788e]">2 require quick review &amp; reply</small>
-        </div>
+          </CardHover>
+        </StaggerItem>
 
-        <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm">
-          <div className="flex items-center justify-between mb-1">
-            <span className="text-3xl font-bold tracking-tight text-[#102645]">8</span>
-            <span className="text-lg">🛡️</span>
+        <StaggerItem>
+          <CardHover>
+          <div className="bg-white border border-[#dfe6ef] rounded-2xl p-5 sm:p-6 shadow-sm">
+            <div className="flex items-center justify-between mb-1">
+              <CountUp value={8} className="text-3xl font-bold tracking-tight text-[#102645]" />
+              <span className="text-lg">🛡️</span>
+            </div>
+            <strong className="block text-[13px] text-[#102645]">Active Connected Properties</strong>
+            <small className="text-[11px] text-[#68788e]">Living Prop ID records attached</small>
           </div>
-          <strong className="block text-[13px] text-[#102645]">Active Connected Properties</strong>
-          <small className="text-[11px] text-[#68788e]">Living Prop ID records attached</small>
-        </div>
+          </CardHover>
+        </StaggerItem>
 
-        <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm">
-          <div className="flex items-center justify-between mb-1">
-            <span className="text-3xl font-bold tracking-tight text-[#24754c]">1</span>
-            <span className="text-lg">🎁</span>
+        <StaggerItem>
+          <CardHover>
+          <div className="bg-white border border-[#dfe6ef] rounded-2xl p-5 sm:p-6 shadow-sm">
+            <div className="flex items-center justify-between mb-1">
+              <CountUp value={1} className="text-3xl font-bold tracking-tight text-[#24754c]" />
+              <span className="text-lg">🎁</span>
+            </div>
+            <strong className="block text-[13px] text-[#102645]">Handover Ready to Seal</strong>
+            <small className="text-[11px] text-[#68788e]">18 Banksia Crescent, Kenmore (92%)</small>
           </div>
-          <strong className="block text-[13px] text-[#102645]">Handover Ready to Seal</strong>
-          <small className="text-[11px] text-[#68788e]">18 Banksia Crescent, Kenmore (92%)</small>
-        </div>
-      </div>
+          </CardHover>
+        </StaggerItem>
+      </StaggerGrid>
 
       {/* ── 2-Column Focus Grid (Incoming Leads & Fast Actions) ───────── */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-7 mb-10">
+      <FadeUp>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-7 mb-8 sm:mb-10">
 
         {/* Incoming Leads Priority Queue */}
-        <section className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm">
+        <section className="bg-white border border-[#dfe6ef] rounded-2xl p-5 sm:p-6 shadow-sm">
           <div className="flex items-center justify-between pb-3 border-b border-[#dfe6ef] mb-4">
             <div>
               <h2 className="text-base font-bold text-[#102645]">Incoming Enquiries Queue</h2>
@@ -235,8 +261,10 @@ export default function ProDashboard() {
         </section>
 
       </div>
+      </FadeUp>
 
       {/* ── Active Client Workspaces ─────────────────────────────────── */}
+      <FadeUp>
       <section className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm mb-8">
         <div className="flex items-center justify-between pb-3 border-b border-[#dfe6ef] mb-4">
           <div>
@@ -304,7 +332,8 @@ export default function ProDashboard() {
           ))}
         </div>
       </section>
+      </FadeUp>
 
-    </div>
+    </PageTransition>
   );
 }

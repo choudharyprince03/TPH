@@ -1,6 +1,15 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  PageTransition,
+  FadeUp,
+  StaggerGrid,
+  StaggerItem,
+  CardHover,
+  MagneticButton,
+} from "@/components/ui/motion";
 
 interface GuideStep {
   title: string;
@@ -288,20 +297,20 @@ export default function LearnPage() {
   const [activePillar, setActivePillar] = useState<string>("trustlink");
 
   return (
-    <div className="w-full flex-1 flex flex-col bg-[#f4f6f8] text-[#102645] font-sans pb-16">
+    <PageTransition className="w-full flex-1 flex flex-col bg-[#f4f6f8] text-[#102645] font-sans pb-16">
       
       {/* ── Main Container ───────────────────────────────────────────── */}
-      <div className="max-w-[1240px] mx-auto px-6 lg:px-9 py-8 sm:py-10 w-full flex-1">
+      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-9 py-6 sm:py-8 lg:py-10 w-full flex-1">
         
         {/* Breadcrumbs */}
-        <nav className="flex items-center gap-2 text-[12px] text-[#68788e] mb-6" aria-label="Breadcrumb">
+        <nav className="flex items-center gap-2 text-[12px] text-[#68788e] mb-5 sm:mb-6" aria-label="Breadcrumb">
           <Link href="/" className="hover:underline text-[#68788e]">Home</Link>
           <span className="text-[#a4b2c2]">›</span>
           <span className="text-[#102645] font-semibold">Learn</span>
         </nav>
 
         {/* Page Head */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+        <FadeUp className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-10">
           <div>
             <div className="text-[10px] font-bold uppercase tracking-[1.6px] text-[#24754c] mb-1.5">
               Home Compass
@@ -309,8 +318,8 @@ export default function LearnPage() {
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-[#102645]">
               A little clarity goes a long way.
             </h1>
-            <p className="text-[14px] text-[#68788e] mt-2 max-w-2xl">
-              Start with a short guide. Take the next step when you’re ready.
+            <p className="text-[13px] sm:text-[14px] text-[#68788e] mt-2 max-w-2xl">
+              Start with a short guide. Take the next step when you're ready.
             </p>
           </div>
           <div className="self-start sm:self-auto">
@@ -318,10 +327,10 @@ export default function LearnPage() {
               General guidance
             </span>
           </div>
-        </div>
+        </FadeUp>
 
-        {/* ── 1. The 6 Guides Grid (Matching Prototype Screenshot) ────── */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        {/* ── 1. The 6 Guides Grid ────── */}
+        <StaggerGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 mb-12 sm:mb-16">
           
           {/* Card 1: Owning a home */}
           <div className="bg-white border border-[#dfe6ef] rounded-2xl p-7 flex flex-col justify-between hover:border-[#acbccf] hover:shadow-md transition-all group">
@@ -479,10 +488,11 @@ export default function LearnPage() {
             </div>
           </div>
 
-        </div>
+        </StaggerGrid>
 
-        {/* ── 2. "WHAT WE DO & WHAT MAKES US DIFFERENT" (MINIMALIST & CREATIVE) ── */}
-        <section className="bg-white border border-[#dfe6ef] rounded-3xl p-8 sm:p-12 mb-16 shadow-2xs">
+        {/* ── 2. "WHAT WE DO & WHAT MAKES US DIFFERENT" ── */}
+        <FadeUp>
+        <section className="bg-white border border-[#dfe6ef] rounded-3xl p-6 sm:p-8 lg:p-12 mb-12 sm:mb-16 shadow-2xs">
           
           {/* Subtle Editorial Header */}
           <div className="max-w-3xl mb-10">
@@ -667,14 +677,16 @@ export default function LearnPage() {
           </div>
 
         </section>
+        </FadeUp>
 
         {/* ── 3. Bottom Help & Privacy Banner ─────────────────────────── */}
-        <div className="bg-[#f0ede5] rounded-2xl p-7 sm:p-9 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mb-8">
+        <FadeUp>
+        <div className="bg-[#f0ede5] rounded-2xl p-6 sm:p-7 lg:p-9 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 sm:gap-6 mb-8">
           <div>
             <div className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c] mb-1">
               Private by default
             </div>
-            <h3 className="text-xl font-bold text-[#102645]">
+            <h3 className="text-lg sm:text-xl font-bold text-[#102645]">
               You choose what to share, with whom, and for how long.
             </h3>
             <p className="text-[13px] text-[#68788e] mt-1 max-w-xl">
@@ -682,30 +694,45 @@ export default function LearnPage() {
             </p>
           </div>
           <div className="flex items-center gap-3 self-start sm:self-auto flex-shrink-0">
-            <Link
-              href="/explore"
-              className="px-4 py-2.5 bg-[#071d3b] hover:bg-[#102d59] text-white font-semibold rounded-xl text-[12px] transition-colors shadow-2xs"
-            >
-              Find specialists
-            </Link>
-            <Link
-              href="/properties"
-              className="px-4 py-2.5 bg-white border border-[#cbd5e2] hover:bg-[#f3f6fb] text-[#102645] font-semibold rounded-xl text-[12px] transition-colors shadow-2xs"
-            >
-              Open My World
-            </Link>
+            <MagneticButton>
+              <Link
+                href="/explore"
+                className="px-4 py-2.5 bg-[#071d3b] hover:bg-[#102d59] text-white font-semibold rounded-xl text-[12px] transition-colors shadow-2xs tap-target"
+              >
+                Find specialists
+              </Link>
+            </MagneticButton>
+            <MagneticButton>
+              <Link
+                href="/properties"
+                className="px-4 py-2.5 bg-white border border-[#cbd5e2] hover:bg-[#f3f6fb] text-[#102645] font-semibold rounded-xl text-[12px] transition-colors shadow-2xs tap-target"
+              >
+                Open My World
+              </Link>
+            </MagneticButton>
           </div>
         </div>
+        </FadeUp>
 
       </div>
 
-      {/* ── 4. Interactive Guide Modal (When clicking "Read the guide") ── */}
+      {/* ── 4. Interactive Guide Modal ── */}
+      <AnimatePresence>
       {activeGuide && (
-        <div
-          className="fixed inset-0 z-50 bg-[#071d3b]/60 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6 animate-in fade-in duration-150"
+        <motion.div
+          key="guide-modal"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          className="fixed inset-0 z-50 bg-[#071d3b]/60 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6"
           onClick={() => setActiveGuide(null)}
         >
-          <div
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 16 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 16 }}
+            transition={{ duration: 0.28, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-[#dfe6ef]"
             onClick={(e) => e.stopPropagation()}
           >
@@ -787,10 +814,11 @@ export default function LearnPage() {
               </Link>
             </div>
 
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       )}
+      </AnimatePresence>
 
-    </div>
+    </PageTransition>
   );
 }
