@@ -1,198 +1,13 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
 import {
   PageTransition,
   FadeUp,
-  StaggerGrid,
-  StaggerItem,
-  CardHover,
   MagneticButton,
 } from "@/components/ui/motion";
 
-interface GuideStep {
-  title: string;
-  detail: string;
-}
 
-interface GuideItem {
-  id: string;
-  category: string;
-  title: string;
-  cardTitle: string;
-  intro: string;
-  icon: string;
-  steps: GuideStep[];
-  cta: string;
-  ctaHref: string;
-  officialSource?: {
-    name: string;
-    url: string;
-  };
-}
-
-const GUIDES_DATA: Record<string, GuideItem> = {
-  own: {
-    id: "own",
-    category: "Home Compass · 2 min read",
-    cardTitle: "Owning a home",
-    title: "Make your home easier to manage.",
-    intro: "A few organised records today can save a lot of searching later.",
-    icon: "home",
-    steps: [
-      {
-        title: "Start with the essentials",
-        detail:
-          "Keep the documents you already have: architectural plans, appliance manuals, warranties, insurance certificates, and records of completed trade work. You can add the rest over time.",
-      },
-      {
-        title: "Record what changes",
-        detail:
-          "Add a brief note and supporting documents when work is done. Keep dates, business names, invoices, and the scope of work easy to find for future maintenance or resale.",
-      },
-      {
-        title: "Share a little at a time",
-        detail:
-          "Choose only the documents a professional needs for their specific job via TrustLink™. Review and revoke access whenever the work finishes.",
-      },
-    ],
-    cta: "Organise my property",
-    ctaHref: "/properties",
-    officialSource: {
-      name: "Queensland Government Housing & Home Ownership",
-      url: "https://www.qld.gov.au/housing/buying-owning-home",
-    },
-  },
-  buy: {
-    id: "buy",
-    category: "Home Compass · 2 min read",
-    cardTitle: "Buying a property",
-    title: "Keep your next move in perspective.",
-    intro:
-      "Use a private space for each property you’re considering, so questions and documents don’t get mixed up.",
-    icon: "heart",
-    steps: [
-      {
-        title: "Save the property",
-        detail:
-          "Add its address and your own private notes. Saving a property creates an isolated due diligence space and does not claim the current owner’s records.",
-      },
-      {
-        title: "Write down your questions",
-        detail:
-          "Record what you want to clarify about the property, your budget, building & pest inspections, council overlays, and the timing of your move.",
-      },
-      {
-        title: "Bring in the right help",
-        detail:
-          "Ask a conveyancer, building inspector, or finance professional about matters within their expertise before signing contracts. Connect via TrustLink without getting spammed.",
-      },
-    ],
-    cta: "Save a property",
-    ctaHref: "/properties?tab=properties",
-    officialSource: {
-      name: "Queensland Government Property Buying Guide",
-      url: "https://www.qld.gov.au/housing/buying-owning-home",
-    },
-  },
-  sell: {
-    id: "sell",
-    category: "Home Compass · 2 min read",
-    cardTitle: "Preparing to sell",
-    title: "A more organised start to selling.",
-    intro:
-      "Gather what you know, identify what is missing and choose professional help at your own pace.",
-    icon: "key",
-    steps: [
-      {
-        title: "Get your records together",
-        detail:
-          "Start with property certificates, council approvals, renovation history, and questions you want answered. Keep your private financial details separate.",
-      },
-      {
-        title: "Compare proposed services",
-        detail:
-          "Ask selling agents about their local track record, marketing approach, communication, and written fee structures before making commitments.",
-      },
-      {
-        title: "Get current, specific advice",
-        detail:
-          "Discuss contract terms and statutory disclosure statements (e.g. Form 2 in QLD) with an appropriately qualified solicitor or conveyancer.",
-      },
-    ],
-    cta: "Find a selling agent",
-    ctaHref: "/explore?category=agent",
-    officialSource: {
-      name: "Queensland Government Selling a Property",
-      url: "https://www.qld.gov.au/housing/buying-owning-home",
-    },
-  },
-  rent: {
-    id: "rent",
-    category: "Home Compass · 2 min read",
-    cardTitle: "Renting a home",
-    title: "Keep rental life organised.",
-    intro:
-      "A private place for your rental questions, documents and maintenance notes.",
-    icon: "folder",
-    steps: [
-      {
-        title: "Save your rental space",
-        detail:
-          "Keep the rental address, lease agreement, bond paperwork, and condition reports together in a private personal workspace.",
-      },
-      {
-        title: "Record issues clearly",
-        detail:
-          "Log maintenance items, timestamps of when they occurred, and attach photos before submitting requests to your property manager.",
-      },
-      {
-        title: "Know your tenancy rights",
-        detail:
-          "Refer to standard tenancy guidelines and official dispute resolution processes through the Residential Tenancies Authority (RTA).",
-      },
-    ],
-    cta: "Save my rental",
-    ctaHref: "/properties?tab=properties",
-    officialSource: {
-      name: "Residential Tenancies Authority (RTA QLD)",
-      url: "https://www.rta.qld.gov.au/",
-    },
-  },
-  handover: {
-    id: "handover",
-    category: "Home Compass · 2 min read",
-    cardTitle: "Receiving a handover",
-    title: "Receive your home’s information with confidence.",
-    intro:
-      "A clear handover starts with knowing what has been delivered and what is still open.",
-    icon: "gift",
-    steps: [
-      {
-        title: "Review the sections",
-        detail:
-          "Look through architectural plans, Form 16/43 inspection certificates, manufacturer warranties, and sub-trade contacts. Ask about anything missing.",
-      },
-      {
-        title: "Keep open items visible",
-        detail:
-          "Acknowledge the defect/punch list of unresolved items with agreed rectification dates. Recording handover receipt is separate from accepting defect work.",
-      },
-      {
-        title: "Keep the useful records",
-        detail:
-          "Bring the delivered documents into your sovereign Prop ID record. You retain complete ownership and control over who accesses them in the future.",
-      },
-    ],
-    cta: "Explore a sample handover",
-    ctaHref: "/properties/TPH-KEN-018",
-    officialSource: {
-      name: "Queensland Building and Construction Commission (QBCC)",
-      url: "https://www.qbcc.qld.gov.au/",
-    },
-  },
-};
 
 interface PillarItem {
   id: string;
@@ -293,7 +108,6 @@ const PILLARS: PillarItem[] = [
 ];
 
 export default function LearnPage() {
-  const [activeGuide, setActiveGuide] = useState<GuideItem | null>(null);
   const [activePillar, setActivePillar] = useState<string>("trustlink");
 
   return (
@@ -303,194 +117,13 @@ export default function LearnPage() {
       <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-9 py-6 sm:py-8 lg:py-10 w-full flex-1">
         
         {/* Breadcrumbs */}
-        <nav className="flex items-center gap-2 text-[12px] text-[#68788e] mb-5 sm:mb-6" aria-label="Breadcrumb">
+        <nav className="flex items-center gap-2 text-[12px] text-[#68788e] mb-6" aria-label="Breadcrumb">
           <Link href="/" className="hover:underline text-[#68788e]">Home</Link>
           <span className="text-[#a4b2c2]">›</span>
           <span className="text-[#102645] font-semibold">Learn</span>
         </nav>
 
-        {/* Page Head */}
-        <FadeUp className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-10">
-          <div>
-            <div className="text-[10px] font-bold uppercase tracking-[1.6px] text-[#24754c] mb-1.5">
-              Home Compass
-            </div>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-[#102645]">
-              A little clarity goes a long way.
-            </h1>
-            <p className="text-[13px] sm:text-[14px] text-[#68788e] mt-2 max-w-2xl">
-              Start with a short guide. Take the next step when you're ready.
-            </p>
-          </div>
-          <div className="self-start sm:self-auto">
-            <span className="inline-flex items-center px-3 py-1.5 bg-white border border-[#dfe6ef] rounded-lg text-[11px] font-semibold text-[#5c7089] shadow-2xs">
-              General guidance
-            </span>
-          </div>
-        </FadeUp>
-
-        {/* ── 1. The 6 Guides Grid ────── */}
-        <StaggerGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 mb-12 sm:mb-16">
-          
-          {/* Card 1: Owning a home */}
-          <div className="bg-white border border-[#dfe6ef] rounded-2xl p-7 flex flex-col justify-between hover:border-[#acbccf] hover:shadow-md transition-all group">
-            <div>
-              <div className="w-10 h-10 rounded-xl bg-[#eaf5ef] flex items-center justify-center text-[#24754c]">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-[#102645] mt-5 mb-2 group-hover:text-[#24754c] transition-colors">
-                Owning a home
-              </h3>
-              <p className="text-[13px] text-[#68788e] leading-relaxed">
-                A few organised records today can save a lot of searching later.
-              </p>
-            </div>
-            <div className="mt-8 pt-4 border-t border-[#f0f4f8]">
-              <button
-                onClick={() => setActiveGuide(GUIDES_DATA.own)}
-                className="text-[12px] font-bold text-[#071d3b] hover:text-[#24754c] flex items-center gap-1.5 transition-colors"
-              >
-                <span>Read the guide</span>
-                <span>→</span>
-              </button>
-            </div>
-          </div>
-
-          {/* Card 2: Buying a property */}
-          <div className="bg-white border border-[#dfe6ef] rounded-2xl p-7 flex flex-col justify-between hover:border-[#acbccf] hover:shadow-md transition-all group">
-            <div>
-              <div className="w-10 h-10 rounded-xl bg-[#eaf5ef] flex items-center justify-center text-[#24754c]">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-[#102645] mt-5 mb-2 group-hover:text-[#24754c] transition-colors">
-                Buying a property
-              </h3>
-              <p className="text-[13px] text-[#68788e] leading-relaxed">
-                Use a private space for each property you’re considering, so questions and documents don’t get mixed up.
-              </p>
-            </div>
-            <div className="mt-8 pt-4 border-t border-[#f0f4f8]">
-              <button
-                onClick={() => setActiveGuide(GUIDES_DATA.buy)}
-                className="text-[12px] font-bold text-[#071d3b] hover:text-[#24754c] flex items-center gap-1.5 transition-colors"
-              >
-                <span>Read the guide</span>
-                <span>→</span>
-              </button>
-            </div>
-          </div>
-
-          {/* Card 3: Preparing to sell */}
-          <div className="bg-white border border-[#dfe6ef] rounded-2xl p-7 flex flex-col justify-between hover:border-[#acbccf] hover:shadow-md transition-all group">
-            <div>
-              <div className="w-10 h-10 rounded-xl bg-[#eaf5ef] flex items-center justify-center text-[#24754c]">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-[#102645] mt-5 mb-2 group-hover:text-[#24754c] transition-colors">
-                Preparing to sell
-              </h3>
-              <p className="text-[13px] text-[#68788e] leading-relaxed">
-                Gather what you know, identify what is missing and choose professional help at your own pace.
-              </p>
-            </div>
-            <div className="mt-8 pt-4 border-t border-[#f0f4f8]">
-              <button
-                onClick={() => setActiveGuide(GUIDES_DATA.sell)}
-                className="text-[12px] font-bold text-[#071d3b] hover:text-[#24754c] flex items-center gap-1.5 transition-colors"
-              >
-                <span>Read the guide</span>
-                <span>→</span>
-              </button>
-            </div>
-          </div>
-
-          {/* Card 4: Renting a home */}
-          <div className="bg-white border border-[#dfe6ef] rounded-2xl p-7 flex flex-col justify-between hover:border-[#acbccf] hover:shadow-md transition-all group">
-            <div>
-              <div className="w-10 h-10 rounded-xl bg-[#eaf5ef] flex items-center justify-center text-[#24754c]">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-[#102645] mt-5 mb-2 group-hover:text-[#24754c] transition-colors">
-                Renting a home
-              </h3>
-              <p className="text-[13px] text-[#68788e] leading-relaxed">
-                A private place for your rental questions, documents and maintenance notes.
-              </p>
-            </div>
-            <div className="mt-8 pt-4 border-t border-[#f0f4f8]">
-              <button
-                onClick={() => setActiveGuide(GUIDES_DATA.rent)}
-                className="text-[12px] font-bold text-[#071d3b] hover:text-[#24754c] flex items-center gap-1.5 transition-colors"
-              >
-                <span>Read the guide</span>
-                <span>→</span>
-              </button>
-            </div>
-          </div>
-
-          {/* Card 5: Receiving a handover */}
-          <div className="bg-white border border-[#dfe6ef] rounded-2xl p-7 flex flex-col justify-between hover:border-[#acbccf] hover:shadow-md transition-all group">
-            <div>
-              <div className="w-10 h-10 rounded-xl bg-[#eaf5ef] flex items-center justify-center text-[#24754c]">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-[#102645] mt-5 mb-2 group-hover:text-[#24754c] transition-colors">
-                Receiving a handover
-              </h3>
-              <p className="text-[13px] text-[#68788e] leading-relaxed">
-                A clear handover starts with knowing what has been delivered and what is still open.
-              </p>
-            </div>
-            <div className="mt-8 pt-4 border-t border-[#f0f4f8]">
-              <button
-                onClick={() => setActiveGuide(GUIDES_DATA.handover)}
-                className="text-[12px] font-bold text-[#071d3b] hover:text-[#24754c] flex items-center gap-1.5 transition-colors"
-              >
-                <span>Read the guide</span>
-                <span>→</span>
-              </button>
-            </div>
-          </div>
-
-          {/* Card 6: Need a person? (Highlight Navy Card) */}
-          <div className="bg-[#071d3b] text-white rounded-2xl p-7 flex flex-col justify-between shadow-sm relative overflow-hidden">
-            <div>
-              <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-[#efbd66]">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-white mt-5 mb-2">
-                Need a person?
-              </h3>
-              <p className="text-[13px] text-[#b9c8db] leading-relaxed">
-                Choose a professional and start with a question. Decide what to share before you connect.
-              </p>
-            </div>
-            <div className="mt-8 pt-4 border-t border-white/10">
-              <Link
-                href="/explore"
-                className="text-[12px] font-bold text-[#efbd66] hover:text-[#f8d79b] flex items-center gap-1.5 transition-colors"
-              >
-                <span>Find help</span>
-                <span>→</span>
-              </Link>
-            </div>
-          </div>
-
-        </StaggerGrid>
-
-        {/* ── 2. "WHAT WE DO & WHAT MAKES US DIFFERENT" ── */}
+        {/* ── Philosophy & How It Works ── */}
         <FadeUp>
         <section className="bg-white border border-[#dfe6ef] rounded-3xl p-6 sm:p-8 lg:p-12 mb-12 sm:mb-16 shadow-2xs">
           
@@ -499,10 +132,10 @@ export default function LearnPage() {
             <span className="text-[10px] font-bold uppercase tracking-[2px] text-[#24754c] block mb-2">
               The Property Helpline Philosophy
             </span>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-[#102645] tracking-tight leading-[1.25]">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-[#102645] tracking-tight leading-[1.25]">
               We don’t provide properties.<br />
               <span className="font-serif italic font-normal text-[#071d3b]">We provide the professionals who help you get services done.</span>
-            </h2>
+            </h1>
             <p className="text-[13px] sm:text-[14px] text-[#556b83] mt-3.5 leading-relaxed">
               We are not a real estate agency or listing board. We connect property owners, buyers, renovators, and tenants with vetted independent Australian specialists — and provide sovereign digital tools so you can work together with complete confidence and zero spam.
             </p>
@@ -635,18 +268,27 @@ export default function LearnPage() {
 
                       <div className="py-4 space-y-2 text-[11px]">
                         <div className="p-2.5 rounded-lg bg-white border border-[#e2e8f0] flex items-center gap-2 text-[#102645]">
-                          <span>🔒</span>
+                          <svg className="w-4 h-4 text-[#24754c] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                          </svg>
                           <span>{p.widget.item1}</span>
                         </div>
                         <div className="p-2.5 rounded-lg bg-white border border-[#e2e8f0] flex items-center gap-2 text-[#102645]">
-                          <span>📄</span>
+                          <svg className="w-4 h-4 text-[#071d3b] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                          </svg>
                           <span>{p.widget.item2}</span>
                         </div>
                       </div>
 
                       <div className="pt-3 border-t border-[#dfe6ef] flex items-center justify-between text-[10px] text-[#68788e]">
                         <span>{p.widget.action}</span>
-                        <span className="text-[#24754c] font-semibold">Active ✓</span>
+                        <span className="text-[#24754c] font-semibold inline-flex items-center gap-1">
+                          Active
+                          <svg className="w-3 h-3 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
+                          </svg>
+                        </span>
                       </div>
                     </div>
 
@@ -715,110 +357,6 @@ export default function LearnPage() {
         </FadeUp>
 
       </div>
-
-      {/* ── 4. Interactive Guide Modal ── */}
-      <AnimatePresence>
-      {activeGuide && (
-        <motion.div
-          key="guide-modal"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
-          className="fixed inset-0 z-50 bg-[#071d3b]/60 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6"
-          onClick={() => setActiveGuide(null)}
-        >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 16 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 16 }}
-            transition={{ duration: 0.28, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-[#dfe6ef]"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Modal Header */}
-            <div className="p-6 sm:p-8 border-b border-[#dfe6ef] flex items-start justify-between gap-4">
-              <div>
-                <span className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c] block mb-1">
-                  {activeGuide.category}
-                </span>
-                <h2 className="text-2xl sm:text-3xl font-bold text-[#102645] tracking-tight">
-                  {activeGuide.title}
-                </h2>
-                <p className="text-[13px] text-[#68788e] mt-1.5">
-                  {activeGuide.intro}
-                </p>
-              </div>
-              <button
-                onClick={() => setActiveGuide(null)}
-                className="w-8 h-8 rounded-full bg-[#f4f6f8] hover:bg-[#e6ebf2] text-[#68788e] hover:text-[#102645] flex items-center justify-center text-sm font-bold transition-colors flex-shrink-0"
-                aria-label="Close guide"
-              >
-                ✕
-              </button>
-            </div>
-
-            {/* Modal Steps */}
-            <div className="p-6 sm:p-8 space-y-6">
-              {activeGuide.steps.map((step, idx) => (
-                <div key={idx} className="flex items-start gap-4">
-                  <div className="w-7 h-7 rounded-full bg-[#eaf5ef] text-[#24754c] flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">
-                    {idx + 1}
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-bold text-[#102645] mb-1">
-                      {step.title}
-                    </h3>
-                    <p className="text-[13px] text-[#68788e] leading-relaxed">
-                      {step.detail}
-                    </p>
-                  </div>
-                </div>
-              ))}
-
-              {/* Official Reference Notice */}
-              {activeGuide.officialSource && (
-                <div className="bg-[#f8fafc] border border-[#e2e8f0] rounded-2xl p-4 text-[11px] text-[#556b83] leading-relaxed">
-                  <span className="font-semibold text-[#102645] block mb-1">
-                    ℹ️ General Guidance &amp; Official Legislation
-                  </span>
-                  This guide is general property organisation guidance and does not replace qualified legal, building, or financial advice. For state regulations, refer to the{" "}
-                  <a
-                    href={activeGuide.officialSource.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#24754c] font-semibold underline"
-                  >
-                    {activeGuide.officialSource.name}
-                  </a>
-                  .
-                </div>
-              )}
-            </div>
-
-            {/* Modal Footer */}
-            <div className="p-6 sm:p-8 border-t border-[#dfe6ef] bg-[#fcfbf8] flex items-center justify-between gap-4 rounded-b-3xl">
-              <button
-                onClick={() => setActiveGuide(null)}
-                className="text-[12px] font-semibold text-[#68788e] hover:text-[#102645]"
-              >
-                Close guide
-              </button>
-              <Link
-                href={activeGuide.ctaHref}
-                onClick={() => setActiveGuide(null)}
-                className="px-5 py-2.5 bg-[#071d3b] hover:bg-[#102d59] text-white text-[12px] font-semibold rounded-xl transition-colors shadow-2xs inline-flex items-center gap-2"
-              >
-                <span>{activeGuide.cta}</span>
-                <span>→</span>
-              </Link>
-            </div>
-
-          </motion.div>
-        </motion.div>
-      )}
-      </AnimatePresence>
-
     </PageTransition>
   );
 }

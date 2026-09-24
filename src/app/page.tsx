@@ -45,29 +45,48 @@ export default function Home() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-[#b7c4d7] text-[10px] font-bold uppercase tracking-[2px] mb-4"
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#102d59] border border-white/15 text-[#efbd66] text-[11px] font-bold uppercase tracking-[2px] mb-5 shadow-sm"
             >
-              Your digital home for every property journey
+              <span className="w-2 h-2 rounded-full bg-[#efbd66] animate-pulse" />
+              <span>Prop ID</span>
             </motion.div>
-            <h1 className="text-4xl sm:text-5xl lg:text-[60px] font-normal leading-[1.08] tracking-[-2.2px] text-white mb-6">
-              <HeroText text="Your property." className="block" delay={0.15} />
-              <motion.em
-                initial={{ opacity: 0, y: 18 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.55, delay: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="font-serif text-[#efbd66] italic font-normal block"
-              >
-                Made simpler.
-              </motion.em>
+
+            <h1 className="text-3xl sm:text-4xl lg:text-[50px] font-bold leading-[1.12] tracking-[-1.5px] text-white mb-5">
+              One property.{" "}
+              <span className="text-[#efbd66] font-normal italic font-serif block sm:inline">
+                One shared workspace.
+              </span>
             </h1>
+
             <motion.p
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-              className="text-[#b9c8db] text-[15px] sm:text-[16px] leading-[1.75] max-w-[420px]"
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="text-[#d8e3f0] text-[16px] sm:text-[17px] font-medium leading-relaxed max-w-[460px] mb-3"
             >
-              Find the right help. Keep the important things together. Stay in control, every step of the way.
+              Your property paperwork, tasks and the right people—together.
             </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.45 }}
+              className="text-[#9ab1cb] text-[13px] sm:text-[14px] leading-relaxed max-w-[440px] mb-6"
+            >
+              Review requests, approve next steps and see what needs your attention.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-white/10 border border-white/15 text-[12px] font-semibold text-[#efbd66]"
+            >
+              <svg className="w-4 h-4 text-[#efbd66]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+              <span>You control who sees what.</span>
+            </motion.div>
           </div>
 
           {/* Right Hero Photo */}
@@ -232,6 +251,48 @@ export default function Home() {
               </svg>
               Open Trust Link →
             </Link>
+          </div>
+        </FadeUp>
+
+        {/* ── CLAIM YOUR FREE DIGITAL HOME BANNER ────────────────────────── */}
+        <FadeUp delay={0.15}>
+          <div className="mt-8 sm:mt-10 bg-[#071d3b] text-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-[#0f2d59] relative overflow-hidden shadow-lg">
+            {/* Subtle glow elements */}
+            <div className="absolute top-0 right-0 w-80 h-80 bg-[#efbd66]/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute bottom-0 left-1/3 w-64 h-64 bg-[#24754c]/15 rounded-full blur-3xl pointer-events-none" />
+
+            <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6 lg:gap-10">
+              <div className="max-w-xl">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[11px] font-bold uppercase tracking-wider text-[#efbd66] mb-3 border border-white/10">
+                  <span className="w-2 h-2 rounded-full bg-[#efbd66]" />
+                  <span>The Property Helpline · One property free</span>
+                </div>
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white mb-3">
+                  Claim your free digital home.
+                </h2>
+                <p className="text-[14px] sm:text-[15px] text-[#b9c8db] leading-relaxed mb-4">
+                  Your property’s paperwork, people and history—in one place. You control who sees what.
+                </p>
+                <div className="flex items-center gap-2 text-[12px] text-[#efbd66] font-medium">
+                  <svg className="w-4 h-4 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                  <span>Encrypted sovereign storage · Independent Australian platform</span>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 flex-shrink-0">
+                <MagneticButton>
+                  <Link
+                    href="/signup"
+                    className="px-6 py-3.5 bg-[#efbd66] hover:bg-[#e4b257] text-[#071d3b] font-bold text-[14px] rounded-xl transition-all shadow-md flex items-center justify-center gap-2 text-center"
+                  >
+                    <span>Claim my digital home</span>
+                    <span>→</span>
+                  </Link>
+                </MagneticButton>
+              </div>
+            </div>
           </div>
         </FadeUp>
 
@@ -482,7 +543,9 @@ export default function Home() {
               >
                 <div className="flex items-center gap-3 pb-4 border-b border-[#dfe6ef]">
                   <div className="w-10 h-10 rounded-lg bg-[#071d3b] text-[#efbd66] flex items-center justify-center font-bold text-sm">
-                    🏠
+                    <svg className="w-5 h-5 text-[#efbd66]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                    </svg>
                   </div>
                   <div>
                     <h3 className="text-base font-bold text-[#102645]">18 Banksia Crescent</h3>
@@ -491,9 +554,33 @@ export default function Home() {
                 </div>
                 <div className="divide-y divide-[#dfe6ef] text-[12px] my-3">
                   {[
-                    { icon: "📄", label: "Plans & certificates", value: "In one place" },
-                    { icon: "🛠️", label: "Warranties & manuals", value: "Easy to find" },
-                    { icon: "👥", label: "People & permissions", value: "You're in control" },
+                    {
+                      icon: (
+                        <svg className="w-4 h-4 text-[#071d3b]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                      ),
+                      label: "Plans & certificates",
+                      value: "In one place",
+                    },
+                    {
+                      icon: (
+                        <svg className="w-4 h-4 text-[#071d3b]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                      ),
+                      label: "Warranties & manuals",
+                      value: "Easy to find",
+                    },
+                    {
+                      icon: (
+                        <svg className="w-4 h-4 text-[#071d3b]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                      ),
+                      label: "People & permissions",
+                      value: "You're in control",
+                    },
                   ].map((row, i) => (
                     <motion.div
                       key={i}
@@ -511,7 +598,10 @@ export default function Home() {
                   ))}
                 </div>
                 <div className="pt-3 border-t border-[#dfe6ef] text-[11px] text-[#68788e] flex items-center gap-1.5">
-                  <span>🔒</span> Private until you choose to share.
+                  <svg className="w-3.5 h-3.5 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  </svg>
+                  <span>Private until you choose to share.</span>
                 </div>
               </motion.div>
             </SlideIn>

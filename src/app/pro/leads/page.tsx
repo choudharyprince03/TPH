@@ -126,7 +126,7 @@ export default function LeadsPage() {
             Incoming Enquiries &amp; Leads
           </h1>
           <p className="text-[13px] text-[#68788e] mt-1">
-            Verified inbound homeowner connections with structured property data, soil parameters, and bank pre-approvals.
+            Inbound homeowner enquiries with attached property data, soil parameters, and finance pre-approvals.
           </p>
         </div>
 
@@ -151,7 +151,11 @@ export default function LeadsPage() {
         <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm">
           <div className="flex items-center justify-between mb-1">
             <span className="text-3xl font-bold tracking-tight text-[#102645]">3</span>
-            <span className="text-lg">📥</span>
+            <div className="w-9 h-9 rounded-lg bg-[#f0f4f9] text-[#071d3b] flex items-center justify-center">
+              <svg className="w-5 h-5 text-[#071d3b]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+              </svg>
+            </div>
           </div>
           <strong className="block text-[13px] text-[#102645]">New Inbound Enquiries</strong>
           <small className="text-[11px] text-[#68788e]">2 with complete cadastral and soil data</small>
@@ -160,7 +164,11 @@ export default function LeadsPage() {
         <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm">
           <div className="flex items-center justify-between mb-1">
             <span className="text-3xl font-bold tracking-tight text-[#24754c]">100%</span>
-            <span className="text-lg">📐</span>
+            <div className="w-9 h-9 rounded-lg bg-[#eaf5ef] text-[#24754c] flex items-center justify-center">
+              <svg className="w-5 h-5 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            </div>
           </div>
           <strong className="block text-[13px] text-[#102645]">Site Data Attached</strong>
           <small className="text-[11px] text-[#68788e]">Zero manual chasing for zoning &amp; slope</small>
@@ -169,7 +177,11 @@ export default function LeadsPage() {
         <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm">
           <div className="flex items-center justify-between mb-1">
             <span className="text-3xl font-bold tracking-tight text-[#102645]">1-Click</span>
-            <span className="text-lg">⚡</span>
+            <div className="w-9 h-9 rounded-lg bg-[#fff4df] text-[#8b641c] flex items-center justify-center">
+              <svg className="w-5 h-5 text-[#8b641c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
           </div>
           <strong className="block text-[13px] text-[#102645]">TrustLink Issuance</strong>
           <small className="text-[11px] text-[#68788e]">Instant sovereign workspace onboarding</small>
@@ -181,7 +193,7 @@ export default function LeadsPage() {
         <div className="flex items-center gap-2 overflow-x-auto pb-1">
           {[
             { id: "All", label: "All Enquiries" },
-            { id: "New", label: "🔥 New with Site Data (2)" },
+            { id: "New", label: "New with Site Data (2)" },
             { id: "In Review", label: "In Review" },
             { id: "TrustLink Issued", label: "TrustLink Issued" },
           ].map((f) => (
@@ -228,7 +240,7 @@ export default function LeadsPage() {
                     {lead.name}
                   </h2>
                   <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${lead.statusColor}`}>
-                    {lead.status === "New" ? "🔥 New Lead" : lead.status}
+                    {lead.status === "New" ? "New Lead" : lead.status}
                   </span>
                   <span className="text-[11px] text-[#8a97a7]">
                     {lead.date}
@@ -245,17 +257,30 @@ export default function LeadsPage() {
 
                 {/* Attached Property Data Badges */}
                 <div className="flex items-center gap-2 flex-wrap mt-3 pt-3 border-t border-[#f0f4f8] text-[11px]">
-                  <span className="font-mono font-bold text-[#071d3b] bg-[#f3f6fb] px-2 py-0.5 rounded">
-                    📍 {lead.propId}
+                  <span className="font-mono font-bold text-[#071d3b] bg-[#f3f6fb] px-2 py-0.5 rounded flex items-center gap-1">
+                    <svg className="w-3 h-3 text-[#071d3b]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span>{lead.propId}</span>
                   </span>
-                  <span className="bg-[#eaf5ef] text-[#24754c] font-medium px-2 py-0.5 rounded">
-                    🌱 {lead.soilClass}
+                  <span className="bg-[#eaf5ef] text-[#24754c] font-medium px-2 py-0.5 rounded flex items-center gap-1">
+                    <svg className="w-3 h-3 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                    </svg>
+                    <span>{lead.soilClass}</span>
                   </span>
-                  <span className="bg-[#f3f6fb] text-[#556b83] px-2 py-0.5 rounded">
-                    📐 {lead.lotSize}
+                  <span className="bg-[#f3f6fb] text-[#556b83] px-2 py-0.5 rounded flex items-center gap-1">
+                    <svg className="w-3 h-3 text-[#556b83]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                    </svg>
+                    <span>{lead.lotSize}</span>
                   </span>
-                  <span className="bg-[#f3f6fb] text-[#556b83] px-2 py-0.5 rounded">
-                    🏛️ {lead.zoning}
+                  <span className="bg-[#f3f6fb] text-[#556b83] px-2 py-0.5 rounded flex items-center gap-1">
+                    <svg className="w-3 h-3 text-[#556b83]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                    <span>{lead.zoning}</span>
                   </span>
                 </div>
               </div>
@@ -271,7 +296,9 @@ export default function LeadsPage() {
                   {lead.budget}
                 </div>
                 <div className="text-[11px] text-[#24754c] font-semibold flex items-center lg:justify-end gap-1 mt-0.5">
-                  <span>✓</span>
+                  <svg className="w-3 h-3 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
+                  </svg>
                   <span>{lead.financeStatus}</span>
                 </div>
               </div>
@@ -290,11 +317,14 @@ export default function LeadsPage() {
       </div>
 
       {/* ── DLM Builder Guidance Notice ─────────────────────────────── */}
-      <div className="p-5 rounded-2xl bg-[#eaf0f6] border border-[#dfe6ef] flex items-start sm:items-center gap-3.5 text-[12px] text-[#4e6582]">
-        <span className="text-xl flex-shrink-0">💡</span>
+      <div className="p-4 rounded-xl bg-[#eaf0f6] border border-[#dfe6ef] flex items-center gap-3 text-xs text-[#4e6582]">
+        <div className="w-8 h-8 rounded-lg bg-white border border-[#dfe6ef] flex items-center justify-center flex-shrink-0">
+          <svg className="w-4 h-4 text-[#071d3b]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
         <div>
-          <strong className="text-[#102645] block mb-0.5">How Data &amp; Lead Management (DLM) saves your daily time:</strong>
-          Every inquiry enters directly from the consumer&apos;s TPH Property Passport. You do not need to request basic site maps, zoning certificates or pre-approval letters—they are already attached to the permanent Prop ID.
+          <strong className="text-[#102645] font-semibold">DLM Time Saver:</strong> Inquiries arrive pre-attached with zoning, soil class, and contours from the client&apos;s Prop ID.
         </div>
       </div>
     </div>

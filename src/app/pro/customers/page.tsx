@@ -112,7 +112,7 @@ export default function ProPropertyDataPage() {
             Property Data &amp; Clients
           </h1>
           <p className="text-[13px] text-[#68788e] mt-1">
-            Connected property passports, cadastral Lot/Plan titles, soil records, and statutory certificates.
+            Linked property records, cadastral titles, soil classifications, and statutory certificates.
           </p>
         </div>
 
@@ -213,17 +213,30 @@ export default function ProPropertyDataPage() {
 
                 {/* Property Data Badges */}
                 <div className="flex items-center gap-2 flex-wrap mt-2.5 text-[11px]">
-                  <span className="font-mono font-bold text-[#071d3b] bg-[#f3f6fb] px-2 py-0.5 rounded">
-                    📍 {record.propId}
+                  <span className="font-mono font-bold text-[#071d3b] bg-[#f3f6fb] px-2 py-0.5 rounded flex items-center gap-1">
+                    <svg className="w-3 h-3 text-[#071d3b]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span>{record.propId}</span>
                   </span>
-                  <span className="bg-[#f3f6fb] text-[#556b83] px-2 py-0.5 rounded">
-                    📜 {record.lotPlan}
+                  <span className="bg-[#f3f6fb] text-[#556b83] px-2 py-0.5 rounded flex items-center gap-1">
+                    <svg className="w-3 h-3 text-[#556b83]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    <span>{record.lotPlan}</span>
                   </span>
-                  <span className="bg-[#eaf5ef] text-[#24754c] font-medium px-2 py-0.5 rounded">
-                    🌱 {record.soilClass}
+                  <span className="bg-[#eaf5ef] text-[#24754c] font-medium px-2 py-0.5 rounded flex items-center gap-1">
+                    <svg className="w-3 h-3 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                    </svg>
+                    <span>{record.soilClass}</span>
                   </span>
-                  <span className="bg-[#eaf5ef] text-[#24754c] font-medium px-2 py-0.5 rounded">
-                    ✓ {record.statutoryStatus}
+                  <span className="bg-[#eaf5ef] text-[#24754c] font-medium px-2 py-0.5 rounded flex items-center gap-1">
+                    <svg className="w-3 h-3 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>{record.statutoryStatus}</span>
                   </span>
                 </div>
               </div>

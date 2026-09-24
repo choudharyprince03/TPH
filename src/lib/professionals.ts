@@ -74,7 +74,7 @@ export const PROFESSIONALS_DATA: Professional[] = [
       { title: "Master Builders QLD", subtitle: "Accredited Active Member", icon: "🏆" },
       { title: "QBCC Licensed #150821", subtitle: "Builder Open Licence", icon: "🛡️" },
       { title: "$20M Public Liability", subtitle: "Certificate of Currency", icon: "📑" },
-      { title: "Prop ID Certified", subtitle: "Digital Handover Ready", icon: "🎁" },
+      { title: "TPH Certified", subtitle: "Digital Handover Ready", icon: "🛡️" },
     ],
     services: [
       {

@@ -134,10 +134,43 @@ export default function ProTrustLinkDetailPage({ params }: { params: Promise<{ i
       {/* ── Sub-Navigation Tabs ─────────────────────────────────────── */}
       <nav className="flex items-center gap-5 border-b border-[#dfe6ef] mb-8 overflow-x-auto text-[13px] font-medium">
         {[
-          { id: "gates", label: "Handover Gates", icon: "🚪" },
-          { id: "documents", label: "Packaged Documents", icon: "📄" },
-          { id: "messages", label: "Client Messages", icon: "💬", count: `${messages.length}` },
-          { id: "variations", label: "Variations", icon: "📝" },
+          {
+            id: "gates",
+            label: "Handover Gates",
+            icon: (
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            ),
+          },
+          {
+            id: "documents",
+            label: "Packaged Documents",
+            icon: (
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            ),
+          },
+          {
+            id: "messages",
+            label: "Client Messages",
+            icon: (
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+            ),
+            count: `${messages.length}`,
+          },
+          {
+            id: "variations",
+            label: "Variations",
+            icon: (
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+              </svg>
+            ),
+          },
         ].map((t) => (
           <button
             key={t.id}
@@ -184,10 +217,16 @@ export default function ProTrustLinkDetailPage({ params }: { params: Promise<{ i
                 <div key={g.gate} className="p-4 rounded-xl border border-[#dfe6ef] bg-[#f9fafc] flex items-center justify-between">
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[11px] font-bold ${
+                      <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${
                         g.ok ? "bg-[#eaf5ef] text-[#24754c]" : "bg-[#fff4df] text-[#8b641c]"
                       }`}>
-                        {g.ok ? "✓" : "!"}
+                        {g.ok ? (
+                          <svg className="w-3 h-3 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
+                          </svg>
+                        ) : (
+                          "!"
+                        )}
                       </span>
                       <strong className="text-[#102645] font-semibold">{g.gate}: {g.title}</strong>
                     </div>
@@ -208,13 +247,22 @@ export default function ProTrustLinkDetailPage({ params }: { params: Promise<{ i
               </span>
               <button
                 onClick={() => setHandoverSealed(true)}
-                className={`px-5 py-2.5 rounded-xl text-[12px] font-bold transition-all ${
+                className={`px-5 py-2.5 rounded-xl text-[12px] font-bold transition-all inline-flex items-center gap-1.5 ${
                   handoverSealed
                     ? "bg-[#24754c] text-white"
                     : "bg-[#071d3b] text-white hover:bg-[#102d59]"
                 }`}
               >
-                {handoverSealed ? "✓ Handover Delivered" : "Seal & Deliver to Prop ID"}
+                {handoverSealed ? (
+                  <>
+                    <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Handover Delivered</span>
+                  </>
+                ) : (
+                  <span>Seal & Deliver to Prop ID</span>
+                )}
               </button>
             </div>
           </div>
@@ -247,7 +295,11 @@ export default function ProTrustLinkDetailPage({ params }: { params: Promise<{ i
             ].map((d) => (
               <div key={d.title} className="py-3 flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <span className="text-lg">📄</span>
+                  <div className="w-7 h-7 rounded-lg bg-[#f0f4f9] border border-[#dfe6ef] flex items-center justify-center text-[#204068] flex-shrink-0">
+                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                  </div>
                   <div>
                     <strong className="block text-[#102645]">{d.title}</strong>
                     <span className="text-[10px] text-[#68788e]">{d.cat} · Scoped for Client</span>
@@ -327,13 +379,22 @@ export default function ProTrustLinkDetailPage({ params }: { params: Promise<{ i
               <span className="text-[11px] text-[#68788e]">Status: {variationSigned ? "Signed & Closed" : "Awaiting Client Sign-Off"}</span>
               <button
                 onClick={() => setVariationSigned(true)}
-                className={`px-4 py-1.5 rounded-lg text-[11px] font-bold transition-colors ${
+                className={`px-4 py-1.5 rounded-lg text-[11px] font-bold transition-colors inline-flex items-center gap-1.5 ${
                   variationSigned
                     ? "bg-[#eaf5ef] text-[#24754c]"
                     : "bg-[#071d3b] text-white hover:bg-[#102d59]"
                 }`}
               >
-                {variationSigned ? "✓ Variation Signed" : "Record Approval"}
+                {variationSigned ? (
+                  <>
+                    <svg className="w-3 h-3 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Variation Signed</span>
+                  </>
+                ) : (
+                  <span>Record Approval</span>
+                )}
               </button>
             </div>
           </div>

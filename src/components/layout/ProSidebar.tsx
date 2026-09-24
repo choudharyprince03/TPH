@@ -54,6 +54,16 @@ const NAV_ITEMS = [
     ),
   },
   {
+    href: "/pro/tradie",
+    label: "Tradie",
+    badge: "5 Active",
+    icon: (
+      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+      </svg>
+    ),
+  },
+  {
     href: "/pro/documents",
     label: "Statutory Documents",
     icon: (
@@ -84,19 +94,36 @@ export function ProSidebar() {
     <aside className="w-[230px] flex-shrink-0 bg-white border-r border-[#dfe6ef] text-[#102645] flex flex-col h-screen sticky top-0 font-sans">
       
       {/* Brand & Pro Identity Header */}
-      <div className="p-6 border-b border-[#dfe6ef]">
-        <div className="text-[9px] font-bold uppercase tracking-[1.3px] text-[#24754c] mb-1">
-          Professional space
-        </div>
-        <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-lg bg-[#071d3b] text-[#efbd66] flex items-center justify-center font-bold text-xs flex-shrink-0 shadow-sm">
-            🏠
+      <div className="p-4 border-b border-[#dfe6ef] space-y-3">
+        <Link href="/" className="flex items-center gap-2.5 group">
+          <div className="h-9 w-9 rounded-[7px] bg-white flex items-center justify-center p-0.5 border border-[#dfe6ef] shadow-2xs flex-shrink-0">
+            <img
+              src="/logo.png"
+              alt="The Property Helpline"
+              className="w-full h-full object-contain"
+            />
           </div>
           <div className="min-w-0">
-            <h2 className="text-[15px] font-bold text-[#102645] leading-tight truncate">
+            <div className="font-bold text-[13px] tracking-tight leading-tight text-[#071d3b] group-hover:text-[#24754c] transition-colors truncate">
+              The Property Helpline
+            </div>
+            <div className="text-[7.5px] font-bold uppercase tracking-[1.4px] text-[#24754c] leading-tight mt-0.5">
+              PRO HUB PORTAL
+            </div>
+          </div>
+        </Link>
+
+        <div className="pt-2 border-t border-[#dfe6ef]/70 flex items-center gap-2.5">
+          <div className="w-8 h-8 rounded-lg bg-[#071d3b] text-[#efbd66] flex items-center justify-center font-bold text-xs flex-shrink-0 shadow-2xs">
+            <svg className="w-4 h-4 text-[#efbd66]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+            </svg>
+          </div>
+          <div className="min-w-0">
+            <h2 className="text-[13px] font-bold text-[#102645] leading-tight truncate">
               Hart Homes
             </h2>
-            <small className="text-[10px] text-[#68788e] block truncate mt-0.5">
+            <small className="text-[9.5px] text-[#68788e] block truncate mt-0.5">
               QBCC #150821 · Builder
             </small>
           </div>
@@ -152,7 +179,9 @@ export function ProSidebar() {
             className="w-full flex items-center justify-between px-3.5 py-2.5 rounded-lg text-[#071d3b] hover:bg-[#eaf5ef] font-semibold transition-all group border border-transparent hover:border-[#c7e3d1] cursor-pointer"
           >
             <div className="flex items-center gap-3">
-              <span className="text-sm">🤝</span>
+              <svg className="w-4 h-4 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
               <span className="text-[12px]">Invite &amp; Referrals</span>
             </div>
             <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[#eaf5ef] text-[#24754c] group-hover:bg-[#24754c] group-hover:text-white transition-colors">

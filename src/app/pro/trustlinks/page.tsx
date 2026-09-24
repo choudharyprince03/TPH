@@ -71,7 +71,7 @@ export default function ProTrustLinksListPage() {
             Client TrustLinks
           </h1>
           <p className="text-[13px] text-[#68788e] mt-1">
-            Scoped, secure client portals for sharing plans, defect registers, and digital handovers.
+            Scoped client portals for plans, variations, defect registers, and digital handovers.
           </p>
         </div>
 

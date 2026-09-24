@@ -8,7 +8,7 @@ export default function LeadDetailPage({ params }: { params: Promise<{ id: strin
   const [actionNotice, setActionNotice] = useState<string | null>(null);
 
   const handleQuickAction = (actionName: string) => {
-    setActionNotice(`✓ Completed: ${actionName}. Notification sent to James Davidson.`);
+    setActionNotice(`Completed: ${actionName}. Notification sent to James Davidson.`);
     setTimeout(() => {
       setActionNotice(null);
     }, 4000);
@@ -31,8 +31,9 @@ export default function LeadDetailPage({ params }: { params: Promise<{ id: strin
               <span className="text-[9px] font-bold uppercase tracking-[1.4px] text-[#24754c]">
                 DLM Lead Intake · Attached Property Data
               </span>
-              <span className="bg-[#fff4df] text-[#8b641c] text-[10px] font-bold px-2 py-0.5 rounded">
-                🔥 Hot Inbound
+              <span className="bg-[#fff4df] text-[#8b641c] text-[10px] font-bold px-2 py-0.5 rounded flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#8b641c] inline-block" />
+                <span>Hot Inbound</span>
               </span>
             </div>
             <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#102645]">
@@ -58,7 +59,16 @@ export default function LeadDetailPage({ params }: { params: Promise<{ id: strin
                   : "bg-[#071d3b] hover:bg-[#102d59] text-white"
               }`}
             >
-              <span>{accepted ? "✓ TrustLink TL-99214-B Issued" : "Accept & Issue Scoped TrustLink"}</span>
+              {accepted ? (
+                <>
+                  <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>TrustLink TL-99214-B Issued</span>
+                </>
+              ) : (
+                <span>Accept & Issue Scoped TrustLink</span>
+              )}
               <span>→</span>
             </button>
           </div>
@@ -81,7 +91,9 @@ export default function LeadDetailPage({ params }: { params: Promise<{ id: strin
 
         {actionNotice && (
           <div className="mt-4 p-3 bg-[#eaf5ef] border border-[#cbe3d3] rounded-xl text-[12px] text-[#24754c] font-medium flex items-center gap-2">
-            <span>⚡</span>
+            <svg className="w-4 h-4 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
             <span>{actionNotice}</span>
           </div>
         )}
@@ -124,7 +136,9 @@ export default function LeadDetailPage({ params }: { params: Promise<{ id: strin
               <div className="py-3 grid grid-cols-[150px_1fr] gap-2">
                 <dt className="text-[#68788e]">Funding Status</dt>
                 <dd className="text-[#24754c] font-semibold flex items-center gap-1.5">
-                  <span>✓</span>
+                  <svg className="w-3.5 h-3.5 text-[#24754c] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
+                  </svg>
                   <span>Macquarie Bank construction facility pre-approved up to $1.2M AUD</span>
                 </dd>
               </div>
@@ -212,33 +226,53 @@ export default function LeadDetailPage({ params }: { params: Promise<{ id: strin
             <div className="space-y-2.5">
               <button
                 onClick={() => handleQuickAction("Requested Site Soil & Contour Survey PDF")}
-                className="w-full py-2.5 px-4 text-[12px] font-semibold rounded-xl border border-[#dfe6ef] bg-[#f9fafc] hover:bg-[#f0f4f9] text-[#102645] text-left flex items-center justify-between transition-colors"
+                className="w-full py-2.5 px-4 text-[12px] font-semibold rounded-xl border border-[#dfe6ef] bg-[#f9fafc] hover:bg-[#f0f4f9] text-[#102645] text-left flex items-center justify-between transition-colors group"
               >
-                <span>📄 Request Site Soil &amp; Contour PDF</span>
+                <div className="flex items-center gap-2">
+                  <svg className="w-4 h-4 text-[#071d3b]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  <span>Request Site Soil &amp; Contour PDF</span>
+                </div>
                 <span className="text-[11px] text-[#68788e]">1-click ↗</span>
               </button>
 
               <button
                 onClick={() => handleQuickAction("Sent Sloping Site Preliminary Cost Schedule")}
-                className="w-full py-2.5 px-4 text-[12px] font-semibold rounded-xl border border-[#dfe6ef] bg-[#f9fafc] hover:bg-[#f0f4f9] text-[#102645] text-left flex items-center justify-between transition-colors"
+                className="w-full py-2.5 px-4 text-[12px] font-semibold rounded-xl border border-[#dfe6ef] bg-[#f9fafc] hover:bg-[#f0f4f9] text-[#102645] text-left flex items-center justify-between transition-colors group"
               >
-                <span>💰 Send Standard Sloping Site Cost Schedule</span>
+                <div className="flex items-center gap-2">
+                  <svg className="w-4 h-4 text-[#071d3b]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>Send Sloping Site Cost Schedule</span>
+                </div>
                 <span className="text-[11px] text-[#68788e]">1-click ↗</span>
               </button>
 
               <button
                 onClick={() => handleQuickAction("Sent 15-Minute Discovery Call Invitation")}
-                className="w-full py-2.5 px-4 text-[12px] font-semibold rounded-xl border border-[#dfe6ef] bg-[#f9fafc] hover:bg-[#f0f4f9] text-[#102645] text-left flex items-center justify-between transition-colors"
+                className="w-full py-2.5 px-4 text-[12px] font-semibold rounded-xl border border-[#dfe6ef] bg-[#f9fafc] hover:bg-[#f0f4f9] text-[#102645] text-left flex items-center justify-between transition-colors group"
               >
-                <span>📅 Schedule 15-min Feasibility Call</span>
+                <div className="flex items-center gap-2">
+                  <svg className="w-4 h-4 text-[#071d3b]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  <span>Schedule 15-min Feasibility Call</span>
+                </div>
                 <span className="text-[11px] text-[#68788e]">1-click ↗</span>
               </button>
 
               <button
                 onClick={() => handleQuickAction("Declined with Polite Capacity Referral Note")}
-                className="w-full py-2.5 px-4 text-[12px] font-semibold rounded-xl border border-[#f5dfdf] bg-[#fff8f8] hover:bg-[#fbeeee] text-[#a44042] text-left flex items-center justify-between transition-colors"
+                className="w-full py-2.5 px-4 text-[12px] font-semibold rounded-xl border border-[#f5dfdf] bg-[#fff8f8] hover:bg-[#fbeeee] text-[#a44042] text-left flex items-center justify-between transition-colors group"
               >
-                <span>🚫 Decline with Standard Referral Message</span>
+                <div className="flex items-center gap-2">
+                  <svg className="w-4 h-4 text-[#a44042]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>Decline with Standard Referral Message</span>
+                </div>
                 <span className="text-[11px] text-[#a44042]">Decline</span>
               </button>
             </div>

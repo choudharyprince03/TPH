@@ -60,22 +60,24 @@ export function Header() {
         <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-10 h-[68px] sm:h-[78px] flex items-center justify-between gap-4 sm:gap-6">
 
           {/* Brand Logo */}
-          <Link href="/" className="flex items-center gap-2 sm:gap-3 flex-shrink-0 group">
+          <Link href="/" className="flex items-center gap-2.5 sm:gap-3 flex-shrink-0 group">
             <motion.div
-              whileHover={{ scale: 1.06 }}
+              whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 380, damping: 20 }}
-              className="h-9 w-8 sm:h-10 sm:w-9 rounded-[7px] bg-[#fcfbf8] flex items-center justify-center text-[#071d3b] shadow-sm p-1.5"
+              className="h-10 w-10 sm:h-11 sm:w-11 rounded-[9px] bg-white flex items-center justify-center shadow-xs p-1 flex-shrink-0 border border-white/20 overflow-hidden"
             >
-              <svg className="w-5 h-5 sm:w-6 sm:h-6 text-[#071d3b]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-              </svg>
+              <img
+                src="/logo.png"
+                alt="The Property Helpline"
+                className="w-full h-full object-contain"
+              />
             </motion.div>
             <div className="text-left">
-              <div className="font-semibold text-[13px] sm:text-[15px] tracking-tight leading-tight text-white">
+              <div className="font-bold text-[14px] sm:text-[15px] tracking-tight leading-tight text-white group-hover:text-[#efbd66] transition-colors">
                 The Property Helpline
               </div>
-              <div className="text-[7px] sm:text-[8px] font-semibold uppercase tracking-[2.6px] text-[#b6c4d6] leading-tight mt-0.5">
-                AUSTRALIA · INDEPENDENT
+              <div className="text-[7.5px] sm:text-[8px] font-semibold uppercase tracking-[2.4px] text-[#efbd66] leading-tight mt-0.5">
+                YOUR DIGITAL HOME
               </div>
             </div>
           </Link>
@@ -138,7 +140,9 @@ export function Header() {
               className="hidden sm:inline-flex items-center gap-1.5 text-[11px] font-semibold text-[#efbd66] hover:text-white px-2.5 py-1.5 rounded-[8px] border border-[#efbd66]/35 hover:border-[#efbd66] hover:bg-[#efbd66]/10 transition-all cursor-pointer"
               title="Invite a specialist or refer friends"
             >
-              <span>🎁</span>
+              <svg className="w-3.5 h-3.5 text-[#efbd66]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v13m0-13V4.5a2.5 2.5 0 115 0V8h-5zm0 0H7a2.5 2.5 0 110-5 2.5 2.5 0 012.5 2.5V8H12zm-8 4h16v9a1 1 0 01-1 1H5a1 1 0 01-1-1v-9z" />
+              </svg>
               <span>Refer / Invite</span>
             </button>
 
@@ -226,7 +230,9 @@ export function Header() {
                     }}
                     className="w-full text-left text-xs text-[#efbd66] font-semibold py-1.5 flex items-center gap-1.5 tap-target"
                   >
-                    <span>🎁</span>
+                    <svg className="w-3.5 h-3.5 text-[#efbd66]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v13m0-13V4.5a2.5 2.5 0 115 0V8h-5zm0 0H7a2.5 2.5 0 110-5 2.5 2.5 0 012.5 2.5V8H12zm-8 4h16v9a1 1 0 01-1 1H5a1 1 0 01-1-1v-9z" />
+                    </svg>
                     <span>Refer a Friend or Pro</span>
                   </button>
                   <Link href="/pro" onClick={() => setMobileOpen(false)} className="text-xs text-[#adbed3] tap-target">

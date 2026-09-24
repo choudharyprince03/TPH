@@ -43,7 +43,9 @@ export default function ProProfileManagementPage() {
 
       {saved && (
         <div className="mb-6 p-4 bg-[#eaf5ef] border border-[#cbe3d3] rounded-xl text-[12px] text-[#24754c] font-semibold flex items-center gap-2">
-          <span>✓</span>
+          <svg className="w-4 h-4 text-[#24754c] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
+          </svg>
           <span>Profile changes and portfolio photos updated successfully!</span>
         </div>
       )}
@@ -75,15 +77,27 @@ export default function ProProfileManagementPage() {
               </div>
             </div>
 
-            <span className="text-[11px] font-bold px-3 py-1 bg-[#eaf5ef] text-[#24754c] rounded-full border border-[#cbe3d3] self-start sm:self-auto">
-              ✓ Active on Explore
+            <span className="text-[11px] font-bold px-3 py-1 bg-[#eaf5ef] text-[#24754c] rounded-full border border-[#cbe3d3] self-start sm:self-auto inline-flex items-center gap-1.5">
+              <svg className="w-3 h-3 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
+              </svg>
+              Active on Explore
             </span>
           </div>
 
           <div className="text-[11px] text-[#68788e] flex items-center gap-4 border-t border-[#dfe6ef] pt-3">
             <span>Licence: <strong className="text-[#102645]">{pro.licence}</strong></span>
             <span>•</span>
-            <span>Rating: <strong className="text-amber-500">★ {pro.rating}</strong> ({pro.reviewsCount} reviews)</span>
+            <span className="inline-flex items-center gap-1">
+              Rating:
+              <strong className="text-[#102645] inline-flex items-center gap-0.5">
+                <svg className="w-3.5 h-3.5 text-amber-500 fill-amber-500 inline" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+                {pro.rating}
+              </strong>
+              ({pro.reviewsCount} reviews)
+            </span>
             <span>•</span>
             <span>Photos: <strong className="text-[#102645]">{pro.portfolio.length} gallery images</strong></span>
           </div>
