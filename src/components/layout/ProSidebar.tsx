@@ -95,12 +95,12 @@ export function ProSidebar() {
       
       {/* Brand & Pro Identity Header */}
       <div className="p-4 border-b border-[#dfe6ef] space-y-3">
-        <Link href="/" className="flex items-center gap-2.5 group">
-          <div className="h-9 w-9 rounded-[7px] bg-white flex items-center justify-center p-0.5 border border-[#dfe6ef] shadow-2xs flex-shrink-0">
+        <Link href="/" className="flex items-center gap-3 group">
+          <div className="bg-white rounded-xl p-1.5 border border-[#dfe6ef] shadow-xs flex items-center justify-center flex-shrink-0">
             <img
               src="/logo.png"
               alt="The Property Helpline"
-              className="w-full h-full object-contain"
+              className="h-10 w-auto object-contain"
             />
           </div>
           <div className="min-w-0">

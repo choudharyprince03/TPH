@@ -637,9 +637,18 @@ export default function Home() {
       <FadeUp>
         <footer className="border-t border-[#dfe6ef] bg-[#fcfbf8] py-8 sm:py-10 mt-auto text-[11px] text-[#68788e]">
           <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-9 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 sm:gap-6">
-            <div>
-              <div className="font-semibold text-[14px] text-[#071d3b]">The Property Helpline</div>
-              <p className="mt-1 max-w-sm text-[11px]">Your digital home for every property journey. Independent Australian platform.</p>
+            <div className="flex items-center gap-3">
+              <div className="bg-white rounded-xl p-1.5 border border-[#dfe6ef] shadow-2xs flex items-center justify-center flex-shrink-0">
+                <img
+                  src="/logo.png"
+                  alt="The Property Helpline"
+                  className="h-10 w-auto object-contain"
+                />
+              </div>
+              <div>
+                <div className="font-semibold text-[14px] text-[#071d3b]">The Property Helpline</div>
+                <p className="mt-0.5 max-w-sm text-[11px]">Your digital home for every property journey. Independent Australian platform.</p>
+              </div>
             </div>
             <div className="flex gap-4 sm:gap-6 flex-wrap">
               <Link href="/explore" className="hover:underline tap-target">Find help</Link>

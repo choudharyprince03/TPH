@@ -60,20 +60,20 @@ export function Header() {
         <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-10 h-[68px] sm:h-[78px] flex items-center justify-between gap-4 sm:gap-6">
 
           {/* Brand Logo */}
-          <Link href="/" className="flex items-center gap-2.5 sm:gap-3 flex-shrink-0 group">
+          <Link href="/" className="flex items-center gap-3 sm:gap-3.5 flex-shrink-0 group">
             <motion.div
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.04 }}
               transition={{ type: "spring", stiffness: 380, damping: 20 }}
-              className="h-10 w-10 sm:h-11 sm:w-11 rounded-[9px] bg-white flex items-center justify-center shadow-xs p-1 flex-shrink-0 border border-white/20 overflow-hidden"
+              className="bg-white rounded-xl px-2 py-1.5 sm:px-2.5 sm:py-2 flex items-center justify-center shadow-sm border border-white/20 flex-shrink-0"
             >
               <img
                 src="/logo.png"
                 alt="The Property Helpline"
-                className="w-full h-full object-contain"
+                className="h-10 sm:h-12 w-auto object-contain"
               />
             </motion.div>
             <div className="text-left">
-              <div className="font-bold text-[14px] sm:text-[15px] tracking-tight leading-tight text-white group-hover:text-[#efbd66] transition-colors">
+              <div className="font-bold text-[15px] sm:text-[16px] tracking-tight leading-tight text-white group-hover:text-[#efbd66] transition-colors">
                 The Property Helpline
               </div>
               <div className="text-[7.5px] sm:text-[8px] font-semibold uppercase tracking-[2.4px] text-[#efbd66] leading-tight mt-0.5">

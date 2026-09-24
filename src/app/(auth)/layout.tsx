@@ -14,19 +14,19 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         <div className="absolute bottom-20 -left-16 w-80 h-80 rounded-full bg-[#24754c]/15 blur-3xl" />
 
         {/* Official Brand Logo */}
-        <Link href="/" className="flex items-center gap-3 relative z-10 group">
-          <div className="h-12 w-12 rounded-[10px] bg-white flex items-center justify-center p-1.5 shadow-md border border-white/20 flex-shrink-0">
+        <Link href="/" className="flex items-center gap-3.5 relative z-10 group">
+          <div className="bg-white rounded-2xl p-2.5 shadow-lg border border-white/20 flex-shrink-0 flex items-center justify-center">
             <img
               src="/logo.png"
               alt="The Property Helpline"
-              className="w-full h-full object-contain"
+              className="h-14 sm:h-16 w-auto object-contain"
             />
           </div>
           <div>
-            <div className="text-white font-bold text-base leading-tight group-hover:text-[#efbd66] transition-colors">
+            <div className="text-white font-bold text-lg leading-tight group-hover:text-[#efbd66] transition-colors">
               The Property Helpline
             </div>
-            <div className="text-[#efbd66] text-[8.5px] font-bold uppercase tracking-[2px] mt-0.5">
+            <div className="text-[#efbd66] text-[9px] font-bold uppercase tracking-[2px] mt-0.5">
               YOUR DIGITAL HOME
             </div>
           </div>
@@ -110,13 +110,13 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
       {/* Right content panel */}
       <div className="flex-1 flex flex-col overflow-y-auto bg-[#fcfbf8]">
         {/* Mobile top brand bar */}
-        <div className="lg:hidden flex items-center justify-between p-5 border-b border-[#dfe6ef] bg-white">
-          <Link href="/" className="flex items-center gap-2.5">
-            <div className="h-9 w-9 rounded-lg bg-white flex items-center justify-center p-1 border border-[#dfe6ef] shadow-xs">
+        <div className="lg:hidden flex items-center justify-between p-4 border-b border-[#dfe6ef] bg-white">
+          <Link href="/" className="flex items-center gap-3">
+            <div className="bg-white rounded-xl p-1.5 border border-[#dfe6ef] shadow-xs flex items-center justify-center">
               <img
                 src="/logo.png"
                 alt="The Property Helpline"
-                className="w-full h-full object-contain"
+                className="h-10 w-auto object-contain"
               />
             </div>
             <div>
