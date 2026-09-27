@@ -11,7 +11,7 @@ interface TrustLinkItem {
   business: string;
   purpose: string;
   property: string;
-  propertyType: "Prop ID" | "Saved space";
+  propertyType: "Prop ID" | "Renovation";
   status: "active" | "pending" | "paused" | "ended";
   statusLabel: string;
   sharedDocsCount: number;
@@ -56,9 +56,9 @@ const TRUSTLINKS: TrustLinkItem[] = [
     avatarTone: "sand",
     role: "Lead Building & Pest Inspector",
     business: "Dupont Property Inspections",
-    purpose: "Pre-purchase AS 4349.1 timber pest audit",
+    purpose: "AS 4349.1 timber pest audit & structural inspection",
     property: "7 Cedar Street, Graceville",
-    propertyType: "Saved space",
+    propertyType: "Renovation",
     status: "pending",
     statusLabel: "Awaiting reply",
     sharedDocsCount: 2,
@@ -236,7 +236,7 @@ export default function TrustLinksListPage() {
                   </p>
 
                   <div className="bg-[#f3f6fb] p-2.5 rounded-lg flex items-center gap-2 text-[11px] text-[#102645] mb-4">
-                    <span>{tl.propertyType === "Prop ID" ? "🏠" : "❤️"}</span>
+                    <span>{tl.propertyType === "Prop ID" ? "🏠" : "🔨"}</span>
                     <span>{tl.property} · {tl.propertyType}</span>
                   </div>
 

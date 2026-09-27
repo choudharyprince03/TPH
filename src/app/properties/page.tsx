@@ -32,7 +32,7 @@ function MyPropertyWorldContent() {
 
   const filteredProperties = PROPERTIES_LIST.filter((p) => {
     if (propertyFilter === "owned" && p.type !== "Owned home") return false;
-    if (propertyFilter === "saved" && p.type !== "Saved space") return false;
+    if (propertyFilter === "renovation" && p.type !== "Renovation") return false;
     if (propertyFilter === "investment" && p.type !== "Investment") return false;
 
     if (searchQuery.trim()) {
@@ -260,7 +260,7 @@ function MyPropertyWorldContent() {
                     <span>→</span>
                   </button>
                   <button
-                    onClick={() => alert("Add a Property: Enter address to start a new Prop ID record or private saved space.")}
+                    onClick={() => alert("Add a Property: Enter address to start a new Prop ID record.")}
                     className="inline-flex items-center gap-1.5 bg-[#071d3b] hover:bg-[#102d59] text-white px-4 py-2.5 rounded-xl text-[12px] font-semibold transition-colors shadow-2xs"
                   >
                     <span>+ Add a property</span>
@@ -566,7 +566,7 @@ function MyPropertyWorldContent() {
                     <span>← Back to Overview</span>
                   </button>
                   <button
-                    onClick={() => alert("Add a Property: Enter address to start a new Prop ID record or private saved space.")}
+                    onClick={() => alert("Add a Property: Enter address to start a new Prop ID record.")}
                     className="inline-flex items-center gap-1.5 bg-[#071d3b] hover:bg-[#102d59] text-white px-4 py-2.5 rounded-xl text-[12px] font-semibold transition-colors shadow-2xs"
                   >
                     <span>+ Add a property</span>
@@ -580,7 +580,7 @@ function MyPropertyWorldContent() {
                   {[
                     { id: "all", label: "All Properties" },
                     { id: "owned", label: "Owned Homes" },
-                    { id: "saved", label: "Saved for Buying" },
+                    { id: "renovation", label: "Renovations" },
                     { id: "investment", label: "Investment" },
                   ].map((f) => (
                     <button
@@ -725,7 +725,7 @@ function MyPropertyWorldContent() {
                     Add another property
                   </h3>
                   <p className="text-[12px] text-[#68788e] max-w-xs mb-4">
-                    Create a living Prop ID for a home you own, a renovation, or a property you are buying.
+                    Create a living Prop ID for a home you own, an investment, or an active renovation.
                   </p>
                   <span className="px-4 py-2 bg-[#071d3b] text-white text-[12px] font-bold rounded-xl shadow-2xs">
                     + Start New Prop ID

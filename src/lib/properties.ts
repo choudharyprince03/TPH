@@ -19,7 +19,7 @@ export interface PropertyData {
   suburb: string;
   state: string;
   postcode: string;
-  type: "Owned home" | "Saved space" | "Investment";
+  type: "Owned home" | "Renovation" | "Investment";
   typeColor: string;
   imageUrl: string;
   documentsCount: number;
@@ -107,13 +107,13 @@ export const PROPERTIES_MAP: Record<string, PropertyData> = {
     suburb: "Graceville",
     state: "QLD",
     postcode: "4075",
-    type: "Saved space",
+    type: "Renovation",
     typeColor: "bg-[#fff4df] text-[#8b641c]",
     imageUrl: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
     documentsCount: 9,
-    statusBadge: "Pre-Purchase Due Diligence",
+    statusBadge: "Active Renovation",
     statusColor: "bg-[#eaf5ef] text-[#24754c]",
-    tagline: "Graceville QLD 4075 · Saved property space for due diligence and inspection records.",
+    tagline: "Graceville QLD 4075 · Character home renovation and compliance records.",
     notes: "Contract review requested with Lachlan Vance. Building & pest inspection scheduled with Claire Dupont.",
     legalDna: {
       cadastral: "Lot 12 on RP 48102 (Title Ref 41082199)",
@@ -140,9 +140,9 @@ export const PROPERTIES_MAP: Record<string, PropertyData> = {
       { title: "Heritage & Character Overlay Advice Notice.pdf", cat: "Planning", size: "950 KB", shared: false },
     ],
     events: [
-      { title: "Building & pest diagnostic completed by Dupont Inspections", time: "Sep 18, 2026", detail: "Objective pre-purchase report sealed to workspace." },
-      { title: "Conveyancing contract advice opened with Lachlan Vance", time: "Sep 15, 2026", detail: "Reviewing vendor disclosure statements and cooling-off timeline." },
-      { title: "Property added to Alex's personal saved spaces", time: "Sep 10, 2026", detail: "Shortlisted for auction research." },
+      { title: "Building & pest diagnostic completed by Dupont Inspections", time: "Sep 18, 2026", detail: "Comprehensive diagnostic report sealed to workspace." },
+      { title: "Conveyancing contract advice opened with Lachlan Vance", time: "Sep 15, 2026", detail: "Reviewing vendor disclosure statements and boundary approvals." },
+      { title: "Project added to Alex's property records", time: "Sep 10, 2026", detail: "Renovation and compliance passport initialised." },
     ],
   },
   "TPH-BRK-042": {

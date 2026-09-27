@@ -73,7 +73,7 @@ export default function SignupPage() {
               </div>
               <div className="min-w-0 flex-1">
                 <div className="font-bold text-[#102645] text-base mb-1 group-hover:text-[#071d3b] transition-colors">
-                  I&apos;m a Property Owner or Buyer
+                  I&apos;m a Property Owner or Renovator
                 </div>
                 <div className="text-xs text-[#556b83] leading-relaxed">
                   Find verified professionals, manage your Prop ID, access your Property Vault, and connect via TrustLink.
@@ -157,7 +157,7 @@ export default function SignupPage() {
                 <svg className="w-3.5 h-3.5 text-[#efbd66]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                 </svg>
-                <span>Property Owner / Buyer</span>
+                <span>Property Owner / Renovator</span>
               </>
             )}
           </div>

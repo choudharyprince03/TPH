@@ -45,7 +45,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
               <span className="text-[#efbd66]">Own with confidence.</span>
             </h2>
             <p className="text-[#b6c7db] text-sm leading-relaxed max-w-sm">
-              The only platform where builders, buyers, and property professionals share one secure, permanent record — your Prop ID.
+              The only platform where builders, owners, and property professionals share one secure, permanent record — your Prop ID.
             </p>
           </div>
 
@@ -66,7 +66,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                   </svg>
                 ),
-                title: "For Property Owners & Buyers",
+                title: "For Property Owners & Renovators",
                 desc: "My Property World, permanent Vault, verified service connections.",
               },
               {

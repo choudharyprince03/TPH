@@ -74,13 +74,13 @@ const PILLARS: PillarItem[] = [
     tagline: "Private personal space",
     title: "A calm sanctuary, not an ad feed.",
     summary:
-      "Commercial property websites track every search and alert selling agents to your interest. My Property World is an isolated canvas: manage homes you own, or run quiet due diligence on properties you’re considering buying or renting.",
+      "Commercial property websites track every search and clutter your experience with advertising. My Property World is an isolated workspace: manage homes you own, organise renovations, and store maintenance and compliance records in complete privacy.",
     outside: "Browsing tracked and monetized by commercial listing sites.",
     inside: "Private sandbox for your inspections, notes & budgets.",
     widget: {
       badge: "Personal Space · Private & Secure",
-      item1: "Zero tracking, zero vendor notifications",
-      item2: "Independent due diligence workspace",
+      item1: "Zero tracking, zero commercial advertising",
+      item2: "Dedicated home & renovation workspace",
       action: "Open My Property World",
     },
     cta: "Open My Property World",
@@ -137,7 +137,7 @@ export default function AboutPage() {
               <span className="font-serif italic font-normal text-[#071d3b]">We provide the professionals who help you get services done.</span>
             </h1>
             <p className="text-[13px] sm:text-[14px] text-[#556b83] mt-3.5 leading-relaxed">
-              We are not a real estate agency or listing board. We connect property owners, buyers, renovators, and tenants with vetted independent Australian specialists — and provide practical digital tools so you can work together with confidence and clarity.
+              We are not a real estate agency or listing board. We connect property owners, renovators, and managers with vetted independent Australian specialists — and provide practical digital tools so you can work together with confidence and clarity.
             </p>
           </div>
 
