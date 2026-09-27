@@ -28,7 +28,7 @@ export default function ProDashboard() {
             Good morning, Olivia.
           </h1>
           <p className="text-xs sm:text-[13px] text-[#68788e] mt-0.5">
-            Verified site data, collaborative Tradie network &amp; digital handovers.
+            Direct client inquiries, collaborative Tradie network &amp; digital handovers.
           </p>
         </div>
 
@@ -70,14 +70,14 @@ export default function ProDashboard() {
               James &amp; Sarah Davidson — Simpsons Rd, Bardon
             </h2>
             <p className="text-xs sm:text-[13px] text-[#b9c8db] leading-relaxed mb-3.5">
-              4-Bed Custom Build inquiry with verified Class H1 soil and 2.8m contour survey pre-attached. Zero manual chasing.
+              4-Bed Custom Build inquiry with client-provided project brief and preliminary site notes attached.
             </p>
             <div className="flex items-center gap-3">
               <Link
                 href="/pro/leads/L-101"
                 className="px-4 py-2 bg-[#efbd66] hover:bg-[#dfac55] text-[#071d3b] font-bold rounded-xl text-xs transition-colors"
               >
-                Review Site Data →
+                Review Project Brief →
               </Link>
               <Link
                 href="/pro/leads"
@@ -90,7 +90,7 @@ export default function ProDashboard() {
 
           <div className="text-right flex-shrink-0 bg-white/10 p-3.5 rounded-xl border border-white/15">
             <span className="text-2xl font-bold text-[#efbd66] block">100%</span>
-            <span className="text-[10px] text-[#b9c8db] uppercase tracking-wider font-semibold">Site Data Verified</span>
+            <span className="text-[10px] text-[#b9c8db] uppercase tracking-wider font-semibold">Client Intake Complete</span>
           </div>
         </section>
       </SlideIn>
@@ -158,7 +158,7 @@ export default function ProDashboard() {
             <div className="flex items-center justify-between pb-3 border-b border-[#dfe6ef] mb-3">
               <div>
                 <h2 className="text-base font-bold text-[#102645]">Incoming Enquiries</h2>
-                <p className="text-[11px] text-[#68788e]">Attached site data &amp; soil specs.</p>
+                <p className="text-[11px] text-[#68788e]">Attached client briefs &amp; project notes.</p>
               </div>
               <Link href="/pro/leads" className="text-xs font-bold text-[#071d3b] hover:underline">
                 View all 3 →
@@ -176,7 +176,7 @@ export default function ProDashboard() {
                     </span>
                   </div>
                   <p className="text-[11px] text-[#68788e] truncate mt-0.5">
-                    Bardon · 4 Bed Custom Build · <span className="font-mono text-[#071d3b] font-semibold">Class H1 Soil</span>
+                    Bardon · 4 Bed Custom Build · <span className="font-mono text-[#071d3b] font-semibold">Preliminary Brief</span>
                   </p>
                 </div>
                 <Link
@@ -197,7 +197,7 @@ export default function ProDashboard() {
                     </span>
                   </div>
                   <p className="text-[11px] text-[#68788e] truncate mt-0.5">
-                    Newstead · Knockdown-Rebuild · <span className="font-mono text-[#071d3b] font-semibold">Class M Soil</span>
+                    Newstead · Knockdown-Rebuild · <span className="font-mono text-[#071d3b] font-semibold">Concept Drawings</span>
                   </p>
                 </div>
                 <Link
@@ -269,7 +269,7 @@ export default function ProDashboard() {
                   </div>
                   <div>
                     <strong className="block text-[13px] text-[#102645] group-hover:text-[#071d3b]">Property Data &amp; Clients</strong>
-                    <small className="text-[11px] text-[#68788e]">Soil classes, lot plans &amp; client records</small>
+                    <small className="text-[11px] text-[#68788e]">Lot plans, project scopes &amp; client records</small>
                   </div>
                 </div>
                 <span className="text-[#68788e]">›</span>

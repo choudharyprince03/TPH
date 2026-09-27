@@ -191,7 +191,7 @@ export function ProSidebar() {
         </div>
       </nav>
 
-      {/* Sidebar Footer: Switch to Consumer View & Sovereignty */}
+      {/* Sidebar Footer: Switch to Consumer View & Account */}
       <div className="p-4 border-t border-[#dfe6ef] space-y-2 text-[10px] text-[#68788e]">
         <Link
           href="/properties"

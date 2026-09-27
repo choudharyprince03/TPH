@@ -159,7 +159,7 @@ export default function LeadDetailPage({ params }: { params: Promise<{ id: strin
             </h2>
 
             <div className="bg-[#f3f6fb] p-5 rounded-xl border border-[#dfe6ef] text-[13px] text-[#102645] leading-relaxed italic">
-              &ldquo;Hello Olivia and Hart Homes team. We have just settled on our titled block on Simpsons Road in Bardon. The contour survey shows an approx 2.8m slope front-to-back. We love your modern cantilever designs and would like to review our conceptual architectural drawings together in a TrustLink workspace to see if this fits our $1M construction envelope.&rdquo;
+              &ldquo;Hello Olivia and Hart Homes team. We have just settled on our titled block on Simpsons Road in Bardon. We understand the block has a sloping contour front-to-back. We love your modern cantilever designs and would like to review our conceptual architectural drawings together in a TrustLink workspace to see if this fits our $1M construction envelope.&rdquo;
             </div>
 
             <div className="mt-4 flex items-center justify-between text-[11px] text-[#68788e]">
@@ -176,37 +176,41 @@ export default function LeadDetailPage({ params }: { params: Promise<{ id: strin
           {/* Attached Property Data Card */}
           <section className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm">
             <div className="flex items-center justify-between mb-3">
-              <span className="text-[10px] font-bold text-[#24754c] uppercase tracking-wider">
-                Permanent Prop ID Context
+              <span className="text-[10px] font-bold text-[#68788e] uppercase tracking-wider">
+                Client-Provided Site Information
               </span>
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-[#eaf5ef] text-[#24754c]">
-                Titled Lot
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-[#f3f6fb] text-[#556b83]">
+                Preliminary
               </span>
             </div>
 
             <div className="p-4 rounded-xl bg-[#071d3b] text-white mb-4">
-              <div className="text-[10px] font-mono text-[#efbd66] uppercase">Cadastral Record</div>
+              <div className="text-[10px] font-mono text-[#efbd66] uppercase">Cadastral Reference</div>
               <div className="text-xl font-mono font-bold mt-0.5">TPH-BAR-019</div>
               <div className="text-[12px] text-[#b9c8db] mt-1">Lot 14 on RP 88201 · Brisbane City Council</div>
             </div>
 
+            <div className="p-3 bg-[#fff8e6] border border-[#f5dfa8] rounded-xl text-[11px] text-[#8a6116] mb-3 leading-relaxed">
+              <strong>Notice:</strong> Site details, soil reports, and slope figures below are uploaded by the client for initial assessment. TPH does not verify geotechnical accuracy. Builders must perform independent site testing before contract.
+            </div>
+
             <div className="space-y-3 text-[12px]">
               <div className="p-3 bg-[#f9fafc] rounded-xl border border-[#dfe6ef]">
-                <div className="text-[10px] text-[#68788e] font-semibold uppercase">Soil Classification</div>
-                <div className="font-bold text-[#102645] mt-0.5">Class H1 (Highly Reactive Clay)</div>
-                <div className="text-[11px] text-[#68788e] mt-0.5">Soil boreholes drilled by GeoTest QLD in August 2026.</div>
+                <div className="text-[10px] text-[#68788e] font-semibold uppercase">Client Geotechnical Note</div>
+                <div className="font-bold text-[#102645] mt-0.5">Indicative Soil &amp; Foundation Assessment (Client Supplied)</div>
+                <div className="text-[11px] text-[#68788e] mt-0.5">Report provided from client&apos;s previous engineering files. Subject to builder verification.</div>
               </div>
 
               <div className="p-3 bg-[#f9fafc] rounded-xl border border-[#dfe6ef]">
-                <div className="text-[10px] text-[#68788e] font-semibold uppercase">Site Slope &amp; Fall</div>
-                <div className="font-bold text-[#102645] mt-0.5">2.8m Front-to-Back Fall</div>
-                <div className="text-[11px] text-[#68788e] mt-0.5">Requires stepped slab or partial cut/fill design.</div>
+                <div className="text-[10px] text-[#68788e] font-semibold uppercase">Estimated Site Slope (Client Notes)</div>
+                <div className="font-bold text-[#102645] mt-0.5">Sloping Block (Client Estimate)</div>
+                <div className="text-[11px] text-[#68788e] mt-0.5">Requires professional contour survey confirmation.</div>
               </div>
 
               <div className="p-3 bg-[#f9fafc] rounded-xl border border-[#dfe6ef]">
-                <div className="text-[10px] text-[#68788e] font-semibold uppercase">Council Zoning &amp; Overlays</div>
+                <div className="text-[10px] text-[#68788e] font-semibold uppercase">Council Zoning Reference</div>
                 <div className="font-bold text-[#102645] mt-0.5">Low Density Residential (LDR)</div>
-                <div className="text-[11px] text-[#68788e] mt-0.5">Free of overland flood flow · Low bushfire buffer.</div>
+                <div className="text-[11px] text-[#68788e] mt-0.5">Indicative zoning classification · Subject to current council check.</div>
               </div>
             </div>
           </section>
@@ -225,14 +229,14 @@ export default function LeadDetailPage({ params }: { params: Promise<{ id: strin
 
             <div className="space-y-2.5">
               <button
-                onClick={() => handleQuickAction("Requested Site Soil & Contour Survey PDF")}
+                onClick={() => handleQuickAction("Requested Site Survey & Engineering Documents")}
                 className="w-full py-2.5 px-4 text-[12px] font-semibold rounded-xl border border-[#dfe6ef] bg-[#f9fafc] hover:bg-[#f0f4f9] text-[#102645] text-left flex items-center justify-between transition-colors group"
               >
                 <div className="flex items-center gap-2">
                   <svg className="w-4 h-4 text-[#071d3b]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
-                  <span>Request Site Soil &amp; Contour PDF</span>
+                  <span>Request Site Survey &amp; Engineering PDF</span>
                 </div>
                 <span className="text-[11px] text-[#68788e]">1-click ↗</span>
               </button>

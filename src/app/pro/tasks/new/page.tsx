@@ -26,7 +26,7 @@ const PROPERTIES = [
     id: "TPH-BAR-019",
     property: "Simpsons Road, Bardon",
     client: "James & Sarah Davidson",
-    stage: "Pre-Construction / Soil H1",
+    stage: "Pre-Construction Planning",
   },
   {
     id: "TPH-NWS-041",

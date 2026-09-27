@@ -285,7 +285,7 @@ export default function TrustLinksListPage() {
           </div>
         )}
 
-        {/* ── Sovereignty Notice at Bottom ───────────────────────────── */}
+        {/* ── Privacy Notice at Bottom ───────────────────────────── */}
         <div className="p-4 rounded-xl bg-[#eaf0f6] border border-[#dfe6ef] flex items-center gap-3 text-[12px] text-[#4e6582] mb-8">
           <span className="text-base flex-shrink-0">🔒</span>
           <span>

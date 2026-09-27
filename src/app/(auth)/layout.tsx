@@ -98,7 +98,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
             Trusted by professionals across Australia
           </div>
           <div className="flex flex-wrap gap-2.5">
-            {["Master Builders QLD", "REIQ Member", "AIBS Certified", "Australian Data Sovereignty"].map((badge) => (
+            {["Master Builders QLD", "REIQ Member", "AIBS Certified", "Australian Hosted Data"].map((badge) => (
               <span key={badge} className="text-[10px] font-semibold px-2.5 py-1 rounded-full border border-white/15 text-[#c1d0e2] bg-white/5">
                 {badge}
               </span>

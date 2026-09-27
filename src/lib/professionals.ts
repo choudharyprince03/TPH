@@ -89,7 +89,7 @@ export const PROFESSIONALS_DATA: Professional[] = [
       },
       {
         title: "Digital Handover & Vault Packaging",
-        desc: "Complete compilation of Form 16, Form 43 waterproofing, trade warranties, and paint registers transferred to your sovereign Prop ID.",
+        desc: "Complete compilation of Form 16, Form 43 waterproofing, trade warranties, and paint registers transferred to your digital Prop ID.",
         priceGuide: "Included with build",
       },
       {
@@ -169,14 +169,14 @@ export const PROFESSIONALS_DATA: Professional[] = [
     reviewsCount: 98,
     experienceYears: 14,
     desc: "Contract advice and settlement guidance for buyers and sellers across Queensland. PEXA certified and TrustLink connected.",
-    bio: "Lachlan Vance has overseen more than 3,500 property settlements across Queensland. Specialising in off-the-plan contracts, council rates adjustments, body corporate reviews, and electronic settlements through PEXA. River City Conveyancing provides fixed-fee transparent legal guidance linked securely to your sovereign property passport.",
+    bio: "Lachlan Vance has overseen more than 3,500 property settlements across Queensland. Specialising in off-the-plan contracts, council rates adjustments, body corporate reviews, and electronic settlements through PEXA. River City Conveyancing provides fixed-fee transparent legal guidance linked securely to your property record.",
     avatarUrl: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80",
     coverUrl: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
     link: "/trustlinks/TL-88301-A",
     badges: [
       { title: "QLD Law Society", subtitle: "Practising Solicitor", icon: "⚖️" },
       { title: "PEXA Certified", subtitle: "Electronic Settlements", icon: "💻" },
-      { title: "Fixed Fee Guarantee", subtitle: "No Hidden Costs", icon: "🏷️" },
+      { title: "Fixed Fee Schedule", subtitle: "Transparent Pricing", icon: "🏷️" },
       { title: "TrustLink Connected", subtitle: "Direct Settlement Files", icon: "🛡️" },
     ],
     services: [
@@ -411,7 +411,7 @@ export const PROFESSIONALS_DATA: Professional[] = [
       { title: "Master Electrician", subtitle: "Licence #81042", icon: "⚡" },
       { title: "Form 4 Certified", subtitle: "Statutory Compliance", icon: "📑" },
       { title: "Clean Energy Council", subtitle: "Solar & Battery Accredited", icon: "☀️" },
-      { title: "Lifetime Workmanship", subtitle: "Full Warranty Guarantee", icon: "🛡️" },
+      { title: "Trade Workmanship", subtitle: "Written Warranty", icon: "🛡️" },
     ],
     services: [
       {

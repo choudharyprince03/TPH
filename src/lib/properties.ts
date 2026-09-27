@@ -73,7 +73,7 @@ export const PROPERTIES_MAP: Record<string, PropertyData> = {
       approval: "BCC DA-2023-41829 · Private Certifier Approval PCA-QLD-8910",
     },
     physicalDna: {
-      foundation: "Engineered Waffle Pod Slab on Class H1 Soil · Form 16 Structural by Apex Engineers",
+      foundation: "Engineered Waffle Pod Slab · Form 16 Structural by Apex Engineers",
       cladding: "Austral Bricks 'Sanctuary' + James Hardie Linea Weatherboards (Dulux Lexicon Half)",
       roofing: "Colorbond 'Monument' Custom Orb + Bradford Gold R4.1 Ceiling Batts",
       waterproofing: "AS 3740 Compliance · QBCC Form 43 Verified Certificate by HydroSeal QLD",
@@ -89,14 +89,14 @@ export const PROPERTIES_MAP: Record<string, PropertyData> = {
       { title: "QBCC Form 16 Structural Engineering Final.pdf", cat: "Certificates", size: "3.4 MB", shared: true },
       { title: "Form 43 Wet-Area Waterproofing Certificate.pdf", cat: "Certificates", size: "1.8 MB", shared: true },
       { title: "Architectural Floorplans & Working Drawings.pdf", cat: "Plans", size: "8.4 MB", shared: true },
-      { title: "Soil Test & Geotechnical Class H1 Report.pdf", cat: "Engineering", size: "2.1 MB", shared: false },
+      { title: "Geotechnical Site Investigation Report.pdf", cat: "Engineering", size: "2.1 MB", shared: false },
       { title: "Appliance Care & Warranty Schedule.pdf", cat: "Warranties", size: "4.2 MB", shared: false },
     ],
     events: [
       { title: "Practical completion handover submitted by Hart Homes", time: "Today 10:48 AM", detail: "Form 16 structural engineering and waterproofing registers deposited." },
       { title: "Client variation notice #04 signed by Alex", time: "Today 08:30 AM", detail: "Caesarstone Pure White kitchen island specification approved." },
       { title: "Cadastral boundary confirmation completed", time: "Sep 12, 2026", detail: "Surveyor certified boundary peg placements along Lot 18 RP 88201." },
-      { title: "Prop ID cryptographic record initiated", time: "Sep 01, 2026", detail: "Genesis token minted for 18 Banksia Crescent, Kenmore." },
+      { title: "Prop ID digital record initiated", time: "Sep 01, 2026", detail: "Digital property record registered for 18 Banksia Crescent, Kenmore." },
     ],
   },
   "TPH-GRV-007": {
@@ -122,7 +122,7 @@ export const PROPERTIES_MAP: Record<string, PropertyData> = {
       approval: "Pre-1946 Character Building overlay requirements apply.",
     },
     physicalDna: {
-      foundation: "Concrete Stumps & Hardwood Bearers on Class M Soil",
+      foundation: "Concrete Stumps & Hardwood Bearers",
       cladding: "Original Queenslander Chamferboard Cladding (Restored 2021)",
       roofing: "Corrugated Galvanised Steel with Anti-Con Blanket",
       waterproofing: "Ensuite Renovation Waterproofing Certificate on file",
@@ -187,7 +187,7 @@ export const PROPERTIES_MAP: Record<string, PropertyData> = {
     ],
     events: [
       { title: "Annual smoke alarm compliance verified", time: "Aug 14, 2026", detail: "Interconnected photoelectric alarms passed statutory test." },
-      { title: "Handover pack archived to sovereign Prop ID", time: "Mar 20, 2024", detail: "Full warranty schedule sealed." },
+      { title: "Handover pack archived to Prop ID", time: "Mar 20, 2024", detail: "Full warranty schedule filed." },
     ],
   },
 };

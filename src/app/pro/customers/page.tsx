@@ -11,7 +11,7 @@ interface PropertyRecord {
   propId: string;
   property: string;
   suburb: string;
-  soilClass: string;
+  foundationType: string;
   lotPlan: string;
   contractValue: string;
   stage: string;
@@ -31,7 +31,7 @@ const PROPERTY_RECORDS: PropertyRecord[] = [
     propId: "TPH-KEN-018",
     property: "18 Banksia Crescent",
     suburb: "Kenmore QLD 4069",
-    soilClass: "Class M (Slab on Ground)",
+    foundationType: "Slab on Ground",
     lotPlan: "Lot 82 on SP 241092",
     contractValue: "$1,180,000 AUD",
     stage: "Practical Completion & Handover",
@@ -49,7 +49,7 @@ const PROPERTY_RECORDS: PropertyRecord[] = [
     propId: "TPH-GRV-007",
     property: "7 Cedar Street",
     suburb: "Graceville QLD 4075",
-    soilClass: "Class H1 (Piers & Strip Footings)",
+    foundationType: "Piers & Strip Footings",
     lotPlan: "Lot 12 on RP 48102",
     contractValue: "$940,000 AUD",
     stage: "Fixing & Cabinetry Fit-out",
@@ -67,7 +67,7 @@ const PROPERTY_RECORDS: PropertyRecord[] = [
     propId: "TPH-BRK-042",
     property: "42 Ridge Road",
     suburb: "Brookfield QLD 4069",
-    soilClass: "Class S (Stable Rock)",
+    foundationType: "Stable Ground Pad",
     lotPlan: "Lot 5 on SP 182301",
     contractValue: "$1,450,000 AUD",
     stage: "Post-Handover Warranty Care",
@@ -112,7 +112,7 @@ export default function ProPropertyDataPage() {
             Property Data &amp; Clients
           </h1>
           <p className="text-[13px] text-[#68788e] mt-1">
-            Linked property records, cadastral titles, soil classifications, and statutory certificates.
+            Linked property records, cadastral references, project notes, and builder certificates.
           </p>
         </div>
 
@@ -129,7 +129,7 @@ export default function ProPropertyDataPage() {
         <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm">
           <span className="text-3xl font-bold tracking-tight text-[#102645] block mb-0.5">{PROPERTY_RECORDS.length}</span>
           <strong className="text-[13px] text-[#102645] block">Connected Properties</strong>
-          <small className="text-[11px] text-[#68788e]">All linked via sovereign Prop IDs</small>
+          <small className="text-[11px] text-[#68788e]">All linked via Prop IDs</small>
         </div>
 
         <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm">
@@ -140,8 +140,8 @@ export default function ProPropertyDataPage() {
 
         <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm">
           <span className="text-3xl font-bold tracking-tight text-[#24754c] block mb-0.5">100%</span>
-          <strong className="text-[13px] text-[#102645] block">QBCC Compliance</strong>
-          <small className="text-[11px] text-[#68788e]">Statutory Form 16/43 certs registered</small>
+          <strong className="text-[13px] text-[#102645] block">QBCC Documentation</strong>
+          <small className="text-[11px] text-[#68788e]">Statutory Form 16/43 certs on record</small>
         </div>
       </div>
 
@@ -230,7 +230,7 @@ export default function ProPropertyDataPage() {
                     <svg className="w-3 h-3 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                     </svg>
-                    <span>{record.soilClass}</span>
+                    <span>{record.foundationType}</span>
                   </span>
                   <span className="bg-[#eaf5ef] text-[#24754c] font-medium px-2 py-0.5 rounded flex items-center gap-1">
                     <svg className="w-3 h-3 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">

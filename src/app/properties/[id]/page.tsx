@@ -45,7 +45,7 @@ export default function PropertyDetailPage({ params }: { params: Promise<{ id: s
           <div>
             <div className="flex items-center gap-2 flex-wrap mb-1.5">
               <span className="text-[#efbd66] text-[9px] font-bold uppercase tracking-[1.6px]">
-                PROP ID · YOUR SOVEREIGN PROPERTY RECORD
+                PROP ID · YOUR DIGITAL PROPERTY RECORD
               </span>
               <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${property.typeColor}`}>
                 {property.type}
@@ -55,7 +55,7 @@ export default function PropertyDetailPage({ params }: { params: Promise<{ id: s
               {property.street}
             </h1>
             <p className="text-[12px] text-[#b9c8db]">
-              {property.suburb} {property.state} {property.postcode} · A living memory of your property.
+              {property.suburb} {property.state} {property.postcode} · An organised record of your property.
             </p>
 
             <div className="flex items-center gap-3 mt-4 flex-wrap">
@@ -63,10 +63,10 @@ export default function PropertyDetailPage({ params }: { params: Promise<{ id: s
                 {property.propId}
               </span>
               <button
-                onClick={() => alert(`Owner Status: Verified sovereign passport for ${property.street}.`)}
+                onClick={() => alert(`Owner Status: Verified owner account for ${property.street}.`)}
                 className="text-[11px] text-[#b9c8db] hover:text-white flex items-center gap-1.5 underline underline-offset-2"
               >
-                <span>🔑</span> Verified Sovereign Record
+                <span>🔑</span> Verified Property Record
               </button>
             </div>
           </div>

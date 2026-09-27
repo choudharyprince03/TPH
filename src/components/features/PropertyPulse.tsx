@@ -86,7 +86,7 @@ const PRO_DEFAULT_PULSE_TASKS: PulseTask[] = [
   },
   {
     id: "pulse-p5",
-    title: "Review pre-attached Class H1 soil test & contour survey from lead intake",
+    title: "Review client project brief & conceptual site sketches from lead intake",
     property: "Simpsons Road, Bardon",
     propId: "TPH-BAR-019",
     client: "James & Sarah Davidson",
@@ -95,7 +95,7 @@ const PRO_DEFAULT_PULSE_TASKS: PulseTask[] = [
     category: "Trade",
     priority: "Medium",
     completed: false,
-    actionLabel: "Inspect Site Data →",
+    actionLabel: "Inspect Client Brief →",
     actionHref: "/pro/leads/L-101",
     assignee: "Hart Homes Estimator",
     notes: "Inbound customer inquiry with Macquarie pre-approval.",

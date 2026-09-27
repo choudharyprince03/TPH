@@ -594,7 +594,7 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
                     <span className="text-lg">📄</span>
                     <div className="min-w-0">
                       <strong className="block text-[#102645] truncate">{doc.name}</strong>
-                      <p className="text-[10px] text-[#68788e]">{doc.category} · Sovereign Prop ID Record</p>
+                      <p className="text-[10px] text-[#68788e]">{doc.category} · Prop ID Record</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2 flex-shrink-0">
@@ -627,7 +627,7 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
                 </div>
                 <div className="flex items-start gap-2.5">
                   <span className="text-[#efbd66]">🔒</span>
-                  <span>Owner&apos;s sovereign credentials, loan schedules and financial information</span>
+                  <span>Owner&apos;s private credentials, loan schedules and financial information</span>
                 </div>
               </div>
             </div>

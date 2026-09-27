@@ -620,7 +620,7 @@ function MyPropertyWorldContent() {
                     </div>
                   </div>
                   <strong className="block text-[13px] text-[#102645]">Active Property Spaces</strong>
-                  <small className="text-[11px] text-[#68788e]">All linked to sovereign records</small>
+                  <small className="text-[11px] text-[#68788e]">All linked to property records</small>
                 </div>
 
                 <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm">
@@ -692,7 +692,7 @@ function MyPropertyWorldContent() {
 
                         <div className="space-y-1.5 text-[11px] text-[#68788e] mb-5 pt-3 border-t border-[#dfe6ef]">
                           <div className="flex items-center justify-between">
-                            <span>Sovereign Vault:</span>
+                            <span>Property Vault:</span>
                             <strong className="text-[#102645]">{property.documentsCount} documents</strong>
                           </div>
                           <div className="flex items-center justify-between">

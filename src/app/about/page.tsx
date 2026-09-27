@@ -36,13 +36,13 @@ const PILLARS: PillarItem[] = [
     tagline: "Private by design",
     title: "Zero spam. Zero telemarketing.",
     summary:
-      "Outside, an inquiry submits your phone and email to lead brokers who auction them to sales reps. With TrustLink™, you converse through a private, encrypted tunnel. You decide which documents to share, and you can revoke access at any time.",
+      "Outside, an inquiry submits your phone and email to lead brokers who auction them to sales reps. With TrustLink™, you converse through a private, secure workspace. You decide which documents to share, and you can revoke access at any time.",
     outside: "Your phone & email are sold to lead aggregators.",
     inside: "Private in-app messaging. Direct contact details are never exposed.",
     widget: {
-      badge: "Active TrustLink™ · Encrypted",
+      badge: "Active TrustLink™ · Private",
       item1: "Phone & Email: Masked & Private",
-      item2: "Soil Report: Read-only access granted",
+      item2: "Project Brief: Read-only access granted",
       action: "Revoke connection anytime",
     },
     cta: "Find specialists on TrustLink",
@@ -52,17 +52,17 @@ const PILLARS: PillarItem[] = [
     id: "propid",
     num: "02",
     label: "Prop ID™",
-    tagline: "A living sovereign memory",
+    tagline: "A living property record",
     title: "Your home’s history, together for life.",
     summary:
-      "Outside, property plans, Form 16 certs, paint numbers, and warranties scatter across old ring binders and previous owners' emails. Prop ID™ anchors your home’s complete story to the address so you never search or re-test again.",
-    outside: "Documents lost with previous owners & council archives.",
-    inside: "Permanent digital passport containing plans, certs & warranties.",
+      "Outside, property plans, Form 16 certs, paint numbers, and warranties scatter across old ring binders and previous owners' emails. Prop ID™ anchors your home’s complete story to the address so you never lose track of important documents.",
+    outside: "Documents lost with previous owners & past renovations.",
+    inside: "Organised digital record containing plans, certs & warranties.",
     widget: {
-      badge: "Prop ID: TPH-KEN-018 · Verified",
+      badge: "Prop ID: TPH-KEN-018 · Registered",
       item1: "Cadastral: Lot 18 on RP 88201",
-      item2: "22 Authenticated Vault Documents",
-      action: "Explore living property record",
+      item2: "22 Organised Vault Documents",
+      action: "Explore sample property record",
     },
     cta: "Explore sample record",
     ctaHref: "/properties/TPH-KEN-018",
@@ -78,7 +78,7 @@ const PILLARS: PillarItem[] = [
     outside: "Browsing tracked and monetized by commercial listing sites.",
     inside: "Private sandbox for your inspections, notes & budgets.",
     widget: {
-      badge: "Personal Space · Sovereign & Private",
+      badge: "Personal Space · Private & Secure",
       item1: "Zero tracking, zero vendor notifications",
       item2: "Independent due diligence workspace",
       action: "Open My Property World",
@@ -90,19 +90,19 @@ const PILLARS: PillarItem[] = [
     id: "trust",
     num: "04",
     label: "Mutual Trust",
-    tagline: "Built on verified facts",
-    title: "Accurate quotes upfront. Certified handovers upon finish.",
+    tagline: "Transparent collaboration",
+    title: "Clear briefs upfront. Organised handovers upon finish.",
     summary:
-      "Hiring trades traditionally starts with fear of hidden costs and vague briefs. On TPH, professionals receive verified site data (Lot/RP, soil class, slope) upfront to quote honestly, and deposit official compliance certificates and warranties straight into your vault.",
-    outside: "Vague briefs, surprise variations & uncertain licenses.",
-    inside: "Data-backed upfront quotes & official Form 16 sign-offs.",
+      "Hiring specialists works better with clear communication and centralised documents. On TPH, homeowners can share relevant plans and project notes directly, and receive completion documents and trade records into their property vault.",
+    outside: "Scattered emails, unorganised paperwork & missing warranties.",
+    inside: "Shared project workspaces & organised completion records.",
     widget: {
-      badge: "QBCC Licensed Specialist · Verified",
-      item1: "Site Data Pre-Attached (Class H1 Soil)",
-      item2: "Form 16/43 Sign-Off Deposited",
-      action: "View verified directory",
+      badge: "Licensed Specialist Profile",
+      item1: "Project Scope Attached (Plans & Notes)",
+      item2: "Handover Documents Deposited",
+      action: "View specialist directory",
     },
-    cta: "Explore verified professionals",
+    cta: "Explore specialists",
     ctaHref: "/explore",
   },
 ];
@@ -137,7 +137,7 @@ export default function AboutPage() {
               <span className="font-serif italic font-normal text-[#071d3b]">We provide the professionals who help you get services done.</span>
             </h1>
             <p className="text-[13px] sm:text-[14px] text-[#556b83] mt-3.5 leading-relaxed">
-              We are not a real estate agency or listing board. We connect property owners, buyers, renovators, and tenants with vetted independent Australian specialists — and provide sovereign digital tools so you can work together with complete confidence and zero spam.
+              We are not a real estate agency or listing board. We connect property owners, buyers, renovators, and tenants with vetted independent Australian specialists — and provide practical digital tools so you can work together with confidence and clarity.
             </p>
           </div>
 
@@ -149,7 +149,7 @@ export default function AboutPage() {
                 <h4 className="text-[14px] font-bold text-[#102645]">Organise your property</h4>
               </div>
               <p className="text-[12px] text-[#68788e] leading-relaxed">
-                Add your home or project to your private <strong className="text-[#102645]">My Property World</strong>. Store plans, site info, and notes in your sovereign space.
+                Add your home or project to your private <strong className="text-[#102645]">My Property World</strong>. Store plans, site info, and notes in your private space.
               </p>
             </div>
 
@@ -302,7 +302,7 @@ export default function AboutPage() {
           {/* Minimalist Specialists Directory Strip */}
           <div className="pt-6 border-t border-[#dfe6ef] flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-[12px]">
             <div className="flex items-center gap-2 flex-wrap text-[#68788e]">
-              <span className="font-bold text-[#102645]">Verified Disciplines:</span>
+              <span className="font-bold text-[#102645]">Key Disciplines:</span>
               <span className="px-2.5 py-0.5 rounded-md bg-[#f4f6f8] text-[#102645] font-medium text-[11px]">Builders</span>
               <span className="px-2.5 py-0.5 rounded-md bg-[#f4f6f8] text-[#102645] font-medium text-[11px]">Building &amp; Pest Inspectors</span>
               <span className="px-2.5 py-0.5 rounded-md bg-[#f4f6f8] text-[#102645] font-medium text-[11px]">Architects</span>
@@ -332,7 +332,7 @@ export default function AboutPage() {
               You choose what to share, with whom, and for how long.
             </h3>
             <p className="text-[13px] text-[#68788e] mt-1 max-w-xl">
-              The Property Helpline never sells your data to third-party telemarketers. All property documents remain encrypted and sovereign to you.
+              The Property Helpline never sells your data to third-party telemarketers. All property documents remain private to your account.
             </p>
           </div>
           <div className="flex items-center gap-3 self-start sm:self-auto flex-shrink-0">

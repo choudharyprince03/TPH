@@ -15,7 +15,7 @@ interface Lead {
   date: string;
   status: "New" | "In Review" | "TrustLink Issued";
   statusColor: string;
-  soilClass: string;
+  scopeNotes: string;
   lotSize: string;
   zoning: string;
   messageSnippet: string;
@@ -35,10 +35,10 @@ const LEADS: Lead[] = [
     date: "Today, 10:45 AM",
     status: "New",
     statusColor: "bg-[#fff4df] text-[#8b641c]",
-    soilClass: "Class H1 (Highly Reactive)",
-    lotSize: "580 m² (2.8m Site Slope)",
+    scopeNotes: "Client Preliminary Site Notes Attached",
+    lotSize: "580 m² Sloping Site",
     zoning: "Low Density Residential (BCC)",
-    messageSnippet: "Settled on titled block on Simpsons Road. Contour survey shows 2.8m slope. Looking to review architectural drawings in TrustLink.",
+    messageSnippet: "Settled on titled block on Simpsons Road. Looking to review architectural drawings and preliminary sketches in TrustLink.",
   },
   {
     id: "L-102",
@@ -53,7 +53,7 @@ const LEADS: Lead[] = [
     date: "Yesterday, 3:20 PM",
     status: "New",
     statusColor: "bg-[#fff4df] text-[#8b641c]",
-    soilClass: "Class M (Moderately Reactive)",
+    scopeNotes: "Demolition & Concept Drawings Uploaded",
     lotSize: "420 m² Flat Post-War Lot",
     zoning: "Character Residential (CR2)",
     messageSnippet: "Planning demolition of existing post-war cottage and building contemporary 2-storey home. Need council BA guidance.",
@@ -71,7 +71,7 @@ const LEADS: Lead[] = [
     date: "2 days ago",
     status: "In Review",
     statusColor: "bg-[#eaf5ef] text-[#24754c]",
-    soilClass: "Class S (Slightly Reactive)",
+    scopeNotes: "DA Approval & Pavilion Plans Uploaded",
     lotSize: "1,120 m² Riverfront Lot",
     zoning: "Low Density Residential",
     messageSnippet: "Expanding master suite and building outdoor kitchen pavilion. DA approval already granted by Brisbane City Council.",
@@ -89,7 +89,7 @@ const LEADS: Lead[] = [
     date: "4 days ago",
     status: "TrustLink Issued",
     statusColor: "bg-[#f3f6fb] text-[#68788e]",
-    soilClass: "Rock / Class M",
+    scopeNotes: "Internal Remodel & Atrium Brief",
     lotSize: "310 m² Narrow Terrace",
     zoning: "Traditional Building Character",
     messageSnippet: "Internal structural remodel with rear glass atrium. TrustLink TL-99214-B issued and plans shared.",
@@ -126,7 +126,7 @@ export default function LeadsPage() {
             Incoming Enquiries &amp; Leads
           </h1>
           <p className="text-[13px] text-[#68788e] mt-1">
-            Inbound homeowner enquiries with attached property data, soil parameters, and finance pre-approvals.
+            Inbound homeowner enquiries with client-provided project scopes, preliminary plans, and budget outlines.
           </p>
         </div>
 
@@ -158,7 +158,7 @@ export default function LeadsPage() {
             </div>
           </div>
           <strong className="block text-[13px] text-[#102645]">New Inbound Enquiries</strong>
-          <small className="text-[11px] text-[#68788e]">2 with complete cadastral and soil data</small>
+          <small className="text-[11px] text-[#68788e]">2 with architectural sketches attached</small>
         </div>
 
         <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm">
@@ -170,8 +170,8 @@ export default function LeadsPage() {
               </svg>
             </div>
           </div>
-          <strong className="block text-[13px] text-[#102645]">Site Data Attached</strong>
-          <small className="text-[11px] text-[#68788e]">Zero manual chasing for zoning &amp; slope</small>
+          <strong className="block text-[13px] text-[#102645]">Project Briefs Attached</strong>
+          <small className="text-[11px] text-[#68788e]">Preliminary plans and client notes included</small>
         </div>
 
         <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm">
@@ -184,7 +184,7 @@ export default function LeadsPage() {
             </div>
           </div>
           <strong className="block text-[13px] text-[#102645]">TrustLink Issuance</strong>
-          <small className="text-[11px] text-[#68788e]">Instant sovereign workspace onboarding</small>
+          <small className="text-[11px] text-[#68788e]">Instant secure workspace onboarding</small>
         </div>
       </div>
 
@@ -268,7 +268,7 @@ export default function LeadsPage() {
                     <svg className="w-3 h-3 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                     </svg>
-                    <span>{lead.soilClass}</span>
+                    <span>{lead.scopeNotes}</span>
                   </span>
                   <span className="bg-[#f3f6fb] text-[#556b83] px-2 py-0.5 rounded flex items-center gap-1">
                     <svg className="w-3 h-3 text-[#556b83]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -316,15 +316,16 @@ export default function LeadsPage() {
         ))}
       </div>
 
-      {/* ── DLM Builder Guidance Notice ─────────────────────────────── */}
-      <div className="p-4 rounded-xl bg-[#eaf0f6] border border-[#dfe6ef] flex items-center gap-3 text-xs text-[#4e6582]">
-        <div className="w-8 h-8 rounded-lg bg-white border border-[#dfe6ef] flex items-center justify-center flex-shrink-0">
+      {/* ── Client Intake Disclaimer Notice ─────────────────────────── */}
+      <div className="p-4 rounded-xl bg-[#eaf0f6] border border-[#dfe6ef] flex items-start gap-3 text-xs text-[#4e6582]">
+        <div className="w-8 h-8 rounded-lg bg-white border border-[#dfe6ef] flex items-center justify-center flex-shrink-0 mt-0.5">
           <svg className="w-4 h-4 text-[#071d3b]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
         </div>
         <div>
-          <strong className="text-[#102645] font-semibold">DLM Time Saver:</strong> Inquiries arrive pre-attached with zoning, soil class, and contours from the client&apos;s Prop ID.
+          <strong className="text-[#102645] font-semibold block mb-0.5">Preliminary Information Notice:</strong>
+          <span>Inquiries arrive with client-submitted preliminary plans and project notes. All technical and geotechnical site data are user-provided for scoping only and must be independently verified by the professional prior to contracting.</span>
         </div>
       </div>
     </div>
