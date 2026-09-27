@@ -29,12 +29,12 @@ export default function Home() {
     <PageTransition className="w-full flex-1 flex flex-col bg-[#fcfbf8] text-[#102645]">
 
       {/* ── 1. HERO SECTION ──────────────────────────────────────────────────── */}
-      <section className="bg-[#071d3b] text-white relative pt-10 pb-16 lg:pb-20 overflow-hidden">
+      <section className="bg-[#07172e] text-white relative pt-10 pb-16 lg:pb-20 overflow-hidden">
 
         {/* Animated background orbs */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-32 -left-32 w-[500px] h-[500px] rounded-full bg-[#102d59] opacity-30 animate-gradient-shift blur-3xl" />
-          <div className="absolute -bottom-24 -right-24 w-[400px] h-[400px] rounded-full bg-[#24754c] opacity-15 animate-gradient-shift-delayed blur-3xl" />
+          <div className="absolute -top-32 -left-32 w-[500px] h-[500px] rounded-full bg-[#102d59] opacity-35 animate-gradient-shift blur-3xl" />
+          <div className="absolute -bottom-24 -right-24 w-[450px] h-[450px] rounded-full bg-[#122e58] opacity-30 animate-gradient-shift-delayed blur-3xl" />
         </div>
 
         <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-9 grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] items-center gap-10 lg:gap-16 relative z-10">

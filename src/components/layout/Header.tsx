@@ -46,8 +46,8 @@ export function Header() {
       <header
         className={`w-full text-white relative z-30 transition-all duration-300 ${
           scrolled
-            ? "bg-[#041226] shadow-[0_4px_24px_rgba(4,18,38,0.35)] border-b border-[#0f2040]"
-            : "bg-[#071d3b] border-b border-[#0f2d59]"
+            ? "bg-[#051122]/95 backdrop-blur-md shadow-[0_4px_24px_rgba(2,8,18,0.4)] border-b border-white/[0.08]"
+            : "bg-[#07172e] border-b border-white/[0.08]"
         }`}
       >
         <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-10 h-[68px] sm:h-[78px] flex items-center justify-between gap-4 sm:gap-6">
@@ -185,7 +185,7 @@ export function Header() {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.28, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="md:hidden bg-[#0a2347] border-t border-white/10 overflow-hidden"
+              className="md:hidden bg-[#07172e] border-t border-white/10 overflow-hidden"
             >
               <div className="px-5 py-4 space-y-1">
                 {[
