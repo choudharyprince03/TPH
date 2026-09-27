@@ -40,14 +40,7 @@ export function Header() {
 
   return (
     <>
-      {/* Prototype Demobar */}
-      <div className="bg-[#eaf0f6] text-[#556b83] text-[11px] py-1.5 px-4 text-center border-b border-[#dfe6ef] flex items-center justify-center gap-2 font-medium">
-        <span className="w-2 h-2 rounded-full bg-[#24754c] inline-block flex-shrink-0 animate-pulse" />
-        <span>
-          <strong className="text-[#102645] font-semibold">Australian English</strong>{" "}
-          · Prototype Demonstration · Verified Prop ID &amp; TrustLink Systems
-        </span>
-      </div>
+      
 
       {/* Main Consumer Header */}
       <header
