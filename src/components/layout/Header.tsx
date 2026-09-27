@@ -83,7 +83,7 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-5 lg:gap-7 text-[13px] font-medium ml-4">
+          <nav className="hidden md:flex items-center gap-5 lg:gap-7 text-[13px] font-medium ml-4">
             {[
               { href: "/explore", label: "Find help", active: isFind },
               { href: "/about", label: "About Us", active: isAbout },
@@ -117,7 +117,7 @@ export function Header() {
           <div className="flex items-center gap-3 sm:gap-4 ml-auto">
             <Link
               href="/pro"
-              className="text-[12px] text-[#adbed3] hover:text-white transition-colors flex items-center gap-1 font-medium hidden lg:flex"
+              className="text-[12px] text-[#adbed3] hover:text-white transition-colors flex items-center gap-1 font-medium hidden sm:flex"
             >
               I'm a Pro <span className="text-[11px]">↗</span>
             </Link>
@@ -137,7 +137,7 @@ export function Header() {
             {/* Desktop Referral Button */}
             <button
               onClick={() => setReferralOpen(true)}
-              className="hidden lg:inline-flex items-center gap-1.5 text-[11px] font-semibold text-[#efbd66] hover:text-white px-2.5 py-1.5 rounded-[8px] border border-[#efbd66]/35 hover:border-[#efbd66] hover:bg-[#efbd66]/10 transition-all cursor-pointer"
+              className="hidden sm:inline-flex items-center gap-1.5 text-[11px] font-semibold text-[#efbd66] hover:text-white px-2.5 py-1.5 rounded-[8px] border border-[#efbd66]/35 hover:border-[#efbd66] hover:bg-[#efbd66]/10 transition-all cursor-pointer"
               title="Invite a specialist or refer friends"
             >
               <svg className="w-3.5 h-3.5 text-[#efbd66]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -149,7 +149,7 @@ export function Header() {
             {/* Desktop Log Out Button */}
             <Link
               href="/login"
-              className="hidden lg:inline-flex items-center gap-1.5 text-[11px] font-medium text-[#adbed3] hover:text-white px-2.5 py-1.5 rounded-[8px] border border-white/15 hover:border-white/30 hover:bg-white/10 transition-all"
+              className="hidden sm:inline-flex items-center gap-1.5 text-[11px] font-medium text-[#adbed3] hover:text-white px-2.5 py-1.5 rounded-[8px] border border-white/15 hover:border-white/30 hover:bg-white/10 transition-all"
               title="Sign out of account"
             >
               <svg className="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -162,7 +162,7 @@ export function Header() {
             <motion.button
               whileTap={{ scale: 0.92 }}
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden p-2 text-white/80 hover:text-white tap-target"
+              className="md:hidden p-2 text-white/80 hover:text-white tap-target"
               aria-label="Toggle menu"
             >
               <motion.svg
@@ -192,7 +192,7 @@ export function Header() {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.28, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="lg:hidden bg-[#0a2347] border-t border-white/10 overflow-hidden"
+              className="md:hidden bg-[#0a2347] border-t border-white/10 overflow-hidden"
             >
               <div className="px-5 py-4 space-y-1">
                 {[
