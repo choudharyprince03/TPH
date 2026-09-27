@@ -162,7 +162,7 @@ export function Header() {
             <motion.button
               whileTap={{ scale: 0.92 }}
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden p-2 text-white/80 hover:text-white tap-target"
+              className="flex md:hidden items-center justify-center p-2 text-white/80 hover:text-white"
               aria-label="Toggle menu"
             >
               <motion.svg
