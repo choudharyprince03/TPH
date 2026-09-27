@@ -202,57 +202,117 @@ export default function Home() {
           </form>
         </motion.div>
 
-        {/* Quick Intent Chips */}
-        <motion.div
-          className="chip-scroll mt-5 pb-1"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.7, duration: 0.4 }}
-        >
-          <span className="text-[#68788e] mr-2 text-[11px] whitespace-nowrap hidden sm:inline self-center">
-            Or start with your next step
-          </span>
-          {[
-            { label: "I'm selling", service: "agent" },
-            { label: "I'm buying", service: "conveyancer" },
-            { label: "I'm renting", service: "manager" },
-            { label: "Building or renovating", service: "builder" },
-            { label: "Renting out", service: "manager" },
-          ].map((chip, i) => (
-            <motion.button
-              key={chip.label}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.72 + i * 0.05, duration: 0.35 }}
-              onClick={() => {
-                setSelectedService(chip.service);
-                router.push(`/explore?service=${chip.service}`);
-              }}
-              className="border border-[#dfe6ef] bg-white hover:border-[#071d3b] hover:bg-[#071d3b] hover:text-white transition-all px-3.5 py-1.5 rounded-full text-[11px] text-[#102645] font-medium whitespace-nowrap tap-target flex-shrink-0"
-            >
-              {chip.label}
-            </motion.button>
-          ))}
-        </motion.div>
+        {/* ── 3. FEATURED SPECIALISTS (PROFESSIONALS CARDS) ─────────────────── */}
+        <section className="pt-8 sm:pt-10 pb-6 sm:pb-8">
+          <FadeUp className="flex items-end justify-between gap-4 mb-8">
+            <div>
+              <div className="text-[10px] font-bold uppercase tracking-[1.8px] text-[#24754c] mb-2">
+                Find your people
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-semibold tracking-[-0.8px] text-[#102645]">
+                A good place to start.
+              </h2>
+              <p className="text-[#68788e] text-[13px] mt-1.5">
+                Explore verified professionals near western Brisbane.
+              </p>
+            </div>
+            <Link href="/explore" className="text-[12px] font-semibold text-[#071d3b] hover:underline flex items-center gap-1 flex-shrink-0">
+              <span>View all</span>
+              <span className="text-[#efbd66]">→</span>
+            </Link>
+          </FadeUp>
 
-        {/* Brand Band */}
-        <FadeUp delay={0.1} className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mt-6 sm:mt-8 py-4 border-b border-[#dfe6ef] text-[12px] text-[#68788e]">
-          <span className="font-medium">Your property record and connections, together.</span>
-          <div className="flex items-center gap-4 flex-wrap">
-            <Link href="/properties/TPH-KEN-018" className="inline-flex items-center gap-2 text-[#071d3b] font-semibold hover:underline">
-              <svg className="w-4 h-4 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-              </svg>
-              Explore Prop ID &amp; Property DNA →
-            </Link>
-            <Link href="/trustlinks" className="inline-flex items-center gap-2 text-[#071d3b] font-semibold hover:underline">
-              <svg className="w-4 h-4 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
-              Open Trust Link →
-            </Link>
-          </div>
-        </FadeUp>
+          <StaggerGrid className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 sm:gap-6">
+            {[
+              {
+                id: "welcome",
+                avatarUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80",
+                initials: "OH",
+                name: "Olivia Hart",
+                role: "Builder & handover contact · Hart Homes",
+                area: "Greater Brisbane",
+                desc: "Discuss your build, renovation or the documents for your new home. Clear boundaries before sharing.",
+                link: "/trustlinks/welcome",
+                profileUrl: "/explore/welcome",
+              },
+              {
+                id: "TL-88301-A",
+                avatarUrl: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80",
+                initials: "LV",
+                name: "Lachlan Vance",
+                role: "Licensed Conveyancer · River City Conveyancing",
+                area: "Brisbane & Western Suburbs",
+                desc: "Contract advice and settlement guidance for buyers and sellers across Queensland. PEXA certified.",
+                link: "/trustlinks/TL-88301-A",
+                profileUrl: "/explore/TL-88301-A",
+              },
+              {
+                id: "TL-76100-C",
+                avatarUrl: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80",
+                initials: "CD",
+                name: "Claire Dupont",
+                role: "Lead Building & Pest Inspector · Dupont Inspections",
+                area: "Kenmore & Western Suburbs",
+                desc: "AS 4349.1 building, pest and thermal diagnostic reports. Objective pre-purchase clarity.",
+                link: "/trustlinks/TL-76100-C",
+                profileUrl: "/explore/TL-76100-C",
+              },
+            ].map((pro, i) => (
+              <StaggerItem key={i}>
+                <CardHover>
+                  <div className="bg-white border border-[#dfe6ef] hover:border-[#cbd5e2] rounded-2xl p-5 sm:p-6 flex flex-col justify-between shadow-sm h-full group transition-all">
+                    <div>
+                      {/* Photo Avatar & Identity */}
+                      <div className="flex items-center gap-3 sm:gap-3.5 mb-4">
+                        <Link
+                          href={pro.profileUrl}
+                          className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl overflow-hidden bg-[#e6eaf3] border border-[#dfe6ef] flex-shrink-0 shadow-xs block group-hover:scale-105 transition-transform"
+                        >
+                          <img
+                            src={pro.avatarUrl}
+                            alt={pro.name}
+                            className="w-full h-full object-cover"
+                          />
+                        </Link>
+                        <div className="min-w-0 flex-1">
+                          <Link
+                            href={pro.profileUrl}
+                            className="text-base font-bold text-[#102645] hover:text-[#071d3b] leading-tight block truncate group-hover:underline"
+                          >
+                            {pro.name}
+                          </Link>
+                          <p className="text-[11px] text-[#68788e] truncate mt-0.5">{pro.role}</p>
+                          <span className="text-[10px] text-[#24754c] font-semibold block mt-0.5">{pro.area}</span>
+                        </div>
+                      </div>
+                      <p className="text-[12px] text-[#68788e] leading-[1.65] mb-4">{pro.desc}</p>
+                    </div>
+
+                    {/* Dual Action Buttons: View Profile & Connect */}
+                    <div className="pt-4 border-t border-[#dfe6ef] flex items-center justify-between gap-2.5">
+                      <Link
+                        href={pro.profileUrl}
+                        className="px-3 py-1.5 bg-[#f3f6fb] hover:bg-[#e2eaf4] text-[#071d3b] font-semibold rounded-lg transition-colors tap-target text-[11px] flex items-center gap-1"
+                      >
+                        <span>View Profile</span>
+                        <span>→</span>
+                      </Link>
+                      <MagneticButton>
+                        <Link
+                          href={pro.link}
+                          className="px-3.5 py-1.5 bg-[#071d3b] hover:bg-[#102d59] text-white font-semibold rounded-lg transition-colors tap-target text-[11px] flex items-center gap-1"
+                        >
+                          <span>Connect</span>
+                          <span className="text-[#efbd66]">→</span>
+                        </Link>
+                      </MagneticButton>
+                    </div>
+                  </div>
+                </CardHover>
+              </StaggerItem>
+            ))}
+          </StaggerGrid>
+        </section>
 
         {/* ── CLAIM YOUR FREE DIGITAL HOME BANNER ────────────────────────── */}
         <FadeUp delay={0.15}>
@@ -432,86 +492,6 @@ export default function Home() {
           </div>
         </FadeUp>
 
-        {/* ── 5. FEATURED SPECIALISTS ───────────────────────────────────────── */}
-        <section className="pt-12 sm:pt-14 pb-10 sm:pb-12">
-          <FadeUp className="flex items-end justify-between gap-4 mb-8">
-            <div>
-              <div className="text-[10px] font-bold uppercase tracking-[1.8px] text-[#24754c] mb-2">
-                Find your people
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-semibold tracking-[-0.8px] text-[#102645]">
-                A good place to start.
-              </h2>
-              <p className="text-[#68788e] text-[13px] mt-1.5">
-                Explore verified professionals near western Brisbane.
-              </p>
-            </div>
-            <Link href="/explore" className="text-[12px] font-semibold text-[#071d3b] hover:underline flex items-center gap-1 flex-shrink-0">
-              <span>View all</span>
-              <span className="text-[#efbd66]">→</span>
-            </Link>
-          </FadeUp>
-
-          <StaggerGrid className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 sm:gap-6">
-            {[
-              {
-                initials: "OH",
-                bg: "bg-[#e6eaf3] text-[#425b7c]",
-                name: "Olivia Hart",
-                role: "Builder & handover contact · Hart Homes",
-                area: "Greater Brisbane",
-                desc: "Discuss your build, renovation or the documents for your new home. Clear boundaries before sharing.",
-                link: "/trustlinks/welcome",
-              },
-              {
-                initials: "LV",
-                bg: "bg-[#eaf5ef] text-[#24754c]",
-                name: "Lachlan Vance",
-                role: "Licensed Conveyancer · River City Conveyancing",
-                area: "Brisbane & Western Suburbs",
-                desc: "Contract advice and settlement guidance for buyers and sellers across Queensland. PEXA certified.",
-                link: "/trustlinks/TL-88301-A",
-              },
-              {
-                initials: "CD",
-                bg: "bg-[#eee8dc] text-[#76623f]",
-                name: "Claire Dupont",
-                role: "Lead Building & Pest Inspector · Dupont Inspections",
-                area: "Kenmore & Western Suburbs",
-                desc: "AS 4349.1 building, pest and thermal diagnostic reports. Objective pre-purchase clarity.",
-                link: "/trustlinks/TL-76100-C",
-              },
-            ].map((pro, i) => (
-              <StaggerItem key={i}>
-                <CardHover>
-                  <div className="bg-white border border-[#dfe6ef] rounded-2xl p-5 sm:p-6 flex flex-col justify-between shadow-sm h-full">
-                    <div>
-                      <div className="flex items-center gap-3 sm:gap-3.5 mb-4">
-                        <div className={`w-11 h-11 sm:w-12 sm:h-12 rounded-xl ${pro.bg} font-serif font-bold text-lg sm:text-xl flex items-center justify-center flex-shrink-0`}>
-                          {pro.initials}
-                        </div>
-                        <div>
-                          <h3 className="text-base font-semibold text-[#102645] leading-tight">{pro.name}</h3>
-                          <p className="text-[11px] text-[#68788e]">{pro.role}</p>
-                        </div>
-                      </div>
-                      <p className="text-[12px] text-[#68788e] leading-[1.65] mb-4">{pro.desc}</p>
-                    </div>
-                    <div className="pt-4 border-t border-[#dfe6ef] flex items-center justify-between text-[11px]">
-                      <span className="text-[#68788e]">{pro.area}</span>
-                      <MagneticButton>
-                        <Link href={pro.link} className="px-3 sm:px-3.5 py-1.5 bg-[#f3f6fb] hover:bg-[#e2eaf4] text-[#071d3b] font-semibold rounded-lg transition-colors tap-target text-[11px]">
-                          Connect →
-                        </Link>
-                      </MagneticButton>
-                    </div>
-                  </div>
-                </CardHover>
-              </StaggerItem>
-            ))}
-          </StaggerGrid>
-        </section>
-
         {/* ── 6. MEET PROP ID ────────────────────────────────────────────────── */}
         <FadeUp>
           <section className="my-8 sm:my-10 bg-[#eaf0f6] rounded-2xl p-6 sm:p-8 lg:p-12 grid grid-cols-1 lg:grid-cols-[1fr_0.9fr] items-center gap-8 lg:gap-10">
@@ -613,18 +593,18 @@ export default function Home() {
           <div className="bg-[#f0ede5] rounded-2xl p-6 sm:p-7 lg:p-9 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 sm:gap-6 mb-12 sm:mb-16">
             <div>
               <h3 className="text-lg sm:text-xl font-bold text-[#102645] mb-1">
-                Not sure where to start?
+                What is The Property Helpline?
               </h3>
               <p className="text-[13px] text-[#68788e]">
-                Home Compass helps you understand the next step, at your own pace.
+                Learn about who we are and what we provide to help you on your property journey.
               </p>
             </div>
             <MagneticButton className="flex-shrink-0 self-start sm:self-auto">
               <Link
-                href="/learn"
+                href="/about"
                 className="px-4 sm:px-5 py-2.5 bg-white border border-[#cbd5e2] hover:bg-[#f3f6fb] text-[#102645] font-semibold rounded-xl text-[12px] transition-colors flex items-center gap-2 whitespace-nowrap shadow-sm"
               >
-                <span>Explore the guides</span>
+                <span>About Us</span>
                 <span className="text-[#24754c]">→</span>
               </Link>
             </MagneticButton>
@@ -652,7 +632,7 @@ export default function Home() {
             </div>
             <div className="flex gap-4 sm:gap-6 flex-wrap">
               <Link href="/explore" className="hover:underline tap-target">Find help</Link>
-              <Link href="/learn" className="hover:underline tap-target">Home Compass</Link>
+              <Link href="/about" className="hover:underline tap-target">About Us</Link>
               <Link href="/properties" className="hover:underline tap-target">My Property World</Link>
               <Link href="/pro" className="hover:underline font-semibold text-[#071d3b] tap-target">I'm a Pro ↗</Link>
             </div>

@@ -36,7 +36,7 @@ export function Header() {
     pathname.startsWith("/vault");
   const isFind =
     pathname.startsWith("/explore") || pathname.startsWith("/inquiry");
-  const isLearn = pathname.startsWith("/learn");
+  const isAbout = pathname.startsWith("/about");
 
   return (
     <>
@@ -86,7 +86,7 @@ export function Header() {
           <nav className="hidden md:flex items-center gap-5 lg:gap-7 text-[13px] font-medium ml-4">
             {[
               { href: "/explore", label: "Find help", active: isFind },
-              { href: "/learn", label: "Learn", active: isLearn },
+              { href: "/about", label: "About Us", active: isAbout },
             ].map((item) => (
               <Link
                 key={item.href}
@@ -197,7 +197,7 @@ export function Header() {
               <div className="px-5 py-4 space-y-1">
                 {[
                   { href: "/explore", label: "Find help" },
-                  { href: "/learn", label: "Learn (Home Compass)" },
+                  { href: "/about", label: "About Us" },
                   { href: "/properties", label: "My Property World", gold: true },
                 ].map((item, i) => (
                   <motion.div

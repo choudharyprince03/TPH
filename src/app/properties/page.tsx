@@ -209,11 +209,11 @@ function MyPropertyWorldContent() {
 
           {/* Rail Bottom Footer */}
           <div className="mt-auto pt-4 border-t border-[#dfe6ef] text-[10px] text-[#68788e] space-y-2">
-            <Link href="/learn" className="flex items-center gap-2 text-[#102645] font-semibold hover:underline">
+            <Link href="/about" className="flex items-center gap-2 text-[#102645] font-semibold hover:underline">
               <svg className="w-3.5 h-3.5 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
               </svg>
-              <span>Home Compass · Learn</span>
+              <span>About Us</span>
             </Link>
             <div className="pt-2">
               <strong className="block text-[#102645] font-semibold text-[11px] flex items-center gap-1.5">
@@ -509,8 +509,12 @@ function MyPropertyWorldContent() {
                     href="/trustlinks/welcome"
                     className="p-5 flex items-center gap-4 hover:bg-[#f8fafc] transition-colors group"
                   >
-                    <div className="w-12 h-12 rounded-xl bg-[#e6eaf3] text-[#425b7c] font-serif font-bold text-xl flex items-center justify-center flex-shrink-0">
-                      OH
+                    <div className="w-12 h-12 rounded-xl overflow-hidden bg-[#e6eaf3] border border-[#dfe6ef] flex-shrink-0 shadow-xs">
+                      <img
+                        src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80"
+                        alt="Olivia Hart"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                      />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2">

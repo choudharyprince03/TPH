@@ -107,7 +107,7 @@ const PILLARS: PillarItem[] = [
   },
 ];
 
-export default function LearnPage() {
+export default function AboutPage() {
   const [activePillar, setActivePillar] = useState<string>("trustlink");
 
   return (
@@ -120,7 +120,7 @@ export default function LearnPage() {
         <nav className="flex items-center gap-2 text-[12px] text-[#68788e] mb-6" aria-label="Breadcrumb">
           <Link href="/" className="hover:underline text-[#68788e]">Home</Link>
           <span className="text-[#a4b2c2]">›</span>
-          <span className="text-[#102645] font-semibold">Learn</span>
+          <span className="text-[#102645] font-semibold">About Us</span>
         </nav>
 
         {/* ── Philosophy & How It Works ── */}
@@ -130,7 +130,7 @@ export default function LearnPage() {
           {/* Subtle Editorial Header */}
           <div className="max-w-3xl mb-10">
             <span className="text-[10px] font-bold uppercase tracking-[2px] text-[#24754c] block mb-2">
-              The Property Helpline Philosophy
+              About The Property Helpline
             </span>
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-[#102645] tracking-tight leading-[1.25]">
               We don’t provide properties.<br />
