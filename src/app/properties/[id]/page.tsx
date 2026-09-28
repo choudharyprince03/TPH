@@ -74,6 +74,14 @@ export default function PropertyDetailPage({ params }: { params: Promise<{ id: s
 
           <div className="flex items-center gap-2.5 flex-wrap">
             <Link
+              href={property.trustlinkHref || `/trustlinks/${property.trustlinkId || "TL-99214-B"}`}
+              className="px-4 py-2.5 bg-[#24754c] hover:bg-[#1a5a3a] text-white rounded-xl text-[12px] font-bold transition-all shadow-sm flex items-center gap-1.5"
+            >
+              <span>🛡️</span>
+              <span>Open TrustLink</span>
+              <span>→</span>
+            </Link>
+            <Link
               href="/explore"
               className="px-4 py-2.5 bg-white/10 hover:bg-white/20 text-white rounded-xl text-[12px] font-semibold transition-colors border border-white/20"
             >
@@ -93,8 +101,9 @@ export default function PropertyDetailPage({ params }: { params: Promise<{ id: s
           propId={property.propId}
           property={property.street}
           mode="consumer"
+          trustlinkHref={property.trustlinkHref}
           actionHref="/properties?tab=properties"
-          actionLabel="View portfolio"
+          actionLabel="Portfolio"
           className="mb-6"
         />
 
@@ -236,10 +245,14 @@ export default function PropertyDetailPage({ params }: { params: Promise<{ id: s
                     </div>
                     <div className="flex-1">
                       <strong className="block text-[12px] text-[#102645]">Active TrustLink Permissions</strong>
-                      <p className="text-[11px] text-[#68788e]">Collaborative access scoped to this property passport.</p>
+                      <p className="text-[11px] text-[#68788e]">Connection: {property.trustlinkId} · Scoped to this property.</p>
                     </div>
-                    <Link href="/trustlinks" className="text-[11px] font-bold text-[#071d3b] hover:underline">
-                      Manage →
+                    <Link
+                      href={property.trustlinkHref || `/trustlinks/${property.trustlinkId || "TL-99214-B"}`}
+                      className="px-2.5 py-1 bg-[#071d3b] hover:bg-[#15345d] text-white font-bold text-[11px] rounded-lg transition-colors flex items-center gap-1 shadow-2xs"
+                    >
+                      <span>Open TrustLink</span>
+                      <span>→</span>
                     </Link>
                   </div>
                 </div>

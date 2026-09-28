@@ -453,12 +453,12 @@ function MyPropertyWorldContent() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   {PROPERTIES_LIST.map((property) => (
-                    <Link
+                    <article
                       key={property.id}
-                      href={`/properties/${property.id}`}
                       className="bg-white border border-[#dfe6ef] rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between hover:shadow-md hover:border-[#cbd5e2] transition-all group"
                     >
-                      <div className="relative h-44 bg-[#e4eaf0] overflow-hidden">
+                      <Link href={`/properties/${property.id}`} className="block">
+                        <div className="relative h-44 bg-[#e4eaf0] overflow-hidden">
                         <img
                           src={property.imageUrl}
                           alt={property.street}
@@ -471,34 +471,44 @@ function MyPropertyWorldContent() {
                           <span>{property.type} · {property.propId}</span>
                         </span>
                       </div>
-                      <div className="p-5 flex-1 flex flex-col justify-between">
-                        <div>
+                    </Link>
+
+                    <div className="p-5 flex-1 flex flex-col justify-between">
+                      <div>
+                        <Link href={`/properties/${property.id}`} className="block">
                           <h3 className="text-base font-bold text-[#102645] group-hover:text-[#071d3b] transition-colors mb-0.5">
                             {property.street}
                           </h3>
-                          <p className="text-[11px] text-[#68788e] mb-3">
-                            {property.suburb}, {property.state} {property.postcode}
-                          </p>
-                          <div className="text-[11px] text-[#68788e] flex items-center gap-1.5 mb-3 pb-3 border-b border-[#dfe6ef]">
-                            <svg className="w-3.5 h-3.5 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
-                            </svg>
-                            <span>{property.documentsCount} documents · <strong className="text-[#102645]">Living Prop ID</strong></span>
-                          </div>
-                        </div>
-
-                        <div className="flex items-center justify-between pt-1 text-[11px]">
-                          <span className={`font-semibold ${property.statusColor} px-2 py-0.5 rounded text-[10px]`}>
-                            {property.statusBadge}
-                          </span>
-                          <span className="text-[#071d3b] font-bold group-hover:underline flex items-center gap-1">
-                            <span>Open Space</span>
-                            <span className="text-[#efbd66]">→</span>
-                          </span>
+                        </Link>
+                        <p className="text-[11px] text-[#68788e] mb-3">
+                          {property.suburb}, {property.state} {property.postcode}
+                        </p>
+                        <div className="text-[11px] text-[#68788e] flex items-center gap-1.5 mb-3 pb-3 border-b border-[#dfe6ef]">
+                          <svg className="w-3.5 h-3.5 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+                          </svg>
+                          <span>{property.documentsCount} documents · <strong className="text-[#102645]">Living Prop ID</strong></span>
                         </div>
                       </div>
-                    </Link>
-                  ))}
+
+                      <div className="flex items-center justify-between pt-1 text-[11px] gap-2">
+                        <Link
+                          href={`/properties/${property.id}`}
+                          className="text-[#68788e] hover:text-[#071d3b] font-semibold text-[11px]"
+                        >
+                          Prop ID →
+                        </Link>
+                        <Link
+                          href={property.trustlinkHref || `/trustlinks/${property.trustlinkId || "TL-99214-B"}`}
+                          className="px-2.5 py-1 bg-[#071d3b] hover:bg-[#15345d] text-white font-bold rounded-lg text-[10px] transition-colors flex items-center gap-1 shadow-2xs"
+                        >
+                          <span>🛡️ Open TrustLink</span>
+                          <span>→</span>
+                        </Link>
+                      </div>
+                    </div>
+                  </article>
+                ))}
                 </div>
               </section>
 
@@ -664,24 +674,25 @@ function MyPropertyWorldContent() {
               {/* Properties Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
                 {filteredProperties.map((property) => (
-                  <Link
+                  <article
                     key={property.id}
-                    href={`/properties/${property.id}`}
                     className="bg-white border border-[#dfe6ef] rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between hover:shadow-md hover:border-[#cbd5e2] transition-all group"
                   >
-                    <div className="relative h-48 bg-[#e4eaf0] overflow-hidden">
-                      <img
-                        src={property.imageUrl}
-                        alt={property.street}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                      <span className={`absolute bottom-3 left-3 px-2.5 py-1 rounded-md text-[10px] font-bold shadow-sm flex items-center gap-1.5 bg-white ${property.typeColor}`}>
-                        <svg className="w-3 h-3 text-[#102645]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                        </svg>
-                        <span>{property.type}</span>
-                      </span>
-                    </div>
+                    <Link href={`/properties/${property.id}`} className="block">
+                      <div className="relative h-48 bg-[#e4eaf0] overflow-hidden">
+                        <img
+                          src={property.imageUrl}
+                          alt={property.street}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                        <span className={`absolute bottom-3 left-3 px-2.5 py-1 rounded-md text-[10px] font-bold shadow-sm flex items-center gap-1.5 bg-white ${property.typeColor}`}>
+                          <svg className="w-3.5 h-3.5 text-[#102645]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                          </svg>
+                          <span>{property.type}</span>
+                        </span>
+                      </div>
+                    </Link>
 
                     <div className="p-6 flex-1 flex flex-col justify-between">
                       <div>
@@ -694,9 +705,11 @@ function MyPropertyWorldContent() {
                           </span>
                         </div>
 
-                        <h3 className="text-lg font-bold text-[#102645] group-hover:text-[#071d3b] transition-colors mt-2 mb-1">
-                          {property.street}
-                        </h3>
+                        <Link href={`/properties/${property.id}`} className="block">
+                          <h3 className="text-lg font-bold text-[#102645] group-hover:text-[#071d3b] transition-colors mt-2 mb-1">
+                            {property.street}
+                          </h3>
+                        </Link>
                         <p className="text-[12px] text-[#68788e] mb-4">
                           {property.suburb}, {property.state} {property.postcode}
                         </p>
@@ -710,18 +723,30 @@ function MyPropertyWorldContent() {
                             <span>Cadastral Title:</span>
                             <span className="font-mono text-[#102645]">{property.legalDna.cadastral.split("(")[0]}</span>
                           </div>
+                          <div className="flex items-center justify-between">
+                            <span>Active Connection:</span>
+                            <span className="font-semibold text-[#24754c]">{property.trustlinkId}</span>
+                          </div>
                         </div>
                       </div>
 
-                      <div className="pt-3 border-t border-[#dfe6ef] flex items-center justify-between text-[12px]">
-                        <span className="text-[#68788e] text-[11px]">Open property space</span>
-                        <span className="px-3.5 py-1.5 bg-[#071d3b] text-white font-bold rounded-lg text-[11px] group-hover:bg-[#102d59] transition-colors flex items-center gap-1">
-                          <span>View Property</span>
+                      <div className="pt-3 border-t border-[#dfe6ef] flex items-center justify-between gap-2 text-[12px]">
+                        <Link
+                          href={`/properties/${property.id}`}
+                          className="text-[#68788e] hover:text-[#071d3b] text-[11px] font-semibold"
+                        >
+                          View Prop ID →
+                        </Link>
+                        <Link
+                          href={property.trustlinkHref || `/trustlinks/${property.trustlinkId || "TL-99214-B"}`}
+                          className="px-3 py-1.5 bg-[#071d3b] hover:bg-[#15345d] text-white font-bold rounded-lg text-[11px] transition-colors flex items-center gap-1 shadow-2xs"
+                        >
+                          <span>🛡️ Open TrustLink</span>
                           <span>→</span>
-                        </span>
+                        </Link>
                       </div>
                     </div>
-                  </Link>
+                  </article>
                 ))}
 
                 {/* Add New Property Card */}

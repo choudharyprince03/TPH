@@ -327,6 +327,8 @@ export interface PropertyPulseNotificationProps {
   className?: string;
   actionHref?: string;
   actionLabel?: string;
+  trustlinkHref?: string;
+  showTrustLinkButton?: boolean;
 }
 
 const PROPERTY_PULSE_BRIEFS: Record<
@@ -335,6 +337,9 @@ const PROPERTY_PULSE_BRIEFS: Record<
     consumer: string;
     pro: string;
     badge?: string;
+    trustlinkId: string;
+    consumerTrustlink: string;
+    proTrustlink: string;
     items: string[];
   }
 > = {
@@ -342,6 +347,9 @@ const PROPERTY_PULSE_BRIEFS: Record<
     consumer: "Handover pack ready for review · Laundry door touch-up booked today 11:15 AM · Variation #04 pending sign-off.",
     pro: "Form 16 structural engineering cleared · Painter onsite 11:15 AM · Client Variation #04 ($1,400) pending sign-off.",
     badge: "Handover Active",
+    trustlinkId: "TL-99214-B",
+    consumerTrustlink: "/trustlinks/TL-99214-B",
+    proTrustlink: "/pro/trustlinks/TL-99214-B",
     items: [
       "QBCC Form 16 Structural Engineering Certification sealed to Vault",
       "Painter appointment booked for laundry door touch-up at 11:15 AM",
@@ -352,6 +360,9 @@ const PROPERTY_PULSE_BRIEFS: Record<
     consumer: "Conveyancing advice uploaded by Lachlan Vance · Structural framing inspection certificate sealed to Prop ID.",
     pro: "Frame stage cleared by certifier · Form 43 waterproofing certificate required prior to tiling.",
     badge: "Active Renovation",
+    trustlinkId: "TL-88301-A",
+    consumerTrustlink: "/trustlinks/TL-88301-A",
+    proTrustlink: "/pro/trustlinks/TL-88301-A",
     items: [
       "Draft REIQ contract review notes sealed by Lachlan Vance",
       "AS 4349.1 timber pest audit on file with Claire Dupont",
@@ -362,6 +373,9 @@ const PROPERTY_PULSE_BRIEFS: Record<
     consumer: "12-month post-handover warranty inspection scheduled · QBCC Form 21 & Colorbond warranties sealed in Vault.",
     pro: "12-month defect liability audit underway · Final maintenance sign-off scheduled with client.",
     badge: "Warranty Care",
+    trustlinkId: "TL-76100-C",
+    consumerTrustlink: "/trustlinks/TL-76100-C",
+    proTrustlink: "/pro/trustlinks/TL-76100-C",
     items: [
       "30-year Colorbond steel roof warranty certificate sealed in Vault",
       "12-month post-settlement inspection booked with project supervisor",
@@ -372,6 +386,9 @@ const PROPERTY_PULSE_BRIEFS: Record<
     consumer: "Claire Dupont completed AS 4349.1 timber pest audit · Diagnostic report sealed in TrustLink.",
     pro: "AS 4349.1 pre-settlement inspection signed · Thermal moisture imaging report sealed.",
     badge: "Diagnostic Sealed",
+    trustlinkId: "TL-76100-C",
+    consumerTrustlink: "/trustlinks/TL-76100-C",
+    proTrustlink: "/pro/trustlinks/TL-76100-C",
     items: [
       "AS 4349.1 timber pest diagnostic completed by Dupont Inspections",
       "Moisture meter and thermal imaging scans clear",
@@ -387,6 +404,8 @@ export function PropertyPulseNotification({
   className = "",
   actionHref,
   actionLabel = "View",
+  trustlinkHref,
+  showTrustLinkButton = true,
 }: PropertyPulseNotificationProps) {
   const [expanded, setExpanded] = useState(false);
   const [dismissed, setDismissed] = useState(false);
@@ -397,18 +416,25 @@ export function PropertyPulseNotification({
     consumer: `Active records verified for ${property || propId}. Digital documents and maintenance items are current.`,
     pro: `Active build site · All milestone gates and statutory paperwork registered for ${property || propId}.`,
     badge: "Verified",
+    trustlinkId: "TL-99214-B",
+    consumerTrustlink: "/trustlinks/TL-99214-B",
+    proTrustlink: "/pro/trustlinks/TL-99214-B",
     items: ["Documents up to date", "No overdue notices"],
   };
 
   const briefText = mode === "pro" ? data.pro : data.consumer;
   const items = data.items || [];
+  const specificTrustlink =
+    trustlinkHref ||
+    (mode === "pro" ? data.proTrustlink : data.consumerTrustlink) ||
+    (mode === "pro" ? "/pro/trustlinks/TL-99214-B" : "/trustlinks/TL-99214-B");
 
   return (
     <div
       className={`bg-[#f0f7f3] border border-[#c7e4d0] rounded-xl px-3.5 sm:px-4 py-2.5 shadow-2xs transition-all ${className}`}
       role="status"
     >
-      <div className="flex items-center justify-between gap-3 text-xs">
+      <div className="flex items-center justify-between gap-3 text-xs flex-wrap sm:flex-nowrap">
         <div className="flex items-center gap-2.5 min-w-0 flex-1">
           {/* Pulsing Green/Amber Radar Dot */}
           <span className="relative flex h-2 w-2 flex-shrink-0">
@@ -425,14 +451,26 @@ export function PropertyPulseNotification({
           </span>
         </div>
 
-        <div className="flex items-center gap-2 flex-shrink-0">
+        <div className="flex items-center gap-2 flex-shrink-0 ml-auto sm:ml-0">
           {items.length > 0 && (
             <button
               onClick={() => setExpanded(!expanded)}
-              className="text-[11px] text-[#527965] hover:text-[#102645] font-semibold cursor-pointer hidden sm:inline"
+              className="text-[11px] text-[#527965] hover:text-[#102645] font-semibold cursor-pointer hidden md:inline"
             >
               {expanded ? "Less ▴" : "Details ▾"}
             </button>
+          )}
+
+          {/* Dedicated Button to go to Specific TrustLink related to this property */}
+          {showTrustLinkButton && specificTrustlink && (
+            <Link
+              href={specificTrustlink}
+              className="px-2.5 py-1 bg-[#071d3b] hover:bg-[#15345d] text-white text-[11px] font-bold rounded-lg transition-colors flex items-center gap-1 shadow-2xs shrink-0"
+              title={`Go to TrustLink (${data.trustlinkId || "active"}) for ${property || propId}`}
+            >
+              <span>🛡️ TrustLink</span>
+              <span className="text-[10px]">→</span>
+            </Link>
           )}
 
           {actionHref && (

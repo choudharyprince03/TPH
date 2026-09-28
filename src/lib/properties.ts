@@ -27,6 +27,9 @@ export interface PropertyData {
   statusColor: string;
   tagline: string;
   notes: string;
+  trustlinkId: string;
+  trustlinkHref: string;
+  proTrustlinkHref: string;
   legalDna: {
     cadastral: string;
     council: string;
@@ -66,6 +69,9 @@ export const PROPERTIES_MAP: Record<string, PropertyData> = {
     statusColor: "bg-[#fff4df] text-[#8b641c]",
     tagline: "Kenmore QLD 4069 · A living memory of your property.",
     notes: "Check solar inverter wifi connection after handover walkthrough. Painter coming on Thursday.",
+    trustlinkId: "TL-99214-B",
+    trustlinkHref: "/trustlinks/TL-99214-B",
+    proTrustlinkHref: "/pro/trustlinks/TL-99214-B",
     legalDna: {
       cadastral: "Lot 18 on RP 88201 (Title Ref 50921844)",
       council: "Brisbane City Council · Low Density Residential (LDR)",
@@ -115,6 +121,9 @@ export const PROPERTIES_MAP: Record<string, PropertyData> = {
     statusColor: "bg-[#eaf5ef] text-[#24754c]",
     tagline: "Graceville QLD 4075 · Character home renovation and compliance records.",
     notes: "Contract review requested with Lachlan Vance. Building & pest inspection scheduled with Claire Dupont.",
+    trustlinkId: "TL-88301-A",
+    trustlinkHref: "/trustlinks/TL-88301-A",
+    proTrustlinkHref: "/pro/trustlinks/TL-88301-A",
     legalDna: {
       cadastral: "Lot 12 on RP 48102 (Title Ref 41082199)",
       council: "Brisbane City Council · Character Residential (CR2)",
@@ -161,6 +170,9 @@ export const PROPERTIES_MAP: Record<string, PropertyData> = {
     statusColor: "bg-[#eaf5ef] text-[#24754c]",
     tagline: "Brookfield QLD 4069 · Living investment record & statutory warranty archive.",
     notes: "Annual termite inspection due in November. Tenancy agreement renewed through Bell & Co.",
+    trustlinkId: "TL-76100-C",
+    trustlinkHref: "/trustlinks/TL-76100-C",
+    proTrustlinkHref: "/pro/trustlinks/TL-76100-C",
     legalDna: {
       cadastral: "Lot 5 on SP 182301 (Title Ref 50192831)",
       council: "Brisbane City Council · Rural Residential Zone",
@@ -196,4 +208,9 @@ export const PROPERTIES_LIST = Object.values(PROPERTIES_MAP);
 
 export function getPropertyById(id: string): PropertyData {
   return PROPERTIES_MAP[id] || PROPERTIES_MAP["TPH-KEN-018"];
+}
+
+export function getPropertyTrustLink(propId: string, mode: "consumer" | "pro" = "consumer"): string {
+  const property = PROPERTIES_MAP[propId] || PROPERTIES_MAP["TPH-KEN-018"];
+  return mode === "pro" ? property.proTrustlinkHref : property.trustlinkHref;
 }
