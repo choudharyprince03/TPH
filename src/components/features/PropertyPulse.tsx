@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 
 export interface PulseTask {
@@ -86,6 +86,86 @@ const PRO_DEFAULT_PULSE_TASKS: PulseTask[] = [
   },
   {
     id: "pulse-p5",
+    title: "Upload QBCC Form 43 waterproofing certificate for character renovation",
+    property: "7 Cedar Street, Graceville",
+    propId: "TPH-GRV-007",
+    client: "Sofia Nguyen",
+    due: "Tomorrow, 10:00 AM",
+    isToday: false,
+    category: "Compliance",
+    priority: "Medium",
+    completed: false,
+    actionLabel: "Upload Form 43 →",
+    actionHref: "/pro/trustlinks/TL-88301-A",
+    assignee: "Licensed Tiler / Waterproofer",
+    notes: "AS 3740 internal wet-area compliance declaration.",
+  },
+  {
+    id: "pulse-p6",
+    title: "Confirm timber pest chemical barrier treatment receipt with Claire Dupont",
+    property: "7 Cedar Street, Graceville",
+    propId: "TPH-GRV-007",
+    client: "Sofia Nguyen",
+    due: "Today, 1:30 PM",
+    isToday: true,
+    category: "Trade",
+    priority: "High",
+    completed: false,
+    actionLabel: "Inspect Report →",
+    actionHref: "/pro/trustlinks/TL-88301-A",
+    assignee: "Dupont Property Inspections",
+    notes: "Pre-purchase timber pest audit verification.",
+  },
+  {
+    id: "pulse-p7",
+    title: "Review 12-month post-handover warranty inspection audit report",
+    property: "42 Ridge Road, Brookfield",
+    propId: "TPH-BRK-042",
+    client: "Noah & Mia Wilson",
+    due: "Friday, 3:00 PM",
+    isToday: false,
+    category: "Handover",
+    priority: "Low",
+    completed: false,
+    actionLabel: "Open Warranty →",
+    actionHref: "/pro/trustlinks/TL-76100-C",
+    assignee: "Hart Homes Maintenance",
+    notes: "Post-settlement aftercare check on exterior sealants.",
+  },
+  {
+    id: "pulse-p8",
+    title: "Issue final maintenance sign-off & deposit archive receipt in Prop ID",
+    property: "42 Ridge Road, Brookfield",
+    propId: "TPH-BRK-042",
+    client: "Noah & Mia Wilson",
+    due: "Next Monday",
+    isToday: false,
+    category: "Compliance",
+    priority: "Medium",
+    completed: false,
+    actionLabel: "Seal Record →",
+    actionHref: "/pro/trustlinks/TL-76100-C",
+    assignee: "Project Supervisor",
+    notes: "Deposit Form 21 & statutory warranty into customer vault.",
+  },
+  {
+    id: "pulse-p9",
+    title: "Seal AS 4349.1 building & timber pest diagnostic report into TrustLink workspace",
+    property: "7 Cedar Street, Graceville",
+    propId: "TPH-TOW-029",
+    client: "Sofia Nguyen",
+    due: "Today, 3:00 PM",
+    isToday: true,
+    category: "Compliance",
+    priority: "High",
+    completed: false,
+    actionLabel: "Seal Diagnostic →",
+    actionHref: "/pro/trustlinks/TL-76100-C",
+    assignee: "Claire Dupont",
+    notes: "Pre-settlement timber pest and moisture diagnostic report.",
+  },
+  {
+    id: "pulse-p10",
     title: "Review client project brief & conceptual site sketches from lead intake",
     property: "Simpsons Road, Bardon",
     propId: "TPH-BAR-019",
@@ -96,9 +176,9 @@ const PRO_DEFAULT_PULSE_TASKS: PulseTask[] = [
     priority: "Medium",
     completed: false,
     actionLabel: "Inspect Client Brief →",
-    actionHref: "/pro/leads/L-101",
+    actionHref: "/pro/leads",
     assignee: "Hart Homes Estimator",
-    notes: "Inbound customer inquiry with Macquarie pre-approval.",
+    notes: "Inbound customer inquiry with pre-approval.",
   },
 ];
 
@@ -165,6 +245,36 @@ const CONSUMER_DEFAULT_PULSE_TASKS: PulseTask[] = [
   },
   {
     id: "pulse-c5",
+    title: "Review contract advice & title disclosures from Lachlan Vance (Conveyancer)",
+    property: "7 Cedar Street, Graceville",
+    propId: "TPH-GRV-007",
+    due: "Today, 2:30 PM",
+    isToday: true,
+    category: "Client Action",
+    priority: "High",
+    completed: false,
+    actionLabel: "Review Advice →",
+    actionHref: "/trustlinks/TL-88301-A",
+    assignee: "River City Conveyancing",
+    notes: "Vendor disclosure review and overland flow path notes.",
+  },
+  {
+    id: "pulse-c6",
+    title: "Sign off on character renovation kitchen waterproofing certificate",
+    property: "7 Cedar Street, Graceville",
+    propId: "TPH-GRV-007",
+    due: "Tomorrow, 9:00 AM",
+    isToday: false,
+    category: "Compliance",
+    priority: "Medium",
+    completed: false,
+    actionLabel: "Inspect Form 43 →",
+    actionHref: "/properties/TPH-GRV-007",
+    assignee: "Your Action Required",
+    notes: "Seals ensuite and kitchen waterproofing into Prop ID.",
+  },
+  {
+    id: "pulse-c7",
     title: "Archive final QBCC Form 21 certificate & Colorbond roof warranty",
     property: "42 Ridge Road, Brookfield",
     propId: "TPH-BRK-042",
@@ -178,97 +288,206 @@ const CONSUMER_DEFAULT_PULSE_TASKS: PulseTask[] = [
     assignee: "Prop ID Vault",
     notes: "30-year Colorbond warranty and statutory certificates safely archived.",
   },
+  {
+    id: "pulse-c8",
+    title: "Confirm 12-month defect liability inspection schedule with builder",
+    property: "42 Ridge Road, Brookfield",
+    propId: "TPH-BRK-042",
+    due: "This Week",
+    isToday: false,
+    category: "Defect",
+    priority: "Medium",
+    completed: false,
+    actionLabel: "Message Builder →",
+    actionHref: "/trustlinks/welcome",
+    assignee: "Hart Homes Maintenance",
+    notes: "Annual maintenance inspection appointment scheduling.",
+  },
+  {
+    id: "pulse-c9",
+    title: "Review Dupont Building & Timber Pest diagnostic report in TrustLink",
+    property: "7 Cedar Street, Graceville",
+    propId: "TPH-TOW-029",
+    due: "Today, 3:00 PM",
+    isToday: true,
+    category: "Compliance",
+    priority: "High",
+    completed: false,
+    actionLabel: "Inspect Report →",
+    actionHref: "/trustlinks/TL-76100-C",
+    assignee: "Dupont Property Inspections",
+    notes: "Pre-purchase AS 4349.1 diagnostic report and thermal moisture imaging.",
+  },
 ];
 
-interface PropertyPulseProps {
+export interface PropertyPulseProps {
   mode: "pro" | "consumer";
   className?: string;
+  filterPropId?: string;
+  filterProperty?: string;
+  hideFilterBar?: boolean;
+  title?: string;
+  subtitle?: string;
+  compact?: boolean;
 }
 
-export function PropertyPulse({ mode, className = "" }: PropertyPulseProps) {
+export function PropertyPulse({
+  mode,
+  className = "",
+  filterPropId,
+  filterProperty,
+  hideFilterBar = false,
+  title,
+  subtitle,
+  compact = false,
+}: PropertyPulseProps) {
   const isPro = mode === "pro";
   const defaultTasks = isPro ? PRO_DEFAULT_PULSE_TASKS : CONSUMER_DEFAULT_PULSE_TASKS;
 
   const [tasks, setTasks] = useState<PulseTask[]>(defaultTasks);
   const [selectedPropertyFilter, setSelectedPropertyFilter] = useState<string>("all");
   const [showCompleted, setShowCompleted] = useState<boolean>(true);
+  const [showAddTaskModal, setShowAddTaskModal] = useState<boolean>(false);
+  const [newTaskTitle, setNewTaskTitle] = useState("");
+  const [newTaskCategory, setNewTaskCategory] = useState<PulseTask["category"]>("Trade");
+  const [newTaskPriority, setNewTaskPriority] = useState<PulseTask["priority"]>("Medium");
+  const [newTaskDue, setNewTaskDue] = useState("Today, 5:00 PM");
 
-  // Load custom tasks from localStorage in Pro mode
+  // Load custom tasks from localStorage
   useEffect(() => {
-    if (isPro) {
-      try {
-        const stored = localStorage.getItem("tph_pro_tasks");
-        if (stored) {
-          const parsed = JSON.parse(stored);
-          if (Array.isArray(parsed) && parsed.length > 0) {
-            const mappedCustom: PulseTask[] = parsed.map((item: any) => ({
-              id: item.id || `task-${Date.now()}`,
-              title: item.title,
-              property: item.property,
-              propId: item.propId || "TPH-KEN-018",
-              client: item.client,
-              due: item.due,
-              isToday: (item.due || "").toLowerCase().includes("today"),
-              category: (item.category as any) || "Trade",
-              priority: (item.priority as any) || "Medium",
-              completed: Boolean(item.completed),
-              actionLabel: "Open Task →",
-              actionHref: "/pro/tasks",
-              assignee: item.assignee,
-              notes: item.notes,
-            }));
+    const storageKey = isPro ? "tph_pro_tasks" : "tph_consumer_tasks";
+    try {
+      const stored = localStorage.getItem(storageKey);
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          const mappedCustom: PulseTask[] = parsed.map((item: any) => ({
+            id: item.id || `task-${Date.now()}`,
+            title: item.title,
+            property: item.property,
+            propId: item.propId || filterPropId || "TPH-KEN-018",
+            client: item.client,
+            due: item.due,
+            isToday: (item.due || "").toLowerCase().includes("today"),
+            category: (item.category as any) || "Trade",
+            priority: (item.priority as any) || "Medium",
+            completed: Boolean(item.completed),
+            actionLabel: item.actionLabel || (isPro ? "Open Task →" : "View →"),
+            actionHref: item.actionHref || (isPro ? "/pro/tasks" : "/properties"),
+            assignee: item.assignee,
+            notes: item.notes,
+          }));
 
-            // Merge with defaults
-            const customIds = new Set(mappedCustom.map((m) => m.id));
-            const remainingDefaults = PRO_DEFAULT_PULSE_TASKS.filter((t) => !customIds.has(t.id));
-            setTasks([...mappedCustom, ...remainingDefaults]);
-          }
+          const customIds = new Set(mappedCustom.map((m) => m.id));
+          const remainingDefaults = defaultTasks.filter((t) => !customIds.has(t.id));
+          setTasks([...mappedCustom, ...remainingDefaults]);
         }
-      } catch {
-        // Ignore fallback
+      }
+    } catch {
+      // Fallback
+    }
+  }, [isPro, filterPropId]);
+
+  // Handle filterPropId prop
+  useEffect(() => {
+    if (filterPropId) {
+      const match = tasks.find(
+        (t) =>
+          t.propId.toLowerCase() === filterPropId.toLowerCase() ||
+          (filterProperty && t.property.toLowerCase().includes(filterProperty.toLowerCase()))
+      );
+      if (match) {
+        setSelectedPropertyFilter(match.property);
       }
     }
-  }, [isPro]);
+  }, [filterPropId, filterProperty, tasks]);
 
   // Extract unique properties from tasks
-  const properties = Array.from(
-    new Set(tasks.map((t) => t.property))
-  ).map((prop) => {
-    const firstMatch = tasks.find((t) => t.property === prop);
-    return {
-      name: prop,
-      propId: firstMatch?.propId || "",
-      client: firstMatch?.client,
-      pendingCount: tasks.filter((t) => t.property === prop && !t.completed).length,
-    };
-  });
+  const properties = useMemo(() => {
+    return Array.from(new Set(tasks.map((t) => t.property))).map((prop) => {
+      const firstMatch = tasks.find((t) => t.property === prop);
+      return {
+        name: prop,
+        propId: firstMatch?.propId || "",
+        client: firstMatch?.client,
+        pendingCount: tasks.filter((t) => t.property === prop && !t.completed).length,
+      };
+    });
+  }, [tasks]);
 
   const toggleTask = (id: string) => {
     setTasks((prev) => {
       const updated = prev.map((t) => (t.id === id ? { ...t, completed: !t.completed } : t));
-      if (isPro) {
-        try {
-          localStorage.setItem("tph_pro_tasks", JSON.stringify(updated));
-        } catch {
-          // Ignore
-        }
+      const storageKey = isPro ? "tph_pro_tasks" : "tph_consumer_tasks";
+      try {
+        localStorage.setItem(storageKey, JSON.stringify(updated));
+      } catch {
+        // Ignore
       }
       return updated;
     });
   };
 
-  const filteredTasks = tasks.filter((t) => {
-    if (selectedPropertyFilter !== "all" && t.property !== selectedPropertyFilter) {
-      return false;
-    }
-    if (!showCompleted && t.completed) {
-      return false;
-    }
-    return true;
-  });
+  const handleCreateTask = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newTaskTitle.trim()) return;
 
-  const todayCount = tasks.filter((t) => t.isToday && !t.completed).length;
-  const totalCompleted = tasks.filter((t) => t.completed).length;
+    const targetProp = properties.find((p) =>
+      filterPropId ? p.propId.toLowerCase() === filterPropId.toLowerCase() : p.name === selectedPropertyFilter
+    ) || properties[0] || { name: "18 Banksia Crescent, Kenmore", propId: "TPH-KEN-018" };
+
+    const newTask: PulseTask = {
+      id: `task-${Date.now()}`,
+      title: newTaskTitle.trim(),
+      property: targetProp.name,
+      propId: filterPropId || targetProp.propId,
+      due: newTaskDue || "Today, 5:00 PM",
+      isToday: (newTaskDue || "").toLowerCase().includes("today"),
+      category: newTaskCategory,
+      priority: newTaskPriority,
+      completed: false,
+      actionLabel: isPro ? "Open Task →" : "View Details →",
+      actionHref: isPro ? "/pro/tasks" : `/properties/${filterPropId || targetProp.propId}`,
+      assignee: isPro ? "Hart Homes Team" : "You (Owner)",
+      notes: "Added via Property Pulse.",
+    };
+
+    const updated = [newTask, ...tasks];
+    setTasks(updated);
+    const storageKey = isPro ? "tph_pro_tasks" : "tph_consumer_tasks";
+    try {
+      localStorage.setItem(storageKey, JSON.stringify(updated));
+    } catch {
+      // Ignore
+    }
+
+    setNewTaskTitle("");
+    setShowAddTaskModal(false);
+  };
+
+  // Filter tasks
+  const filteredTasks = useMemo(() => {
+    return tasks.filter((t) => {
+      // If scoped to a specific propId and hideFilterBar is active or filter is set
+      if (filterPropId && hideFilterBar) {
+        const matchesPropId = t.propId.toLowerCase() === filterPropId.toLowerCase();
+        const matchesName = filterProperty && t.property.toLowerCase().includes(filterProperty.toLowerCase());
+        if (!matchesPropId && !matchesName) return false;
+      } else if (selectedPropertyFilter !== "all") {
+        if (t.property !== selectedPropertyFilter && t.propId !== selectedPropertyFilter) {
+          return false;
+        }
+      }
+
+      if (!showCompleted && t.completed) {
+        return false;
+      }
+      return true;
+    });
+  }, [tasks, filterPropId, filterProperty, hideFilterBar, selectedPropertyFilter, showCompleted]);
+
+  const todayCount = filteredTasks.filter((t) => t.isToday && !t.completed).length;
+  const totalCompleted = filteredTasks.filter((t) => t.completed).length;
 
   return (
     <section
@@ -278,53 +497,52 @@ export function PropertyPulse({ mode, className = "" }: PropertyPulseProps) {
       {/* ── Top Header with Radar Indicator ──────────────────────────── */}
       <div className="p-5 sm:p-6 border-b border-[#dfe6ef] bg-[#fafbfc] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2 mb-1">
+          <div className="flex items-center gap-2 mb-1 flex-wrap">
             <span className="relative flex h-2.5 w-2.5">
-              <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${
-                isPro ? "bg-[#efbd66]" : "bg-[#24754c]"
-              }`} />
-              <span className={`relative inline-flex rounded-full h-2.5 w-2.5 ${
-                isPro ? "bg-[#efbd66]" : "bg-[#24754c]"
-              }`} />
+              <span
+                className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${
+                  isPro ? "bg-[#efbd66]" : "bg-[#24754c]"
+                }`}
+              />
+              <span
+                className={`relative inline-flex rounded-full h-2.5 w-2.5 ${
+                  isPro ? "bg-[#efbd66]" : "bg-[#24754c]"
+                }`}
+              />
             </span>
             <span className="text-[9px] font-bold uppercase tracking-[1.5px] text-[#24754c]">
-              Property Pulse · Live Notifications
+              Property Pulse · Live Feed
             </span>
+            {filterPropId && (
+              <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-[#eaf5ef] text-[#24754c] border border-[#c7e3d1]">
+                {filterPropId}
+              </span>
+            )}
             <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#fff4df] text-[#8b641c]">
               {todayCount} Due Today
             </span>
           </div>
-          
+
           <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-[#102645]">
-            Property Pulse
+            {title || "Property Pulse"}
           </h2>
           <p className="text-[12px] sm:text-[13px] text-[#68788e] mt-0.5">
-            {isPro
-              ? "Today's site milestones, pending trade sign-offs & field tasks organized by property."
-              : "What needs your attention today across your living property records."}
+            {subtitle ||
+              (isPro
+                ? "Today's site milestones, pending trade sign-offs & field tasks organized by property."
+                : "Real-time updates, scheduled inspections & pending actions for this property.")}
           </p>
         </div>
 
         <div className="flex items-center gap-2.5 self-start sm:self-auto flex-wrap">
-          {isPro ? (
-            <Link
-              href="/pro/tasks/new"
-              className="px-3.5 py-2 bg-[#071d3b] hover:bg-[#102d59] text-white rounded-xl text-xs font-bold transition-colors shadow-2xs inline-flex items-center gap-1.5"
-            >
-              <svg className="w-3.5 h-3.5 text-[#efbd66]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 4v16m8-8H4" />
-              </svg>
-              <span>+ Add Task</span>
-            </Link>
-          ) : (
-            <Link
-              href="/trustlinks/welcome"
-              className="px-3.5 py-2 bg-[#071d3b] hover:bg-[#102d59] text-white rounded-xl text-xs font-bold transition-colors shadow-2xs inline-flex items-center gap-1.5"
-            >
-              <span>View Workspace</span>
-              <span>→</span>
-            </Link>
-          )}
+          <button
+            type="button"
+            onClick={() => setShowAddTaskModal(true)}
+            className="px-3.5 py-2 bg-[#071d3b] hover:bg-[#102d59] text-white rounded-xl text-xs font-bold transition-colors shadow-2xs inline-flex items-center gap-1.5 cursor-pointer"
+          >
+            <span className="text-[#efbd66] font-bold">+</span>
+            <span>Add Pulse Task</span>
+          </button>
 
           <button
             type="button"
@@ -336,53 +554,125 @@ export function PropertyPulse({ mode, className = "" }: PropertyPulseProps) {
         </div>
       </div>
 
-      {/* ── Property Filter Pills ────────────────────────────────────── */}
-      <div className="p-3.5 sm:p-4 bg-white border-b border-[#dfe6ef] flex items-center gap-2 overflow-x-auto">
-        <button
-          type="button"
-          onClick={() => setSelectedPropertyFilter("all")}
-          className={`px-3 py-1.5 rounded-full text-[11px] font-bold transition-all whitespace-nowrap cursor-pointer inline-flex items-center gap-1.5 ${
-            selectedPropertyFilter === "all"
-              ? "bg-[#071d3b] text-white shadow-2xs"
-              : "bg-[#f4f6f8] text-[#5b6e84] hover:bg-[#eaf0f6] hover:text-[#102645]"
-          }`}
-        >
-          <span>All Properties</span>
-          <span className={`text-[9.5px] px-1.5 py-0.2 rounded-full font-bold ${
-            selectedPropertyFilter === "all" ? "bg-white/20 text-white" : "bg-[#dfe6ef] text-[#071d3b]"
-          }`}>
-            {tasks.filter((t) => !t.completed).length}
-          </span>
-        </button>
+      {/* ── Optional Modal for Adding New Task ────────────────────────── */}
+      {showAddTaskModal && (
+        <div className="p-4 sm:p-5 bg-[#f0f4f9] border-b border-[#dfe6ef]">
+          <form onSubmit={handleCreateTask} className="space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-bold text-[#102645]">
+                + Add New Property Pulse Task {filterPropId ? `for ${filterPropId}` : ""}
+              </span>
+              <button
+                type="button"
+                onClick={() => setShowAddTaskModal(false)}
+                className="text-xs text-[#68788e] hover:text-[#102645]"
+              >
+                ✕ Cancel
+              </button>
+            </div>
 
-        {properties.map((prop) => {
-          const isSelected = selectedPropertyFilter === prop.name;
-          const shortName = prop.name.split(",")[0];
-          return (
-            <button
-              key={prop.name}
-              type="button"
-              onClick={() => setSelectedPropertyFilter(prop.name)}
-              className={`px-3 py-1.5 rounded-full text-[11px] font-semibold transition-all whitespace-nowrap cursor-pointer inline-flex items-center gap-1.5 border ${
-                isSelected
-                  ? "border-[#071d3b] bg-[#f0f4f9] text-[#071d3b] font-bold shadow-2xs"
-                  : "border-[#dfe6ef] text-[#5b6e84] hover:bg-[#f4f6f8] hover:text-[#102645]"
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+              <input
+                type="text"
+                value={newTaskTitle}
+                onChange={(e) => setNewTaskTitle(e.target.value)}
+                placeholder="What needs to happen? (e.g. Sign waterproofing cert)"
+                className="sm:col-span-2 px-3 py-2 bg-white border border-[#dfe6ef] rounded-xl text-xs text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                autoFocus
+                required
+              />
+
+              <select
+                value={newTaskCategory}
+                onChange={(e) => setNewTaskCategory(e.target.value as any)}
+                className="px-3 py-2 bg-white border border-[#dfe6ef] rounded-xl text-xs text-[#102645] focus:outline-none"
+              >
+                <option value="Trade">Trade / Site</option>
+                <option value="Handover">Handover</option>
+                <option value="Compliance">Compliance</option>
+                <option value="Client Action">Client Action</option>
+                <option value="Defect">Defect</option>
+              </select>
+            </div>
+
+            <div className="flex items-center justify-between gap-3 pt-1">
+              <div className="flex items-center gap-2 text-xs">
+                <label className="text-[#68788e]">Priority:</label>
+                <select
+                  value={newTaskPriority}
+                  onChange={(e) => setNewTaskPriority(e.target.value as any)}
+                  className="px-2 py-1 bg-white border border-[#dfe6ef] rounded-lg text-xs text-[#102645]"
+                >
+                  <option value="High">High</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Low">Low</option>
+                </select>
+              </div>
+
+              <button
+                type="submit"
+                className="px-4 py-1.5 bg-[#071d3b] hover:bg-[#102d59] text-white text-xs font-bold rounded-lg transition-colors cursor-pointer"
+              >
+                Save Task to Pulse
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
+
+      {/* ── Property Filter Pills (shown unless hideFilterBar is true) ── */}
+      {!hideFilterBar && (
+        <div className="p-3.5 sm:p-4 bg-white border-b border-[#dfe6ef] flex items-center gap-2 overflow-x-auto">
+          <button
+            type="button"
+            onClick={() => setSelectedPropertyFilter("all")}
+            className={`px-3 py-1.5 rounded-full text-[11px] font-bold transition-all whitespace-nowrap cursor-pointer inline-flex items-center gap-1.5 ${
+              selectedPropertyFilter === "all"
+                ? "bg-[#071d3b] text-white shadow-2xs"
+                : "bg-[#f4f6f8] text-[#5b6e84] hover:bg-[#eaf0f6] hover:text-[#102645]"
+            }`}
+          >
+            <span>All Properties</span>
+            <span
+              className={`text-[9.5px] px-1.5 py-0.2 rounded-full font-bold ${
+                selectedPropertyFilter === "all" ? "bg-white/20 text-white" : "bg-[#dfe6ef] text-[#071d3b]"
               }`}
             >
-              <span className="font-mono text-[10px] text-[#24754c] font-bold">{prop.propId}</span>
-              <span>·</span>
-              <span>{shortName}</span>
-              {prop.pendingCount > 0 && (
-                <span className={`text-[9.5px] px-1.5 py-0.2 rounded-full font-bold ${
-                  isSelected ? "bg-[#071d3b] text-white" : "bg-[#fff4df] text-[#8b641c]"
-                }`}>
-                  {prop.pendingCount}
-                </span>
-              )}
-            </button>
-          );
-        })}
-      </div>
+              {tasks.filter((t) => !t.completed).length}
+            </span>
+          </button>
+
+          {properties.map((prop) => {
+            const isSelected = selectedPropertyFilter === prop.name;
+            const shortName = prop.name.split(",")[0];
+            return (
+              <button
+                key={prop.name}
+                type="button"
+                onClick={() => setSelectedPropertyFilter(prop.name)}
+                className={`px-3 py-1.5 rounded-full text-[11px] font-semibold transition-all whitespace-nowrap cursor-pointer inline-flex items-center gap-1.5 border ${
+                  isSelected
+                    ? "border-[#071d3b] bg-[#f0f4f9] text-[#071d3b] font-bold shadow-2xs"
+                    : "border-[#dfe6ef] text-[#5b6e84] hover:bg-[#f4f6f8] hover:text-[#102645]"
+                }`}
+              >
+                <span className="font-mono text-[10px] text-[#24754c] font-bold">{prop.propId}</span>
+                <span>·</span>
+                <span>{shortName}</span>
+                {prop.pendingCount > 0 && (
+                  <span
+                    className={`text-[9.5px] px-1.5 py-0.2 rounded-full font-bold ${
+                      isSelected ? "bg-[#071d3b] text-white" : "bg-[#fff4df] text-[#8b641c]"
+                    }`}
+                  >
+                    {prop.pendingCount}
+                  </span>
+                )}
+              </button>
+            );
+          })}
+        </div>
+      )}
 
       {/* ── Active Tasks Feed ────────────────────────────────────────── */}
       <div className="divide-y divide-[#dfe6ef] p-2 sm:p-3">
@@ -393,9 +683,9 @@ export function PropertyPulse({ mode, className = "" }: PropertyPulseProps) {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <strong className="block text-[13px] text-[#102645]">All caught up for this property!</strong>
+            <strong className="block text-[13px] text-[#102645]">All caught up for this property record!</strong>
             <p className="text-[11px] text-[#68788e] mt-0.5">
-              Zero pending tasks or overdue notifications.
+              Zero pending items or overdue tasks.
             </p>
           </div>
         ) : (
@@ -460,9 +750,7 @@ export function PropertyPulse({ mode, className = "" }: PropertyPulseProps) {
                   </div>
 
                   {task.notes && (
-                    <p className="text-[11px] text-[#64748b] mt-1 italic">
-                      {task.notes}
-                    </p>
+                    <p className="text-[11px] text-[#64748b] mt-1 italic">{task.notes}</p>
                   )}
                 </div>
               </div>
@@ -483,20 +771,23 @@ export function PropertyPulse({ mode, className = "" }: PropertyPulseProps) {
 
       {/* ── Footer Summary Strip ─────────────────────────────────────── */}
       <div className="p-3.5 sm:p-4 border-t border-[#dfe6ef] bg-[#fafbfc] text-[11px] text-[#68788e] flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-wrap">
           <span className="font-semibold text-[#102645]">Pulse Status:</span>
           <span>{todayCount} active items scheduled for today</span>
           <span>·</span>
           <span>{totalCompleted} completed this cycle</span>
         </div>
 
-        <Link
-          href={isPro ? "/pro/tasks" : "/trustlinks"}
-          className="font-bold text-[#071d3b] hover:text-[#24754c] hover:underline self-start sm:self-auto"
-        >
-          {isPro ? "Open All Follow-ups & Tasks →" : "View All Property Workspaces →"}
-        </Link>
+        <div className="flex items-center gap-3">
+          <Link
+            href={isPro ? "/pro/tasks" : "/trustlinks"}
+            className="font-bold text-[#071d3b] hover:text-[#24754c] hover:underline self-start sm:self-auto"
+          >
+            {isPro ? "Open All Follow-ups & Tasks →" : "View All Property Workspaces →"}
+          </Link>
+        </div>
       </div>
     </section>
   );
 }
+export default PropertyPulse;

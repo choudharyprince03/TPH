@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { BacktrackingNav } from "@/components/layout/BacktrackingNav";
 import { PROPERTIES_LIST } from "@/lib/properties";
+import { PropertyPulse } from "@/components/features/PropertyPulse";
 
 function MyPropertyWorldContent() {
   const router = useRouter();
@@ -305,6 +306,9 @@ function MyPropertyWorldContent() {
                   />
                 </Link>
               </section>
+
+              {/* Property Pulse Live Milestones Feed */}
+              <PropertyPulse mode="consumer" className="mb-10" />
 
               {/* Two-Column Overview Grid */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-7 mb-10">

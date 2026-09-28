@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import React, { use, useState } from "react";
+import { PropertyPulse } from "@/components/features/PropertyPulse";
 
 const TRUSTLINK_DATA: Record<string, {
   id: string; propId: string; customer: string;
@@ -57,7 +58,7 @@ export default function ProTrustLinkDetailPage({ params }: { params: Promise<{ i
   const { id } = use(params);
   const tl = TRUSTLINK_DATA[id] ?? TRUSTLINK_DATA["welcome"];
 
-  const [activeTab, setActiveTab] = useState<"gates" | "documents" | "messages" | "variations">("gates");
+  const [activeTab, setActiveTab] = useState<"gates" | "pulse" | "documents" | "messages" | "variations">("gates");
   const [variationSigned, setVariationSigned] = useState(false);
   const [handoverSealed, setHandoverSealed] = useState(false);
 
@@ -144,6 +145,15 @@ export default function ProTrustLinkDetailPage({ params }: { params: Promise<{ i
             ),
           },
           {
+            id: "pulse",
+            label: "Property Pulse",
+            icon: (
+              <svg className="w-3.5 h-3.5 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            ),
+          },
+          {
             id: "documents",
             label: "Packaged Documents",
             icon: (
@@ -195,6 +205,16 @@ export default function ProTrustLinkDetailPage({ params }: { params: Promise<{ i
       {/* ── TAB 1: GATES ────────────────────────────────────────────── */}
       {activeTab === "gates" && (
         <div className="space-y-6">
+          {/* Embedded Property Pulse Live Feed for Pro */}
+          <PropertyPulse
+            mode="pro"
+            filterPropId={tl.propId}
+            filterProperty={tl.property}
+            hideFilterBar={false}
+            title={`Property Pulse · ${tl.property}`}
+            subtitle={`Live field tasks, compliance milestones & subcontractor tracking for ${tl.propId}.`}
+          />
+
           <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm">
             <div className="flex items-center justify-between pb-4 border-b border-[#dfe6ef] mb-6">
               <div>
@@ -266,6 +286,20 @@ export default function ProTrustLinkDetailPage({ params }: { params: Promise<{ i
               </button>
             </div>
           </div>
+        </div>
+      )}
+
+      {/* ── TAB: PROPERTY PULSE ─────────────────────────────────────── */}
+      {activeTab === "pulse" && (
+        <div className="space-y-6">
+          <PropertyPulse
+            mode="pro"
+            filterPropId={tl.propId}
+            filterProperty={tl.property}
+            hideFilterBar={false}
+            title={`Property Pulse · ${tl.property}`}
+            subtitle={`Real-time field tasks, compliance milestones & subcontractor tracking for ${tl.propId}.`}
+          />
         </div>
       )}
 

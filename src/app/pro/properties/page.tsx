@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
+import { PropertyPulse } from "@/components/features/PropertyPulse";
 
 interface Project {
   id: string;
@@ -171,6 +172,9 @@ export default function ProPropertiesPage() {
           </article>
         ))}
       </div>
+
+      {/* ── Real-Time Property Pulse Feed for Pro Sites ── */}
+      <PropertyPulse mode="pro" className="mt-10" />
 
     </div>
   );
