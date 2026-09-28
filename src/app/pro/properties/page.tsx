@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
-import { PropertyPulse } from "@/components/features/PropertyPulse";
+import { PropertyPulseNotification } from "@/components/features/PropertyPulse";
 
 interface Project {
   id: string;
@@ -94,6 +94,16 @@ export default function ProPropertiesPage() {
         </button>
       </div>
 
+      {/* ── Minimal Property Pulse Notification ── */}
+      <PropertyPulseNotification
+        propId="TPH-KEN-018"
+        property="18 Banksia Crescent"
+        mode="pro"
+        actionHref="/pro/trustlinks/TL-99214-B"
+        actionLabel="Handover Workspace"
+        className="mb-6"
+      />
+
       {/* ── Filter Chips ────────────────────────────────────────────── */}
       <div className="flex gap-2 overflow-x-auto pb-2 mb-6">
         {["All", "Handover", "Active", "Settled"].map((f) => (
@@ -172,9 +182,6 @@ export default function ProPropertiesPage() {
           </article>
         ))}
       </div>
-
-      {/* ── Real-Time Property Pulse Feed for Pro Sites ── */}
-      <PropertyPulse mode="pro" className="mt-10" />
 
     </div>
   );

@@ -3,13 +3,13 @@ import Link from "next/link";
 import React, { use, useState } from "react";
 import { BacktrackingNav } from "@/components/layout/BacktrackingNav";
 import { getPropertyById, PROPERTIES_LIST } from "@/lib/properties";
-import { PropertyPulse } from "@/components/features/PropertyPulse";
+import { PropertyPulseNotification } from "@/components/features/PropertyPulse";
 
 export default function PropertyDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
   const property = getPropertyById(id);
 
-  const [activeTab, setActiveTab] = useState<"overview" | "pulse" | "dna" | "documents" | "history" | "handover">("overview");
+  const [activeTab, setActiveTab] = useState<"overview" | "dna" | "documents" | "history" | "handover">("overview");
   const [dnaCategory, setDnaCategory] = useState<"legal" | "physical" | "operational">("legal");
   const [handoverReceived, setHandoverReceived] = useState(false);
   const [notes, setNotes] = useState(property.notes);
@@ -88,11 +88,20 @@ export default function PropertyDetailPage({ params }: { params: Promise<{ id: s
           </div>
         </header>
 
+        {/* ── Minimal Property Pulse Notification ── */}
+        <PropertyPulseNotification
+          propId={property.propId}
+          property={property.street}
+          mode="consumer"
+          actionHref="/properties?tab=properties"
+          actionLabel="View portfolio"
+          className="mb-6"
+        />
+
         {/* ── Sub-Navigation Tabs ─────────────────────────────────────── */}
         <nav className="flex items-center gap-4 sm:gap-7 border-b border-[#dfe6ef] mb-8 overflow-x-auto text-[13px] font-medium">
           {[
             { id: "overview", label: "Overview", icon: "🏠" },
-            { id: "pulse", label: "Property Pulse", icon: "📡", badge: "Live" },
             { id: "dna", label: "Property DNA", icon: "🧬" },
             { id: "documents", label: "Documents", icon: "📄", count: `${property.documents.length}` },
             { id: "history", label: "Logbook", icon: "🕒" },
@@ -197,57 +206,72 @@ export default function PropertyDetailPage({ params }: { params: Promise<{ id: s
               </div>
             </div>
 
-            {/* Property Pulse for this Property */}
-            <div>
-              <PropertyPulse
-                mode="consumer"
-                filterPropId={property.propId}
-                filterProperty={property.address}
-                hideFilterBar={false}
-                title={`Property Pulse · ${property.street}`}
-                subtitle={`Live milestones, scheduled inspections, and action items for ${property.propId}.`}
-              />
-            </div>
-
-            {/* Private Notes */}
-            <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between pb-3 border-b border-[#dfe6ef] mb-3">
-                  <h3 className="text-base font-bold text-[#102645]">My Private Notes</h3>
-                  <span className="text-[10px] text-[#24754c] flex items-center gap-1">
-                    <span>🔒</span> Only you
-                  </span>
+            {/* Two-Column Panels: Status & Notes */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              
+              {/* Status & TrustLink */}
+              <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm">
+                <div className="flex items-center justify-between pb-3 border-b border-[#dfe6ef] mb-4">
+                  <h3 className="text-base font-bold text-[#102645]">Property Status</h3>
+                  <span className="text-[10px] font-bold px-2 py-0.5 bg-[#eaf5ef] text-[#24754c] rounded">Status: Verified</span>
                 </div>
-                <textarea
-                  value={notes}
-                  onChange={(e) => setNotes(e.target.value)}
-                  rows={3}
-                  className="w-full p-3 border border-[#dfe6ef] rounded-xl text-[12px] text-[#102645] bg-[#fcfbf8] focus:outline-none"
-                  placeholder="Questions to ask, ideas to keep, things to remember..."
-                />
+
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded bg-[#fff4df] text-[#8b641c] flex items-center justify-center font-bold text-xs flex-shrink-0">
+                      🎁
+                    </div>
+                    <div className="flex-1">
+                      <strong className="block text-[12px] text-[#102645]">{property.statusBadge}</strong>
+                      <p className="text-[11px] text-[#68788e]">All authenticated records sealed to {property.propId}.</p>
+                    </div>
+                    <button onClick={() => setActiveTab("handover")} className="text-[11px] font-bold text-[#071d3b] hover:underline">
+                      Review →
+                    </button>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded bg-[#eaf5ef] text-[#24754c] flex items-center justify-center font-bold text-xs flex-shrink-0">
+                      🛡️
+                    </div>
+                    <div className="flex-1">
+                      <strong className="block text-[12px] text-[#102645]">Active TrustLink Permissions</strong>
+                      <p className="text-[11px] text-[#68788e]">Collaborative access scoped to this property passport.</p>
+                    </div>
+                    <Link href="/trustlinks" className="text-[11px] font-bold text-[#071d3b] hover:underline">
+                      Manage →
+                    </Link>
+                  </div>
+                </div>
               </div>
-              <div className="flex items-center justify-between pt-3 border-t border-[#dfe6ef] text-[10px] text-[#68788e] mt-3">
-                <span>Excluded from professional sharing.</span>
-                <button onClick={() => alert("Notes saved successfully to local Prop ID storage.")} className="px-3 py-1.5 bg-[#071d3b] text-white font-semibold rounded-lg text-[11px]">
-                  Save notes
-                </button>
+
+              {/* Private Notes */}
+              <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between pb-3 border-b border-[#dfe6ef] mb-3">
+                    <h3 className="text-base font-bold text-[#102645]">My Private Notes</h3>
+                    <span className="text-[10px] text-[#24754c] flex items-center gap-1">
+                      <span>🔒</span> Only you
+                    </span>
+                  </div>
+                  <textarea
+                    value={notes}
+                    onChange={(e) => setNotes(e.target.value)}
+                    rows={3}
+                    className="w-full p-3 border border-[#dfe6ef] rounded-xl text-[12px] text-[#102645] bg-[#fcfbf8] focus:outline-none"
+                    placeholder="Questions to ask, ideas to keep, things to remember..."
+                  />
+                </div>
+                <div className="flex items-center justify-between pt-3 border-t border-[#dfe6ef] text-[10px] text-[#68788e] mt-3">
+                  <span>Excluded from professional sharing.</span>
+                  <button onClick={() => alert("Notes saved successfully to local Prop ID storage.")} className="px-3 py-1.5 bg-[#071d3b] text-white font-semibold rounded-lg text-[11px]">
+                    Save notes
+                  </button>
+                </div>
               </div>
+
             </div>
 
-          </div>
-        )}
-
-        {/* ── TAB: PROPERTY PULSE ─────────────────────────────────────── */}
-        {activeTab === "pulse" && (
-          <div className="space-y-6">
-            <PropertyPulse
-              mode="consumer"
-              filterPropId={property.propId}
-              filterProperty={property.address}
-              hideFilterBar={false}
-              title={`Property Pulse · ${property.street}`}
-              subtitle={`Real-time field updates, statutory certificates & maintenance milestones for ${property.propId}.`}
-            />
           </div>
         )}
 

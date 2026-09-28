@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import React, { use, useState } from "react";
-import { PropertyPulse } from "@/components/features/PropertyPulse";
+import { PropertyPulseNotification } from "@/components/features/PropertyPulse";
 
 interface TrustLinkData {
   id: string;
@@ -126,7 +126,7 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
   const initialData = TRUSTLINK_DATA_MAP[id] ?? TRUSTLINK_DATA_MAP["welcome"];
 
   const [data, setData] = useState<TrustLinkData>(initialData);
-  const [activeTab, setActiveTab] = useState<"overview" | "pulse" | "conversation" | "documents" | "permissions" | "activity" | "handover">("overview");
+  const [activeTab, setActiveTab] = useState<"overview" | "conversation" | "documents" | "permissions" | "activity" | "handover">("overview");
   const [paused, setPaused] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showStopModal, setShowStopModal] = useState(false);
@@ -289,6 +289,16 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
           </div>
         </section>
 
+        {/* ── Minimal Property Pulse Notification ── */}
+        <PropertyPulseNotification
+          propId={data.propId}
+          property={data.property}
+          mode="consumer"
+          actionHref={`/properties/${data.propId}`}
+          actionLabel="View Prop ID"
+          className="mb-6"
+        />
+
         {/* ── Paused / Stopped Banner ─────────────────────────────────── */}
         {paused && !stopped && (
           <div className="p-4 rounded-xl bg-[#fff4df] border border-[#f5dfb8] text-[#8b641c] text-[12px] mb-6 flex items-center justify-between gap-4">
@@ -315,7 +325,6 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
         <nav className="flex items-center gap-4 sm:gap-7 border-b border-[#dfe6ef] mb-8 overflow-x-auto text-[13px] font-medium">
           {[
             { id: "overview", label: "Overview", icon: "🛡️" },
-            { id: "pulse", label: "Property Pulse", icon: "📡", badge: "Live" },
             { id: "conversation", label: "Conversation", icon: "💬", count: `${messages.length}` },
             { id: "documents", label: "Shared items", icon: "📄", count: `${docs.filter((d) => d.shared).length}` },
             { id: "permissions", label: "Permissions", icon: "⚙️" },
@@ -539,32 +548,6 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
               </button>
             </aside>
 
-            {/* Embedded Property Pulse Section in Overview */}
-            <div className="lg:col-span-2 mt-2">
-              <PropertyPulse
-                mode="consumer"
-                filterPropId={data.propId}
-                filterProperty={data.property}
-                hideFilterBar={false}
-                title={`Property Pulse · ${data.property}`}
-                subtitle={`Live status, scheduled inspections & trade milestones connecting ${data.propId} with ${data.proName}.`}
-              />
-            </div>
-
-          </div>
-        )}
-
-        {/* ── TAB 2: PROPERTY PULSE ───────────────────────────────────── */}
-        {activeTab === "pulse" && (
-          <div className="space-y-6">
-            <PropertyPulse
-              mode="consumer"
-              filterPropId={data.propId}
-              filterProperty={data.property}
-              hideFilterBar={false}
-              title={`Property Pulse · ${data.property}`}
-              subtitle={`Live operational tracking, compliance milestones & trade activity for ${data.propId} shared with ${data.proName}.`}
-            />
           </div>
         )}
 

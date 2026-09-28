@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import React, { use, useState } from "react";
-import { PropertyPulse } from "@/components/features/PropertyPulse";
+import { PropertyPulseNotification } from "@/components/features/PropertyPulse";
 
 const TRUSTLINK_DATA: Record<string, {
   id: string; propId: string; customer: string;
@@ -58,7 +58,7 @@ export default function ProTrustLinkDetailPage({ params }: { params: Promise<{ i
   const { id } = use(params);
   const tl = TRUSTLINK_DATA[id] ?? TRUSTLINK_DATA["welcome"];
 
-  const [activeTab, setActiveTab] = useState<"gates" | "pulse" | "documents" | "messages" | "variations">("gates");
+  const [activeTab, setActiveTab] = useState<"gates" | "documents" | "messages" | "variations">("gates");
   const [variationSigned, setVariationSigned] = useState(false);
   const [handoverSealed, setHandoverSealed] = useState(false);
 
@@ -132,6 +132,16 @@ export default function ProTrustLinkDetailPage({ params }: { params: Promise<{ i
         </div>
       </section>
 
+      {/* ── Minimal Property Pulse Notification ── */}
+      <PropertyPulseNotification
+        propId={tl.propId}
+        property={tl.property}
+        mode="pro"
+        actionHref={`/trustlinks/${tl.id}`}
+        actionLabel="Client View"
+        className="mb-6"
+      />
+
       {/* ── Sub-Navigation Tabs ─────────────────────────────────────── */}
       <nav className="flex items-center gap-5 border-b border-[#dfe6ef] mb-8 overflow-x-auto text-[13px] font-medium">
         {[
@@ -141,15 +151,6 @@ export default function ProTrustLinkDetailPage({ params }: { params: Promise<{ i
             icon: (
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
-            ),
-          },
-          {
-            id: "pulse",
-            label: "Property Pulse",
-            icon: (
-              <svg className="w-3.5 h-3.5 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
             ),
           },
@@ -205,16 +206,6 @@ export default function ProTrustLinkDetailPage({ params }: { params: Promise<{ i
       {/* ── TAB 1: GATES ────────────────────────────────────────────── */}
       {activeTab === "gates" && (
         <div className="space-y-6">
-          {/* Embedded Property Pulse Live Feed for Pro */}
-          <PropertyPulse
-            mode="pro"
-            filterPropId={tl.propId}
-            filterProperty={tl.property}
-            hideFilterBar={false}
-            title={`Property Pulse · ${tl.property}`}
-            subtitle={`Live field tasks, compliance milestones & subcontractor tracking for ${tl.propId}.`}
-          />
-
           <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm">
             <div className="flex items-center justify-between pb-4 border-b border-[#dfe6ef] mb-6">
               <div>
@@ -286,20 +277,6 @@ export default function ProTrustLinkDetailPage({ params }: { params: Promise<{ i
               </button>
             </div>
           </div>
-        </div>
-      )}
-
-      {/* ── TAB: PROPERTY PULSE ─────────────────────────────────────── */}
-      {activeTab === "pulse" && (
-        <div className="space-y-6">
-          <PropertyPulse
-            mode="pro"
-            filterPropId={tl.propId}
-            filterProperty={tl.property}
-            hideFilterBar={false}
-            title={`Property Pulse · ${tl.property}`}
-            subtitle={`Real-time field tasks, compliance milestones & subcontractor tracking for ${tl.propId}.`}
-          />
         </div>
       )}
 

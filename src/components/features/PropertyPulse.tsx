@@ -320,6 +320,155 @@ const CONSUMER_DEFAULT_PULSE_TASKS: PulseTask[] = [
   },
 ];
 
+export interface PropertyPulseNotificationProps {
+  propId?: string;
+  property?: string;
+  mode?: "consumer" | "pro";
+  className?: string;
+  actionHref?: string;
+  actionLabel?: string;
+}
+
+const PROPERTY_PULSE_BRIEFS: Record<
+  string,
+  {
+    consumer: string;
+    pro: string;
+    badge?: string;
+    items: string[];
+  }
+> = {
+  "TPH-KEN-018": {
+    consumer: "Handover pack ready for review · Laundry door touch-up booked today 11:15 AM · Variation #04 pending sign-off.",
+    pro: "Form 16 structural engineering cleared · Painter onsite 11:15 AM · Client Variation #04 ($1,400) pending sign-off.",
+    badge: "Handover Active",
+    items: [
+      "QBCC Form 16 Structural Engineering Certification sealed to Vault",
+      "Painter appointment booked for laundry door touch-up at 11:15 AM",
+      "Client Variation Notice #04 (Caesarstone upgrade) ready for digital sign-off",
+    ],
+  },
+  "TPH-GRV-007": {
+    consumer: "Conveyancing advice uploaded by Lachlan Vance · Structural framing inspection certificate sealed to Prop ID.",
+    pro: "Frame stage cleared by certifier · Form 43 waterproofing certificate required prior to tiling.",
+    badge: "Active Renovation",
+    items: [
+      "Draft REIQ contract review notes sealed by Lachlan Vance",
+      "AS 4349.1 timber pest audit on file with Claire Dupont",
+      "QBCC Form 43 wet-area certificate required for tiling stage",
+    ],
+  },
+  "TPH-BRK-042": {
+    consumer: "12-month post-handover warranty inspection scheduled · QBCC Form 21 & Colorbond warranties sealed in Vault.",
+    pro: "12-month defect liability audit underway · Final maintenance sign-off scheduled with client.",
+    badge: "Warranty Care",
+    items: [
+      "30-year Colorbond steel roof warranty certificate sealed in Vault",
+      "12-month post-settlement inspection booked with project supervisor",
+      "Statutory Form 21 final inspection certificate verified",
+    ],
+  },
+  "TPH-TOW-029": {
+    consumer: "Claire Dupont completed AS 4349.1 timber pest audit · Diagnostic report sealed in TrustLink.",
+    pro: "AS 4349.1 pre-settlement inspection signed · Thermal moisture imaging report sealed.",
+    badge: "Diagnostic Sealed",
+    items: [
+      "AS 4349.1 timber pest diagnostic completed by Dupont Inspections",
+      "Moisture meter and thermal imaging scans clear",
+      "Report sealed to buyer due diligence workspace",
+    ],
+  },
+};
+
+export function PropertyPulseNotification({
+  propId = "TPH-KEN-018",
+  property,
+  mode = "consumer",
+  className = "",
+  actionHref,
+  actionLabel = "View",
+}: PropertyPulseNotificationProps) {
+  const [expanded, setExpanded] = useState(false);
+  const [dismissed, setDismissed] = useState(false);
+
+  if (dismissed) return null;
+
+  const data = PROPERTY_PULSE_BRIEFS[propId] || {
+    consumer: `Active records verified for ${property || propId}. Digital documents and maintenance items are current.`,
+    pro: `Active build site · All milestone gates and statutory paperwork registered for ${property || propId}.`,
+    badge: "Verified",
+    items: ["Documents up to date", "No overdue notices"],
+  };
+
+  const briefText = mode === "pro" ? data.pro : data.consumer;
+  const items = data.items || [];
+
+  return (
+    <div
+      className={`bg-[#f0f7f3] border border-[#c7e4d0] rounded-xl px-3.5 sm:px-4 py-2.5 shadow-2xs transition-all ${className}`}
+      role="status"
+    >
+      <div className="flex items-center justify-between gap-3 text-xs">
+        <div className="flex items-center gap-2.5 min-w-0 flex-1">
+          {/* Pulsing Green/Amber Radar Dot */}
+          <span className="relative flex h-2 w-2 flex-shrink-0">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#24754c] opacity-75" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#24754c]" />
+          </span>
+
+          <span className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c] flex-shrink-0">
+            Property Pulse:
+          </span>
+
+          <span className="text-[11px] sm:text-[12px] text-[#1e3a2f] font-medium truncate">
+            {briefText}
+          </span>
+        </div>
+
+        <div className="flex items-center gap-2 flex-shrink-0">
+          {items.length > 0 && (
+            <button
+              onClick={() => setExpanded(!expanded)}
+              className="text-[11px] text-[#527965] hover:text-[#102645] font-semibold cursor-pointer hidden sm:inline"
+            >
+              {expanded ? "Less ▴" : "Details ▾"}
+            </button>
+          )}
+
+          {actionHref && (
+            <Link
+              href={actionHref}
+              className="text-[11px] font-bold text-[#071d3b] hover:text-[#24754c] hover:underline flex items-center gap-0.5"
+            >
+              <span>{actionLabel}</span>
+              <span>→</span>
+            </Link>
+          )}
+
+          <button
+            onClick={() => setDismissed(true)}
+            aria-label="Dismiss notification"
+            className="text-[#8ca395] hover:text-[#102645] text-xs px-1 cursor-pointer"
+          >
+            ✕
+          </button>
+        </div>
+      </div>
+
+      {expanded && items.length > 0 && (
+        <div className="mt-2.5 pt-2 border-t border-[#d8eade] text-[11px] text-[#264e3b] space-y-1">
+          {items.map((item, i) => (
+            <div key={i} className="flex items-center gap-2">
+              <span className="text-[#24754c] text-[10px]">✓</span>
+              <span>{item}</span>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export interface PropertyPulseProps {
   mode: "pro" | "consumer";
   className?: string;
