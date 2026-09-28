@@ -14,6 +14,7 @@ import {
   FloatLoop,
   HeroText,
 } from "@/components/ui/motion";
+import SpecialistMapSection from "@/components/features/SpecialistMapSection";
 
 export default function Home() {
   const router = useRouter();
@@ -355,6 +356,9 @@ export default function Home() {
             </div>
           </div>
         </FadeUp>
+
+        {/* ── 2.5 INTERACTIVE SPECIALIST MAP SECTION ──────────────────────── */}
+        <SpecialistMapSection />
 
         {/* ── 3. START WHERE YOU ARE ─────────────────────────────────────────── */}
         <section className="pt-12 sm:pt-14 pb-10 sm:pb-12">
