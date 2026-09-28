@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { ReferralModal } from "@/components/features/ReferralModal";
+import { PropertyPulseNotification } from "@/components/features/PropertyPulse";
 import {
   PageTransition,
   FadeUp,
@@ -56,8 +57,33 @@ export default function ProDashboard() {
           >
             <span>+ Issue TrustLink</span>
           </Link>
+          <button
+            onClick={() => {
+              if (typeof window !== "undefined") {
+                window.dispatchEvent(new CustomEvent("tph:show-pulse-popup"));
+              }
+            }}
+            className="px-3 py-2 bg-[#f0f7f3] hover:bg-[#e4f3ea] text-[#24754c] border border-[#c7e4d0] rounded-xl text-xs font-semibold transition-colors shadow-2xs flex items-center gap-1.5 cursor-pointer"
+            title="Open Property Pulse Notification"
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#24754c] opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#24754c]" />
+            </span>
+            <span>Pulse Alert</span>
+          </button>
         </div>
       </FadeUp>
+
+      {/* ── Minimal Property Pulse Notification ── */}
+      <PropertyPulseNotification
+        propId="TPH-KEN-018"
+        property="18 Banksia Crescent"
+        mode="pro"
+        actionHref="/pro/trustlinks/TL-99214-B"
+        actionLabel="Handover Workspace"
+        className="mb-6"
+      />
 
       {/* ── Priority Lead Action Banner ─────────────────────────────────── */}
       <SlideIn direction="left">

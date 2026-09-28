@@ -469,6 +469,152 @@ export function PropertyPulseNotification({
   );
 }
 
+export interface PropertyPulsePopupProps {
+  propId?: string;
+  property?: string;
+  suburb?: string;
+  client?: string;
+  forceShow?: boolean;
+}
+
+export function PropertyPulsePopup({
+  propId = "TPH-KEN-018",
+  property = "18 Banksia Crescent",
+  suburb = "Kenmore QLD 4069",
+  client = "Alex & Emily",
+  forceShow = false,
+}: PropertyPulsePopupProps) {
+  const [visible, setVisible] = useState(false);
+  const [animatingOut, setAnimatingOut] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlForce = urlParams.get("pulse") === "1" || urlParams.get("pulse_popup") === "1";
+    const alreadyShown = sessionStorage.getItem("tph_pro_pulse_popup_shown");
+
+    if (!alreadyShown || forceShow || urlForce) {
+      const timer = setTimeout(() => {
+        setVisible(true);
+        sessionStorage.setItem("tph_pro_pulse_popup_shown", "true");
+      }, 750);
+      return () => clearTimeout(timer);
+    }
+  }, [forceShow]);
+
+  // Support interactive triggering via custom event
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const handleTrigger = () => {
+      setAnimatingOut(false);
+      setVisible(true);
+    };
+    window.addEventListener("tph:show-pulse-popup", handleTrigger);
+    return () => window.removeEventListener("tph:show-pulse-popup", handleTrigger);
+  }, []);
+
+  const handleDismiss = () => {
+    setAnimatingOut(true);
+    setTimeout(() => {
+      setVisible(false);
+      setAnimatingOut(false);
+    }, 250);
+  };
+
+  if (!visible) return null;
+
+  const data = PROPERTY_PULSE_BRIEFS[propId] || PROPERTY_PULSE_BRIEFS["TPH-KEN-018"];
+
+  return (
+    <aside
+      aria-label="Property Pulse Notification"
+      className={`fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-[250] max-w-[420px] w-[calc(100%-2.5rem)] sm:w-full transition-all duration-300 transform ${
+        animatingOut
+          ? "opacity-0 translate-y-3 scale-95 pointer-events-none"
+          : "opacity-100 translate-y-0 scale-100"
+      }`}
+    >
+      <div className="bg-white/95 backdrop-blur-md border border-[#b8dec4] rounded-2xl shadow-2xl p-4 sm:p-5 text-[#102645] relative overflow-hidden ring-1 ring-black/5">
+        {/* Top green accent strip */}
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#24754c] via-[#48996e] to-[#24754c]" />
+
+        {/* Header row */}
+        <div className="flex items-start justify-between gap-3 mb-2.5">
+          <div className="flex items-center gap-2">
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#24754c] opacity-75" />
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#24754c]" />
+            </span>
+            <span className="text-[10px] font-bold uppercase tracking-[1.3px] text-[#24754c]">
+              Property Pulse · Live Notification
+            </span>
+          </div>
+
+          <button
+            onClick={handleDismiss}
+            aria-label="Close notification"
+            className="text-[#8ca395] hover:text-[#102645] text-xs p-1 rounded-md hover:bg-[#f0f4f2] transition-colors cursor-pointer"
+          >
+            ✕
+          </button>
+        </div>
+
+        {/* Property & client info */}
+        <div className="flex items-baseline justify-between gap-2 mb-1">
+          <h4 className="text-[13px] font-bold text-[#102645] truncate">
+            {property}
+          </h4>
+          <span className="text-[10px] font-bold px-2 py-0.5 bg-[#eaf5ef] text-[#24754c] rounded-md shrink-0">
+            {data.badge || "Live"}
+          </span>
+        </div>
+
+        <p className="text-[11px] text-[#5b6e84] mb-2.5">
+          Client: <span className="font-semibold text-[#102645]">{client}</span> · {suburb} ({propId})
+        </p>
+
+        {/* Minimal brief notification box */}
+        <div className="bg-[#f0f7f3] border border-[#c7e4d0] rounded-xl p-2.5 text-[11px] text-[#1e3a2f] mb-3 leading-relaxed">
+          <span className="font-semibold text-[#24754c]">Latest Site Pulse: </span>
+          {data.pro}
+        </div>
+
+        {/* Micro highlights */}
+        {data.items && data.items.length > 0 && (
+          <div className="mb-3 space-y-1 text-[11px] text-[#264e3b]">
+            {data.items.slice(0, 2).map((item, idx) => (
+              <div key={idx} className="flex items-start gap-1.5">
+                <span className="text-[#24754c] text-[10px] mt-0.5 font-bold">✓</span>
+                <span className="truncate">{item}</span>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Actions row */}
+        <div className="flex items-center justify-between gap-3 pt-2 border-t border-[#edf3ef]">
+          <Link
+            href="/pro/trustlinks/TL-99214-B"
+            onClick={handleDismiss}
+            className="text-[11px] font-bold text-[#071d3b] hover:text-[#24754c] flex items-center gap-1 group"
+          >
+            <span>Open Handover Workspace</span>
+            <span className="group-hover:translate-x-0.5 transition-transform">→</span>
+          </Link>
+
+          <button
+            onClick={handleDismiss}
+            className="text-[11px] text-[#68788e] hover:text-[#102645] font-medium px-2 py-1 rounded-lg hover:bg-[#f4f6f8] cursor-pointer transition-colors"
+          >
+            Dismiss
+          </button>
+        </div>
+      </div>
+    </aside>
+  );
+}
+
 export interface PropertyPulseProps {
   mode: "pro" | "consumer";
   className?: string;

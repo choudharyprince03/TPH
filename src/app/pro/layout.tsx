@@ -1,4 +1,5 @@
 import { ProSidebar } from "@/components/layout/ProSidebar";
+import { PropertyPulsePopup } from "@/components/features/PropertyPulse";
 
 export default function ProLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -7,6 +8,7 @@ export default function ProLayout({ children }: { children: React.ReactNode }) {
       <main className="flex-1 overflow-y-auto bg-[#f4f6f8] text-[#102645] flex flex-col">
         {children}
       </main>
+      <PropertyPulsePopup />
     </div>
   );
 }
