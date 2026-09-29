@@ -497,7 +497,7 @@ function MyPropertyWorldContent() {
                             <span>🔑 Digital Key</span>
                           </Link>
                           <Link
-                            href={property.trustlinkHref || `/trustlinks/${property.trustlinkId || "TL-99214-B"}`}
+                            href={`/properties/${property.id}?tab=trustlink`}
                             className="px-2.5 py-1 bg-[#071d3b] hover:bg-[#15345d] text-white font-bold rounded-lg text-[10px] transition-colors flex items-center gap-1 shadow-2xs"
                           >
                             <span>🛡️ TrustLink</span>
@@ -696,7 +696,7 @@ function MyPropertyWorldContent() {
                             <span>🔑 Digital Key</span>
                           </Link>
                           <Link
-                            href={property.trustlinkHref || `/trustlinks/${property.trustlinkId || "TL-99214-B"}`}
+                            href={`/properties/${property.id}?tab=trustlink`}
                             className="px-3 py-1.5 bg-[#071d3b] hover:bg-[#15345d] text-white font-bold rounded-lg text-[11px] transition-colors flex items-center gap-1 shadow-2xs"
                           >
                             <span>🛡️ Open TrustLink</span>

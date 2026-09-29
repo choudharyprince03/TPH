@@ -389,135 +389,124 @@ function PropertyDetailInner({ id }: { id: string }) {
           {/* ═════════════════════════════════════════════════════════════ */}
           {activeTab === "trustlink" && (
             <div className="space-y-6 max-w-[1040px] mx-auto pb-12">
-              
               <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                 <div>
                   <div className="text-[10.5px] font-bold uppercase tracking-[2px] text-[#24754c] mb-1">
                     SCOPED ACCESS GOVERNANCE
                   </div>
                   <h1 className="text-3xl font-bold tracking-tight text-[#102645] mb-1.5">
-                    Trust Link · {property.trustlinkId}
+                    Trust Links for {property.street}
                   </h1>
                   <p className="text-[13px] text-[#68788e]">
-                    Manage granular permissions and professional connections for {property.street}.
+                    Manage granular permissions and professional connections specific to this property.
                   </p>
                 </div>
-
-                <Link
-                  href={trustlinkUrl}
-                  className="self-start sm:self-auto px-4 py-2 bg-[#071d3b] hover:bg-[#15345d] text-white rounded-lg text-xs font-bold transition-colors flex items-center gap-1.5 shadow-2xs"
-                >
-                  <span>Open Full Portal</span>
-                  <span>↗</span>
-                </Link>
               </div>
 
-              {/* Status Banner */}
-              <div className="bg-white border border-[#dfe6ef] rounded-xl p-5 flex items-center justify-between gap-4 shadow-sm">
-                <div className="flex items-center gap-3">
-                  <span className="w-3 h-3 rounded-full bg-[#10b981] shadow-[0_0_10px_rgba(16,185,129,0.4)] flex-shrink-0 animate-pulse" />
+              {/* TrustLink Cards Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                {/* Connection 1 */}
+                <article className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
                   <div>
-                    <h3 className="text-sm font-bold text-[#102645]">TrustLink Active & Scoped</h3>
-                    <p className="text-xs text-[#68788e]">Connected Specialist: Miller's Building & Pest Inspections (David Miller)</p>
-                  </div>
-                </div>
-                <span className="text-[11px] font-mono font-bold text-[#8b641c] bg-[#fff4df] px-2.5 py-1 rounded border border-[#ffe0a3]">
-                  Expires in 28 Days
-                </span>
-              </div>
-
-              {/* Connected Digital Key Section */}
-              <div className="bg-white border border-[#dfe6ef] rounded-xl p-5 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <div className="flex items-start gap-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-[#eaf5ef] text-[#24754c] flex items-center justify-center font-bold text-lg flex-shrink-0 border border-[#d2e6d9]">
-                    🔑
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-2 mb-0.5">
-                      <h4 className="text-sm font-bold text-[#102645]">Digital Key Connected</h4>
-                      <span className="text-[9.5px] font-bold px-1.5 py-0.2 rounded bg-[#eaf5ef] text-[#24754c]">
-                        Scoped Handover
-                      </span>
-                    </div>
-                    <p className="text-xs text-[#68788e]">
-                      Records shared in this TrustLink are verified and governed by your Digital Key for {property.street}.
-                    </p>
-                  </div>
-                </div>
-
-                <button
-                  onClick={() => handleTabChange("digital-key")}
-                  className="px-3.5 py-2 bg-[#f8fafc] hover:bg-[#f1f5f9] text-[#071d3b] rounded-lg text-xs font-bold border border-[#cbd5e1] transition-colors whitespace-nowrap self-start sm:self-auto cursor-pointer"
-                >
-                  Manage in Digital Key →
-                </button>
-              </div>
-
-              {/* Scoped Document Permissions List */}
-              <div className="bg-white border border-[#dfe6ef] rounded-xl p-5 space-y-4 shadow-sm">
-                <div className="flex items-center justify-between border-b border-[#dfe6ef] pb-3">
-                  <div>
-                    <h3 className="text-sm font-bold text-[#102645]">Scoped Document Permissions</h3>
-                    <p className="text-xs text-[#68788e]">Selectively shared files from your Digital Key.</p>
-                  </div>
-                  <button
-                    onClick={() => handleTabChange("digital-key")}
-                    className="text-xs text-[#24754c] hover:underline font-bold"
-                  >
-                    + Add Pack from Digital Key
-                  </button>
-                </div>
-
-                <div className="space-y-2 text-xs">
-                  {property.documents.map((doc, idx) => (
-                    <div
-                      key={idx}
-                      className="p-3 bg-[#f8fafc] rounded-lg border border-[#dfe6ef] flex items-center justify-between gap-3"
-                    >
-                      <div className="flex items-center gap-3 min-w-0">
-                        <span className="text-[#071d3b]">📄</span>
-                        <div className="min-w-0">
-                          <div className="font-bold text-[#102645] truncate">{doc.title}</div>
-                          <div className="text-[#68788e] text-[10.5px]">{doc.cat} · {doc.size}</div>
+                    <div className="flex items-start justify-between gap-3 mb-3">
+                      <div className="flex items-center gap-3">
+                        <div className="w-12 h-12 rounded-xl font-serif font-bold text-lg flex items-center justify-center flex-shrink-0 bg-[#e6eaf3] text-[#425b7c]">
+                          OH
+                        </div>
+                        <div>
+                          <span className="text-[9px] font-bold uppercase tracking-[1px] text-[#68788e] block">
+                            TRUST LINK
+                          </span>
+                          <h3 className="text-base font-bold text-[#102645] leading-tight">
+                            Olivia Hart
+                          </h3>
+                          <p className="text-[11px] text-[#68788e]">
+                            Builder & handover contact
+                          </p>
                         </div>
                       </div>
-
-                      <div className="flex items-center gap-2 flex-shrink-0">
-                        <span
-                          className={`text-[10px] font-bold px-2 py-0.5 rounded ${
-                            doc.shared
-                              ? "bg-[#eaf5ef] text-[#24754c] border border-[#d2e6d9]"
-                              : "bg-[#f1f5f9] text-[#68788e] border border-[#e2e8f0]"
-                          }`}
-                        >
-                          {doc.shared ? "Shared (Read-Only)" : "Private (Revoked)"}
-                        </span>
-                        <button
-                          onClick={() => alert(`Access toggled for ${doc.title}`)}
-                          className="text-[11px] text-[#071d3b] hover:underline font-semibold"
-                        >
-                          Toggle
-                        </button>
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-[#eaf5ef] text-[#24754c]">
+                        Active
+                      </span>
+                    </div>
+                    <p className="text-[13px] font-medium text-[#102645] mb-4">
+                      New home handover
+                    </p>
+                    <div className="bg-[#f3f6fb] p-3 rounded-lg flex flex-col gap-2 text-[11px] text-[#102645] mb-4 border border-[#dfe6ef]">
+                      <div className="flex items-center gap-2">
+                        <span className="text-lg">🔑</span>
+                        <div>
+                          <div className="font-bold">Digital Key Connected</div>
+                          <div className="text-[#68788e]">Scoped Handover Files</div>
+                        </div>
                       </div>
                     </div>
-                  ))}
-                </div>
+                  </div>
+                  <div className="pt-4 border-t border-[#dfe6ef] flex items-center justify-between text-[11px]">
+                    <Link
+                      href="/trustlinks/welcome"
+                      className="px-4 py-2 bg-[#071d3b] hover:bg-[#15345d] text-white font-bold rounded-xl transition-colors shadow-2xs"
+                    >
+                      Open Trust Link →
+                    </Link>
+                  </div>
+                </article>
+
+                {/* Connection 2 */}
+                <article className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                  <div>
+                    <div className="flex items-start justify-between gap-3 mb-3">
+                      <div className="flex items-center gap-3">
+                        <div className="w-12 h-12 rounded-xl font-serif font-bold text-lg flex items-center justify-center flex-shrink-0 bg-[#eaf5ef] text-[#24754c]">
+                          LV
+                        </div>
+                        <div>
+                          <span className="text-[9px] font-bold uppercase tracking-[1px] text-[#68788e] block">
+                            TRUST LINK
+                          </span>
+                          <h3 className="text-base font-bold text-[#102645] leading-tight">
+                            Lachlan Vance
+                          </h3>
+                          <p className="text-[11px] text-[#68788e]">
+                            Licensed Conveyancer
+                          </p>
+                        </div>
+                      </div>
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-[#eaf5ef] text-[#24754c]">
+                        Active
+                      </span>
+                    </div>
+                    <p className="text-[13px] font-medium text-[#102645] mb-4">
+                      Settlement Contract & PEXA Workspace
+                    </p>
+                    <div className="grid grid-cols-2 gap-4 text-[11px] text-[#68788e] py-3 border-t border-[#dfe6ef] mb-1">
+                      <div>
+                        <span className="block text-[9px] uppercase tracking-[0.7px] text-[#8a97a7]">Shared documents</span>
+                        <strong className="text-[#102645] font-semibold">2 selected</strong>
+                      </div>
+                      <div>
+                        <span className="block text-[9px] uppercase tracking-[0.7px] text-[#8a97a7]">Permission ends</span>
+                        <strong className="text-[#102645] font-semibold">05 Nov 2026</strong>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="pt-4 border-t border-[#dfe6ef] flex items-center justify-between text-[11px]">
+                    <Link
+                      href="/trustlinks/TL-88301-A"
+                      className="px-4 py-2 bg-[#f3f6fb] hover:bg-[#e4ebf5] text-[#071d3b] font-bold rounded-xl transition-colors border border-[#dfe6ef]"
+                    >
+                      Open Trust Link →
+                    </Link>
+                  </div>
+                </article>
               </div>
 
-              {/* Actions */}
-              <div className="flex items-center justify-end gap-3 pt-2">
-                <button
-                  onClick={() => alert("TrustLink connection paused. Professionals cannot view documents until resumed.")}
-                  className="px-3.5 py-2 bg-white hover:bg-slate-50 text-[#102645] rounded-lg text-xs font-semibold border border-[#cbd5e1] transition-colors"
-                >
-                  Pause Access
-                </button>
-                <button
-                  onClick={() => alert("TrustLink revoked. All shared tokens invalidated immediately.")}
-                  className="px-3.5 py-2 bg-[#fef2f2] hover:bg-[#fee2e2] text-[#b91c1c] rounded-lg text-xs font-bold border border-[#fecaca] transition-colors"
-                >
-                  Revoke Connection
-                </button>
+              {/* Informational Banner */}
+              <div className="mt-4 p-4 rounded-xl bg-[#eaf0f6] border border-[#dfe6ef] flex items-center gap-3 text-[12px] text-[#4e6582]">
+                <span className="text-lg flex-shrink-0">🔒</span>
+                <span>
+                  Your property record stays with you when a connection ends. Professional access is specific to the information and time period you approve.
+                </span>
               </div>
             </div>
           )}
