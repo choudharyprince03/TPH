@@ -97,9 +97,9 @@ function PropertyDetailInner({ id }: { id: string }) {
   const trustlinkUrl = property.trustlinkHref || `/trustlinks/${property.trustlinkId || "TL-99214-B"}`;
 
   return (
-    <div className="flex h-screen bg-[#071628] text-white font-sans overflow-hidden">
+    <div className="flex h-screen bg-[#f4f6f8] text-[#102645] font-sans overflow-hidden">
       
-      {/* ── Left Sidebar (Image 1: Overview, Digital Key, TrustLink, Properties, Messages) ── */}
+      {/* ── Left Sidebar (Light Theme: Overview, Digital Key, TrustLink, Properties, Messages) ── */}
       <PropertySidebar
         property={property}
         activeTab={activeTab}
@@ -109,17 +109,17 @@ function PropertyDetailInner({ id }: { id: string }) {
         setMobileOpen={setMobileOpen}
       />
 
-      {/* ── Main View Area ── */}
+      {/* ── Main View Area (Light Theme) ── */}
       <div className="flex-1 flex flex-col min-w-0 h-screen overflow-hidden">
         
-        {/* ── Top Bar (Image 2: Search, Find a Pro, Owner Role, Avatar) ── */}
-        <header className="h-[62px] border-b border-[#12283e] bg-[#071628] px-4 sm:px-6 flex items-center justify-between gap-4 flex-shrink-0 z-20">
+        {/* ── Top Bar (Light Theme) ── */}
+        <header className="h-[62px] border-b border-[#dfe6ef] bg-white px-4 sm:px-6 flex items-center justify-between gap-4 flex-shrink-0 z-20">
           
           <div className="flex items-center gap-3 flex-1 max-w-md">
             {/* Mobile Hamburger Toggle */}
             <button
               onClick={() => setMobileOpen(true)}
-              className="md:hidden text-[#8096ae] hover:text-white p-1 rounded-lg border border-[#1a3857] bg-[#0b2138]"
+              className="md:hidden text-[#68788e] hover:text-[#102645] p-1.5 rounded-lg border border-[#dfe6ef] bg-[#f8fafc]"
               aria-label="Open sidebar menu"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -127,10 +127,10 @@ function PropertyDetailInner({ id }: { id: string }) {
               </svg>
             </button>
 
-            {/* Search Input from Image 2 */}
+            {/* Search Input */}
             <div className="relative w-full">
               <svg
-                className="w-4 h-4 text-[#4f6c89] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"
+                className="w-4 h-4 text-[#94a3b8] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -147,29 +147,29 @@ function PropertyDetailInner({ id }: { id: string }) {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search records, equipment or folders..."
-                className="w-full bg-[#0a1e33] border border-[#173757] rounded-lg pl-9 pr-3 py-1.5 text-xs sm:text-[13px] text-slate-200 placeholder-[#4f6c89] focus:outline-none focus:border-[#38bdf8] transition-colors"
+                className="w-full bg-[#f4f6f8] border border-[#cbd5e1] rounded-lg pl-9 pr-3 py-1.5 text-xs sm:text-[13px] text-[#102645] placeholder-[#94a3b8] focus:bg-white focus:outline-none focus:border-[#071d3b] transition-colors"
               />
             </div>
           </div>
 
-          {/* Right Header Controls (Image 2) */}
+          {/* Right Header Controls */}
           <div className="flex items-center gap-3 sm:gap-4 flex-shrink-0">
             <Link
               href="/explore"
-              className="text-xs text-[#7e99b7] hover:text-white transition-colors font-medium hidden sm:inline"
+              className="text-xs text-[#5b6e84] hover:text-[#071d3b] transition-colors font-semibold hidden sm:inline"
             >
               Find a pro
             </Link>
 
-            {/* Role Dropdown from Image 2 */}
+            {/* Role Dropdown */}
             <div className="relative">
               <button
                 onClick={() => setRoleMenuOpen(!roleMenuOpen)}
-                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-[#0b2138] border border-[#1b3857] hover:border-[#285580] text-xs text-slate-200 font-medium transition-colors"
+                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-[#f8fafc] border border-[#cbd5e1] hover:border-[#94a3b8] text-xs text-[#102645] font-semibold transition-colors"
               >
                 <span className="truncate max-w-[130px] sm:max-w-none">{selectedRole}</span>
                 <svg
-                  className={`w-3 h-3 text-[#6f8aa5] transition-transform ${roleMenuOpen ? "rotate-180" : ""}`}
+                  className={`w-3 h-3 text-[#68788e] transition-transform ${roleMenuOpen ? "rotate-180" : ""}`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -179,7 +179,7 @@ function PropertyDetailInner({ id }: { id: string }) {
               </button>
 
               {roleMenuOpen && (
-                <div className="absolute right-0 top-full mt-1.5 bg-[#091b2f] border border-[#1b3d62] rounded-xl shadow-xl p-1.5 z-30 min-w-[170px] space-y-1 text-xs">
+                <div className="absolute right-0 top-full mt-1.5 bg-white border border-[#dfe6ef] rounded-xl shadow-lg p-1.5 z-30 min-w-[170px] space-y-1 text-xs">
                   {["Owner · Living here", "Landlord · Investor", "Tenant · Resident", "Property Manager"].map((role) => (
                     <button
                       key={role}
@@ -189,8 +189,8 @@ function PropertyDetailInner({ id }: { id: string }) {
                       }}
                       className={`w-full text-left px-2.5 py-1.5 rounded-lg transition-colors ${
                         selectedRole === role
-                          ? "bg-[#112d48] text-[#38bdf8] font-bold"
-                          : "text-[#8ea4bc] hover:bg-[#0e253e] hover:text-white"
+                          ? "bg-[#eef4ff] text-[#071d3b] font-bold"
+                          : "text-[#5b6e84] hover:bg-[#f1f5f9] hover:text-[#102645]"
                       }`}
                     >
                       {role}
@@ -200,9 +200,9 @@ function PropertyDetailInner({ id }: { id: string }) {
               )}
             </div>
 
-            {/* Avatar Circle: SM from Image 2 */}
+            {/* Avatar Circle: SM */}
             <div
-              className="w-8 h-8 rounded-full bg-[#143454] border border-[#234d75] text-[#93c5fd] font-bold text-xs flex items-center justify-center flex-shrink-0 shadow-xs cursor-pointer hover:border-[#38bdf8] transition-colors"
+              className="w-8 h-8 rounded-full bg-[#071d3b] text-[#efbd66] font-bold text-xs flex items-center justify-center flex-shrink-0 shadow-xs cursor-pointer hover:scale-105 transition-transform"
               title="Signed in as Alex (SM)"
               onClick={() => alert(`Active user account: Alex (Owner of ${property.street}). Record access: Verified Owner.`)}
             >
@@ -211,17 +211,17 @@ function PropertyDetailInner({ id }: { id: string }) {
           </div>
         </header>
 
-        {/* ── Scrollable Tab Content Container ── */}
+        {/* ── Scrollable Tab Content Container (Light Theme) ── */}
         <main className="flex-1 overflow-y-auto px-4 sm:px-6 lg:px-8 py-6">
           
           {/* ═════════════════════════════════════════════════════════════ */}
-          {/* TAB 1: OVERVIEW                                              */}
+          {/* TAB 1: OVERVIEW (Light Theme)                                */}
           {/* ═════════════════════════════════════════════════════════════ */}
           {activeTab === "overview" && (
             <div className="space-y-6 max-w-[1040px] mx-auto pb-12">
               
               {/* Masthead Banner */}
-              <div className="bg-[#092036] border border-[#173859] rounded-2xl p-6 sm:p-7 shadow-sm">
+              <div className="bg-[#071d3b] text-white rounded-2xl p-6 sm:p-7 shadow-sm">
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                   <div>
                     <div className="flex items-center gap-2 flex-wrap mb-2">
@@ -235,15 +235,15 @@ function PropertyDetailInner({ id }: { id: string }) {
                     <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-1">
                       {property.street}
                     </h1>
-                    <p className="text-xs text-[#8aa1b8]">
+                    <p className="text-xs text-[#b9c8db]">
                       {property.suburb} {property.state} {property.postcode} · Permanent digital home record.
                     </p>
 
                     <div className="flex items-center gap-3 mt-4 flex-wrap">
-                      <span className="font-mono text-xs px-2.5 py-1 bg-[#061729] rounded-md font-bold text-[#efbd66] border border-[#efbd66]/20">
+                      <span className="font-mono text-xs px-2.5 py-1 bg-white/10 rounded-md font-bold text-[#efbd66] border border-white/20">
                         {property.propId}
                       </span>
-                      <span className="text-xs text-[#10b981] flex items-center gap-1">
+                      <span className="text-xs text-[#6ee7b7] flex items-center gap-1 font-medium">
                         <span>🔑</span> Verified Sovereign Property Record
                       </span>
                     </div>
@@ -252,14 +252,14 @@ function PropertyDetailInner({ id }: { id: string }) {
                   <div className="flex items-center gap-2.5 flex-wrap">
                     <button
                       onClick={() => handleTabChange("digital-key")}
-                      className="px-4 py-2.5 bg-[#a7f3d0] hover:bg-[#86efac] text-[#064e3b] rounded-xl text-xs font-bold transition-all shadow-sm flex items-center gap-1.5 cursor-pointer"
+                      className="px-4 py-2.5 bg-[#efbd66] hover:bg-[#dfac55] text-[#071d3b] rounded-xl text-xs font-bold transition-all shadow-sm flex items-center gap-1.5 cursor-pointer"
                     >
                       <span>🔑</span>
                       <span>Open Digital Key</span>
                     </button>
                     <button
                       onClick={() => handleTabChange("trustlink")}
-                      className="px-4 py-2.5 bg-[#122e49] hover:bg-[#1a3f64] text-white rounded-xl text-xs font-semibold transition-colors border border-[#214b73] flex items-center gap-1.5 cursor-pointer"
+                      className="px-4 py-2.5 bg-white/10 hover:bg-white/20 text-white rounded-xl text-xs font-semibold transition-colors border border-white/20 flex items-center gap-1.5 cursor-pointer"
                     >
                       <span>🛡️</span>
                       <span>TrustLink</span>
@@ -280,91 +280,91 @@ function PropertyDetailInner({ id }: { id: string }) {
 
               {/* Quick Stat Tiles */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div className="bg-[#092036] border border-[#173859] rounded-xl p-4">
-                  <div className="text-[10px] font-bold uppercase tracking-wider text-[#6f8ba7]">
+                <div className="bg-white border border-[#dfe6ef] rounded-xl p-4 shadow-sm">
+                  <div className="text-[10px] font-bold uppercase tracking-wider text-[#68788e]">
                     Verified Records
                   </div>
-                  <div className="text-2xl font-bold text-white mt-1">
+                  <div className="text-2xl font-bold text-[#102645] mt-1">
                     {property.documents.length} Files
                   </div>
-                  <div className="text-[11px] text-[#10b981] mt-0.5">
+                  <div className="text-[11px] text-[#24754c] font-semibold mt-0.5">
                     Statutory Form 16 & Form 43 attached
                   </div>
                 </div>
 
-                <div className="bg-[#092036] border border-[#173859] rounded-xl p-4">
-                  <div className="text-[10px] font-bold uppercase tracking-wider text-[#6f8ba7]">
+                <div className="bg-white border border-[#dfe6ef] rounded-xl p-4 shadow-sm">
+                  <div className="text-[10px] font-bold uppercase tracking-wider text-[#68788e]">
                     Active TrustLink
                   </div>
-                  <div className="text-2xl font-bold text-[#38bdf8] mt-1">
+                  <div className="text-2xl font-bold text-[#071d3b] mt-1">
                     1 Scoped
                   </div>
-                  <div className="text-[11px] text-[#7ea0be] mt-0.5">
+                  <div className="text-[11px] text-[#68788e] mt-0.5">
                     Miller's Building & Pest Inspections
                   </div>
                 </div>
 
-                <div className="bg-[#092036] border border-[#173859] rounded-xl p-4">
-                  <div className="text-[10px] font-bold uppercase tracking-wider text-[#6f8ba7]">
+                <div className="bg-white border border-[#dfe6ef] rounded-xl p-4 shadow-sm">
+                  <div className="text-[10px] font-bold uppercase tracking-wider text-[#68788e]">
                     Digital Handover
                   </div>
-                  <div className="text-2xl font-bold text-[#efbd66] mt-1">
+                  <div className="text-2xl font-bold text-[#8b641c] mt-1">
                     Protected
                   </div>
-                  <div className="text-[11px] text-[#8aa1b8] mt-0.5">
+                  <div className="text-[11px] text-[#68788e] mt-0.5">
                     Managed in Digital Key
                   </div>
                 </div>
               </div>
 
               {/* Property DNA Breakdown Preview */}
-              <div className="bg-[#092036] border border-[#173859] rounded-xl p-5 space-y-4">
-                <div className="flex items-center justify-between border-b border-[#142d45] pb-3">
+              <div className="bg-white border border-[#dfe6ef] rounded-xl p-5 space-y-4 shadow-sm">
+                <div className="flex items-center justify-between border-b border-[#dfe6ef] pb-3">
                   <div>
-                    <h3 className="text-sm font-bold text-white">Property DNA Breakdown</h3>
-                    <p className="text-xs text-[#7e99b7]">Cadastral, structural and appliance details for {property.street}.</p>
+                    <h3 className="text-sm font-bold text-[#102645]">Property DNA Breakdown</h3>
+                    <p className="text-xs text-[#68788e]">Cadastral, structural and appliance details for {property.street}.</p>
                   </div>
                   <button
                     onClick={() => handleTabChange("digital-key")}
-                    className="text-xs text-[#38bdf8] hover:underline font-semibold"
+                    className="text-xs text-[#071d3b] hover:underline font-bold"
                   >
                     Pack into Digital Key →
                   </button>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-                  <div className="bg-[#07192d] p-3.5 rounded-lg border border-[#163554] space-y-1.5">
-                    <div className="font-bold text-[#efbd66] uppercase text-[10px]">Legal DNA</div>
-                    <div className="text-slate-200">{property.legalDna.cadastral}</div>
-                    <div className="text-[#6d88a4]">{property.legalDna.council}</div>
+                  <div className="bg-[#f8fafc] p-3.5 rounded-lg border border-[#dfe6ef] space-y-1.5">
+                    <div className="font-bold text-[#8b641c] uppercase text-[10px]">Legal DNA</div>
+                    <div className="text-[#102645] font-medium">{property.legalDna.cadastral}</div>
+                    <div className="text-[#68788e]">{property.legalDna.council}</div>
                   </div>
-                  <div className="bg-[#07192d] p-3.5 rounded-lg border border-[#163554] space-y-1.5">
-                    <div className="font-bold text-[#38bdf8] uppercase text-[10px]">Physical DNA</div>
-                    <div className="text-slate-200">{property.physicalDna.foundation}</div>
-                    <div className="text-[#6d88a4]">{property.physicalDna.cladding}</div>
+                  <div className="bg-[#f8fafc] p-3.5 rounded-lg border border-[#dfe6ef] space-y-1.5">
+                    <div className="font-bold text-[#071d3b] uppercase text-[10px]">Physical DNA</div>
+                    <div className="text-[#102645] font-medium">{property.physicalDna.foundation}</div>
+                    <div className="text-[#68788e]">{property.physicalDna.cladding}</div>
                   </div>
-                  <div className="bg-[#07192d] p-3.5 rounded-lg border border-[#163554] space-y-1.5">
-                    <div className="font-bold text-[#6ee7b7] uppercase text-[10px]">Operational DNA</div>
-                    <div className="text-slate-200">{property.operationalDna.hotWater}</div>
-                    <div className="text-[#6d88a4]">{property.operationalDna.ac}</div>
+                  <div className="bg-[#f8fafc] p-3.5 rounded-lg border border-[#dfe6ef] space-y-1.5">
+                    <div className="font-bold text-[#24754c] uppercase text-[10px]">Operational DNA</div>
+                    <div className="text-[#102645] font-medium">{property.operationalDna.hotWater}</div>
+                    <div className="text-[#68788e]">{property.operationalDna.ac}</div>
                   </div>
                 </div>
               </div>
 
               {/* Recent Logbook Events */}
-              <div className="bg-[#092036] border border-[#173859] rounded-xl p-5 space-y-3">
-                <h3 className="text-sm font-bold text-white">Recent Property Logbook Activity</h3>
+              <div className="bg-white border border-[#dfe6ef] rounded-xl p-5 space-y-3 shadow-sm">
+                <h3 className="text-sm font-bold text-[#102645]">Recent Property Logbook Activity</h3>
                 <div className="space-y-2 text-xs">
                   {property.events.map((evt, idx) => (
                     <div
                       key={idx}
-                      className="p-3 bg-[#07192d] rounded-lg border border-[#163554] flex items-center justify-between gap-4"
+                      className="p-3 bg-[#f8fafc] rounded-lg border border-[#dfe6ef] flex items-center justify-between gap-4"
                     >
                       <div>
-                        <div className="font-semibold text-white">{evt.title}</div>
-                        <div className="text-[#7e99b7] text-[11px]">{evt.detail}</div>
+                        <div className="font-bold text-[#102645]">{evt.title}</div>
+                        <div className="text-[#68788e] text-[11px]">{evt.detail}</div>
                       </div>
-                      <div className="text-[#557393] text-[10.5px] font-mono whitespace-nowrap">
+                      <div className="text-[#8a9bb0] text-[10.5px] font-mono whitespace-nowrap">
                         {evt.time}
                       </div>
                     </div>
@@ -375,7 +375,7 @@ function PropertyDetailInner({ id }: { id: string }) {
           )}
 
           {/* ═════════════════════════════════════════════════════════════ */}
-          {/* TAB 2: DIGITAL KEY (Direct match with Image 2)              */}
+          {/* TAB 2: DIGITAL KEY (Light Theme)                             */}
           {/* ═════════════════════════════════════════════════════════════ */}
           {activeTab === "digital-key" && (
             <DigitalKeyView
@@ -385,27 +385,27 @@ function PropertyDetailInner({ id }: { id: string }) {
           )}
 
           {/* ═════════════════════════════════════════════════════════════ */}
-          {/* TAB 3: TRUSTLINK (Specific to this property)                */}
+          {/* TAB 3: TRUSTLINK (Light Theme)                               */}
           {/* ═════════════════════════════════════════════════════════════ */}
           {activeTab === "trustlink" && (
             <div className="space-y-6 max-w-[1040px] mx-auto pb-12">
               
               <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                 <div>
-                  <div className="text-[10.5px] font-bold uppercase tracking-[2px] text-[#38bdf8] mb-1">
+                  <div className="text-[10.5px] font-bold uppercase tracking-[2px] text-[#24754c] mb-1">
                     SCOPED ACCESS GOVERNANCE
                   </div>
-                  <h1 className="text-3xl font-bold tracking-tight text-white mb-1.5">
+                  <h1 className="text-3xl font-bold tracking-tight text-[#102645] mb-1.5">
                     Trust Link · {property.trustlinkId}
                   </h1>
-                  <p className="text-[13px] text-[#8aa1b9]">
+                  <p className="text-[13px] text-[#68788e]">
                     Manage granular permissions and professional connections for {property.street}.
                   </p>
                 </div>
 
                 <Link
                   href={trustlinkUrl}
-                  className="self-start sm:self-auto px-4 py-2 bg-[#122e49] hover:bg-[#1a3f64] text-white rounded-lg text-xs font-semibold border border-[#214b73] transition-colors flex items-center gap-1.5"
+                  className="self-start sm:self-auto px-4 py-2 bg-[#071d3b] hover:bg-[#15345d] text-white rounded-lg text-xs font-bold transition-colors flex items-center gap-1.5 shadow-2xs"
                 >
                   <span>Open Full Portal</span>
                   <span>↗</span>
@@ -413,29 +413,56 @@ function PropertyDetailInner({ id }: { id: string }) {
               </div>
 
               {/* Status Banner */}
-              <div className="bg-[#092036] border border-[#173859] rounded-xl p-5 flex items-center justify-between gap-4">
+              <div className="bg-white border border-[#dfe6ef] rounded-xl p-5 flex items-center justify-between gap-4 shadow-sm">
                 <div className="flex items-center gap-3">
-                  <span className="w-3 h-3 rounded-full bg-[#10b981] shadow-[0_0_10px_#10b981] flex-shrink-0 animate-pulse" />
+                  <span className="w-3 h-3 rounded-full bg-[#10b981] shadow-[0_0_10px_rgba(16,185,129,0.4)] flex-shrink-0 animate-pulse" />
                   <div>
-                    <h3 className="text-sm font-bold text-white">TrustLink Active & Scoped</h3>
-                    <p className="text-xs text-[#829bb5]">Connected Specialist: Miller's Building & Pest Inspections (David Miller)</p>
+                    <h3 className="text-sm font-bold text-[#102645]">TrustLink Active & Scoped</h3>
+                    <p className="text-xs text-[#68788e]">Connected Specialist: Miller's Building & Pest Inspections (David Miller)</p>
                   </div>
                 </div>
-                <span className="text-[11px] font-mono text-[#efbd66] bg-[#efbd66]/10 px-2.5 py-1 rounded border border-[#efbd66]/20">
+                <span className="text-[11px] font-mono font-bold text-[#8b641c] bg-[#fff4df] px-2.5 py-1 rounded border border-[#ffe0a3]">
                   Expires in 28 Days
                 </span>
               </div>
 
-              {/* Scoped Document Permissions List */}
-              <div className="bg-[#092036] border border-[#173859] rounded-xl p-5 space-y-4">
-                <div className="flex items-center justify-between border-b border-[#142d45] pb-3">
+              {/* Connected Digital Key Section */}
+              <div className="bg-white border border-[#dfe6ef] rounded-xl p-5 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div className="flex items-start gap-3.5">
+                  <div className="w-10 h-10 rounded-xl bg-[#eaf5ef] text-[#24754c] flex items-center justify-center font-bold text-lg flex-shrink-0 border border-[#d2e6d9]">
+                    🔑
+                  </div>
                   <div>
-                    <h3 className="text-sm font-bold text-white">Scoped Document Permissions</h3>
-                    <p className="text-xs text-[#7e99b7]">Selectively shared files from your Digital Key.</p>
+                    <div className="flex items-center gap-2 mb-0.5">
+                      <h4 className="text-sm font-bold text-[#102645]">Digital Key Connected</h4>
+                      <span className="text-[9.5px] font-bold px-1.5 py-0.2 rounded bg-[#eaf5ef] text-[#24754c]">
+                        Scoped Handover
+                      </span>
+                    </div>
+                    <p className="text-xs text-[#68788e]">
+                      Records shared in this TrustLink are verified and governed by your Digital Key for {property.street}.
+                    </p>
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => handleTabChange("digital-key")}
+                  className="px-3.5 py-2 bg-[#f8fafc] hover:bg-[#f1f5f9] text-[#071d3b] rounded-lg text-xs font-bold border border-[#cbd5e1] transition-colors whitespace-nowrap self-start sm:self-auto cursor-pointer"
+                >
+                  Manage in Digital Key →
+                </button>
+              </div>
+
+              {/* Scoped Document Permissions List */}
+              <div className="bg-white border border-[#dfe6ef] rounded-xl p-5 space-y-4 shadow-sm">
+                <div className="flex items-center justify-between border-b border-[#dfe6ef] pb-3">
+                  <div>
+                    <h3 className="text-sm font-bold text-[#102645]">Scoped Document Permissions</h3>
+                    <p className="text-xs text-[#68788e]">Selectively shared files from your Digital Key.</p>
                   </div>
                   <button
                     onClick={() => handleTabChange("digital-key")}
-                    className="text-xs text-[#a7f3d0] hover:underline font-semibold"
+                    className="text-xs text-[#24754c] hover:underline font-bold"
                   >
                     + Add Pack from Digital Key
                   </button>
@@ -445,13 +472,13 @@ function PropertyDetailInner({ id }: { id: string }) {
                   {property.documents.map((doc, idx) => (
                     <div
                       key={idx}
-                      className="p-3 bg-[#07192d] rounded-lg border border-[#163554] flex items-center justify-between gap-3"
+                      className="p-3 bg-[#f8fafc] rounded-lg border border-[#dfe6ef] flex items-center justify-between gap-3"
                     >
                       <div className="flex items-center gap-3 min-w-0">
-                        <span className="text-[#38bdf8]">📄</span>
+                        <span className="text-[#071d3b]">📄</span>
                         <div className="min-w-0">
-                          <div className="font-semibold text-white truncate">{doc.title}</div>
-                          <div className="text-[#6d88a4] text-[10.5px]">{doc.cat} · {doc.size}</div>
+                          <div className="font-bold text-[#102645] truncate">{doc.title}</div>
+                          <div className="text-[#68788e] text-[10.5px]">{doc.cat} · {doc.size}</div>
                         </div>
                       </div>
 
@@ -459,15 +486,15 @@ function PropertyDetailInner({ id }: { id: string }) {
                         <span
                           className={`text-[10px] font-bold px-2 py-0.5 rounded ${
                             doc.shared
-                              ? "bg-[#064e3b]/60 text-[#6ee7b7] border border-[#047857]/40"
-                              : "bg-[#253040] text-[#8aa1b8]"
+                              ? "bg-[#eaf5ef] text-[#24754c] border border-[#d2e6d9]"
+                              : "bg-[#f1f5f9] text-[#68788e] border border-[#e2e8f0]"
                           }`}
                         >
                           {doc.shared ? "Shared (Read-Only)" : "Private (Revoked)"}
                         </span>
                         <button
                           onClick={() => alert(`Access toggled for ${doc.title}`)}
-                          className="text-[11px] text-[#38bdf8] hover:underline"
+                          className="text-[11px] text-[#071d3b] hover:underline font-semibold"
                         >
                           Toggle
                         </button>
@@ -481,13 +508,13 @@ function PropertyDetailInner({ id }: { id: string }) {
               <div className="flex items-center justify-end gap-3 pt-2">
                 <button
                   onClick={() => alert("TrustLink connection paused. Professionals cannot view documents until resumed.")}
-                  className="px-3.5 py-2 bg-[#0d2238] hover:bg-[#143150] text-[#93c5fd] rounded-lg text-xs font-semibold border border-[#1e4268] transition-colors"
+                  className="px-3.5 py-2 bg-white hover:bg-slate-50 text-[#102645] rounded-lg text-xs font-semibold border border-[#cbd5e1] transition-colors"
                 >
                   Pause Access
                 </button>
                 <button
                   onClick={() => alert("TrustLink revoked. All shared tokens invalidated immediately.")}
-                  className="px-3.5 py-2 bg-[#451017] hover:bg-[#5c1620] text-[#fca5a5] rounded-lg text-xs font-semibold border border-[#7f1d1d] transition-colors"
+                  className="px-3.5 py-2 bg-[#fef2f2] hover:bg-[#fee2e2] text-[#b91c1c] rounded-lg text-xs font-bold border border-[#fecaca] transition-colors"
                 >
                   Revoke Connection
                 </button>
@@ -496,20 +523,20 @@ function PropertyDetailInner({ id }: { id: string }) {
           )}
 
           {/* ═════════════════════════════════════════════════════════════ */}
-          {/* TAB 4: PROPERTIES (Portfolio directory & switcher)          */}
+          {/* TAB 4: PROPERTIES (Light Theme)                              */}
           {/* ═════════════════════════════════════════════════════════════ */}
           {activeTab === "properties" && (
             <div className="space-y-6 max-w-[1040px] mx-auto pb-12">
               
               <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                 <div>
-                  <div className="text-[10.5px] font-bold uppercase tracking-[2px] text-[#efbd66] mb-1">
+                  <div className="text-[10.5px] font-bold uppercase tracking-[2px] text-[#24754c] mb-1">
                     MY PROPERTY PORTFOLIO
                   </div>
-                  <h1 className="text-3xl font-bold tracking-tight text-white mb-1.5">
+                  <h1 className="text-3xl font-bold tracking-tight text-[#102645] mb-1.5">
                     Your Properties
                   </h1>
-                  <p className="text-[13px] text-[#8aa1b9]">
+                  <p className="text-[13px] text-[#68788e]">
                     Switch between your managed digital homes or open the directory.
                   </p>
                 </div>
@@ -517,13 +544,13 @@ function PropertyDetailInner({ id }: { id: string }) {
                 <div className="flex items-center gap-2">
                   <Link
                     href="/properties"
-                    className="px-3.5 py-2 bg-[#122e49] hover:bg-[#1a3f64] text-white rounded-lg text-xs font-semibold border border-[#214b73] transition-colors"
+                    className="px-3.5 py-2 bg-white hover:bg-[#f1f5f9] text-[#102645] rounded-lg text-xs font-semibold border border-[#cbd5e1] transition-colors"
                   >
                     Directory View
                   </Link>
                   <Link
                     href="/properties/new"
-                    className="px-3.5 py-2 bg-[#efbd66] hover:bg-[#dfac55] text-[#071d3b] rounded-lg text-xs font-bold transition-colors"
+                    className="px-3.5 py-2 bg-[#071d3b] hover:bg-[#15345d] text-white rounded-lg text-xs font-bold transition-colors shadow-2xs"
                   >
                     + Add Property
                   </Link>
@@ -536,10 +563,10 @@ function PropertyDetailInner({ id }: { id: string }) {
                   return (
                     <div
                       key={p.id}
-                      className={`bg-[#092036] border rounded-2xl p-5 flex flex-col justify-between transition-all ${
+                      className={`bg-white border rounded-2xl p-5 flex flex-col justify-between transition-all shadow-sm ${
                         isCurrent
-                          ? "border-[#38bdf8] ring-1 ring-[#38bdf8]/40 shadow-lg"
-                          : "border-[#173859] hover:border-[#27537e]"
+                          ? "border-[#071d3b] ring-2 ring-[#071d3b]/10"
+                          : "border-[#dfe6ef] hover:border-[#cbd5e1]"
                       }`}
                     >
                       <div>
@@ -548,45 +575,45 @@ function PropertyDetailInner({ id }: { id: string }) {
                             {p.type}
                           </span>
                           {isCurrent ? (
-                            <span className="text-[10px] font-bold text-[#38bdf8] bg-[#38bdf8]/10 px-2 py-0.5 rounded border border-[#38bdf8]/30">
+                            <span className="text-[10px] font-bold text-[#071d3b] bg-[#eef4ff] px-2 py-0.5 rounded border border-[#cbd5e1]">
                               Current Home
                             </span>
                           ) : (
-                            <span className="text-[10px] font-mono text-[#8aa1b8]">
+                            <span className="text-[10px] font-mono text-[#68788e]">
                               {p.propId}
                             </span>
                           )}
                         </div>
 
-                        <h3 className="text-base font-bold text-white mb-1">{p.street}</h3>
-                        <p className="text-xs text-[#8aa1b8] mb-4">
+                        <h3 className="text-base font-bold text-[#102645] mb-1">{p.street}</h3>
+                        <p className="text-xs text-[#68788e] mb-4">
                           {p.suburb} {p.state} {p.postcode}
                         </p>
 
-                        <div className="space-y-1.5 text-xs text-[#718da8] border-t border-[#142d45] pt-3">
+                        <div className="space-y-1.5 text-xs text-[#68788e] border-t border-[#dfe6ef] pt-3">
                           <div className="flex items-center justify-between">
                             <span>Documents:</span>
-                            <span className="text-white font-medium">{p.documents.length} verified</span>
+                            <span className="text-[#102645] font-bold">{p.documents.length} verified</span>
                           </div>
                           <div className="flex items-center justify-between">
                             <span>TrustLink:</span>
-                            <span className="text-[#38bdf8] font-mono font-medium">{p.trustlinkId}</span>
+                            <span className="text-[#24754c] font-mono font-bold">{p.trustlinkId}</span>
                           </div>
                         </div>
                       </div>
 
-                      <div className="mt-5 pt-3 border-t border-[#142d45] flex items-center justify-between gap-2">
+                      <div className="mt-5 pt-3 border-t border-[#dfe6ef] flex items-center justify-between gap-2">
                         {isCurrent ? (
                           <button
                             onClick={() => handleTabChange("digital-key")}
-                            className="w-full py-1.5 bg-[#a7f3d0] text-[#064e3b] font-bold rounded-lg text-xs text-center"
+                            className="w-full py-1.5 bg-[#eaf5ef] hover:bg-[#d8edd4] text-[#24754c] font-bold rounded-lg text-xs text-center border border-[#d2e6d9] cursor-pointer"
                           >
                             Open Digital Key
                           </button>
                         ) : (
                           <button
                             onClick={() => handleSwitchProperty(p.id)}
-                            className="w-full py-1.5 bg-[#122e49] hover:bg-[#1b436a] text-white font-semibold rounded-lg text-xs text-center border border-[#214b73] transition-colors"
+                            className="w-full py-1.5 bg-[#f8fafc] hover:bg-[#f1f5f9] text-[#102645] font-bold rounded-lg text-xs text-center border border-[#cbd5e1] transition-colors cursor-pointer"
                           >
                             Switch to this Home →
                           </button>
@@ -600,42 +627,42 @@ function PropertyDetailInner({ id }: { id: string }) {
           )}
 
           {/* ═════════════════════════════════════════════════════════════ */}
-          {/* TAB 5: MESSAGES (Communications with specialists)           */}
+          {/* TAB 5: MESSAGES (Light Theme)                                */}
           {/* ═════════════════════════════════════════════════════════════ */}
           {activeTab === "messages" && (
             <div className="space-y-6 max-w-[1040px] mx-auto pb-12">
               
               <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                 <div>
-                  <div className="text-[10.5px] font-bold uppercase tracking-[2px] text-[#6ee7b7] mb-1">
+                  <div className="text-[10.5px] font-bold uppercase tracking-[2px] text-[#24754c] mb-1">
                     PROPERTY COMMUNICATIONS
                   </div>
-                  <h1 className="text-3xl font-bold tracking-tight text-white mb-1.5">
+                  <h1 className="text-3xl font-bold tracking-tight text-[#102645] mb-1.5">
                     Messages · {property.street}
                   </h1>
-                  <p className="text-[13px] text-[#8aa1b9]">
+                  <p className="text-[13px] text-[#68788e]">
                     Direct messaging with verified specialists connected via TrustLink.
                   </p>
                 </div>
 
                 <div className="flex items-center gap-2">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#10b981] animate-pulse" />
-                  <span className="text-xs text-[#8aa1b8]">David Miller is online</span>
+                  <span className="text-xs text-[#68788e]">David Miller is online</span>
                 </div>
               </div>
 
               {/* Chat Thread Container */}
-              <div className="bg-[#092036] border border-[#173859] rounded-2xl overflow-hidden flex flex-col h-[520px]">
+              <div className="bg-white border border-[#dfe6ef] rounded-2xl overflow-hidden flex flex-col h-[520px] shadow-sm">
                 
                 {/* Chat Header */}
-                <div className="p-4 border-b border-[#142d45] bg-[#07192d] flex items-center justify-between">
+                <div className="p-4 border-b border-[#dfe6ef] bg-[#f8fafc] flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-full bg-[#122e49] text-[#38bdf8] font-bold text-xs flex items-center justify-center border border-[#204970]">
+                    <div className="w-9 h-9 rounded-full bg-[#eef4ff] text-[#071d3b] font-bold text-xs flex items-center justify-center border border-[#cbd5e1]">
                       DM
                     </div>
                     <div>
-                      <h4 className="text-sm font-bold text-white">David Miller</h4>
-                      <p className="text-[11px] text-[#7ea0be]">
+                      <h4 className="text-sm font-bold text-[#102645]">David Miller</h4>
+                      <p className="text-[11px] text-[#68788e]">
                         Miller's Building & Pest Inspections · TrustLink {property.trustlinkId}
                       </p>
                     </div>
@@ -643,14 +670,14 @@ function PropertyDetailInner({ id }: { id: string }) {
 
                   <button
                     onClick={() => handleTabChange("trustlink")}
-                    className="text-xs text-[#38bdf8] hover:underline font-semibold"
+                    className="text-xs text-[#071d3b] hover:underline font-bold cursor-pointer"
                   >
                     View Scoped TrustLink →
                   </button>
                 </div>
 
                 {/* Message History */}
-                <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4">
+                <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 bg-[#fcfdfe]">
                   {chatMessages.map((msg) => (
                     <div
                       key={msg.id}
@@ -659,8 +686,8 @@ function PropertyDetailInner({ id }: { id: string }) {
                       <div
                         className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 ${
                           msg.isUser
-                            ? "bg-[#143454] text-[#93c5fd] border border-[#234d75]"
-                            : "bg-[#0d2a45] text-[#38bdf8] border border-[#1d4668]"
+                            ? "bg-[#071d3b] text-[#efbd66]"
+                            : "bg-[#eef4ff] text-[#071d3b] border border-[#cbd5e1]"
                         }`}
                       >
                         {msg.avatar}
@@ -671,14 +698,14 @@ function PropertyDetailInner({ id }: { id: string }) {
                             msg.isUser ? "justify-end" : ""
                           }`}
                         >
-                          <span className="font-semibold text-slate-200">{msg.sender}</span>
-                          <span className="text-[#557393]">{msg.time}</span>
+                          <span className="font-semibold text-[#102645]">{msg.sender}</span>
+                          <span className="text-[#8a9bb0]">{msg.time}</span>
                         </div>
                         <div
                           className={`p-3.5 rounded-2xl text-xs sm:text-[13px] leading-relaxed ${
                             msg.isUser
-                              ? "bg-[#102b44] text-white border border-[#1e486d]"
-                              : "bg-[#07192d] text-slate-200 border border-[#163554]"
+                              ? "bg-[#071d3b] text-white shadow-2xs"
+                              : "bg-[#f1f5f9] text-[#102645] border border-[#e2e8f0]"
                           }`}
                         >
                           {msg.text}
@@ -691,18 +718,18 @@ function PropertyDetailInner({ id }: { id: string }) {
                 {/* Message Input Box */}
                 <form
                   onSubmit={handleSendMessage}
-                  className="p-3 border-t border-[#142d45] bg-[#07192d] flex items-center gap-2"
+                  className="p-3 border-t border-[#dfe6ef] bg-[#f8fafc] flex items-center gap-2"
                 >
                   <input
                     type="text"
                     value={newMessage}
                     onChange={(e) => setNewMessage(e.target.value)}
                     placeholder={`Reply regarding ${property.street}...`}
-                    className="flex-1 bg-[#0b2138] border border-[#1a3d60] rounded-xl px-4 py-2.5 text-xs text-white placeholder-[#506c88] focus:outline-none focus:border-[#38bdf8]"
+                    className="flex-1 bg-white border border-[#cbd5e1] rounded-xl px-4 py-2.5 text-xs text-[#102645] placeholder-[#94a3b8] focus:outline-none focus:border-[#071d3b]"
                   />
                   <button
                     type="submit"
-                    className="px-4 py-2.5 bg-[#38bdf8] hover:bg-[#0284c7] text-[#071d3b] font-bold text-xs rounded-xl transition-colors cursor-pointer flex-shrink-0"
+                    className="px-4 py-2.5 bg-[#071d3b] hover:bg-[#15345d] text-white font-bold text-xs rounded-xl transition-colors cursor-pointer flex-shrink-0 shadow-2xs"
                   >
                     Send
                   </button>
@@ -723,8 +750,8 @@ export default function PropertyDetailPage({ params }: { params: Promise<{ id: s
   return (
     <Suspense
       fallback={
-        <div className="flex items-center justify-center h-screen bg-[#071628] text-white">
-          <div className="text-xs text-[#8aa1b8]">Loading property workspace...</div>
+        <div className="flex items-center justify-center h-screen bg-[#f4f6f8] text-[#102645]">
+          <div className="text-xs text-[#68788e]">Loading property workspace...</div>
         </div>
       }
     >

@@ -299,6 +299,47 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
           className="mb-6"
         />
 
+        {/* ── Connected Digital Key Status Card ── */}
+        <section className="bg-white border border-[#dfe6ef] rounded-2xl p-5 sm:p-6 mb-6 shadow-sm">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="flex items-start gap-3.5">
+              <div className="w-11 h-11 rounded-xl bg-[#eaf5ef] text-[#24754c] border border-[#d2e6d9] flex items-center justify-center font-bold text-xl flex-shrink-0">
+                🔑
+              </div>
+              <div>
+                <div className="flex items-center gap-2 mb-1 flex-wrap">
+                  <span className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c]">
+                    DIGITAL KEY CONNECTED
+                  </span>
+                  <span className="font-mono text-[10px] font-bold px-2 py-0.5 rounded bg-[#f1f5f9] text-[#102645] border border-[#cbd5e1]">
+                    DK-{data.propNum || "018"}
+                  </span>
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-[#eaf5ef] text-[#24754c] flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#10b981] animate-pulse" />
+                    <span>Scoped Active</span>
+                  </span>
+                </div>
+                <h3 className="text-base font-bold text-[#102645]">
+                  Property Records Governed by Digital Key
+                </h3>
+                <p className="text-xs text-[#68788e] mt-0.5">
+                  14 verified statutory files for {data.property} are packaged and shared via your sovereign Digital Key. Professional access is strictly scoped.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2 self-start sm:self-auto flex-wrap sm:flex-nowrap">
+              <Link
+                href={`/properties/${data.propId}?tab=digital-key`}
+                className="px-4 py-2 bg-[#071d3b] hover:bg-[#15345d] text-white rounded-xl text-xs font-bold transition-colors shadow-2xs whitespace-nowrap flex items-center gap-1.5"
+              >
+                <span>🔑 Open Digital Key</span>
+                <span>→</span>
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* ── Paused / Stopped Banner ─────────────────────────────────── */}
         {paused && !stopped && (
           <div className="p-4 rounded-xl bg-[#fff4df] border border-[#f5dfb8] text-[#8b641c] text-[12px] mb-6 flex items-center justify-between gap-4">

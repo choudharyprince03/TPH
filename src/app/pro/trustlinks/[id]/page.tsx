@@ -142,6 +142,46 @@ export default function ProTrustLinkDetailPage({ params }: { params: Promise<{ i
         className="mb-6"
       />
 
+      {/* ── Client Digital Key & Handover Status Card ── */}
+      <section className="bg-white border border-[#dfe6ef] rounded-2xl p-5 sm:p-6 mb-8 shadow-sm">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="flex items-start gap-3.5">
+            <div className="w-11 h-11 rounded-xl bg-[#eaf5ef] text-[#24754c] border border-[#d2e6d9] flex items-center justify-center font-bold text-xl flex-shrink-0">
+              🔑
+            </div>
+            <div>
+              <div className="flex items-center gap-2 mb-1 flex-wrap">
+                <span className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c]">
+                  CLIENT DIGITAL KEY ATTACHED
+                </span>
+                <span className="font-mono text-[10px] font-bold px-2 py-0.5 rounded bg-[#f1f5f9] text-[#102645] border border-[#cbd5e1]">
+                  DK-KEN-018
+                </span>
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-[#fff4df] text-[#8b641c]">
+                  Handover Bundle Ready to Claim
+                </span>
+              </div>
+              <h3 className="text-base font-bold text-[#102645]">
+                Digital Key Dossier for {tl.customer}
+              </h3>
+              <p className="text-xs text-[#68788e] mt-0.5">
+                Statutory Form 16, AS 3740 Form 43 waterproofing, and appliance warranties are packaged into the client's Digital Key.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2 self-start sm:self-auto flex-wrap sm:flex-nowrap">
+            <Link
+              href="/pro/digital-key"
+              className="px-4 py-2 bg-[#071d3b] hover:bg-[#15345d] text-white rounded-xl text-xs font-bold transition-colors shadow-2xs whitespace-nowrap flex items-center gap-1.5"
+            >
+              <span>🔑 Manage in Pro Digital Keys</span>
+              <span>→</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ── Sub-Navigation Tabs ─────────────────────────────────────── */}
       <nav className="flex items-center gap-5 border-b border-[#dfe6ef] mb-8 overflow-x-auto text-[13px] font-medium">
         {[
