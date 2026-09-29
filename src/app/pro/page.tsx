@@ -2,429 +2,316 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { ReferralModal } from "@/components/features/ReferralModal";
-import { PropertyPulseNotification } from "@/components/features/PropertyPulse";
-import {
-  PageTransition,
-  FadeUp,
-  SlideIn,
-  StaggerGrid,
-  StaggerItem,
-  CardHover,
-  CountUp,
-} from "@/components/ui/motion";
 
 export default function ProDashboard() {
   const [referralOpen, setReferralOpen] = useState(false);
 
   return (
-    <PageTransition className="p-4 sm:p-6 lg:p-8 xl:p-10 max-w-[1240px] w-full font-sans">
+    <div className="p-4 sm:p-6 lg:p-8 max-w-[1200px] w-full font-sans space-y-5">
 
-      {/* ── Top Header ────────────────────────────────────────────────── */}
-      <FadeUp className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 sm:mb-7">
+      {/* ── Header ────────────────────────────────────────── */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-3 border-b border-[#dfe6ef]">
         <div>
-          <div className="text-[9px] font-bold uppercase tracking-[1.4px] text-[#24754c] mb-1">
-            Pro Hub · Hart Homes (QBCC #150821)
+          <div className="text-[9.5px] font-bold uppercase tracking-wider text-[#24754c]">
+            Hart Homes · QBCC #150821
           </div>
-          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#102645]">
-            Good morning, Olivia.
+          <h1 className="text-2xl font-bold tracking-tight text-[#102645] mt-0.5">
+            Good morning, Olivia
           </h1>
-          <p className="text-xs sm:text-[13px] text-[#68788e] mt-0.5">
-            Direct client inquiries, collaborative Tradie network &amp; digital handovers.
+          <p className="text-xs text-[#68788e] mt-0.5">
+            3 new leads · 8 connected properties · 1 handover ready
           </p>
         </div>
 
-        <div className="flex items-center gap-2.5 self-start sm:self-auto flex-wrap">
+        <div className="flex items-center gap-2 self-start sm:self-auto flex-wrap">
           <button
             onClick={() => setReferralOpen(true)}
-            className="px-3.5 py-2 bg-[#eaf5ef] hover:bg-[#d8ecdf] text-[#24754c] border border-[#c7e3d1] rounded-xl text-xs font-semibold transition-colors shadow-2xs flex items-center gap-1.5 cursor-pointer"
-            title="Move clients or invite fellow trade specialists"
+            className="px-3 py-1.5 bg-white border border-[#cbd5e2] hover:bg-[#f3f6fb] text-[#102645] rounded-xl text-xs font-semibold transition-colors shadow-2xs flex items-center gap-1.5 cursor-pointer"
           >
-            <svg className="w-3.5 h-3.5 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
-            </svg>
-            <span>+ Invite &amp; Refer</span>
+            <span>🤝</span>
+            <span>Invite</span>
           </button>
           <Link
-            href="/pro/leads"
-            className="px-3.5 py-2 bg-white border border-[#cbd5e2] hover:bg-[#f3f6fb] text-[#102645] rounded-xl text-xs font-semibold transition-colors shadow-xs flex items-center gap-1.5"
-          >
-            <span>Inbound Leads</span>
-            <span className="bg-[#fff4df] text-[#8b641c] text-[10px] font-bold px-1.5 py-0.5 rounded">3 New</span>
-          </Link>
-          <Link
             href="/pro/trustlinks/welcome"
-            className="px-3.5 py-2 bg-[#071d3b] hover:bg-[#102d59] text-white rounded-xl text-xs font-semibold transition-colors shadow-xs flex items-center gap-1.5"
+            className="px-3.5 py-1.5 bg-[#071d3b] hover:bg-[#15345d] text-white rounded-xl text-xs font-semibold transition-colors shadow-xs flex items-center gap-1.5"
           >
             <span>+ Issue TrustLink</span>
           </Link>
-          <button
-            onClick={() => {
-              if (typeof window !== "undefined") {
-                window.dispatchEvent(new CustomEvent("tph:show-pulse-popup"));
-              }
-            }}
-            className="px-3 py-2 bg-[#f0f7f3] hover:bg-[#e4f3ea] text-[#24754c] border border-[#c7e4d0] rounded-xl text-xs font-semibold transition-colors shadow-2xs flex items-center gap-1.5 cursor-pointer"
-            title="Open Property Pulse Notification"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#24754c] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#24754c]" />
-            </span>
-            <span>Pulse Alert</span>
-          </button>
         </div>
-      </FadeUp>
+      </div>
 
-      {/* ── Minimal Property Pulse Notification ── */}
-      <PropertyPulseNotification
-        propId="TPH-KEN-018"
-        property="18 Banksia Crescent"
-        mode="pro"
-        actionHref="/pro/trustlinks/TL-99214-B"
-        actionLabel="Handover Workspace"
-        className="mb-6"
-      />
-
-      {/* ── Priority Lead Action Banner ─────────────────────────────────── */}
-      <SlideIn direction="left">
-        <section className="bg-[#071d3b] text-white rounded-2xl p-5 sm:p-6 mb-6 sm:mb-7 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4 sm:gap-6">
-          <div className="max-w-xl">
-            <div className="text-[#efbd66] text-[10px] font-bold uppercase tracking-[1.5px] mb-1">
-              Action Required · 3 New Leads
+      {/* ── Priority Action Alert (Brief & Clean) ──────────── */}
+      <div className="bg-[#071d3b] text-white rounded-xl p-3.5 sm:p-4 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3.5">
+        <div className="flex items-center gap-3 min-w-0">
+          <div className="w-8 h-8 rounded-lg bg-white/10 text-base flex items-center justify-center flex-shrink-0">
+            📦
+          </div>
+          <div className="min-w-0">
+            <div className="flex items-center gap-2">
+              <span className="text-[9.5px] font-bold uppercase tracking-wider text-[#efbd66]">
+                Handover Ready
+              </span>
+              <span className="text-[10.5px] text-[#b9c8db]">· 92% complete</span>
             </div>
-            <h2 className="text-xl sm:text-2xl font-bold text-white mb-1.5">
-              James &amp; Sarah Davidson — Simpsons Rd, Bardon
+            <h2 className="text-sm font-bold text-white truncate mt-0.5">
+              18 Banksia Crescent, Kenmore (Alex &amp; Emily)
             </h2>
-            <p className="text-xs sm:text-[13px] text-[#b9c8db] leading-relaxed mb-3.5">
-              4-Bed Custom Build inquiry with client-provided project brief and preliminary site notes attached.
+            <p className="text-xs text-[#b9c8db] truncate mt-0.5">
+              Form 16 certs, manuals &amp; Digital Key compiled. Ready for client sign-off.
             </p>
-            <div className="flex items-center gap-3">
-              <Link
-                href="/pro/leads/L-101"
-                className="px-4 py-2 bg-[#efbd66] hover:bg-[#dfac55] text-[#071d3b] font-bold rounded-xl text-xs transition-colors"
-              >
-                Review Project Brief →
-              </Link>
-              <Link
-                href="/pro/leads"
-                className="text-xs text-[#b9c8db] hover:text-white underline"
-              >
-                View all leads
-              </Link>
-            </div>
           </div>
-
-          <div className="text-right flex-shrink-0 bg-white/10 p-3.5 rounded-xl border border-white/15">
-            <span className="text-2xl font-bold text-[#efbd66] block">100%</span>
-            <span className="text-[10px] text-[#b9c8db] uppercase tracking-wider font-semibold">Client Intake Complete</span>
-          </div>
-        </section>
-      </SlideIn>
-
-      {/* ── 3-Card Summary Counters ───────────────────────────────────── */}
-      <StaggerGrid className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6 sm:mb-7">
-        <StaggerItem>
-          <CardHover>
-            <div className="bg-white border border-[#dfe6ef] rounded-2xl p-5 shadow-xs">
-              <div className="flex items-center justify-between mb-1">
-                <CountUp value={3} className="text-3xl font-bold tracking-tight text-[#102645]" />
-                <div className="w-9 h-9 rounded-lg bg-[#f0f4f9] text-[#071d3b] flex items-center justify-center">
-                  <svg className="w-5 h-5 text-[#071d3b]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
-                  </svg>
-                </div>
-              </div>
-              <strong className="block text-[13px] text-[#102645]">Inbound Enquiries</strong>
-              <small className="text-[11px] text-[#68788e]">2 awaiting review</small>
-            </div>
-          </CardHover>
-        </StaggerItem>
-
-        <StaggerItem>
-          <CardHover>
-            <div className="bg-white border border-[#dfe6ef] rounded-2xl p-5 shadow-xs">
-              <div className="flex items-center justify-between mb-1">
-                <CountUp value={8} className="text-3xl font-bold tracking-tight text-[#102645]" />
-                <div className="w-9 h-9 rounded-lg bg-[#eaf5ef] text-[#24754c] flex items-center justify-center">
-                  <svg className="w-5 h-5 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                  </svg>
-                </div>
-              </div>
-              <strong className="block text-[13px] text-[#102645]">Connected Properties</strong>
-              <small className="text-[11px] text-[#68788e]">Active Prop ID records</small>
-            </div>
-          </CardHover>
-        </StaggerItem>
-
-        <StaggerItem>
-          <CardHover>
-            <div className="bg-white border border-[#dfe6ef] rounded-2xl p-5 shadow-xs">
-              <div className="flex items-center justify-between mb-1">
-                <CountUp value={1} className="text-3xl font-bold tracking-tight text-[#24754c]" />
-                <div className="w-9 h-9 rounded-lg bg-[#fff4df] text-[#8b641c] flex items-center justify-center">
-                  <svg className="w-5 h-5 text-[#8b641c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-                  </svg>
-                </div>
-              </div>
-              <strong className="block text-[13px] text-[#102645]">Handover Ready</strong>
-              <small className="text-[11px] text-[#68788e]">18 Banksia Cres (92%)</small>
-            </div>
-          </CardHover>
-        </StaggerItem>
-      </StaggerGrid>
-
-      {/* ── 2-Column Focus Grid (Incoming Leads & Fast Actions) ───────── */}
-      <FadeUp>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6 mb-7 sm:mb-8">
-
-          {/* Incoming Leads Priority Queue */}
-          <section className="bg-white border border-[#dfe6ef] rounded-2xl p-5 sm:p-6 shadow-xs">
-            <div className="flex items-center justify-between pb-3 border-b border-[#dfe6ef] mb-3">
-              <div>
-                <h2 className="text-base font-bold text-[#102645]">Incoming Enquiries</h2>
-                <p className="text-[11px] text-[#68788e]">Attached client briefs &amp; project notes.</p>
-              </div>
-              <Link href="/pro/leads" className="text-xs font-bold text-[#071d3b] hover:underline">
-                View all 3 →
-              </Link>
-            </div>
-
-            <div className="divide-y divide-[#dfe6ef] text-xs">
-              {/* Lead 1 */}
-              <div className="py-3 flex items-center justify-between gap-3">
-                <div className="min-w-0">
-                  <div className="flex items-center gap-2">
-                    <strong className="text-[#102645] font-semibold truncate">James &amp; Sarah Davidson</strong>
-                    <span className="text-[9px] font-bold px-1.5 py-0.5 bg-[#fff4df] text-[#8b641c] rounded">
-                      New
-                    </span>
-                  </div>
-                  <p className="text-[11px] text-[#68788e] truncate mt-0.5">
-                    Bardon · 4 Bed Custom Build · <span className="font-mono text-[#071d3b] font-semibold">Preliminary Brief</span>
-                  </p>
-                </div>
-                <Link
-                  href="/pro/leads/L-101"
-                  className="px-3 py-1.5 bg-[#071d3b] hover:bg-[#102d59] text-white font-bold rounded-lg text-[11px] transition-colors flex-shrink-0"
-                >
-                  Inspect →
-                </Link>
-              </div>
-
-              {/* Lead 2 */}
-              <div className="py-3 flex items-center justify-between gap-3">
-                <div className="min-w-0">
-                  <div className="flex items-center gap-2">
-                    <strong className="text-[#102645] font-semibold truncate">Aisha Khan</strong>
-                    <span className="text-[9px] font-bold px-1.5 py-0.5 bg-[#fff4df] text-[#8b641c] rounded">
-                      New
-                    </span>
-                  </div>
-                  <p className="text-[11px] text-[#68788e] truncate mt-0.5">
-                    Newstead · Knockdown-Rebuild · <span className="font-mono text-[#071d3b] font-semibold">Concept Drawings</span>
-                  </p>
-                </div>
-                <Link
-                  href="/pro/leads/L-102"
-                  className="px-3 py-1.5 bg-[#f3f6fb] hover:bg-[#e4ecf7] text-[#071d3b] font-bold rounded-lg text-[11px] transition-colors flex-shrink-0"
-                >
-                  Inspect →
-                </Link>
-              </div>
-
-              {/* Lead 3 */}
-              <div className="py-3 flex items-center justify-between gap-3">
-                <div className="min-w-0">
-                  <div className="flex items-center gap-2">
-                    <strong className="text-[#102645] font-semibold truncate">Thomas Murray</strong>
-                    <span className="text-[9px] font-bold px-1.5 py-0.5 bg-[#eaf5ef] text-[#24754c] rounded">
-                      In Review
-                    </span>
-                  </div>
-                  <p className="text-[11px] text-[#68788e] truncate mt-0.5">
-                    Fig Tree Pocket · Extension &amp; Alfresco
-                  </p>
-                </div>
-                <Link
-                  href="/pro/leads/L-103"
-                  className="px-3 py-1.5 bg-[#f3f6fb] hover:bg-[#e4ecf7] text-[#071d3b] font-bold rounded-lg text-[11px] transition-colors flex-shrink-0"
-                >
-                  Inspect →
-                </Link>
-              </div>
-            </div>
-          </section>
-
-          {/* Builder DLM Workflows & Tools */}
-          <section className="bg-white border border-[#dfe6ef] rounded-2xl p-5 sm:p-6 shadow-xs">
-            <div className="pb-3 border-b border-[#dfe6ef] mb-3">
-              <h2 className="text-base font-bold text-[#102645]">Workspace Tools</h2>
-              <p className="text-[11px] text-[#68788e]">Direct actions &amp; client records.</p>
-            </div>
-
-            <div className="divide-y divide-[#dfe6ef] text-xs">
-              <Link
-                href="/pro/trustlinks/welcome"
-                className="py-2.5 flex items-center justify-between hover:bg-[#f9fafc] p-2 rounded-lg transition-colors group"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-[#f0f4f9] text-[#071d3b] flex items-center justify-center flex-shrink-0">
-                    <svg className="w-4 h-4 text-[#071d3b]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <strong className="block text-[13px] text-[#102645] group-hover:text-[#071d3b]">Digital Handover Manager</strong>
-                    <small className="text-[11px] text-[#68788e]">Seal Form 16 / Form 43 directly to Prop ID</small>
-                  </div>
-                </div>
-                <span className="text-[#68788e]">›</span>
-              </Link>
-
-              <Link
-                href="/pro/customers"
-                className="py-2.5 flex items-center justify-between hover:bg-[#f9fafc] p-2 rounded-lg transition-colors group"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-[#f0f4f9] text-[#071d3b] flex items-center justify-center flex-shrink-0">
-                    <svg className="w-4 h-4 text-[#071d3b]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <strong className="block text-[13px] text-[#102645] group-hover:text-[#071d3b]">Property Data &amp; Clients</strong>
-                    <small className="text-[11px] text-[#68788e]">Lot plans, project scopes &amp; client records</small>
-                  </div>
-                </div>
-                <span className="text-[#68788e]">›</span>
-              </Link>
-
-              <Link
-                href="/pro/documents"
-                className="py-2.5 flex items-center justify-between hover:bg-[#f9fafc] p-2 rounded-lg transition-colors group"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-[#f0f4f9] text-[#071d3b] flex items-center justify-center flex-shrink-0">
-                    <svg className="w-4 h-4 text-[#071d3b]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <strong className="block text-[13px] text-[#102645] group-hover:text-[#071d3b]">Statutory Certificates Register</strong>
-                    <small className="text-[11px] text-[#68788e]">Form 16, Form 43 &amp; electrical certificates</small>
-                  </div>
-                </div>
-                <span className="text-[#68788e]">›</span>
-              </Link>
-
-              <Link
-                href="/pro/tradie"
-                className="py-2.5 flex items-center justify-between hover:bg-[#f9fafc] p-2 rounded-lg transition-colors group"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-[#eaf5ef] text-[#24754c] flex items-center justify-center flex-shrink-0">
-                    <svg className="w-4 h-4 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <strong className="block text-[13px] text-[#102645] group-hover:text-[#24754c]">Tradie (Pro Network)</strong>
-                      <span className="text-[9px] font-bold px-1.5 py-0.5 bg-[#eaf5ef] text-[#24754c] rounded">
-                        5 Active
-                      </span>
-                    </div>
-                    <small className="text-[11px] text-[#68788e]">Collaborate with painters, sparkies &amp; certifiers</small>
-                  </div>
-                </div>
-                <span className="text-[#68788e]">›</span>
-              </Link>
-            </div>
-          </section>
-
         </div>
-      </FadeUp>
 
-      {/* ── Active Client Workspaces ─────────────────────────────────── */}
-      <FadeUp>
-        <section className="bg-white border border-[#dfe6ef] rounded-2xl p-5 sm:p-6 shadow-xs mb-8">
-          <div className="flex items-center justify-between pb-3 border-b border-[#dfe6ef] mb-3">
-            <div>
-              <h2 className="text-base font-bold text-[#102645]">Active Client Workspaces</h2>
-              <p className="text-[11px] text-[#68788e]">Scoped TrustLink portals.</p>
+        <div className="flex items-center gap-2.5 flex-shrink-0">
+          <Link
+            href="/pro/trustlinks/TL-99214-B"
+            className="px-3 py-1.5 bg-[#efbd66] hover:bg-[#dfac55] text-[#071d3b] font-bold text-xs rounded-lg transition-colors shadow-2xs flex items-center gap-1"
+          >
+            <span>Open Pack</span>
+            <span>→</span>
+          </Link>
+        </div>
+      </div>
+
+      {/* ── Key Metrics (3 Minimalist Cards) ───────────────── */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div className="bg-white border border-[#dfe6ef] rounded-xl p-3.5 shadow-2xs">
+          <div className="flex items-center justify-between">
+            <span className="text-2xl font-bold tracking-tight text-[#102645]">3</span>
+            <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#fef3c7] text-[#92400e] font-bold">2 unread</span>
+          </div>
+          <div className="text-xs font-semibold text-[#102645] mt-1">Inbound Leads</div>
+          <div className="text-[10.5px] text-[#68788e]">New client project briefs</div>
+        </div>
+
+        <div className="bg-white border border-[#dfe6ef] rounded-xl p-3.5 shadow-2xs">
+          <div className="flex items-center justify-between">
+            <span className="text-2xl font-bold tracking-tight text-[#102645]">8</span>
+            <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#eaf5ef] text-[#24754c] font-bold">Active</span>
+          </div>
+          <div className="text-xs font-semibold text-[#102645] mt-1">Connected Properties</div>
+          <div className="text-[10.5px] text-[#68788e]">Live TrustLink workspaces</div>
+        </div>
+
+        <div className="bg-white border border-[#dfe6ef] rounded-xl p-3.5 shadow-2xs">
+          <div className="flex items-center justify-between">
+            <span className="text-2xl font-bold tracking-tight text-[#24754c]">5</span>
+            <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#f1f5f9] text-[#475569] font-bold">Network</span>
+          </div>
+          <div className="text-xs font-semibold text-[#102645] mt-1">Tradies &amp; Subbies</div>
+          <div className="text-[10.5px] text-[#68788e]">Specialists collaborating</div>
+        </div>
+      </div>
+
+      {/* ── 2-Column Clean Workspace: Leads & Active Projects ─ */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+
+        {/* Column 1: Inbound Leads */}
+        <section className="bg-white border border-[#dfe6ef] rounded-xl p-4 shadow-2xs">
+          <div className="flex items-center justify-between pb-2.5 border-b border-[#dfe6ef] mb-2.5">
+            <div className="flex items-center gap-2">
+              <h2 className="text-sm font-bold text-[#102645]">Inbound Leads</h2>
+              <span className="text-[9.5px] font-bold px-1.5 py-0.2 bg-[#fef3c7] text-[#92400e] rounded-full">3</span>
             </div>
-            <Link href="/pro/trustlinks" className="text-xs font-bold text-[#071d3b] hover:underline">
-              View all 8 →
+            <Link href="/pro/leads" className="text-xs font-bold text-[#071d3b] hover:underline">
+              View all →
             </Link>
           </div>
 
-          <div className="divide-y divide-[#dfe6ef] text-xs">
-            {[
-              {
-                id: "welcome",
-                client: "Alex & Emily",
-                property: "18 Banksia Crescent, Kenmore",
-                purpose: "Digital handover",
-                status: "Handover Ready",
-                badgeStyle: "bg-[#fff4df] text-[#8b641c]",
-                updated: "34m ago",
-              },
-              {
-                id: "TL-88301-A",
-                client: "Sofia Nguyen",
-                property: "7 Cedar Street, Graceville",
-                purpose: "Plans & scope",
-                status: "Active",
-                badgeStyle: "bg-[#eaf5ef] text-[#24754c]",
-                updated: "2h ago",
-              },
-              {
-                id: "TL-76100-C",
-                client: "Noah & Mia Wilson",
-                property: "42 Ridge Road, Brookfield",
-                purpose: "Warranty care",
-                status: "Settled",
-                badgeStyle: "bg-[#f3f6fb] text-[#68788e]",
-                updated: "Yesterday",
-              },
-            ].map((item) => (
-              <div key={item.id} className="py-3 flex items-center justify-between gap-4">
-                <div className="min-w-0">
-                  <div className="flex items-center gap-2">
-                    <strong className="text-[#102645] font-semibold">{item.client}</strong>
-                    <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded ${item.badgeStyle}`}>
-                      {item.status}
-                    </span>
-                  </div>
-                  <p className="text-[11px] text-[#68788e] truncate mt-0.5">
-                    {item.property} · {item.purpose}
-                  </p>
+          <div className="divide-y divide-[#f0f4f8] text-xs">
+            <div className="py-2 flex items-center justify-between gap-3">
+              <div className="min-w-0">
+                <div className="flex items-center gap-1.5">
+                  <strong className="text-[#102645] font-semibold truncate">James &amp; Sarah Davidson</strong>
+                  <span className="text-[9px] font-bold px-1.5 py-0.2 bg-[#fff4df] text-[#8b641c] rounded">New</span>
                 </div>
-
-                <div className="flex items-center gap-3 flex-shrink-0">
-                  <span className="text-[10px] text-[#8a97a7] hidden sm:inline">{item.updated}</span>
-                  <Link
-                    href={`/pro/trustlinks/${item.id}`}
-                    className="px-3 py-1.5 bg-[#f3f6fb] hover:bg-[#e5eef7] text-[#071d3b] font-bold rounded-lg text-[11px] transition-colors"
-                  >
-                    Manage →
-                  </Link>
-                </div>
+                <p className="text-[10.5px] text-[#68788e] truncate mt-0.5">
+                  Bardon · 4-Bed Custom Build · $1.1M budget
+                </p>
               </div>
-            ))}
+              <Link
+                href="/pro/leads/L-101"
+                className="px-2.5 py-1 bg-[#071d3b] hover:bg-[#15345d] text-white text-[10.5px] font-bold rounded-lg transition-colors flex-shrink-0"
+              >
+                Review
+              </Link>
+            </div>
+
+            <div className="py-2 flex items-center justify-between gap-3">
+              <div className="min-w-0">
+                <div className="flex items-center gap-1.5">
+                  <strong className="text-[#102645] font-semibold truncate">Aisha Khan</strong>
+                  <span className="text-[9px] font-bold px-1.5 py-0.2 bg-[#fff4df] text-[#8b641c] rounded">New</span>
+                </div>
+                <p className="text-[10.5px] text-[#68788e] truncate mt-0.5">
+                  Newstead · Knockdown-Rebuild · Concept plans
+                </p>
+              </div>
+              <Link
+                href="/pro/leads/L-102"
+                className="px-2.5 py-1 bg-[#f3f6fb] hover:bg-[#e2eaf4] text-[#071d3b] text-[10.5px] font-bold rounded-lg transition-colors flex-shrink-0"
+              >
+                Review
+              </Link>
+            </div>
+
+            <div className="py-2 flex items-center justify-between gap-3">
+              <div className="min-w-0">
+                <div className="flex items-center gap-1.5">
+                  <strong className="text-[#102645] font-semibold truncate">Thomas Murray</strong>
+                  <span className="text-[9px] font-bold px-1.5 py-0.2 bg-[#eaf5ef] text-[#24754c] rounded">In Review</span>
+                </div>
+                <p className="text-[10.5px] text-[#68788e] truncate mt-0.5">
+                  Fig Tree Pocket · Extension &amp; Alfresco · DA approved
+                </p>
+              </div>
+              <Link
+                href="/pro/leads/L-103"
+                className="px-2.5 py-1 bg-[#f3f6fb] hover:bg-[#e2eaf4] text-[#071d3b] text-[10.5px] font-bold rounded-lg transition-colors flex-shrink-0"
+              >
+                Review
+              </Link>
+            </div>
           </div>
         </section>
-      </FadeUp>
 
-      {/* Professional Referral & Client Onboarding Modal */}
+        {/* Column 2: Active Projects & Handover */}
+        <section className="bg-white border border-[#dfe6ef] rounded-xl p-4 shadow-2xs">
+          <div className="flex items-center justify-between pb-2.5 border-b border-[#dfe6ef] mb-2.5">
+            <div className="flex items-center gap-2">
+              <h2 className="text-sm font-bold text-[#102645]">Active Projects</h2>
+              <span className="text-[9.5px] font-bold px-1.5 py-0.2 bg-[#eaf5ef] text-[#24754c] rounded-full">8</span>
+            </div>
+            <Link href="/pro/properties" className="text-xs font-bold text-[#071d3b] hover:underline">
+              View all →
+            </Link>
+          </div>
+
+          <div className="divide-y divide-[#f0f4f8] text-xs">
+            <div className="py-2 flex items-center justify-between gap-3">
+              <div className="min-w-0">
+                <div className="flex items-center gap-1.5">
+                  <strong className="text-[#102645] font-semibold truncate">18 Banksia Crescent</strong>
+                  <span className="text-[9px] font-bold px-1.5 py-0.2 bg-[#fff4df] text-[#8b641c] rounded">Handover</span>
+                </div>
+                <p className="text-[10.5px] text-[#68788e] truncate mt-0.5">
+                  Kenmore · Alex &amp; Emily · 92% complete
+                </p>
+              </div>
+              <Link
+                href="/pro/trustlinks/TL-99214-B"
+                className="px-2.5 py-1 bg-[#071d3b] hover:bg-[#15345d] text-white text-[10.5px] font-bold rounded-lg transition-colors flex-shrink-0"
+              >
+                Manage
+              </Link>
+            </div>
+
+            <div className="py-2 flex items-center justify-between gap-3">
+              <div className="min-w-0">
+                <div className="flex items-center gap-1.5">
+                  <strong className="text-[#102645] font-semibold truncate">7 Cedar Street</strong>
+                  <span className="text-[9px] font-bold px-1.5 py-0.2 bg-[#eaf5ef] text-[#24754c] rounded">Building</span>
+                </div>
+                <p className="text-[10.5px] text-[#68788e] truncate mt-0.5">
+                  Graceville · Sofia Nguyen · Fixing &amp; fit-out
+                </p>
+              </div>
+              <Link
+                href="/pro/trustlinks/TL-88301-A"
+                className="px-2.5 py-1 bg-[#f3f6fb] hover:bg-[#e2eaf4] text-[#071d3b] text-[10.5px] font-bold rounded-lg transition-colors flex-shrink-0"
+              >
+                Manage
+              </Link>
+            </div>
+
+            <div className="py-2 flex items-center justify-between gap-3">
+              <div className="min-w-0">
+                <div className="flex items-center gap-1.5">
+                  <strong className="text-[#102645] font-semibold truncate">42 Ridge Road</strong>
+                  <span className="text-[9px] font-bold px-1.5 py-0.2 bg-[#f1f5f9] text-[#475569] rounded">Warranty</span>
+                </div>
+                <p className="text-[10.5px] text-[#68788e] truncate mt-0.5">
+                  Brookfield · Noah &amp; Mia Wilson · 100% settled
+                </p>
+              </div>
+              <Link
+                href="/pro/trustlinks/TL-76100-C"
+                className="px-2.5 py-1 bg-[#f3f6fb] hover:bg-[#e2eaf4] text-[#071d3b] text-[10.5px] font-bold rounded-lg transition-colors flex-shrink-0"
+              >
+                Manage
+              </Link>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      {/* ── Quick Tools Bar (Minimalist 4-Column Strip) ─────── */}
+      <div className="bg-white border border-[#dfe6ef] rounded-xl p-3.5 shadow-2xs">
+        <div className="text-[10px] font-bold uppercase tracking-wider text-[#68788e] mb-2.5">
+          Workspace Shortcuts
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          <Link
+            href="/pro/digital-key"
+            className="p-2.5 rounded-lg bg-[#fafbfc] hover:bg-[#f3f6fb] border border-[#f0f4f8] hover:border-[#dfe6ef] transition-all flex items-center gap-2.5 group"
+          >
+            <span className="text-base">🔑</span>
+            <div className="min-w-0">
+              <div className="text-[11.5px] font-semibold text-[#102645] group-hover:text-[#071d3b] truncate">
+                Handover Pack
+              </div>
+              <div className="text-[9.5px] text-[#68788e] truncate">Form 16/43 certs</div>
+            </div>
+          </Link>
+
+          <Link
+            href="/pro/documents"
+            className="p-2.5 rounded-lg bg-[#fafbfc] hover:bg-[#f3f6fb] border border-[#f0f4f8] hover:border-[#dfe6ef] transition-all flex items-center gap-2.5 group"
+          >
+            <span className="text-base">📄</span>
+            <div className="min-w-0">
+              <div className="text-[11.5px] font-semibold text-[#102645] group-hover:text-[#071d3b] truncate">
+                Statutory Docs
+              </div>
+              <div className="text-[9.5px] text-[#68788e] truncate">Certs register</div>
+            </div>
+          </Link>
+
+          <Link
+            href="/pro/tradie"
+            className="p-2.5 rounded-lg bg-[#fafbfc] hover:bg-[#f3f6fb] border border-[#f0f4f8] hover:border-[#dfe6ef] transition-all flex items-center gap-2.5 group"
+          >
+            <span className="text-base">👥</span>
+            <div className="min-w-0">
+              <div className="text-[11.5px] font-semibold text-[#102645] group-hover:text-[#071d3b] truncate">
+                Tradie Network
+              </div>
+              <div className="text-[9.5px] text-[#68788e] truncate">5 active pros</div>
+            </div>
+          </Link>
+
+          <Link
+            href="/pro/tasks"
+            className="p-2.5 rounded-lg bg-[#fafbfc] hover:bg-[#f3f6fb] border border-[#f0f4f8] hover:border-[#dfe6ef] transition-all flex items-center gap-2.5 group"
+          >
+            <span className="text-base">📋</span>
+            <div className="min-w-0">
+              <div className="text-[11.5px] font-semibold text-[#102645] group-hover:text-[#071d3b] truncate">
+                Punch List
+              </div>
+              <div className="text-[9.5px] text-[#68788e] truncate">Defect checks</div>
+            </div>
+          </Link>
+        </div>
+      </div>
+
       <ReferralModal
         isOpen={referralOpen}
         onClose={() => setReferralOpen(false)}
         mode="pro"
       />
 
-    </PageTransition>
+    </div>
   );
 }
