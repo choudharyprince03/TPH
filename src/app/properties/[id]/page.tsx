@@ -6,6 +6,7 @@ import { getPropertyById, PROPERTIES_LIST } from "@/lib/properties";
 import { PropertyPulseNotification } from "@/components/features/PropertyPulse";
 import { PropertySidebar, PropertyWorkspaceTab } from "@/components/layout/PropertySidebar";
 import { DigitalKeyView } from "@/components/features/DigitalKeyView";
+import { PropertyDnaTab } from "@/components/features/PropertyDnaTab";
 
 function PropertyDetailInner({ id }: { id: string }) {
   const router = useRouter();
@@ -27,7 +28,6 @@ function PropertyDetailInner({ id }: { id: string }) {
       : "overview";
 
   const [activeTab, setActiveTab] = useState<PropertyWorkspaceTab>(initialTab);
-  const [dnaCategory, setDnaCategory] = useState<"legal" | "physical" | "operational">("legal");
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [roleMenuOpen, setRoleMenuOpen] = useState(false);
@@ -302,108 +302,10 @@ function PropertyDetailInner({ id }: { id: string }) {
               TAB: PROPERTY DNA
           ══════════════════════════════════════════ */}
           {activeTab === "dna" && (
-            <div className="space-y-6 max-w-[1040px] mx-auto pb-12">
-              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 pb-3 border-b border-[#dfe6ef]">
-                <div>
-                  <h2 className="text-2xl font-bold tracking-tight text-[#102645]">
-                    Property DNA Breakdown
-                  </h2>
-                  <p className="text-[12px] text-[#68788e] mt-0.5">
-                    Granular immutable attributes of {property.street}.
-                  </p>
-                </div>
-                <span className="text-[11px] text-[#24754c] font-semibold flex items-center gap-1.5 self-start bg-[#eaf5ef] px-2.5 py-1 rounded-full border border-[#d2e6d9]">
-                  <span>🔒</span> Private by default
-                </span>
-              </div>
-
-              {/* Category Subtabs */}
-              <div className="flex gap-2 flex-wrap">
-                {[
-                  { id: "legal", label: "01 Legal DNA" },
-                  { id: "physical", label: "02 Physical DNA" },
-                  { id: "operational", label: "03 Operational DNA" },
-                ].map((c) => (
-                  <button
-                    key={c.id}
-                    onClick={() => setDnaCategory(c.id as any)}
-                    className={`px-4 py-2 rounded-xl text-[12px] font-bold transition-all cursor-pointer ${
-                      dnaCategory === c.id
-                        ? "bg-[#071d3b] text-white shadow-xs"
-                        : "bg-white border border-[#dfe6ef] text-[#68788e] hover:bg-[#f3f6fb]"
-                    }`}
-                  >
-                    {c.label}
-                  </button>
-                ))}
-              </div>
-
-              {/* DNA Content Table */}
-              <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm divide-y divide-[#dfe6ef] text-[13px]">
-                {dnaCategory === "legal" && (
-                  <>
-                    <div className="py-3.5 grid grid-cols-1 sm:grid-cols-[200px_1fr] gap-2">
-                      <span className="text-[#68788e] font-medium">Cadastral Identifier</span>
-                      <span className="font-mono font-bold text-[#102645]">{property.legalDna.cadastral}</span>
-                    </div>
-                    <div className="py-3.5 grid grid-cols-1 sm:grid-cols-[200px_1fr] gap-2">
-                      <span className="text-[#68788e] font-medium">Local Government</span>
-                      <span className="font-semibold text-[#102645]">{property.legalDna.council}</span>
-                    </div>
-                    <div className="py-3.5 grid grid-cols-1 sm:grid-cols-[200px_1fr] gap-2">
-                      <span className="text-[#68788e] font-medium">Easements / Covenants</span>
-                      <span className="text-[#102645]">{property.legalDna.easements}</span>
-                    </div>
-                    <div className="py-3.5 grid grid-cols-1 sm:grid-cols-[200px_1fr] gap-2">
-                      <span className="text-[#68788e] font-medium">Building Approval</span>
-                      <span className="text-[#102645]">{property.legalDna.approval}</span>
-                    </div>
-                  </>
-                )}
-
-                {dnaCategory === "physical" && (
-                  <>
-                    <div className="py-3.5 grid grid-cols-1 sm:grid-cols-[200px_1fr] gap-2">
-                      <span className="text-[#68788e] font-medium">Structural Foundation</span>
-                      <span className="text-[#102645]">{property.physicalDna.foundation}</span>
-                    </div>
-                    <div className="py-3.5 grid grid-cols-1 sm:grid-cols-[200px_1fr] gap-2">
-                      <span className="text-[#68788e] font-medium">Wall Cladding &amp; Bricks</span>
-                      <span className="text-[#102645]">{property.physicalDna.cladding}</span>
-                    </div>
-                    <div className="py-3.5 grid grid-cols-1 sm:grid-cols-[200px_1fr] gap-2">
-                      <span className="text-[#68788e] font-medium">Roofing &amp; Insulation</span>
-                      <span className="text-[#102645]">{property.physicalDna.roofing}</span>
-                    </div>
-                    <div className="py-3.5 grid grid-cols-1 sm:grid-cols-[200px_1fr] gap-2">
-                      <span className="text-[#68788e] font-medium">Waterproofing</span>
-                      <span className="text-[#102645]">{property.physicalDna.waterproofing}</span>
-                    </div>
-                  </>
-                )}
-
-                {dnaCategory === "operational" && (
-                  <>
-                    <div className="py-3.5 grid grid-cols-1 sm:grid-cols-[200px_1fr] gap-2">
-                      <span className="text-[#68788e] font-medium">Hot Water System</span>
-                      <span className="text-[#102645]">{property.operationalDna.hotWater}</span>
-                    </div>
-                    <div className="py-3.5 grid grid-cols-1 sm:grid-cols-[200px_1fr] gap-2">
-                      <span className="text-[#68788e] font-medium">Air Conditioning</span>
-                      <span className="text-[#102645]">{property.operationalDna.ac}</span>
-                    </div>
-                    <div className="py-3.5 grid grid-cols-1 sm:grid-cols-[200px_1fr] gap-2">
-                      <span className="text-[#68788e] font-medium">Termite Protection</span>
-                      <span className="text-[#102645]">{property.operationalDna.pest}</span>
-                    </div>
-                    <div className="py-3.5 grid grid-cols-1 sm:grid-cols-[200px_1fr] gap-2">
-                      <span className="text-[#68788e] font-medium">Solar Array</span>
-                      <span className="text-[#102645]">{property.operationalDna.solar}</span>
-                    </div>
-                  </>
-                )}
-              </div>
-            </div>
+            <PropertyDnaTab
+              property={property}
+              onOpenTrustLink={() => handleTabChange("trustlink")}
+            />
           )}
 
           {/* ══════════════════════════════════════════
