@@ -117,7 +117,7 @@ function MyPropertyWorldContent() {
           {activeRailTab === "overview" && (
             <div>
               {/* Top Header & Greeting */}
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
                 <div>
                   <div className="text-[9px] font-bold uppercase tracking-[1.4px] text-[#24754c] mb-1">
                     My Property World
@@ -132,269 +132,291 @@ function MyPropertyWorldContent() {
                 <div className="flex items-center gap-2.5 self-start sm:self-auto">
                   <button
                     onClick={() => handleTabChange("properties")}
-                    className="inline-flex items-center gap-1.5 bg-white border border-[#cbd5e2] hover:bg-[#f3f6fb] text-[#102645] px-4 py-2.5 rounded-xl text-[12px] font-semibold transition-colors shadow-2xs"
+                    className="inline-flex items-center gap-1.5 bg-white border border-[#cbd5e2] hover:bg-[#f3f6fb] text-[#102645] px-4 py-2.5 rounded-xl text-[12px] font-semibold transition-colors shadow-2xs cursor-pointer"
                   >
                     <span>View all properties ({PROPERTIES_LIST.length})</span>
                     <span>→</span>
                   </button>
                   <button
                     onClick={() => alert("Add a Property: Enter address to start a new Prop ID record.")}
-                    className="inline-flex items-center gap-1.5 bg-[#071d3b] hover:bg-[#102d59] text-white px-4 py-2.5 rounded-xl text-[12px] font-semibold transition-colors shadow-2xs"
+                    className="inline-flex items-center gap-1.5 bg-[#071d3b] hover:bg-[#102d59] text-white px-4 py-2.5 rounded-xl text-[12px] font-semibold transition-colors shadow-2xs cursor-pointer"
                   >
                     <span>+ Add a property</span>
                   </button>
                 </div>
               </div>
 
-              {/* Handover Ready Hero Banner */}
-              {/* Handover Ready Hero Banner - Sleek & Compact */}
-              <section className="bg-[#071d3b] text-white rounded-2xl p-5 sm:p-6 mb-5 relative overflow-hidden shadow-[0_12px_40px_rgba(7,29,59,0.08)] flex flex-col lg:flex-row items-start lg:items-center justify-between gap-5">
-                <div className="max-w-xl">
-                  <div className="text-[#efbd66] text-[10px] font-bold uppercase tracking-[1.8px] mb-1.5">
-                    Your next step · Handover ready
-                  </div>
-                  <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-white mb-1.5 leading-snug">
-                    A new home. Everything you need to know.
-                  </h2>
-                  <p className="text-[12.5px] text-[#b9c8db] leading-relaxed mb-4">
-                    Your pack for <strong className="text-white font-medium">18 Banksia Crescent</strong> is ready to review. Check the documents and open items in your Prop ID.
-                  </p>
-                  <div className="flex items-center gap-3.5 flex-wrap">
-                    <Link
-                      href="/properties/TPH-KEN-018"
-                      className="bg-[#efbd66] hover:bg-[#dfac55] text-[#071d3b] font-bold px-4 py-2 rounded-xl text-[12px] transition-colors shadow-sm flex items-center gap-1.5"
-                    >
-                      <span>Review my handover</span>
-                      <span>→</span>
-                    </Link>
-                    <span className="text-[11px] text-[#b9c8db]">
-                      From Hart Homes · Sample pack
-                    </span>
-                  </div>
-                </div>
+              {/* Main Workspace Layout: Properties (Primary) + Side Notifications */}
+              <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] xl:grid-cols-[1fr_360px] gap-8 items-start mb-12">
 
-                <Link
-                  href="/properties/TPH-KEN-018"
-                  className="hidden lg:block w-40 h-28 rounded-xl overflow-hidden shadow-md flex-shrink-0 border border-white/20 hover:scale-[1.02] transition-transform"
-                >
-                  <img
-                    src="/images/hero-real-estate.jpg"
-                    alt="18 Banksia Crescent"
-                    className="w-full h-full object-cover"
-                  />
-                </Link>
-              </section>
-
-              {/* Minimal Property Pulse Notification */}
-              <PropertyPulseNotification
-                propId="TPH-KEN-018"
-                property="18 Banksia Crescent"
-                mode="consumer"
-                actionHref="/properties/TPH-KEN-018"
-                actionLabel="Open Prop ID"
-                className="mb-5"
-              />
-
-              {/* Minimalist Overview Cards: Needs Attention & Quick Shortcuts */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3.5 mb-7">
-
-                {/* Left Card: Compact Needs Attention */}
-                <div className="bg-white border border-[#dfe6ef] rounded-xl p-3 sm:p-3.5 shadow-2xs">
-                  <div className="flex items-center justify-between pb-2 border-b border-[#f1f4f8] mb-2">
-                    <div className="flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#f59e0b] animate-pulse" />
-                      <h2 className="text-[11px] font-bold uppercase tracking-wider text-[#102645]">Needs attention</h2>
+                {/* ── LEFT: PROPERTIES (MAIN FOCUS) ─────────────────────────── */}
+                <section className="space-y-5">
+                  <div className="flex items-center justify-between pb-2 border-b border-[#dfe6ef]">
+                    <div className="flex items-center gap-2.5">
+                      <h2 className="text-xl font-bold text-[#102645]">Your properties</h2>
+                      <span className="text-[10px] font-bold px-2 py-0.5 bg-[#eaf5ef] text-[#24754c] rounded-full border border-[#d2e6d9]">
+                        {PROPERTIES_LIST.length} Connected
+                      </span>
                     </div>
-                    <span className="text-[10px] font-bold px-1.5 py-0.2 bg-[#fef3c7] text-[#92400e] rounded-full">
-                      2
+                    <span className="text-[11px] text-[#68788e]">
+                      Choose a property to open its living passport
                     </span>
                   </div>
 
-                  <div className="space-y-1.5">
-                    <div className="flex items-center justify-between gap-2.5 p-1.5 px-2 rounded-lg bg-[#fafbfc] hover:bg-[#f3f6fb] transition-colors border border-[#f0f4f8]">
-                      <div className="flex items-center gap-2 min-w-0">
-                        <span className="text-xs flex-shrink-0">📦</span>
-                        <div className="min-w-0">
-                          <h3 className="text-[11.5px] font-semibold text-[#102645] block truncate leading-tight">
-                            Review handover pack
-                          </h3>
-                          <p className="text-[9.5px] text-[#68788e] block truncate leading-tight">
-                            18 Banksia Crescent · Plans & warranties
-                          </p>
+                  {/* Properties Grid including "+ Add another property" card */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    {PROPERTIES_LIST.map((property) => (
+                      <article
+                        key={property.id}
+                        className="bg-white border border-[#dfe6ef] rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between hover:shadow-md hover:border-[#cbd5e2] transition-all group"
+                      >
+                        <Link href={`/properties/${property.id}`} className="block">
+                          <div className="relative h-44 bg-[#e4eaf0] overflow-hidden">
+                            <img
+                              src={property.imageUrl}
+                              alt={property.street}
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
+                            <span className={`absolute bottom-3 left-3 px-2.5 py-1 rounded-md text-[10px] font-bold shadow-sm flex items-center gap-1.5 bg-white ${property.typeColor}`}>
+                              <svg className="w-3 h-3 text-[#102645]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                              </svg>
+                              <span>{property.type} · {property.propId}</span>
+                            </span>
+                          </div>
+                        </Link>
+
+                        <div className="p-5 flex-1 flex flex-col justify-between">
+                          <div>
+                            <Link href={`/properties/${property.id}`} className="block">
+                              <h3 className="text-base font-bold text-[#102645] group-hover:text-[#071d3b] transition-colors mb-0.5">
+                                {property.street}
+                              </h3>
+                            </Link>
+                            <p className="text-[11px] text-[#68788e] mb-3">
+                              {property.suburb}, {property.state} {property.postcode}
+                            </p>
+                            <div className="text-[11px] text-[#68788e] flex items-center gap-1.5 mb-3 pb-3 border-b border-[#dfe6ef]">
+                              <svg className="w-3.5 h-3.5 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+                              </svg>
+                              <span>{property.documentsCount} documents · <strong className="text-[#102645]">Living Prop ID</strong></span>
+                            </div>
+                          </div>
+
+                          <div className="flex items-center justify-between pt-1 text-[11px] gap-2 flex-wrap">
+                            <Link
+                              href={`/properties/${property.id}`}
+                              className="px-3 py-1.5 bg-[#071d3b] hover:bg-[#15345d] text-white font-bold rounded-lg text-[10px] transition-colors shadow-2xs"
+                            >
+                              Open my home →
+                            </Link>
+                            <div className="flex items-center gap-1.5">
+                              <Link
+                                href={`/properties/${property.id}?tab=digital-key`}
+                                className="px-2 py-1 bg-[#eaf5ef] hover:bg-[#d5ebd9] text-[#24754c] font-bold rounded-lg text-[10px] transition-colors flex items-center gap-1 border border-[#c3dfcc]"
+                              >
+                                <span>🔑 Digital Key</span>
+                              </Link>
+                              <Link
+                                href={`/properties/${property.id}?tab=trustlink`}
+                                className="px-2.5 py-1 bg-[#071d3b] hover:bg-[#15345d] text-white font-bold rounded-lg text-[10px] transition-colors flex items-center gap-1 shadow-2xs"
+                              >
+                                <span>🛡️ TrustLink</span>
+                              </Link>
+                            </div>
+                          </div>
                         </div>
+                      </article>
+                    ))}
+
+                    {/* Add Another Property Card (Directly in the grid!) */}
+                    <div
+                      onClick={() => alert("Add a Property: Enter address to allocate a new Prop ID passport.")}
+                      className="bg-[#f9fafc] border-2 border-dashed border-[#cbd5e2] hover:border-[#071d3b] rounded-2xl p-6 flex flex-col items-center justify-center text-center cursor-pointer transition-all hover:shadow-md min-h-[340px] group"
+                    >
+                      <div className="w-12 h-12 rounded-2xl bg-white group-hover:bg-[#071d3b] text-[#071d3b] group-hover:text-white border border-[#dfe6ef] flex items-center justify-center text-2xl font-bold mb-3 transition-colors shadow-2xs">
+                        +
                       </div>
+                      <h3 className="text-base font-bold text-[#102645] mb-1">
+                        Add another property
+                      </h3>
+                      <p className="text-[12px] text-[#68788e] max-w-xs mb-4">
+                        Create a living Prop ID for a home you own, an investment, or an active renovation.
+                      </p>
+                      <span className="px-4 py-2 bg-[#071d3b] group-hover:bg-[#15345d] text-white text-[11px] font-bold rounded-xl shadow-2xs transition-colors">
+                        + Start New Prop ID
+                      </span>
+                    </div>
+                  </div>
+                </section>
+
+                {/* ── RIGHT: SIDE NOTIFICATIONS & ACTIONS ────────────────────── */}
+                <aside className="space-y-4 lg:sticky lg:top-[74px]">
+
+                  {/* Section Header */}
+                  <div className="flex items-center justify-between pb-2 border-b border-[#dfe6ef]">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-[#24754c] animate-pulse" />
+                      <h3 className="text-xs font-bold uppercase tracking-wider text-[#102645]">
+                        Side Notifications
+                      </h3>
+                    </div>
+                    <span className="text-[10px] font-bold px-2 py-0.5 bg-[#fef3c7] text-[#92400e] rounded-full border border-[#fde68a]">
+                      3 Active
+                    </span>
+                  </div>
+
+                  {/* 1. Handover Ready Alert (The Blue Card portrayed as a side notification) */}
+                  <div className="bg-[#071d3b] text-white rounded-xl p-4 shadow-sm border border-white/10 relative overflow-hidden">
+                    <div className="flex items-center justify-between gap-2 mb-2">
+                      <span className="text-[#efbd66] text-[9.5px] font-bold uppercase tracking-[1.4px] flex items-center gap-1">
+                        <span>📦</span> Handover Ready
+                      </span>
+                      <span className="text-[9px] bg-white/10 text-[#b9c8db] px-2 py-0.5 rounded">
+                        Hart Homes
+                      </span>
+                    </div>
+                    <h4 className="text-sm font-bold text-white mb-1">
+                      18 Banksia Crescent
+                    </h4>
+                    <p className="text-[11.5px] text-[#b9c8db] leading-relaxed mb-3">
+                      Your new digital handover pack is ready. Review warranties, manuals, and statutory certs.
+                    </p>
+                    <div className="flex items-center justify-between gap-2 pt-2 border-t border-white/10">
                       <Link
                         href="/properties/TPH-KEN-018?tab=digital-key"
-                        className="px-2.5 py-1 bg-[#071d3b] hover:bg-[#15345d] text-white text-[10px] font-bold rounded-md flex-shrink-0 transition-colors shadow-2xs"
+                        className="px-3 py-1.5 bg-[#efbd66] hover:bg-[#dfac55] text-[#071d3b] text-[11px] font-bold rounded-lg transition-colors flex items-center gap-1 shadow-2xs"
                       >
-                        Review
+                        <span>Review handover</span>
+                        <span>→</span>
                       </Link>
+                      <span className="text-[10px] text-[#8a9bb0]">
+                        Sample pack
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* 2. Property Pulse Live Notice */}
+                  <PropertyPulseNotification
+                    propId="TPH-KEN-018"
+                    property="18 Banksia Crescent"
+                    mode="consumer"
+                    actionHref="/properties/TPH-KEN-018"
+                    actionLabel="Open Prop ID"
+                    className="shadow-2xs"
+                  />
+
+                  {/* 3. Needs Attention Card */}
+                  <div className="bg-white border border-[#dfe6ef] rounded-xl p-3.5 shadow-2xs">
+                    <div className="flex items-center justify-between pb-2 border-b border-[#f1f4f8] mb-2.5">
+                      <div className="flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#f59e0b]" />
+                        <h4 className="text-[11px] font-bold uppercase tracking-wider text-[#102645]">
+                          Needs attention
+                        </h4>
+                      </div>
+                      <span className="text-[9.5px] font-bold px-1.5 py-0.2 bg-[#fef3c7] text-[#92400e] rounded-full">
+                        2 items
+                      </span>
                     </div>
 
-                    <div className="flex items-center justify-between gap-2.5 p-1.5 px-2 rounded-lg bg-[#fafbfc] hover:bg-[#f3f6fb] transition-colors border border-[#f0f4f8]">
-                      <div className="flex items-center gap-2 min-w-0">
-                        <span className="text-xs flex-shrink-0">🛡️</span>
+                    <div className="space-y-1.5 text-xs">
+                      <div className="p-2 rounded-lg bg-[#fafbfc] hover:bg-[#f3f6fb] transition-colors border border-[#f0f4f8] flex items-center justify-between gap-2">
                         <div className="min-w-0">
-                          <h3 className="text-[11.5px] font-semibold text-[#102645] block truncate leading-tight">
-                            Verify TrustLink permissions
-                          </h3>
-                          <p className="text-[9.5px] text-[#68788e] block truncate leading-tight">
-                            18 Banksia Crescent · Active connection
-                          </p>
+                          <span className="text-[11.5px] font-semibold text-[#102645] block truncate leading-tight">
+                            Review handover pack
+                          </span>
+                          <span className="text-[9.5px] text-[#68788e] block truncate leading-tight">
+                            18 Banksia Crescent · Certs & items
+                          </span>
                         </div>
+                        <Link
+                          href="/properties/TPH-KEN-018?tab=digital-key"
+                          className="px-2 py-1 bg-[#071d3b] hover:bg-[#15345d] text-white text-[10px] font-bold rounded-md flex-shrink-0 transition-colors"
+                        >
+                          Review
+                        </Link>
                       </div>
-                      <Link
-                        href="/trustlinks/TL-99214-B"
-                        className="px-2.5 py-1 bg-[#f0f4f8] hover:bg-[#e2e8f0] text-[#071d3b] text-[10px] font-bold rounded-md flex-shrink-0 transition-colors"
+
+                      <div className="p-2 rounded-lg bg-[#fafbfc] hover:bg-[#f3f6fb] transition-colors border border-[#f0f4f8] flex items-center justify-between gap-2">
+                        <div className="min-w-0">
+                          <span className="text-[11.5px] font-semibold text-[#102645] block truncate leading-tight">
+                            Verify TrustLink access
+                          </span>
+                          <span className="text-[9.5px] text-[#68788e] block truncate leading-tight">
+                            18 Banksia Crescent · Active connection
+                          </span>
+                        </div>
+                        <Link
+                          href="/trustlinks/TL-99214-B"
+                          className="px-2 py-1 bg-[#f0f4f8] hover:bg-[#e2e8f0] text-[#071d3b] text-[10px] font-bold rounded-md flex-shrink-0 transition-colors"
+                        >
+                          Review
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* 4. Quick Actions Shortcuts */}
+                  <div className="bg-white border border-[#dfe6ef] rounded-xl p-3.5 shadow-2xs">
+                    <div className="pb-2 border-b border-[#f1f4f8] mb-2.5">
+                      <h4 className="text-[11px] font-bold uppercase tracking-wider text-[#68788e]">
+                        Quick actions
+                      </h4>
+                    </div>
+
+                    <div className="grid grid-cols-3 gap-2">
+                      <button
+                        onClick={() => alert("Keep a Document Safe: Upload warranties, receipts or compliance certificates to your Prop ID.")}
+                        className="p-2 rounded-lg bg-[#fafbfc] hover:bg-[#f3f6fb] border border-[#edf2f7] hover:border-[#dfe6ef] transition-all text-left flex flex-col justify-between group cursor-pointer"
                       >
-                        Review
+                        <span className="text-sm mb-1 text-[#24754c]">📄</span>
+                        <div>
+                          <strong className="block text-[11px] font-semibold text-[#102645] group-hover:text-[#071d3b] leading-tight">
+                            Save doc
+                          </strong>
+                          <span className="text-[9px] text-[#68788e] block leading-tight mt-0.5 truncate">
+                            To vault
+                          </span>
+                        </div>
+                      </button>
+
+                      <Link
+                        href="/explore"
+                        className="p-2 rounded-lg bg-[#fafbfc] hover:bg-[#f3f6fb] border border-[#edf2f7] hover:border-[#dfe6ef] transition-all text-left flex flex-col justify-between group cursor-pointer"
+                      >
+                        <span className="text-sm mb-1 text-[#071d3b]">👥</span>
+                        <div>
+                          <strong className="block text-[11px] font-semibold text-[#102645] group-hover:text-[#071d3b] leading-tight">
+                            Find pro
+                          </strong>
+                          <span className="text-[9px] text-[#68788e] block leading-tight mt-0.5 truncate">
+                            Specialist
+                          </span>
+                        </div>
+                      </Link>
+
+                      <Link
+                        href="/trustlinks"
+                        className="p-2 rounded-lg bg-[#fafbfc] hover:bg-[#f3f6fb] border border-[#edf2f7] hover:border-[#dfe6ef] transition-all text-left flex flex-col justify-between group cursor-pointer"
+                      >
+                        <span className="text-sm mb-1 text-[#24754c]">🛡️</span>
+                        <div>
+                          <strong className="block text-[11px] font-semibold text-[#102645] group-hover:text-[#071d3b] leading-tight">
+                            TrustLinks
+                          </strong>
+                          <span className="text-[9px] text-[#68788e] block leading-tight mt-0.5 truncate">
+                            Manage
+                          </span>
+                        </div>
                       </Link>
                     </div>
                   </div>
-                </div>
 
-                {/* Right Card: Compact Minimalist Shortcuts */}
-                <div className="bg-white border border-[#dfe6ef] rounded-xl p-3 sm:p-3.5 shadow-2xs flex flex-col justify-between">
-                  <div className="flex items-center justify-between pb-2 border-b border-[#f1f4f8] mb-2">
-                    <h2 className="text-[11px] font-bold uppercase tracking-wider text-[#68788e]">Quick actions</h2>
-                    <span className="text-[9.5px] text-[#8a9bb0]">Shortcuts</span>
-                  </div>
-
-                  <div className="grid grid-cols-3 gap-2">
-                    <button
-                      onClick={() => alert("Keep a Document Safe: Upload warranties, receipts or compliance certificates to your Prop ID.")}
-                      className="p-2 rounded-lg bg-[#fafbfc] hover:bg-[#f3f6fb] border border-[#edf2f7] hover:border-[#dfe6ef] transition-all text-left flex flex-col justify-between group cursor-pointer"
-                    >
-                      <span className="text-sm mb-1 text-[#24754c]">📄</span>
-                      <div>
-                        <strong className="block text-[11px] font-semibold text-[#102645] group-hover:text-[#071d3b] leading-tight">
-                          Save doc
-                        </strong>
-                        <span className="text-[9px] text-[#68788e] block leading-tight mt-0.5 truncate">
-                          To vault
-                        </span>
-                      </div>
-                    </button>
-
-                    <Link
-                      href="/explore"
-                      className="p-2 rounded-lg bg-[#fafbfc] hover:bg-[#f3f6fb] border border-[#edf2f7] hover:border-[#dfe6ef] transition-all text-left flex flex-col justify-between group cursor-pointer"
-                    >
-                      <span className="text-sm mb-1 text-[#071d3b]">👥</span>
-                      <div>
-                        <strong className="block text-[11px] font-semibold text-[#102645] group-hover:text-[#071d3b] leading-tight">
-                          Find pro
-                        </strong>
-                        <span className="text-[9px] text-[#68788e] block leading-tight mt-0.5 truncate">
-                          Specialist
-                        </span>
-                      </div>
-                    </Link>
-
-                    <Link
-                      href="/trustlinks"
-                      className="p-2 rounded-lg bg-[#fafbfc] hover:bg-[#f3f6fb] border border-[#edf2f7] hover:border-[#dfe6ef] transition-all text-left flex flex-col justify-between group cursor-pointer"
-                    >
-                      <span className="text-sm mb-1 text-[#24754c]">🛡️</span>
-                      <div>
-                        <strong className="block text-[11px] font-semibold text-[#102645] group-hover:text-[#071d3b] leading-tight">
-                          TrustLinks
-                        </strong>
-                        <span className="text-[9px] text-[#68788e] block leading-tight mt-0.5 truncate">
-                          Manage access
-                        </span>
-                      </div>
-                    </Link>
-                  </div>
-                </div>
+                </aside>
 
               </div>
-
-              {/* Your Properties Section Preview - PRIMARY FOCUS */}
-              <section className="mb-10">
-                <div className="flex items-center justify-between gap-4 mb-4 pb-2 border-b border-[#dfe6ef]">
-                  <div className="flex items-center gap-2.5">
-                    <h2 className="text-xl font-bold text-[#102645]">Your properties</h2>
-                    <span className="text-[10px] font-bold px-2 py-0.5 bg-[#eaf5ef] text-[#24754c] rounded-full border border-[#d2e6d9]">
-                      {PROPERTIES_LIST.length} Connected
-                    </span>
-                  </div>
-                  <button
-                    onClick={() => handleTabChange("properties")}
-                    className="text-[12px] font-bold text-[#071d3b] hover:underline flex items-center gap-1 cursor-pointer"
-                  >
-                    <span>View all {PROPERTIES_LIST.length} properties</span>
-                    <span>→</span>
-                  </button>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {PROPERTIES_LIST.map((property) => (
-                    <article
-                      key={property.id}
-                      className="bg-white border border-[#dfe6ef] rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between hover:shadow-md hover:border-[#cbd5e2] transition-all group"
-                    >
-                      <Link href={`/properties/${property.id}`} className="block">
-                        <div className="relative h-44 bg-[#e4eaf0] overflow-hidden">
-                        <img
-                          src={property.imageUrl}
-                          alt={property.street}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                        <span className={`absolute bottom-3 left-3 px-2.5 py-1 rounded-md text-[10px] font-bold shadow-sm flex items-center gap-1.5 bg-white ${property.typeColor}`}>
-                          <svg className="w-3 h-3 text-[#102645]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                          </svg>
-                          <span>{property.type} · {property.propId}</span>
-                        </span>
-                      </div>
-                    </Link>
-
-                    <div className="p-5 flex-1 flex flex-col justify-between">
-                      <div>
-                        <Link href={`/properties/${property.id}`} className="block">
-                          <h3 className="text-base font-bold text-[#102645] group-hover:text-[#071d3b] transition-colors mb-0.5">
-                            {property.street}
-                          </h3>
-                        </Link>
-                        <p className="text-[11px] text-[#68788e] mb-3">
-                          {property.suburb}, {property.state} {property.postcode}
-                        </p>
-                        <div className="text-[11px] text-[#68788e] flex items-center gap-1.5 mb-3 pb-3 border-b border-[#dfe6ef]">
-                          <svg className="w-3.5 h-3.5 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
-                          </svg>
-                          <span>{property.documentsCount} documents · <strong className="text-[#102645]">Living Prop ID</strong></span>
-                        </div>
-                      </div>
-
-                      <div className="flex items-center justify-between pt-1 text-[11px] gap-2 flex-wrap">
-                        <Link
-                          href={`/properties/${property.id}`}
-                          className="px-3 py-1.5 bg-[#071d3b] hover:bg-[#15345d] text-white font-bold rounded-lg text-[10px] transition-colors shadow-2xs"
-                        >
-                          Open my home →
-                        </Link>
-                        <div className="flex items-center gap-1.5">
-                          <Link
-                            href={`/properties/${property.id}?tab=digital-key`}
-                            className="px-2 py-1 bg-[#eaf5ef] hover:bg-[#d5ebd9] text-[#24754c] font-bold rounded-lg text-[10px] transition-colors flex items-center gap-1 border border-[#c3dfcc]"
-                          >
-                            <span>🔑 Digital Key</span>
-                          </Link>
-                          <Link
-                            href={`/properties/${property.id}?tab=trustlink`}
-                            className="px-2.5 py-1 bg-[#071d3b] hover:bg-[#15345d] text-white font-bold rounded-lg text-[10px] transition-colors flex items-center gap-1 shadow-2xs"
-                          >
-                            <span>🛡️ TrustLink</span>
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </article>
-                ))}
-                </div>
-              </section>
             </div>
           )}
 
