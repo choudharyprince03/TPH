@@ -147,21 +147,22 @@ function MyPropertyWorldContent() {
               </div>
 
               {/* Handover Ready Hero Banner */}
-              <section className="bg-[#071d3b] text-white rounded-2xl p-6 sm:p-8 mb-9 relative overflow-hidden shadow-[0_12px_40px_rgba(7,29,59,0.08)] flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+              {/* Handover Ready Hero Banner - Sleek & Compact */}
+              <section className="bg-[#071d3b] text-white rounded-2xl p-5 sm:p-6 mb-5 relative overflow-hidden shadow-[0_12px_40px_rgba(7,29,59,0.08)] flex flex-col lg:flex-row items-start lg:items-center justify-between gap-5">
                 <div className="max-w-xl">
-                  <div className="text-[#efbd66] text-[10px] font-bold uppercase tracking-[1.8px] mb-2">
+                  <div className="text-[#efbd66] text-[10px] font-bold uppercase tracking-[1.8px] mb-1.5">
                     Your next step · Handover ready
                   </div>
-                  <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-white mb-2 leading-snug">
-                    A new home.<br />Everything you need to know.
+                  <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-white mb-1.5 leading-snug">
+                    A new home. Everything you need to know.
                   </h2>
-                  <p className="text-[13px] text-[#b9c8db] leading-relaxed mb-6">
+                  <p className="text-[12.5px] text-[#b9c8db] leading-relaxed mb-4">
                     Your pack for <strong className="text-white font-medium">18 Banksia Crescent</strong> is ready to review. Check the documents and open items in your Prop ID.
                   </p>
-                  <div className="flex items-center gap-4 flex-wrap">
+                  <div className="flex items-center gap-3.5 flex-wrap">
                     <Link
                       href="/properties/TPH-KEN-018"
-                      className="bg-[#efbd66] hover:bg-[#dfac55] text-[#071d3b] font-bold px-5 py-2.5 rounded-xl text-[13px] transition-colors shadow-sm flex items-center gap-2"
+                      className="bg-[#efbd66] hover:bg-[#dfac55] text-[#071d3b] font-bold px-4 py-2 rounded-xl text-[12px] transition-colors shadow-sm flex items-center gap-1.5"
                     >
                       <span>Review my handover</span>
                       <span>→</span>
@@ -174,7 +175,7 @@ function MyPropertyWorldContent() {
 
                 <Link
                   href="/properties/TPH-KEN-018"
-                  className="hidden lg:block w-48 h-36 rounded-xl overflow-hidden shadow-md flex-shrink-0 border border-white/20 hover:scale-[1.02] transition-transform"
+                  className="hidden lg:block w-40 h-28 rounded-xl overflow-hidden shadow-md flex-shrink-0 border border-white/20 hover:scale-[1.02] transition-transform"
                 >
                   <img
                     src="/images/hero-real-estate.jpg"
@@ -191,137 +192,136 @@ function MyPropertyWorldContent() {
                 mode="consumer"
                 actionHref="/properties/TPH-KEN-018"
                 actionLabel="Open Prop ID"
-                className="mb-8"
+                className="mb-5"
               />
 
-              {/* Two-Column Overview Grid */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-7 mb-10">
+              {/* Minimalist Overview Cards: Needs Attention & Quick Shortcuts */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3.5 mb-7">
 
-                {/* Left Card: Needs Your Attention */}
-                <section className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm">
-                  <div className="flex items-center justify-between pb-4 border-b border-[#dfe6ef] mb-4">
-                    <h2 className="text-base font-bold text-[#102645]">Needs your attention</h2>
-                    <span className="text-[10px] font-bold px-2 py-0.5 bg-[#eaf5ef] text-[#24754c] rounded-full">
+                {/* Left Card: Compact Needs Attention */}
+                <div className="bg-white border border-[#dfe6ef] rounded-xl p-3 sm:p-3.5 shadow-2xs">
+                  <div className="flex items-center justify-between pb-2 border-b border-[#f1f4f8] mb-2">
+                    <div className="flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#f59e0b] animate-pulse" />
+                      <h2 className="text-[11px] font-bold uppercase tracking-wider text-[#102645]">Needs attention</h2>
+                    </div>
+                    <span className="text-[10px] font-bold px-1.5 py-0.2 bg-[#fef3c7] text-[#92400e] rounded-full">
                       2
                     </span>
                   </div>
 
-                  <div className="divide-y divide-[#dfe6ef]">
-                    <div className="py-3.5 flex items-center gap-3.5">
-                      <div className="w-10 h-10 rounded-xl bg-[#fff4df] text-[#8b641c] flex items-center justify-center font-bold text-base flex-shrink-0">
-                        <svg className="w-5 h-5 text-[#8b641c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                        </svg>
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h3 className="text-[13px] font-bold text-[#102645] truncate">
-                          Review your handover pack
-                        </h3>
-                        <p className="text-[11px] text-[#68788e] truncate">
-                          18 Banksia Crescent · Plans, warranties and open items
-                        </p>
+                  <div className="space-y-1.5">
+                    <div className="flex items-center justify-between gap-2.5 p-1.5 px-2 rounded-lg bg-[#fafbfc] hover:bg-[#f3f6fb] transition-colors border border-[#f0f4f8]">
+                      <div className="flex items-center gap-2 min-w-0">
+                        <span className="text-xs flex-shrink-0">📦</span>
+                        <div className="min-w-0">
+                          <h3 className="text-[11.5px] font-semibold text-[#102645] block truncate leading-tight">
+                            Review handover pack
+                          </h3>
+                          <p className="text-[9.5px] text-[#68788e] block truncate leading-tight">
+                            18 Banksia Crescent · Plans & warranties
+                          </p>
+                        </div>
                       </div>
                       <Link
-                        href="/properties/TPH-KEN-018"
-                        className="px-3 py-1.5 bg-[#f3f6fb] hover:bg-[#e5eef7] text-[#071d3b] text-[11px] font-bold rounded-lg transition-colors flex-shrink-0"
+                        href="/properties/TPH-KEN-018?tab=digital-key"
+                        className="px-2.5 py-1 bg-[#071d3b] hover:bg-[#15345d] text-white text-[10px] font-bold rounded-md flex-shrink-0 transition-colors shadow-2xs"
                       >
                         Review
                       </Link>
                     </div>
 
-                    <div className="py-3.5 flex items-center gap-3.5">
-                      <div className="w-10 h-10 rounded-xl bg-[#eaf5ef] text-[#24754c] flex items-center justify-center font-bold text-base flex-shrink-0">
-                        <svg className="w-5 h-5 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                        </svg>
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h3 className="text-[13px] font-bold text-[#102645] truncate">
-                          Verify TrustLink permissions
-                        </h3>
-                        <p className="text-[11px] text-[#68788e] truncate">
-                          18 Banksia Crescent · Active builder scoped connection
-                        </p>
+                    <div className="flex items-center justify-between gap-2.5 p-1.5 px-2 rounded-lg bg-[#fafbfc] hover:bg-[#f3f6fb] transition-colors border border-[#f0f4f8]">
+                      <div className="flex items-center gap-2 min-w-0">
+                        <span className="text-xs flex-shrink-0">🛡️</span>
+                        <div className="min-w-0">
+                          <h3 className="text-[11.5px] font-semibold text-[#102645] block truncate leading-tight">
+                            Verify TrustLink permissions
+                          </h3>
+                          <p className="text-[9.5px] text-[#68788e] block truncate leading-tight">
+                            18 Banksia Crescent · Active connection
+                          </p>
+                        </div>
                       </div>
                       <Link
                         href="/trustlinks/TL-99214-B"
-                        className="px-3 py-1.5 bg-[#f3f6fb] hover:bg-[#e5eef7] text-[#071d3b] text-[11px] font-bold rounded-lg transition-colors flex-shrink-0"
+                        className="px-2.5 py-1 bg-[#f0f4f8] hover:bg-[#e2e8f0] text-[#071d3b] text-[10px] font-bold rounded-md flex-shrink-0 transition-colors"
                       >
                         Review
                       </Link>
                     </div>
                   </div>
-                </section>
+                </div>
 
-                {/* Right Card: What would you like to do? */}
-                <section className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm">
-                  <div className="pb-4 border-b border-[#dfe6ef] mb-4">
-                    <h2 className="text-base font-bold text-[#102645]">What would you like to do?</h2>
+                {/* Right Card: Compact Minimalist Shortcuts */}
+                <div className="bg-white border border-[#dfe6ef] rounded-xl p-3 sm:p-3.5 shadow-2xs flex flex-col justify-between">
+                  <div className="flex items-center justify-between pb-2 border-b border-[#f1f4f8] mb-2">
+                    <h2 className="text-[11px] font-bold uppercase tracking-wider text-[#68788e]">Quick actions</h2>
+                    <span className="text-[9.5px] text-[#8a9bb0]">Shortcuts</span>
                   </div>
 
-                  <div className="divide-y divide-[#dfe6ef]">
+                  <div className="grid grid-cols-3 gap-2">
                     <button
                       onClick={() => alert("Keep a Document Safe: Upload warranties, receipts or compliance certificates to your Prop ID.")}
-                      className="w-full py-3 flex items-center gap-3.5 text-left hover:bg-[#f9fafc] rounded-lg p-1.5 transition-colors"
+                      className="p-2 rounded-lg bg-[#fafbfc] hover:bg-[#f3f6fb] border border-[#edf2f7] hover:border-[#dfe6ef] transition-all text-left flex flex-col justify-between group cursor-pointer"
                     >
-                      <div className="w-9 h-9 rounded-lg bg-[#f3f6fb] text-[#24754c] flex items-center justify-center flex-shrink-0">
-                        <svg className="w-4 h-4 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
+                      <span className="text-sm mb-1 text-[#24754c]">📄</span>
+                      <div>
+                        <strong className="block text-[11px] font-semibold text-[#102645] group-hover:text-[#071d3b] leading-tight">
+                          Save doc
+                        </strong>
+                        <span className="text-[9px] text-[#68788e] block leading-tight mt-0.5 truncate">
+                          To vault
+                        </span>
                       </div>
-                      <div className="flex-1">
-                        <strong className="block text-[13px] font-semibold text-[#102645]">Keep a document safe</strong>
-                        <small className="text-[11px] text-[#68788e]">Add it to the right property</small>
-                      </div>
-                      <span className="text-[#68788e]">›</span>
                     </button>
 
                     <Link
                       href="/explore"
-                      className="w-full py-3 flex items-center gap-3.5 text-left hover:bg-[#f9fafc] rounded-lg p-1.5 transition-colors"
+                      className="p-2 rounded-lg bg-[#fafbfc] hover:bg-[#f3f6fb] border border-[#edf2f7] hover:border-[#dfe6ef] transition-all text-left flex flex-col justify-between group cursor-pointer"
                     >
-                      <div className="w-9 h-9 rounded-lg bg-[#f3f6fb] text-[#24754c] flex items-center justify-center flex-shrink-0">
-                        <svg className="w-4 h-4 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                        </svg>
+                      <span className="text-sm mb-1 text-[#071d3b]">👥</span>
+                      <div>
+                        <strong className="block text-[11px] font-semibold text-[#102645] group-hover:text-[#071d3b] leading-tight">
+                          Find pro
+                        </strong>
+                        <span className="text-[9px] text-[#68788e] block leading-tight mt-0.5 truncate">
+                          Specialist
+                        </span>
                       </div>
-                      <div className="flex-1">
-                        <strong className="block text-[13px] font-semibold text-[#102645]">Find the right person</strong>
-                        <small className="text-[11px] text-[#68788e]">Start with a conversation</small>
-                      </div>
-                      <span className="text-[#68788e]">›</span>
                     </Link>
 
                     <Link
                       href="/trustlinks"
-                      className="w-full py-3 flex items-center gap-3.5 text-left hover:bg-[#f9fafc] rounded-lg p-1.5 transition-colors"
+                      className="p-2 rounded-lg bg-[#fafbfc] hover:bg-[#f3f6fb] border border-[#edf2f7] hover:border-[#dfe6ef] transition-all text-left flex flex-col justify-between group cursor-pointer"
                     >
-                      <div className="w-9 h-9 rounded-lg bg-[#f3f6fb] text-[#24754c] flex items-center justify-center flex-shrink-0">
-                        <svg className="w-4 h-4 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                        </svg>
+                      <span className="text-sm mb-1 text-[#24754c]">🛡️</span>
+                      <div>
+                        <strong className="block text-[11px] font-semibold text-[#102645] group-hover:text-[#071d3b] leading-tight">
+                          TrustLinks
+                        </strong>
+                        <span className="text-[9px] text-[#68788e] block leading-tight mt-0.5 truncate">
+                          Manage access
+                        </span>
                       </div>
-                      <div className="flex-1">
-                        <strong className="block text-[13px] font-semibold text-[#102645]">Review who has access</strong>
-                        <small className="text-[11px] text-[#68788e]">Manage your Trust Links</small>
-                      </div>
-                      <span className="text-[#68788e]">›</span>
                     </Link>
                   </div>
-                </section>
+                </div>
 
               </div>
 
-              {/* Your Properties Section Preview */}
+              {/* Your Properties Section Preview - PRIMARY FOCUS */}
               <section className="mb-10">
-                <div className="flex items-center justify-between gap-4 mb-5">
-                  <div>
+                <div className="flex items-center justify-between gap-4 mb-4 pb-2 border-b border-[#dfe6ef]">
+                  <div className="flex items-center gap-2.5">
                     <h2 className="text-xl font-bold text-[#102645]">Your properties</h2>
-                    <p className="text-[12px] text-[#68788e]">Choose a property to open its own space.</p>
+                    <span className="text-[10px] font-bold px-2 py-0.5 bg-[#eaf5ef] text-[#24754c] rounded-full border border-[#d2e6d9]">
+                      {PROPERTIES_LIST.length} Connected
+                    </span>
                   </div>
                   <button
                     onClick={() => handleTabChange("properties")}
-                    className="text-[12px] font-bold text-[#071d3b] hover:underline flex items-center gap-1"
+                    className="text-[12px] font-bold text-[#071d3b] hover:underline flex items-center gap-1 cursor-pointer"
                   >
                     <span>View all {PROPERTIES_LIST.length} properties</span>
                     <span>→</span>
