@@ -367,7 +367,6 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
           {[
             { id: "overview", label: "Overview", icon: "🤝" },
             { id: "conversation", label: "Conversation", icon: "💬", count: `${messages.length}` },
-            { id: "documents", label: "Shared items", icon: "📄", count: `${docs.filter((d) => d.shared).length}` },
             { id: "permissions", label: "Permissions", icon: "⚙️" },
             { id: "activity", label: "Activity", icon: "🕒" },
           ].map((tab) => (
@@ -581,107 +580,13 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
               </button>
 
               <button
-                onClick={() => setActiveTab("documents")}
+                onClick={() => setActiveTab("permissions")}
                 className="text-[12px] text-[#071d3b] font-semibold hover:underline"
               >
-                Review shared items →
+                Review permissions →
               </button>
             </aside>
 
-          </div>
-        )}
-
-        {/* ── TAB 3: SHARED ITEMS ─────────────────────────────────────── */}
-        {activeTab === "documents" && (
-          <div className="space-y-6">
-            <div className="flex items-center justify-between pb-3 border-b border-[#dfe6ef]">
-              <div>
-                <h2 className="text-xl font-bold text-[#102645]">Shared through this Trust Link</h2>
-                <p className="text-[12px] text-[#68788e]">Only the items below are included in the permission you granted.</p>
-              </div>
-              <button
-                onClick={() => setShowEditModal(true)}
-                className="px-3.5 py-1.5 bg-[#071d3b] text-white text-[12px] font-bold rounded-xl"
-              >
-                ⚙️ Edit sharing
-              </button>
-            </div>
-
-            <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm divide-y divide-[#dfe6ef] text-[12px]">
-              {/* Row: Messages */}
-              <div className="py-3 flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <span className="text-lg">💬</span>
-                  <div>
-                    <strong className="block text-[#102645]">Your request and conversation</strong>
-                    <p className="text-[11px] text-[#68788e]">Display name, purpose and messages for this connection</p>
-                  </div>
-                </div>
-                <button onClick={() => setActiveTab("conversation")} className="text-[11px] font-bold text-[#071d3b] hover:underline">
-                  Open
-                </button>
-              </div>
-
-              {/* Row: Property address */}
-              {data.addressShared && (
-                <div className="py-3 flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <span className="text-lg">📍</span>
-                    <div>
-                      <strong className="block text-[#102645]">Selected property address</strong>
-                      <p className="text-[11px] text-[#68788e]">{data.property}, {data.suburb}</p>
-                    </div>
-                  </div>
-                  <span className="text-[10px] font-bold px-2 py-0.5 bg-[#eaf5ef] text-[#24754c] rounded">
-                    Included
-                  </span>
-                </div>
-              )}
-
-              {/* Rows: Individual Documents */}
-              {docs.map((doc) => (
-                <div key={doc.id} className="py-3 flex items-center justify-between gap-4">
-                  <div className="flex items-center gap-3 min-w-0">
-                    <span className="text-lg">📄</span>
-                    <div className="min-w-0">
-                      <strong className="block text-[#102645] truncate">{doc.name}</strong>
-                      <p className="text-[10px] text-[#68788e]">{doc.category} · Prop ID Record</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2 flex-shrink-0">
-                    <button
-                      onClick={() => toggleDoc(doc.id)}
-                      className={`px-3 py-1 rounded-lg text-[11px] font-bold transition-colors ${
-                        doc.shared
-                          ? "bg-[#fbeeee] text-[#a44042] hover:bg-[#f7d6d6]"
-                          : "bg-[#eaf5ef] text-[#24754c] hover:bg-[#d8edd6]"
-                      }`}
-                    >
-                      {doc.shared ? "Revoke File" : "Grant Share"}
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* What stays private card */}
-            <div className="bg-[#071d3b] text-white rounded-2xl p-6 shadow-sm">
-              <h3 className="text-lg font-bold mb-3">What stays private</h3>
-              <div className="space-y-3 text-[12px] text-[#b9c8db]">
-                <div className="flex items-start gap-2.5">
-                  <span className="text-[#efbd66]">🔒</span>
-                  <span>Property DNA details, care tasks, private notes and every unselected document</span>
-                </div>
-                <div className="flex items-start gap-2.5">
-                  <span className="text-[#efbd66]">🔒</span>
-                  <span>Other properties, private valuations, conversations and other professionals</span>
-                </div>
-                <div className="flex items-start gap-2.5">
-                  <span className="text-[#efbd66]">🔒</span>
-                  <span>Owner&apos;s private credentials, loan schedules and financial information</span>
-                </div>
-              </div>
-            </div>
           </div>
         )}
 
