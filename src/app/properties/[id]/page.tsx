@@ -5,26 +5,32 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { getPropertyById, PROPERTIES_LIST } from "@/lib/properties";
 import { PropertyPulseNotification } from "@/components/features/PropertyPulse";
 import { PropertySidebar, PropertyWorkspaceTab } from "@/components/layout/PropertySidebar";
+import { DigitalKeyTab } from "@/components/features/DigitalKeyTab";
 
 function PropertyDetailInner({ id }: { id: string }) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const tabParam = searchParams.get("tab") as PropertyWorkspaceTab | null;
+  const tabParam = searchParams.get("tab");
 
   const [currentId, setCurrentId] = useState(id);
   const property = getPropertyById(currentId);
 
-  const validTabs: PropertyWorkspaceTab[] = ["overview", "home-record", "access", "messages"];
+  const validTabs: PropertyWorkspaceTab[] = ["overview", "digital-key", "trustlink", "messages"];
 
-  const [activeTab, setActiveTab] = useState<PropertyWorkspaceTab>(
-    tabParam && validTabs.includes(tabParam) ? tabParam : "overview"
-  );
+  const initialTab: PropertyWorkspaceTab = 
+    tabParam === "access" || tabParam === "trustlink"
+      ? "trustlink" 
+      : tabParam && validTabs.includes(tabParam as PropertyWorkspaceTab) 
+      ? (tabParam as PropertyWorkspaceTab) 
+      : "overview";
+
+  const [activeTab, setActiveTab] = useState<PropertyWorkspaceTab>(initialTab);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [roleMenuOpen, setRoleMenuOpen] = useState(false);
   const [selectedRole, setSelectedRole] = useState("Owner · Living here");
 
-  // Home Record: incoming handover accepted state
+  // Digital Key: incoming handover accepted state
   const [handoverAccepted, setHandoverAccepted] = useState(false);
 
   // Messages state
@@ -60,8 +66,10 @@ function PropertyDetailInner({ id }: { id: string }) {
   ]);
 
   useEffect(() => {
-    if (tabParam && validTabs.includes(tabParam)) {
-      setActiveTab(tabParam);
+    if (tabParam === "access" || tabParam === "trustlink") {
+      setActiveTab("trustlink");
+    } else if (tabParam && validTabs.includes(tabParam as PropertyWorkspaceTab)) {
+      setActiveTab(tabParam as PropertyWorkspaceTab);
     }
   }, [tabParam]);
 
@@ -231,18 +239,18 @@ function PropertyDetailInner({ id }: { id: string }) {
 
                   <div className="flex items-center gap-2.5 flex-wrap">
                     <button
-                      onClick={() => handleTabChange("home-record")}
+                      onClick={() => handleTabChange("digital-key")}
                       className="px-4 py-2.5 bg-[#efbd66] hover:bg-[#dfac55] text-[#071d3b] rounded-xl text-xs font-bold transition-all shadow-sm flex items-center gap-1.5 cursor-pointer"
                     >
                       <span>📦</span>
-                      <span>View Home Record</span>
+                      <span>View Digital Key</span>
                     </button>
                     <button
-                      onClick={() => handleTabChange("access")}
+                      onClick={() => handleTabChange("trustlink")}
                       className="px-4 py-2.5 bg-white/10 hover:bg-white/20 text-white rounded-xl text-xs font-semibold transition-colors border border-white/20 flex items-center gap-1.5 cursor-pointer"
                     >
-                      <span>👥</span>
-                      <span>Manage Access</span>
+                      <span>🛡️</span>
+                      <span>TrustLink</span>
                     </button>
                   </div>
                 </div>
@@ -253,7 +261,7 @@ function PropertyDetailInner({ id }: { id: string }) {
                 propId={property.propId}
                 property={property.street}
                 mode="consumer"
-                actionHref={`/properties/${currentId}?tab=home-record`}
+                actionHref={`/properties/${currentId}?tab=digital-key`}
                 actionLabel="View Record"
               />
 
@@ -267,21 +275,21 @@ function PropertyDetailInner({ id }: { id: string }) {
 
                 <div
                   className="bg-white border border-[#fcd34d] rounded-xl p-4 shadow-sm cursor-pointer hover:shadow-md transition-shadow"
-                  onClick={() => handleTabChange("home-record")}
+                  onClick={() => handleTabChange("digital-key")}
                 >
                   <div className="text-[10px] font-bold uppercase tracking-wider text-[#92400e]">Incoming</div>
-                  <div className="text-2xl font-bold text-[#92400e] mt-1">1 Pack</div>
+                  <div className="text-2xl font-bold text-[#92400e] mt-1">2 Packs</div>
                   <div className="text-[11px] text-[#68788e] mt-0.5">
-                    {handoverAccepted ? "Saved to your record ✓" : "Olivia Hart sent a handover pack"}
+                    {handoverAccepted ? "Saved to your record ✓" : "Olivia Hart & Lachlan Vance"}
                   </div>
                 </div>
 
                 <div
                   className="bg-white border border-[#dfe6ef] rounded-xl p-4 shadow-sm cursor-pointer hover:shadow-md transition-shadow"
-                  onClick={() => handleTabChange("access")}
+                  onClick={() => handleTabChange("trustlink")}
                 >
-                  <div className="text-[10px] font-bold uppercase tracking-wider text-[#68788e]">Professionals with Access</div>
-                  <div className="text-2xl font-bold text-[#102645] mt-1">2 People</div>
+                  <div className="text-[10px] font-bold uppercase tracking-wider text-[#68788e]">Active TrustLinks</div>
+                  <div className="text-2xl font-bold text-[#102645] mt-1">2 Connections</div>
                   <div className="text-[11px] text-[#68788e] mt-0.5">Olivia Hart, Lachlan Vance</div>
                 </div>
               </div>
@@ -294,7 +302,7 @@ function PropertyDetailInner({ id }: { id: string }) {
                     <p className="text-xs text-[#68788e]">Cadastral, structural and appliance details for {property.street}.</p>
                   </div>
                   <button
-                    onClick={() => handleTabChange("home-record")}
+                    onClick={() => handleTabChange("digital-key")}
                     className="text-xs text-[#071d3b] hover:underline font-bold"
                   >
                     View all records →
@@ -338,174 +346,38 @@ function PropertyDetailInner({ id }: { id: string }) {
           )}
 
           {/* ══════════════════════════════════════════
-              TAB: HOME RECORD (was Digital Key + Handover)
+              TAB: DIGITAL KEY
           ══════════════════════════════════════════ */}
-          {activeTab === "home-record" && (
-            <div className="space-y-6 max-w-[1040px] mx-auto pb-12">
-
-              {/* Page Header */}
-              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-                <div>
-                  <div className="text-[10px] font-bold uppercase tracking-[2px] text-[#24754c] mb-1">
-                    YOUR RECORDS · YOUR DECISION
-                  </div>
-                  <h1 className="text-3xl font-bold tracking-tight text-[#102645] mb-1.5">
-                    Home Record
-                  </h1>
-                  <p className="text-[13px] text-[#68788e]">
-                    Receive, keep and share the documents you control for {property.street}.
-                  </p>
-                </div>
-                <button
-                  onClick={() => alert("Create a record pack to share specific documents with a professional.")}
-                  className="self-start px-4 py-2 bg-[#10b981] hover:bg-[#059669] text-white font-bold rounded-xl text-xs transition-colors shadow-sm flex items-center gap-2 cursor-pointer"
-                >
-                  + Share with a pro
-                </button>
-              </div>
-
-              {/* ── INCOMING HANDOVER BANNER ── */}
-              {!handoverAccepted && (
-                <div className="bg-[#fffbeb] border border-[#fcd34d] rounded-2xl p-5 shadow-sm">
-                  <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-[#e6eaf3] text-[#425b7c] font-serif font-bold text-lg flex items-center justify-center flex-shrink-0">
-                        OH
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-2 mb-1 flex-wrap">
-                          <span className="text-[9px] font-bold uppercase tracking-[1.2px] text-[#92400e] bg-[#fef3c7] px-1.5 py-0.5 rounded border border-[#fcd34d]">
-                            1 INCOMING HANDOVER
-                          </span>
-                        </div>
-                        <h3 className="text-base font-bold text-[#102645]">Olivia Hart has sent your handover pack</h3>
-                        <p className="text-[12px] text-[#68788e] mt-0.5">
-                          Hart Homes · Builder & handover contact — includes 14 verified documents.
-                        </p>
-                        <div className="mt-3 flex flex-wrap gap-2 text-[11px]">
-                          {["Form 16 Structural Engineering", "Form 43 Waterproofing Cert", "Appliance Care Guide", "QBCC Home Warranty Insurance", "+10 more"].map((doc) => (
-                            <span key={doc} className="px-2 py-0.5 bg-white border border-[#e2e8f0] rounded-full text-[#102645] font-medium">
-                              📄 {doc}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="flex flex-col gap-2 flex-shrink-0 sm:items-end">
-                      <button
-                        onClick={() => setHandoverAccepted(true)}
-                        className="px-4 py-2.5 bg-[#071d3b] hover:bg-[#15345d] text-white font-bold text-xs rounded-xl transition-colors cursor-pointer shadow-sm"
-                      >
-                        Accept & Save to Record ✓
-                      </button>
-                      <button
-                        onClick={() => handleTabChange("messages")}
-                        className="px-4 py-2.5 bg-white hover:bg-[#f8fafc] text-[#102645] font-semibold text-xs rounded-xl border border-[#dfe6ef] transition-colors cursor-pointer"
-                      >
-                        💬 Ask Olivia a question
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {handoverAccepted && (
-                <div className="bg-[#ecfdf5] border border-[#6ee7b7] rounded-2xl p-4 flex items-center gap-3 shadow-sm">
-                  <span className="text-xl">✅</span>
-                  <div>
-                    <div className="text-sm font-bold text-[#065f46]">Handover pack saved to your Home Record</div>
-                    <div className="text-[11px] text-[#34d399]">14 documents from Olivia Hart are now permanently in your record below.</div>
-                  </div>
-                </div>
-              )}
-
-              {/* ── YOUR SAVED DOCUMENTS ── */}
-              <div className="bg-white border border-[#dfe6ef] rounded-2xl shadow-sm overflow-hidden">
-                <div className="px-5 py-4 border-b border-[#dfe6ef] flex items-center justify-between">
-                  <div>
-                    <h3 className="text-sm font-bold text-[#102645]">Your Documents</h3>
-                    <p className="text-[11px] text-[#68788e]">{property.documents.length} verified files saved to your record.</p>
-                  </div>
-                  <button
-                    onClick={() => alert("Upload a new document to your home record.")}
-                    className="text-xs font-bold text-[#071d3b] hover:underline"
-                  >
-                    + Upload
-                  </button>
-                </div>
-
-                <div className="divide-y divide-[#f1f5f9]">
-                  {property.documents.map((doc, idx) => (
-                    <div key={idx} className="px-5 py-3.5 flex items-center justify-between gap-4 hover:bg-[#fafbfc] transition-colors">
-                      <div className="flex items-center gap-3 min-w-0">
-                        <span className="text-lg">📄</span>
-                        <div className="min-w-0">
-                          <div className="text-[13px] font-semibold text-[#102645] truncate">{doc.title}</div>
-                          <div className="text-[11px] text-[#68788e]">{doc.cat} · {doc.size}</div>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-2 flex-shrink-0">
-                        {doc.shared && (
-                          <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#eaf5ef] text-[#24754c] border border-[#d2e6d9]">
-                            Shared
-                          </span>
-                        )}
-                        <button
-                          onClick={() => alert(`Download or view: ${doc.title}`)}
-                          className="text-xs text-[#071d3b] hover:underline font-semibold"
-                        >
-                          View
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* ── TRANSFER OWNERSHIP ── */}
-              <div className="bg-white border border-[#dfe6ef] rounded-2xl p-5 shadow-sm">
-                <button
-                  onClick={() => alert("Transfer your home record to a new owner. Requires settlement date and conveyancer reference.")}
-                  className="w-full flex items-center justify-between text-left hover:text-[#24754c] transition-colors group"
-                >
-                  <div>
-                    <div className="text-sm font-bold text-[#102645] group-hover:text-[#24754c]">Transfer to a new owner</div>
-                    <div className="text-[11px] text-[#68788e] mt-0.5">When you sell, transfer your entire Home Record to the new owner.</div>
-                  </div>
-                  <span className="text-[#68788e] group-hover:text-[#24754c] transition-colors">→</span>
-                </button>
-              </div>
-
-              {/* Footer note */}
-              <div className="text-center text-[11px] text-[#94a3b8]">
-                TPH · Your digital home. · Interactive concept · Sample records · Nothing is sent
-              </div>
-            </div>
+          {activeTab === "digital-key" && (
+            <DigitalKeyTab
+              property={property}
+              onGoToMessages={() => handleTabChange("messages")}
+            />
           )}
 
           {/* ══════════════════════════════════════════
-              TAB: ACCESS (was TrustLink)
+              TAB: TRUSTLINK
           ══════════════════════════════════════════ */}
-          {activeTab === "access" && (
+          {(activeTab === "trustlink" || (activeTab as string) === "access") && (
             <div className="space-y-6 max-w-[1040px] mx-auto pb-12">
 
               <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                 <div>
                   <div className="text-[10.5px] font-bold uppercase tracking-[2px] text-[#24754c] mb-1">
-                    WHO CAN SEE YOUR HOME
+                    SCOPED ACCESS &amp; PERMISSIONS
                   </div>
                   <h1 className="text-3xl font-bold tracking-tight text-[#102645] mb-1.5">
-                    Access
+                    TrustLink
                   </h1>
                   <p className="text-[13px] text-[#68788e]">
-                    Specialists who have your permission to access documents from {property.street}.
+                    Specialists who have verified permission to access records for {property.street}.
                   </p>
                 </div>
                 <button
-                  onClick={() => alert("Grant access: Choose a professional and decide exactly which documents to share.")}
+                  onClick={() => alert("Grant TrustLink access: Choose a professional and decide exactly which documents to share.")}
                   className="self-start px-4 py-2 bg-[#071d3b] hover:bg-[#15345d] text-white font-bold text-xs rounded-xl shadow-sm transition-colors cursor-pointer"
                 >
-                  + Grant access
+                  + Create TrustLink
                 </button>
               </div>
 
@@ -677,10 +549,10 @@ function PropertyDetailInner({ id }: { id: string }) {
                     </div>
                   </div>
                   <button
-                    onClick={() => handleTabChange("access")}
+                    onClick={() => handleTabChange("trustlink")}
                     className="text-xs text-[#071d3b] hover:underline font-bold cursor-pointer"
                   >
-                    View access details →
+                    View TrustLink details →
                   </button>
                 </div>
 

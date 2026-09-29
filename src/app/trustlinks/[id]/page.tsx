@@ -278,7 +278,7 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
             <span className="font-semibold text-[#102645]">{data.purpose}</span>
             <span>·</span>
             <Link
-              href={`/properties/${data.propId}?tab=home-record`}
+              href={`/properties/${data.propId}?tab=digital-key`}
               className="hover:underline flex items-center gap-1 font-semibold text-[#071d3b]"
             >
               <span>🏠</span>
@@ -320,7 +320,7 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
                   </span>
                 </div>
                 <h3 className="text-base font-bold text-[#102645]">
-                  Documents from your Home Record
+                  Documents from your Digital Key
                 </h3>
                 <p className="text-xs text-[#68788e] mt-0.5">
                   {data.property} — you control exactly which documents {data.proName} can see. You can remove access at any time.
@@ -330,10 +330,10 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
 
             <div className="flex items-center gap-2 self-start sm:self-auto flex-wrap sm:flex-nowrap">
               <Link
-                href={`/properties/${data.propId}?tab=home-record`}
+                href={`/properties/${data.propId}?tab=digital-key`}
                 className="px-4 py-2 bg-[#071d3b] hover:bg-[#15345d] text-white rounded-xl text-xs font-bold transition-colors shadow-2xs whitespace-nowrap flex items-center gap-1.5"
               >
-                <span>📦 Open Home Record</span>
+                <span>📦 Open Digital Key</span>
                 <span>→</span>
               </Link>
             </div>
