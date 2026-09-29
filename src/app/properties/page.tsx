@@ -98,6 +98,12 @@ function MyPropertyWorldContent() {
                 {PROPERTIES_LIST.length}
               </span>
             </button>
+            <Link
+              href="/trustlinks"
+              className="px-3 py-1.5 rounded-lg text-[11px] font-bold transition-all bg-[#f4f6f8] text-[#5b6e84] hover:bg-[#e4e9f0] hover:text-[#071d3b]"
+            >
+              TrustLinks
+            </Link>
           </div>
         }
       />
@@ -165,21 +171,6 @@ function MyPropertyWorldContent() {
                 <div>Trust Link</div>
                 <small className="block text-[9px] text-[#8a97a7]">People &amp; permissions</small>
               </div>
-            </Link>
-
-            <Link
-              href="/trustlinks/welcome"
-              className="flex items-center justify-between px-3.5 py-2.5 rounded-lg text-[#5b6e84] hover:bg-[#f3f6f9] transition-all"
-            >
-              <div className="flex items-center gap-3">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-                </svg>
-                <span>Messages</span>
-              </div>
-              <span className="text-[9px] font-bold px-1.5 py-0.5 bg-[#edf2f7] text-[#071d3b] rounded">
-                1
-              </span>
             </Link>
           </nav>
 
@@ -355,22 +346,22 @@ function MyPropertyWorldContent() {
                     <div className="py-3.5 flex items-center gap-3.5">
                       <div className="w-10 h-10 rounded-xl bg-[#eaf5ef] text-[#24754c] flex items-center justify-center font-bold text-base flex-shrink-0">
                         <svg className="w-5 h-5 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                         </svg>
                       </div>
                       <div className="flex-1 min-w-0">
                         <h3 className="text-[13px] font-bold text-[#102645] truncate">
-                          Read Olivia’s message
+                          Verify TrustLink permissions
                         </h3>
                         <p className="text-[11px] text-[#68788e] truncate">
-                          New home handover · Hart Homes
+                          18 Banksia Crescent · Active builder scoped connection
                         </p>
                       </div>
                       <Link
-                        href="/trustlinks/welcome"
+                        href="/trustlinks/TL-99214-B"
                         className="px-3 py-1.5 bg-[#f3f6fb] hover:bg-[#e5eef7] text-[#071d3b] text-[11px] font-bold rounded-lg transition-colors flex-shrink-0"
                       >
-                        Read
+                        Review
                       </Link>
                     </div>
                   </div>
@@ -516,53 +507,6 @@ function MyPropertyWorldContent() {
                     </div>
                   </article>
                 ))}
-                </div>
-              </section>
-
-              {/* Recent Conversations */}
-              <section className="mb-12">
-                <div className="flex items-center justify-between gap-4 mb-4">
-                  <div>
-                    <h2 className="text-xl font-bold text-[#102645]">Recent conversations</h2>
-                    <p className="text-[12px] text-[#68788e]">Pick up with the person who knows your property.</p>
-                  </div>
-                  <Link href="/trustlinks" className="text-[12px] font-semibold text-[#071d3b] hover:underline flex items-center gap-1">
-                    <span>All messages</span>
-                    <span className="text-[#efbd66]">→</span>
-                  </Link>
-                </div>
-
-                <div className="bg-white border border-[#dfe6ef] rounded-2xl overflow-hidden shadow-sm">
-                  <Link
-                    href="/trustlinks/welcome"
-                    className="p-5 flex items-center gap-4 hover:bg-[#f8fafc] transition-colors group"
-                  >
-                    <div className="w-12 h-12 rounded-xl overflow-hidden bg-[#e6eaf3] border border-[#dfe6ef] flex-shrink-0 shadow-xs">
-                      <img
-                        src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80"
-                        alt="Olivia Hart"
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                      />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2">
-                        <h3 className="text-sm font-bold text-[#102645]">Olivia Hart</h3>
-                        <span className="text-[9px] font-bold px-1.5 py-0.5 bg-[#eaf5ef] text-[#24754c] rounded">
-                          New
-                        </span>
-                      </div>
-                      <p className="text-[11px] text-[#68788e] mt-0.5">
-                        New home handover · 18 Banksia Crescent
-                      </p>
-                      <span className="block text-[11px] text-[#102645] mt-1 truncate">
-                        “Your sample handover pack is ready to review. You can check each section and record receipt...”
-                      </span>
-                    </div>
-                    <div className="text-right text-[11px] text-[#68788e] flex-shrink-0 hidden sm:block">
-                      <span className="text-[#24754c] font-semibold block">Active</span>
-                      <span className="text-[10px]">Open conversation →</span>
-                    </div>
-                  </Link>
                 </div>
               </section>
             </div>
