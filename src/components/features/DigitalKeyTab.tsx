@@ -21,6 +21,19 @@ interface IncomingPack {
   accepted: boolean;
   dismissed: boolean;
 }
+interface SavedHandover {
+  id: string;
+  packName: string;
+  senderName: string;
+  senderRole: string;
+  senderCompany: string;
+  senderAvatar: string;
+  avatarBg: string;
+  avatarText: string;
+  docCount: number;
+  acceptedDate: string;
+  documents: { title: string; cat: string; size: string }[];
+}
 
 interface SavedDoc {
   id: string;
@@ -92,10 +105,57 @@ export function DigitalKeyTab({ property, onGoToMessages }: DigitalKeyTabProps) 
   const pendingPacks = incomingPacks.filter((p) => !p.accepted && !p.dismissed);
   const acceptedPacks = incomingPacks.filter((p) => p.accepted);
 
+  const [expandedSavedId, setExpandedSavedId] = useState<string | null>("sh-1");
+
+  const [savedHandovers, setSavedHandovers] = useState<SavedHandover[]>([
+    {
+      id: "sh-1",
+      packName: "Hart Homes Construction & Practical Completion Bundle",
+      senderName: "Olivia Hart",
+      senderRole: "Builder & handover contact",
+      senderCompany: "Hart Homes",
+      senderAvatar: "OH",
+      avatarBg: "bg-[#e6eaf3]",
+      avatarText: "text-[#425b7c]",
+      docCount: 14,
+      acceptedDate: "14 Sep 2026",
+      documents: [
+        { title: "Form 16 Structural Engineering & Slab Certificate", cat: "Statutory", size: "2.4 MB" },
+        { title: "Form 43 Wet-Area Waterproofing Certificate", cat: "Compliance", size: "1.8 MB" },
+        { title: "QBCC Home Warranty Insurance Certificate", cat: "Warranty", size: "850 KB" },
+        { title: "Colorbond Roof & Guttering 30-Year Warranty", cat: "Warranty", size: "1.2 MB" },
+        { title: "Daikin Ducted Inverter AC Commissioning Report", cat: "Manuals", size: "3.1 MB" },
+        { title: "Rheem 270L Heat Pump Warranty & Plumber Signoff", cat: "Appliances", size: "940 KB" },
+        { title: "Interior & Exterior Dulux Paint Schedule", cat: "Specifications", size: "620 KB" },
+      ],
+    },
+  ]);
+
   const acceptPack = (id: string) => {
-    setIncomingPacks((prev) =>
-      prev.map((p) => (p.id === id ? { ...p, accepted: true } : p))
-    );
+    const pack = incomingPacks.find((p) => p.id === id);
+    if (pack) {
+      const newSaved: SavedHandover = {
+        id: `sh-${Date.now()}`,
+        packName: pack.packName,
+        senderName: pack.senderName,
+        senderRole: pack.senderRole,
+        senderCompany: pack.senderCompany,
+        senderAvatar: pack.senderAvatar,
+        avatarBg: pack.avatarBg,
+        avatarText: pack.avatarText,
+        docCount: pack.docCount,
+        acceptedDate: "Just now",
+        documents: pack.docPreview.map((title) => ({
+          title,
+          cat: "Statutory",
+          size: "1.5 MB",
+        })),
+      };
+      setSavedHandovers([newSaved, ...savedHandovers]);
+      setIncomingPacks((prev) =>
+        prev.map((p) => (p.id === id ? { ...p, accepted: true } : p))
+      );
+    }
   };
 
   const dismissPack = (id: string) => {
@@ -251,23 +311,112 @@ export function DigitalKeyTab({ property, onGoToMessages }: DigitalKeyTabProps) 
         </div>
       )}
 
-      {/* ── ACCEPTED SUCCESS BANNERS ── */}
-      {acceptedPacks.map((pack) => (
-        <div
-          key={pack.id}
-          className="bg-[#ecfdf5] border border-[#6ee7b7] rounded-xl px-4 py-3 flex items-center gap-3 shadow-sm"
-        >
-          <span className="text-base">✅</span>
-          <div>
-            <span className="text-sm font-bold text-[#065f46]">
-              {pack.packName} saved
+      {/* ── SAVED DIGITAL HANDOVERS (PERMANENT VAULT) ── */}
+      <div className="space-y-3">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] font-bold uppercase tracking-[1.5px] text-[#24754c]">
+              SAVED DIGITAL HANDOVERS
             </span>
-            <span className="text-[11px] text-[#34d399] ml-2">
-              {pack.docCount} documents from {pack.senderName} added to your Digital Key.
+            <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-[#dcfce7] text-[#166534] border border-[#86efac]">
+              {savedHandovers.length} Permanent Records
             </span>
           </div>
+          <span className="text-[11px] text-[#68788e]">
+            Secured in Digital Key · Sovereign property vault
+          </span>
         </div>
-      ))}
+
+        {savedHandovers.map((sh) => {
+          const isExpanded = expandedSavedId === sh.id;
+          return (
+            <div
+              key={sh.id}
+              className="bg-white border border-[#bbf7d0] rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+            >
+              {/* Card Header */}
+              <div className="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-[#fbfdfb]">
+                <div className="flex items-start gap-3.5">
+                  <div className={`w-11 h-11 rounded-xl font-serif font-bold text-lg flex items-center justify-center flex-shrink-0 ${sh.avatarBg} ${sh.avatarText}`}>
+                    {sh.senderAvatar}
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2 flex-wrap mb-1">
+                      <span className="text-[9px] font-bold uppercase tracking-[1px] px-2 py-0.5 rounded-full bg-[#dcfce7] text-[#166534] border border-[#86efac] flex items-center gap-1">
+                        <span>✓</span>
+                        <span>Verified Handover</span>
+                      </span>
+                      <span className="text-[10px] font-semibold text-[#68788e]">
+                        Accepted {sh.acceptedDate}
+                      </span>
+                    </div>
+                    <h3 className="text-base font-bold text-[#102645]">
+                      {sh.packName}
+                    </h3>
+                    <p className="text-[12px] text-[#68788e] mt-0.5">
+                      Delivered by <strong className="text-[#102645]">{sh.senderName}</strong> · {sh.senderCompany} · {sh.docCount} verified records attached
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2 flex-wrap sm:flex-nowrap">
+                  <button
+                    onClick={() => setExpandedSavedId(isExpanded ? null : sh.id)}
+                    className="px-3.5 py-2 rounded-xl bg-[#f0fdf4] hover:bg-[#dcfce7] text-[#166534] text-xs font-bold border border-[#bbf7d0] transition-colors cursor-pointer flex items-center gap-1.5"
+                  >
+                    <span>{isExpanded ? "Hide files" : `Inspect ${sh.documents.length} files`}</span>
+                    <span className="text-[10px]">{isExpanded ? "▲" : "▼"}</span>
+                  </button>
+                  <button
+                    onClick={() => alert(`Downloading verified ZIP archive for ${sh.packName}...`)}
+                    className="px-3.5 py-2 rounded-xl bg-[#071d3b] hover:bg-[#15345d] text-white text-xs font-bold transition-colors cursor-pointer shadow-2xs"
+                  >
+                    ⬇ Download ZIP
+                  </button>
+                </div>
+              </div>
+
+              {/* Expanded File Register */}
+              {isExpanded && (
+                <div className="px-5 py-4 border-t border-[#bbf7d0] bg-white divide-y divide-[#f1f5f9]">
+                  <div className="text-[10.5px] font-bold uppercase tracking-[1.2px] text-[#24754c] pb-2">
+                    Verified Documents Included in this Handover
+                  </div>
+                  {sh.documents.map((doc, idx) => (
+                    <div
+                      key={idx}
+                      className="py-2.5 flex items-center justify-between gap-3 text-xs"
+                    >
+                      <div className="flex items-center gap-2.5 min-w-0">
+                        <span className="text-base text-[#166534]">📄</span>
+                        <div className="min-w-0">
+                          <span className="font-semibold text-[#102645] truncate block">
+                            {doc.title}
+                          </span>
+                          <span className="text-[10.5px] text-[#68788e]">
+                            {doc.cat} · {doc.size}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2 flex-shrink-0">
+                        <span className="text-[9.5px] font-bold px-1.5 py-0.2 rounded bg-[#eaf5ef] text-[#24754c]">
+                          Verified
+                        </span>
+                        <button
+                          onClick={() => alert(`Opening ${doc.title}`)}
+                          className="text-[11px] text-[#071d3b] hover:underline font-bold"
+                        >
+                          View
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
 
       {/* ── YOUR SAVED DOCUMENTS ── */}
       <div className="bg-white border border-[#dfe6ef] rounded-2xl shadow-sm overflow-hidden">
