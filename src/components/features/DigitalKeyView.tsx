@@ -78,16 +78,15 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
             Digital Key
           </h1>
           <p className="text-[13px] text-[#64748b]">
-            Receive, keep and move the records you control for {property.street}.
+            Receive, keep and move the records you control.
           </p>
         </div>
 
         <button
           onClick={() => setCreateModalOpen(true)}
-          className="self-start sm:self-auto px-4 py-2 rounded-full bg-[#10b981] hover:bg-[#059669] text-white font-bold text-xs transition-colors shadow-xs cursor-pointer flex items-center gap-1.5"
+          className="self-start sm:self-auto px-4 py-2 rounded-lg bg-[#bbf7d0] hover:bg-[#a7f3d0] text-[#14532d] font-bold text-xs transition-colors shadow-2xs cursor-pointer"
         >
-          <span className="text-base leading-none">+</span>
-          <span>Create a record pack</span>
+          Create a record pack
         </button>
       </div>
 
@@ -312,16 +311,14 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
             onClick={onOpenTrustLink}
             className="px-4 py-2 bg-[#071d3b] hover:bg-[#15345d] text-white rounded-lg text-xs font-bold transition-colors flex items-center justify-center gap-1.5 whitespace-nowrap cursor-pointer shadow-2xs"
           >
-            <span>🛡️ Open Trust Link</span>
-            <span>→</span>
+            Open Trust Link
           </button>
         ) : (
           <Link
             href={trustlinkUrl}
             className="px-4 py-2 bg-[#071d3b] hover:bg-[#15345d] text-white rounded-lg text-xs font-bold transition-colors flex items-center justify-center gap-1.5 whitespace-nowrap shadow-2xs"
           >
-            <span>🛡️ Open Trust Link</span>
-            <span>→</span>
+            Open Trust Link
           </Link>
         )}
       </div>

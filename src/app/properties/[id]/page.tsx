@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { getPropertyById, PROPERTIES_LIST } from "@/lib/properties";
 import { PropertyPulseNotification } from "@/components/features/PropertyPulse";
 import { PropertySidebar, PropertyWorkspaceTab } from "@/components/layout/PropertySidebar";
-import { DigitalKeyTab } from "@/components/features/DigitalKeyTab";
+import { DigitalKeyView } from "@/components/features/DigitalKeyView";
 
 function PropertyDetailInner({ id }: { id: string }) {
   const router = useRouter();
@@ -15,10 +15,10 @@ function PropertyDetailInner({ id }: { id: string }) {
   const [currentId, setCurrentId] = useState(id);
   const property = getPropertyById(currentId);
 
-  const validTabs: PropertyWorkspaceTab[] = ["overview", "digital-key", "trustlink", "messages"];
+  const validTabs: PropertyWorkspaceTab[] = ["overview", "digital-key", "trustlink"];
 
   const initialTab: PropertyWorkspaceTab = 
-    tabParam === "access" || tabParam === "trustlink"
+    tabParam === "access" || tabParam === "trustlink" || tabParam === "messages"
       ? "trustlink" 
       : tabParam && validTabs.includes(tabParam as PropertyWorkspaceTab) 
       ? (tabParam as PropertyWorkspaceTab) 
@@ -33,40 +33,8 @@ function PropertyDetailInner({ id }: { id: string }) {
   // Digital Key: incoming handover accepted state
   const [handoverAccepted, setHandoverAccepted] = useState(false);
 
-  // Messages state
-  const [newMessage, setNewMessage] = useState("");
-  const [chatMessages, setChatMessages] = useState([
-    {
-      id: "m-1",
-      sender: "Olivia Hart",
-      role: "Hart Homes · Builder",
-      avatar: "OH",
-      time: "Yesterday 2:14 PM",
-      text: `Hi Alex, your handover pack is compiled and ready for your review. It includes all statutory certificates, appliance manuals, and Form 16.`,
-      isUser: false,
-    },
-    {
-      id: "m-2",
-      sender: "Alex (You)",
-      role: "Property Owner",
-      avatar: "SM",
-      time: "Yesterday 4:30 PM",
-      text: "Thanks Olivia. Can you confirm if the wet-area waterproofing certificate is included?",
-      isUser: true,
-    },
-    {
-      id: "m-3",
-      sender: "Olivia Hart",
-      role: "Hart Homes · Builder",
-      avatar: "OH",
-      time: "Today 9:05 AM",
-      text: "Yes, Form 43 signed by HydroSeal QLD is included in your handover pack. Let me know once you've reviewed it!",
-      isUser: false,
-    },
-  ]);
-
   useEffect(() => {
-    if (tabParam === "access" || tabParam === "trustlink") {
+    if (tabParam === "access" || tabParam === "trustlink" || tabParam === "messages") {
       setActiveTab("trustlink");
     } else if (tabParam && validTabs.includes(tabParam as PropertyWorkspaceTab)) {
       setActiveTab(tabParam as PropertyWorkspaceTab);
@@ -82,24 +50,6 @@ function PropertyDetailInner({ id }: { id: string }) {
   const handleSwitchProperty = (propId: string) => {
     setCurrentId(propId);
     router.push(`/properties/${propId}${activeTab === "overview" ? "" : `?tab=${activeTab}`}`);
-  };
-
-  const handleSendMessage = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!newMessage.trim()) return;
-    setChatMessages([
-      ...chatMessages,
-      {
-        id: `m-${Date.now()}`,
-        sender: "Alex (You)",
-        role: "Property Owner",
-        avatar: "SM",
-        time: "Just now",
-        text: newMessage.trim(),
-        isUser: true,
-      },
-    ]);
-    setNewMessage("");
   };
 
   return (
@@ -349,9 +299,9 @@ function PropertyDetailInner({ id }: { id: string }) {
               TAB: DIGITAL KEY
           ══════════════════════════════════════════ */}
           {activeTab === "digital-key" && (
-            <DigitalKeyTab
+            <DigitalKeyView
               property={property}
-              onGoToMessages={() => handleTabChange("messages")}
+              onOpenTrustLink={() => handleTabChange("trustlink")}
             />
           )}
 
@@ -423,12 +373,12 @@ function PropertyDetailInner({ id }: { id: string }) {
                         >
                           View full connection →
                         </Link>
-                        <button
-                          onClick={() => handleTabChange("messages")}
-                          className="px-3 py-1.5 text-[#68788e] hover:text-[#102645] font-semibold text-[11px] transition-colors cursor-pointer"
+                        <Link
+                          href="/trustlinks/welcome?tab=conversation"
+                          className="px-3 py-1.5 text-[#68788e] hover:text-[#102645] font-semibold text-[11px] transition-colors flex items-center gap-1"
                         >
                           💬 Message
-                        </button>
+                        </Link>
                         <button
                           onClick={() => alert("Olivia Hart's access has been paused.")}
                           className="px-3 py-1.5 text-[#68788e] hover:text-[#102645] font-semibold text-[11px] transition-colors cursor-pointer"
@@ -485,6 +435,12 @@ function PropertyDetailInner({ id }: { id: string }) {
                         >
                           View full connection →
                         </Link>
+                        <Link
+                          href="/trustlinks/TL-88301-A?tab=conversation"
+                          className="px-3 py-1.5 text-[#68788e] hover:text-[#102645] font-semibold text-[11px] transition-colors flex items-center gap-1"
+                        >
+                          💬 Message
+                        </Link>
                         <button
                           onClick={() => alert("Lachlan Vance's access has been paused.")}
                           className="px-3 py-1.5 text-[#68788e] hover:text-[#102645] font-semibold text-[11px] transition-colors cursor-pointer"
@@ -508,108 +464,6 @@ function PropertyDetailInner({ id }: { id: string }) {
                 <span>
                   Your documents never leave your record. Professionals get a read-only scoped view of only what you approve, for only as long as you allow.
                 </span>
-              </div>
-            </div>
-          )}
-
-          {/* ══════════════════════════════════════════
-              TAB: MESSAGES
-          ══════════════════════════════════════════ */}
-          {activeTab === "messages" && (
-            <div className="space-y-6 max-w-[1040px] mx-auto pb-12">
-
-              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-                <div>
-                  <div className="text-[10.5px] font-bold uppercase tracking-[2px] text-[#24754c] mb-1">
-                    PROPERTY COMMUNICATIONS
-                  </div>
-                  <h1 className="text-3xl font-bold tracking-tight text-[#102645] mb-1.5">
-                    Messages
-                  </h1>
-                  <p className="text-[13px] text-[#68788e]">
-                    Chat directly with specialists who have access to your home.
-                  </p>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#10b981] animate-pulse" />
-                  <span className="text-xs text-[#68788e]">Olivia Hart is online</span>
-                </div>
-              </div>
-
-              <div className="bg-white border border-[#dfe6ef] rounded-2xl overflow-hidden flex flex-col h-[520px] shadow-sm">
-                {/* Chat Header */}
-                <div className="p-4 border-b border-[#dfe6ef] bg-[#f8fafc] flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-full bg-[#e6eaf3] text-[#425b7c] font-bold text-xs flex items-center justify-center border border-[#cbd5e1]">
-                      OH
-                    </div>
-                    <div>
-                      <h4 className="text-sm font-bold text-[#102645]">Olivia Hart</h4>
-                      <p className="text-[11px] text-[#68788e]">Hart Homes · Builder & handover contact</p>
-                    </div>
-                  </div>
-                  <button
-                    onClick={() => handleTabChange("trustlink")}
-                    className="text-xs text-[#071d3b] hover:underline font-bold cursor-pointer"
-                  >
-                    View TrustLink details →
-                  </button>
-                </div>
-
-                {/* Message History */}
-                <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 bg-[#fcfdfe]">
-                  {chatMessages.map((msg) => (
-                    <div
-                      key={msg.id}
-                      className={`flex gap-3 max-w-xl ${msg.isUser ? "ml-auto flex-row-reverse" : ""}`}
-                    >
-                      <div
-                        className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 ${
-                          msg.isUser
-                            ? "bg-[#071d3b] text-[#efbd66]"
-                            : "bg-[#e6eaf3] text-[#425b7c] border border-[#cbd5e1]"
-                        }`}
-                      >
-                        {msg.avatar}
-                      </div>
-                      <div>
-                        <div className={`flex items-center gap-2 mb-1 text-[11px] ${msg.isUser ? "justify-end" : ""}`}>
-                          <span className="font-semibold text-[#102645]">{msg.sender}</span>
-                          <span className="text-[#8a9bb0]">{msg.time}</span>
-                        </div>
-                        <div
-                          className={`p-3.5 rounded-2xl text-xs sm:text-[13px] leading-relaxed ${
-                            msg.isUser
-                              ? "bg-[#071d3b] text-white shadow-2xs"
-                              : "bg-[#f1f5f9] text-[#102645] border border-[#e2e8f0]"
-                          }`}
-                        >
-                          {msg.text}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Message Input */}
-                <form
-                  onSubmit={handleSendMessage}
-                  className="p-3 border-t border-[#dfe6ef] bg-[#f8fafc] flex items-center gap-2"
-                >
-                  <input
-                    type="text"
-                    value={newMessage}
-                    onChange={(e) => setNewMessage(e.target.value)}
-                    placeholder="Message Olivia Hart..."
-                    className="flex-1 bg-white border border-[#cbd5e1] rounded-xl px-4 py-2.5 text-xs text-[#102645] placeholder-[#94a3b8] focus:outline-none focus:border-[#071d3b]"
-                  />
-                  <button
-                    type="submit"
-                    className="px-4 py-2.5 bg-[#071d3b] hover:bg-[#15345d] text-white font-bold text-xs rounded-xl transition-colors cursor-pointer flex-shrink-0 shadow-2xs"
-                  >
-                    Send
-                  </button>
-                </form>
               </div>
             </div>
           )}
