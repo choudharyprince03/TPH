@@ -16,7 +16,7 @@ function PropertyDetailInner({ id }: { id: string }) {
   const property = getPropertyById(currentId);
 
   const [activeTab, setActiveTab] = useState<PropertyWorkspaceTab>(
-    tabParam && ["overview", "digital-key", "trustlink", "properties"].includes(tabParam)
+    tabParam && ["overview", "digital-key", "trustlink", "properties", "messages"].includes(tabParam)
       ? tabParam
       : "overview"
   );
@@ -25,9 +25,41 @@ function PropertyDetailInner({ id }: { id: string }) {
   const [roleMenuOpen, setRoleMenuOpen] = useState(false);
   const [selectedRole, setSelectedRole] = useState("Owner · Living here");
 
+  // Communication message composer for this property
+  const [newMessage, setNewMessage] = useState("");
+  const [chatMessages, setChatMessages] = useState([
+    {
+      id: "m-1",
+      sender: "David Miller",
+      role: "Miller's Building & Pest Inspections",
+      avatar: "DM",
+      time: "Yesterday at 2:14 PM",
+      text: `Hello Alex, I've reviewed the Form 16 engineering & foundation files scoped via TrustLink for ${property.street}. The slab elevation and termite protection meet standard criteria.`,
+      isUser: false,
+    },
+    {
+      id: "m-2",
+      sender: "Alex (You)",
+      role: "Property Owner",
+      avatar: "SM",
+      time: "Yesterday at 4:30 PM",
+      text: "Thanks David. Can you confirm if the wet-area waterproofing certificate is also verified in your report?",
+      isUser: true,
+    },
+    {
+      id: "m-3",
+      sender: "David Miller",
+      role: "Miller's Building & Pest Inspections",
+      avatar: "DM",
+      time: "Today at 9:05 AM",
+      text: "Yes, Form 43 signed by HydroSeal QLD is verified. Full compliance report ready in TrustLink.",
+      isUser: false,
+    },
+  ]);
+
   // Sync tab with URL
   useEffect(() => {
-    if (tabParam && ["overview", "digital-key", "trustlink", "properties"].includes(tabParam)) {
+    if (tabParam && ["overview", "digital-key", "trustlink", "properties", "messages"].includes(tabParam)) {
       setActiveTab(tabParam);
     }
   }, [tabParam]);
@@ -41,6 +73,25 @@ function PropertyDetailInner({ id }: { id: string }) {
   const handleSwitchProperty = (propId: string) => {
     setCurrentId(propId);
     router.push(`/properties/${propId}${activeTab === "overview" ? "" : `?tab=${activeTab}`}`);
+  };
+
+  const handleSendMessage = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newMessage.trim()) return;
+
+    setChatMessages([
+      ...chatMessages,
+      {
+        id: `m-${Date.now()}`,
+        sender: "Alex (You)",
+        role: "Property Owner",
+        avatar: "SM",
+        time: "Just now",
+        text: newMessage.trim(),
+        isUser: true,
+      },
+    ]);
+    setNewMessage("");
   };
 
   const trustlinkUrl = property.trustlinkHref || `/trustlinks/${property.trustlinkId || "TL-99214-B"}`;
@@ -571,6 +622,118 @@ function PropertyDetailInner({ id }: { id: string }) {
                     </div>
                   );
                 })}
+              </div>
+            </div>
+          )}
+
+          {/* ═════════════════════════════════════════════════════════════ */}
+          {/* TAB 5: MESSAGES (Light Theme)                                */}
+          {/* ═════════════════════════════════════════════════════════════ */}
+          {activeTab === "messages" && (
+            <div className="space-y-6 max-w-[1040px] mx-auto pb-12">
+              
+              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+                <div>
+                  <div className="text-[10.5px] font-bold uppercase tracking-[2px] text-[#24754c] mb-1">
+                    PROPERTY COMMUNICATIONS
+                  </div>
+                  <h1 className="text-3xl font-bold tracking-tight text-[#102645] mb-1.5">
+                    Messages · {property.street}
+                  </h1>
+                  <p className="text-[13px] text-[#68788e]">
+                    Direct messaging with verified specialists connected via TrustLink.
+                  </p>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#10b981] animate-pulse" />
+                  <span className="text-xs text-[#68788e]">David Miller is online</span>
+                </div>
+              </div>
+
+              {/* Chat Thread Container */}
+              <div className="bg-white border border-[#dfe6ef] rounded-2xl overflow-hidden flex flex-col h-[520px] shadow-sm">
+                
+                {/* Chat Header */}
+                <div className="p-4 border-b border-[#dfe6ef] bg-[#f8fafc] flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-full bg-[#eef4ff] text-[#071d3b] font-bold text-xs flex items-center justify-center border border-[#cbd5e1]">
+                      DM
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-bold text-[#102645]">David Miller</h4>
+                      <p className="text-[11px] text-[#68788e]">
+                        Miller's Building & Pest Inspections · TrustLink {property.trustlinkId}
+                      </p>
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={() => handleTabChange("trustlink")}
+                    className="text-xs text-[#071d3b] hover:underline font-bold cursor-pointer"
+                  >
+                    View Scoped TrustLink →
+                  </button>
+                </div>
+
+                {/* Message History */}
+                <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 bg-[#fcfdfe]">
+                  {chatMessages.map((msg) => (
+                    <div
+                      key={msg.id}
+                      className={`flex gap-3 max-w-xl ${msg.isUser ? "ml-auto flex-row-reverse" : ""}`}
+                    >
+                      <div
+                        className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 ${
+                          msg.isUser
+                            ? "bg-[#071d3b] text-[#efbd66]"
+                            : "bg-[#eef4ff] text-[#071d3b] border border-[#cbd5e1]"
+                        }`}
+                      >
+                        {msg.avatar}
+                      </div>
+                      <div>
+                        <div
+                          className={`flex items-center gap-2 mb-1 text-[11px] ${
+                            msg.isUser ? "justify-end" : ""
+                          }`}
+                        >
+                          <span className="font-semibold text-[#102645]">{msg.sender}</span>
+                          <span className="text-[#8a9bb0]">{msg.time}</span>
+                        </div>
+                        <div
+                          className={`p-3.5 rounded-2xl text-xs sm:text-[13px] leading-relaxed ${
+                            msg.isUser
+                              ? "bg-[#071d3b] text-white shadow-2xs"
+                              : "bg-[#f1f5f9] text-[#102645] border border-[#e2e8f0]"
+                          }`}
+                        >
+                          {msg.text}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Message Input Box */}
+                <form
+                  onSubmit={handleSendMessage}
+                  className="p-3 border-t border-[#dfe6ef] bg-[#f8fafc] flex items-center gap-2"
+                >
+                  <input
+                    type="text"
+                    value={newMessage}
+                    onChange={(e) => setNewMessage(e.target.value)}
+                    placeholder={`Reply regarding ${property.street}...`}
+                    className="flex-1 bg-white border border-[#cbd5e1] rounded-xl px-4 py-2.5 text-xs text-[#102645] placeholder-[#94a3b8] focus:outline-none focus:border-[#071d3b]"
+                  />
+                  <button
+                    type="submit"
+                    className="px-4 py-2.5 bg-[#071d3b] hover:bg-[#15345d] text-white font-bold text-xs rounded-xl transition-colors cursor-pointer flex-shrink-0 shadow-2xs"
+                  >
+                    Send
+                  </button>
+                </form>
               </div>
             </div>
           )}

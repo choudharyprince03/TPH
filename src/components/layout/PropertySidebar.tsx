@@ -7,7 +7,8 @@ export type PropertyWorkspaceTab =
   | "overview"
   | "digital-key"
   | "trustlink"
-  | "properties";
+  | "properties"
+  | "messages";
 
 interface PropertySidebarProps {
   property: PropertyData;
@@ -49,6 +50,42 @@ export function PropertySidebar({
       ),
     },
     {
+      id: "digital-key",
+      label: "Digital Key",
+      icon: (
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"
+          />
+        </svg>
+      ),
+      badge: (
+        <span className="w-2.5 h-2.5 rounded-full bg-[#10b981] shadow-[0_0_8px_rgba(16,185,129,0.5)] flex-shrink-0" />
+      ),
+    },
+    {
+      id: "trustlink",
+      label: "Trust Link",
+      icon: (
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+          />
+        </svg>
+      ),
+      badge: (
+        <span className="text-[9.5px] font-bold px-1.5 py-0.5 rounded bg-[#eaf5ef] text-[#24754c] border border-[#d2e6d9]">
+          Active
+        </span>
+      ),
+    },
+    {
       id: "properties",
       label: "Properties",
       icon: (
@@ -68,21 +105,21 @@ export function PropertySidebar({
       ),
     },
     {
-      id: "trustlink",
-      label: "TrustLinks",
+      id: "messages",
+      label: "Messages",
       icon: (
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth="2"
-            d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
           />
         </svg>
       ),
       badge: (
-        <span className="text-[9.5px] font-bold px-1.5 py-0.5 rounded bg-[#eaf5ef] text-[#24754c] border border-[#d2e6d9]">
-          Active
+        <span className="text-[9.5px] font-bold px-1.5 py-0.5 rounded bg-[#fff4df] text-[#8b641c] border border-[#ffe0a3]">
+          1 New
         </span>
       ),
     },
