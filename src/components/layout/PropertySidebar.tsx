@@ -5,9 +5,8 @@ import { PropertyData, PROPERTIES_LIST } from "@/lib/properties";
 
 export type PropertyWorkspaceTab =
   | "overview"
-  | "digital-key"
-  | "trustlink"
-  | "properties"
+  | "home-record"
+  | "access"
   | "messages";
 
 interface PropertySidebarProps {
@@ -32,12 +31,14 @@ export function PropertySidebar({
   const NAV_ITEMS: {
     id: PropertyWorkspaceTab;
     label: string;
+    sublabel: string;
     icon: React.ReactNode;
     badge?: React.ReactNode;
   }[] = [
     {
       id: "overview",
       label: "Overview",
+      sublabel: "Property summary",
       icon: (
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
@@ -50,63 +51,49 @@ export function PropertySidebar({
       ),
     },
     {
-      id: "digital-key",
-      label: "Digital Key",
+      id: "home-record",
+      label: "Home Record",
+      sublabel: "Documents & handovers",
       icon: (
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth="2"
-            d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"
+            d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
           />
         </svg>
       ),
       badge: (
-        <span className="w-2.5 h-2.5 rounded-full bg-[#10b981] shadow-[0_0_8px_rgba(16,185,129,0.5)] flex-shrink-0" />
-      ),
-    },
-    {
-      id: "trustlink",
-      label: "Trust Link",
-      icon: (
-        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
-          />
-        </svg>
-      ),
-      badge: (
-        <span className="text-[9.5px] font-bold px-1.5 py-0.5 rounded bg-[#eaf5ef] text-[#24754c] border border-[#d2e6d9]">
-          Active
+        <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-[#fef3c7] text-[#92400e] border border-[#fcd34d]">
+          1 incoming
         </span>
       ),
     },
     {
-      id: "properties",
-      label: "Properties",
+      id: "access",
+      label: "Access",
+      sublabel: "Who can view your home",
       icon: (
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth="2"
-            d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"
           />
         </svg>
       ),
       badge: (
-        <span className="text-[10px] font-bold px-1.5 py-0.2 rounded-full bg-[#f1f5f9] text-[#102645] border border-[#cbd5e1]">
-          {PROPERTIES_LIST.length}
+        <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-[#dcfce7] text-[#166534] border border-[#86efac]">
+          2 active
         </span>
       ),
     },
     {
       id: "messages",
       label: "Messages",
+      sublabel: "Chat with specialists",
       icon: (
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
@@ -118,9 +105,7 @@ export function PropertySidebar({
         </svg>
       ),
       badge: (
-        <span className="text-[9.5px] font-bold px-1.5 py-0.5 rounded bg-[#fff4df] text-[#8b641c] border border-[#ffe0a3]">
-          1 New
-        </span>
+        <span className="w-2 h-2 rounded-full bg-[#10b981] shadow-[0_0_6px_rgba(16,185,129,0.6)] flex-shrink-0" />
       ),
     },
   ];
@@ -173,10 +158,10 @@ export function PropertySidebar({
           </button>
         </div>
 
-        {/* Section Header: THIS HOME */}
+        {/* This Home Header + Property Switcher */}
         <div className="px-4 pt-4 pb-2">
-          <div className="flex items-center justify-between">
-            <span className="text-[9.5px] font-bold uppercase tracking-[1.8px] text-[#68788e]">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-[9px] font-bold uppercase tracking-[1.8px] text-[#68788e]">
               THIS HOME
             </span>
             <span className="text-[9px] font-mono font-bold text-[#8b641c] bg-[#fff4df] px-1.5 py-0.5 rounded border border-[#ffe0a3]">
@@ -184,8 +169,8 @@ export function PropertySidebar({
             </span>
           </div>
 
-          {/* Current Property Mini Dropdown */}
-          <div className="relative mt-2">
+          {/* Property Switcher Dropdown */}
+          <div className="relative">
             <button
               onClick={() => setSwitcherOpen(!switcherOpen)}
               className="w-full flex items-center justify-between p-2 rounded-lg bg-[#f8fafc] border border-[#dfe6ef] hover:border-[#cbd5e1] hover:bg-[#f1f5f9] transition-colors text-left group"
@@ -208,7 +193,6 @@ export function PropertySidebar({
               </svg>
             </button>
 
-            {/* Property Switcher Menu */}
             {switcherOpen && (
               <div className="absolute top-full left-0 right-0 mt-1.5 bg-white border border-[#dfe6ef] rounded-xl shadow-lg p-1.5 z-30 space-y-1">
                 <div className="text-[9px] uppercase font-bold text-[#68788e] px-2 py-1">
@@ -238,7 +222,7 @@ export function PropertySidebar({
                     href="/properties"
                     className="block text-[10px] text-[#071d3b] hover:underline px-2 py-1 font-bold"
                   >
-                    Manage all properties →
+                    All properties →
                   </Link>
                 </div>
               </div>
@@ -246,8 +230,8 @@ export function PropertySidebar({
           </div>
         </div>
 
-        {/* 5 Specific Nav Items */}
-        <nav className="flex-1 px-3 py-3 space-y-1 overflow-y-auto" aria-label="Home Navigation">
+        {/* Nav Items — 4 clean tabs */}
+        <nav className="flex-1 px-3 py-3 space-y-0.5 overflow-y-auto" aria-label="Home Navigation">
           {NAV_ITEMS.map((item) => {
             const isActive = activeTab === item.id;
             return (
@@ -257,21 +241,28 @@ export function PropertySidebar({
                   onTabChange(item.id);
                   setMobileOpen(false);
                 }}
-                className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-[13px] font-medium transition-all group ${
+                className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-left transition-all group ${
                   isActive
-                    ? "bg-[#071d3b] text-white font-semibold shadow-xs"
-                    : "text-[#5b6e84] hover:bg-[#f3f6fb] hover:text-[#102645] border border-transparent"
+                    ? "bg-[#071d3b] text-white shadow-xs"
+                    : "text-[#5b6e84] hover:bg-[#f3f6fb] hover:text-[#102645]"
                 }`}
               >
                 <div className="flex items-center gap-3 min-w-0">
                   <span
-                    className={`transition-colors ${
+                    className={`transition-colors flex-shrink-0 ${
                       isActive ? "text-[#efbd66]" : "text-[#68788e] group-hover:text-[#102645]"
                     }`}
                   >
                     {item.icon}
                   </span>
-                  <span className="truncate">{item.label}</span>
+                  <div className="min-w-0">
+                    <div className={`text-[13px] font-semibold truncate ${isActive ? "text-white" : ""}`}>
+                      {item.label}
+                    </div>
+                    <div className={`text-[10px] truncate ${isActive ? "text-white/60" : "text-[#94a3b8]"}`}>
+                      {item.sublabel}
+                    </div>
+                  </div>
                 </div>
                 {item.badge && <div className="ml-2 flex-shrink-0">{item.badge}</div>}
               </button>
@@ -279,7 +270,7 @@ export function PropertySidebar({
           })}
         </nav>
 
-        {/* Quick Links & Footer */}
+        {/* Footer */}
         <div className="p-3 border-t border-[#dfe6ef] space-y-1 text-[11px]">
           <Link
             href="/explore"
@@ -295,7 +286,7 @@ export function PropertySidebar({
             <span>I'm a Pro</span>
             <span className="text-[10px]">↗</span>
           </Link>
-          
+
           <div className="pt-2 border-t border-[#dfe6ef] flex items-center justify-between px-3 py-1 text-[#68788e] text-[10px]">
             <span>Verified Owner</span>
             <span className="font-semibold text-[#24754c]">Active</span>

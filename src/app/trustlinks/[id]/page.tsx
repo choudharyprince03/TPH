@@ -252,7 +252,7 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
               </div>
               <div>
                 <div className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c] mb-0.5">
-                  Trust Link
+                  Connected Professional
                 </div>
                 <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#102645]">
                   {data.proName}
@@ -278,11 +278,11 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
             <span className="font-semibold text-[#102645]">{data.purpose}</span>
             <span>·</span>
             <Link
-              href="/properties/TPH-KEN-018"
+              href={`/properties/${data.propId}?tab=home-record`}
               className="hover:underline flex items-center gap-1 font-semibold text-[#071d3b]"
             >
               <span>🏠</span>
-              <span>{data.property} · Open Prop ID</span>
+              <span>{data.property} · Back to my home</span>
             </Link>
             <span>·</span>
             <span>Ends {data.expiry}</span>
@@ -309,31 +309,31 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
               <div>
                 <div className="flex items-center gap-2 mb-1 flex-wrap">
                   <span className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c]">
-                    DIGITAL KEY CONNECTED
+                    HOME RECORD CONNECTED
                   </span>
                   <span className="font-mono text-[10px] font-bold px-2 py-0.5 rounded bg-[#f1f5f9] text-[#102645] border border-[#cbd5e1]">
-                    DK-{data.propNum || "018"}
+                    {data.propId}
                   </span>
                   <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-[#eaf5ef] text-[#24754c] flex items-center gap-1">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#10b981] animate-pulse" />
-                    <span>Scoped Active</span>
+                    <span>Active</span>
                   </span>
                 </div>
                 <h3 className="text-base font-bold text-[#102645]">
-                  Property Records Governed by Digital Key
+                  Documents from your Home Record
                 </h3>
                 <p className="text-xs text-[#68788e] mt-0.5">
-                  14 verified statutory files for {data.property} are packaged and shared via your sovereign Digital Key. Professional access is strictly scoped.
+                  {data.property} — you control exactly which documents {data.proName} can see. You can remove access at any time.
                 </p>
               </div>
             </div>
 
             <div className="flex items-center gap-2 self-start sm:self-auto flex-wrap sm:flex-nowrap">
               <Link
-                href={`/properties/${data.propId}?tab=digital-key`}
+                href={`/properties/${data.propId}?tab=home-record`}
                 className="px-4 py-2 bg-[#071d3b] hover:bg-[#15345d] text-white rounded-xl text-xs font-bold transition-colors shadow-2xs whitespace-nowrap flex items-center gap-1.5"
               >
-                <span>🔑 Open Digital Key</span>
+                <span>📦 Open Home Record</span>
                 <span>→</span>
               </Link>
             </div>
@@ -365,12 +365,11 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
         {/* ── Sub-Navigation Tabs ─────────────────────────────────────── */}
         <nav className="flex items-center gap-4 sm:gap-7 border-b border-[#dfe6ef] mb-8 overflow-x-auto text-[13px] font-medium">
           {[
-            { id: "overview", label: "Overview", icon: "🛡️" },
+            { id: "overview", label: "Overview", icon: "🤝" },
             { id: "conversation", label: "Conversation", icon: "💬", count: `${messages.length}` },
             { id: "documents", label: "Shared items", icon: "📄", count: `${docs.filter((d) => d.shared).length}` },
             { id: "permissions", label: "Permissions", icon: "⚙️" },
             { id: "activity", label: "Activity", icon: "🕒" },
-            { id: "handover", label: "Digital Handover", icon: "🎁" },
           ].map((tab) => (
             <button
               key={tab.id}

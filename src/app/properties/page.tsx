@@ -485,22 +485,16 @@ function MyPropertyWorldContent() {
                       <div className="flex items-center justify-between pt-1 text-[11px] gap-2 flex-wrap">
                         <Link
                           href={`/properties/${property.id}`}
-                          className="text-[#68788e] hover:text-[#071d3b] font-semibold text-[11px]"
+                          className="px-3 py-1.5 bg-[#071d3b] hover:bg-[#15345d] text-white font-bold rounded-lg text-[10px] transition-colors shadow-2xs"
                         >
-                          Prop ID →
+                          Open my home →
                         </Link>
                         <div className="flex items-center gap-1.5">
                           <Link
-                            href={`/properties/${property.id}?tab=digital-key`}
-                            className="px-2 py-1 bg-[#eaf5ef] hover:bg-[#d5ebd9] text-[#24754c] font-bold rounded-lg text-[10px] transition-colors flex items-center gap-1 border border-[#c3dfcc]"
+                            href={`/properties/${property.id}?tab=home-record`}
+                            className="px-2 py-1 bg-[#f3f6fb] hover:bg-[#e4ebf5] text-[#071d3b] font-bold rounded-lg text-[10px] transition-colors flex items-center gap-1 border border-[#dfe6ef]"
                           >
-                            <span>🔑 Digital Key</span>
-                          </Link>
-                          <Link
-                            href={`/properties/${property.id}?tab=trustlink`}
-                            className="px-2.5 py-1 bg-[#071d3b] hover:bg-[#15345d] text-white font-bold rounded-lg text-[10px] transition-colors flex items-center gap-1 shadow-2xs"
-                          >
-                            <span>🛡️ TrustLink</span>
+                            <span>📦 Home Record</span>
                           </Link>
                         </div>
                       </div>
