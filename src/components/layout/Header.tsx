@@ -27,8 +27,12 @@ export function Header() {
   // ── Early return AFTER all hooks ──
   const isAuth = pathname.startsWith("/login") || pathname.startsWith("/signup");
   const isPro = pathname.startsWith("/pro");
+  const isPropertyWorkspace =
+    pathname.startsWith("/properties/") &&
+    pathname !== "/properties" &&
+    pathname !== "/properties/new";
 
-  if (isAuth || isPro) return null;
+  if (isAuth || isPro || isPropertyWorkspace) return null;
 
   const isWorld =
     pathname.startsWith("/properties") ||

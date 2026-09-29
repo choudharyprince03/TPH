@@ -491,20 +491,27 @@ function MyPropertyWorldContent() {
                         </div>
                       </div>
 
-                      <div className="flex items-center justify-between pt-1 text-[11px] gap-2">
+                      <div className="flex items-center justify-between pt-1 text-[11px] gap-2 flex-wrap">
                         <Link
                           href={`/properties/${property.id}`}
                           className="text-[#68788e] hover:text-[#071d3b] font-semibold text-[11px]"
                         >
                           Prop ID →
                         </Link>
-                        <Link
-                          href={property.trustlinkHref || `/trustlinks/${property.trustlinkId || "TL-99214-B"}`}
-                          className="px-2.5 py-1 bg-[#071d3b] hover:bg-[#15345d] text-white font-bold rounded-lg text-[10px] transition-colors flex items-center gap-1 shadow-2xs"
-                        >
-                          <span>🛡️ Open TrustLink</span>
-                          <span>→</span>
-                        </Link>
+                        <div className="flex items-center gap-1.5">
+                          <Link
+                            href={`/properties/${property.id}?tab=digital-key`}
+                            className="px-2 py-1 bg-[#eaf5ef] hover:bg-[#d5ebd9] text-[#24754c] font-bold rounded-lg text-[10px] transition-colors flex items-center gap-1 border border-[#c3dfcc]"
+                          >
+                            <span>🔑 Digital Key</span>
+                          </Link>
+                          <Link
+                            href={property.trustlinkHref || `/trustlinks/${property.trustlinkId || "TL-99214-B"}`}
+                            className="px-2.5 py-1 bg-[#071d3b] hover:bg-[#15345d] text-white font-bold rounded-lg text-[10px] transition-colors flex items-center gap-1 shadow-2xs"
+                          >
+                            <span>🛡️ TrustLink</span>
+                          </Link>
+                        </div>
                       </div>
                     </div>
                   </article>
@@ -730,20 +737,28 @@ function MyPropertyWorldContent() {
                         </div>
                       </div>
 
-                      <div className="pt-3 border-t border-[#dfe6ef] flex items-center justify-between gap-2 text-[12px]">
+                      <div className="pt-3 border-t border-[#dfe6ef] flex items-center justify-between gap-2 text-[12px] flex-wrap">
                         <Link
                           href={`/properties/${property.id}`}
                           className="text-[#68788e] hover:text-[#071d3b] text-[11px] font-semibold"
                         >
                           View Prop ID →
                         </Link>
-                        <Link
-                          href={property.trustlinkHref || `/trustlinks/${property.trustlinkId || "TL-99214-B"}`}
-                          className="px-3 py-1.5 bg-[#071d3b] hover:bg-[#15345d] text-white font-bold rounded-lg text-[11px] transition-colors flex items-center gap-1 shadow-2xs"
-                        >
-                          <span>🛡️ Open TrustLink</span>
-                          <span>→</span>
-                        </Link>
+                        <div className="flex items-center gap-1.5">
+                          <Link
+                            href={`/properties/${property.id}?tab=digital-key`}
+                            className="px-2.5 py-1 bg-[#eaf5ef] hover:bg-[#d5ebd9] text-[#24754c] font-bold rounded-lg text-[10px] transition-colors flex items-center gap-1 border border-[#c3dfcc]"
+                          >
+                            <span>🔑 Digital Key</span>
+                          </Link>
+                          <Link
+                            href={property.trustlinkHref || `/trustlinks/${property.trustlinkId || "TL-99214-B"}`}
+                            className="px-3 py-1.5 bg-[#071d3b] hover:bg-[#15345d] text-white font-bold rounded-lg text-[11px] transition-colors flex items-center gap-1 shadow-2xs"
+                          >
+                            <span>🛡️ Open TrustLink</span>
+                            <span>→</span>
+                          </Link>
+                        </div>
                       </div>
                     </div>
                   </article>
