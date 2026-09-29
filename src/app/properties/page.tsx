@@ -108,109 +108,8 @@ function MyPropertyWorldContent() {
         }
       />
 
-      {/* Shell with Left Navigation Rail + Workspace Content */}
-      <div className="max-w-[1512px] mx-auto w-full grid grid-cols-1 lg:grid-cols-[230px_minmax(0,1fr)] min-h-[calc(100vh-140px)]">
-
-        {/* ── LEFT RAIL ─────────────────────────────────────────────── */}
-        <aside className="bg-white border-r border-[#dfe6ef] p-6 lg:p-7 flex flex-col gap-6 sticky top-[54px] h-[calc(100vh-54px)] overflow-y-auto">
-          
-          <div className="px-1">
-            <div className="text-[9px] font-bold uppercase tracking-[1.3px] text-[#24754c]">
-              Your personal space
-            </div>
-            <h2 className="text-xl font-bold tracking-tight text-[#102645] mt-1 leading-snug">
-              My Property<br />World
-            </h2>
-          </div>
-
-          {/* Rail Navigation Links */}
-          <nav className="grid gap-1.5 text-[12px] font-medium" aria-label="My Property World">
-            <button
-              onClick={() => handleTabChange("overview")}
-              className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-left transition-all ${
-                activeRailTab === "overview"
-                  ? "bg-[#071d3b] text-white font-semibold shadow-sm"
-                  : "text-[#5b6e84] hover:bg-[#f3f6f9]"
-              }`}
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-              </svg>
-              <span>Overview</span>
-            </button>
-
-            <button
-              onClick={() => handleTabChange("properties")}
-              className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-lg text-left transition-all ${
-                activeRailTab === "properties"
-                  ? "bg-[#071d3b] text-white font-semibold shadow-sm"
-                  : "text-[#5b6e84] hover:bg-[#f3f6f9]"
-              }`}
-            >
-              <div className="flex items-center gap-3">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
-                </svg>
-                <span>Properties</span>
-              </div>
-              <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${
-                activeRailTab === "properties" ? "bg-white/20 text-white" : "bg-[#edf2f7] text-[#071d3b]"
-              }`}>
-                {PROPERTIES_LIST.length}
-              </span>
-            </button>
-          </nav>
-
-          {/* Current Property Context */}
-          <div className="px-1 pt-4 border-t border-[#dfe6ef]">
-            <span className="block text-[9px] font-bold uppercase tracking-[1px] text-[#8a97a7] mb-2.5">
-              In this property
-            </span>
-            <Link
-              href="/properties/TPH-KEN-018"
-              className="flex items-center gap-2.5 p-2 rounded-lg bg-[#f3f6fb] hover:bg-[#e8f0f8] transition-colors border border-[#dfe6ef]"
-            >
-              <div className="w-8 h-8 rounded bg-[#071d3b] text-[#efbd66] flex items-center justify-center font-bold text-xs flex-shrink-0">
-                <svg className="w-4 h-4 text-[#efbd66]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                </svg>
-              </div>
-              <div className="min-w-0 flex-1">
-                <div className="text-[11px] font-bold text-[#102645] truncate leading-tight">
-                  18 Banksia Crescent
-                </div>
-                <small className="text-[9px] text-[#68788e] block leading-tight mt-0.5">
-                  Kenmore · Prop ID
-                </small>
-              </div>
-            </Link>
-          </div>
-
-          {/* Rail Bottom Footer */}
-          <div className="mt-auto pt-4 border-t border-[#dfe6ef] text-[10px] text-[#68788e] space-y-2">
-            <Link href="/about" className="flex items-center gap-2 text-[#102645] font-semibold hover:underline">
-              <svg className="w-3.5 h-3.5 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-              </svg>
-              <span>About Us</span>
-            </Link>
-            <div className="pt-2">
-              <strong className="block text-[#102645] font-semibold text-[11px] flex items-center gap-1.5">
-                <svg className="w-3.5 h-3.5 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                </svg>
-                <span>Private by default</span>
-              </strong>
-              <p className="mt-1 leading-relaxed text-[#68788e]">
-                You choose what to share, with whom, and for how long.
-              </p>
-            </div>
-          </div>
-
-        </aside>
-
-        {/* ── RIGHT WORKSPACE CONTENT ─────────────────────────────────── */}
-        <main className="p-6 sm:p-9 lg:p-11 max-w-[1240px] w-full">
+      {/* Workspace Content */}
+      <main className="max-w-[1240px] mx-auto w-full p-6 sm:p-9 lg:p-11">
 
           {/* ═══════════════════════════════════════════════════════════════
               VIEW 1: OVERVIEW DASHBOARD (Active when activeRailTab === "overview")
@@ -717,10 +616,23 @@ function MyPropertyWorldContent() {
             </div>
           )}
 
+          {/* Subtle Page Footer */}
+          <footer className="mt-16 pt-8 border-t border-[#dfe6ef] flex flex-col sm:flex-row items-center justify-between gap-4 text-[12px] text-[#68788e]">
+            <div className="flex items-center gap-4">
+              <Link href="/about" className="hover:text-[#102645] transition-colors">
+                About Us
+              </Link>
+              <span>·</span>
+              <span className="text-[#68788e]">The Property Helpline</span>
+            </div>
+            <div className="flex items-center gap-1.5 text-[11px] text-[#24754c] font-medium">
+              <span>🔒</span>
+              <span>Private by default · You choose what to share, with whom, and for how long.</span>
+            </div>
+          </footer>
+
         </main>
       </div>
-
-    </div>
   );
 }
 
