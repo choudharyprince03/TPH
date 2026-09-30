@@ -16,6 +16,16 @@ function MyPropertyWorldContent() {
   );
   const [propertyFilter, setPropertyFilter] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
+  const [userName, setUserName] = useState("Alex");
+
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem("tph_user_name");
+      if (stored) setUserName(stored);
+    } catch {
+      // ignore
+    }
+  }, []);
 
   useEffect(() => {
     if (tabParam === "properties") {
@@ -123,7 +133,7 @@ function MyPropertyWorldContent() {
                     My Property World
                   </div>
                   <h1 className="text-3xl sm:text-4xl font-semibold tracking-[-1px] text-[#102645]">
-                    Good to see you, Alex.
+                    Welcome to your Property world {userName}
                   </h1>
                   <p className="text-[13px] text-[#68788e] mt-1">
                     Your next step is here. Everything stays with the right property.
