@@ -29,7 +29,7 @@ const CLIENT_KEYS: ClientKey[] = [
     trustlinkId: "TL-99214-B",
     trustlinkHref: "/pro/trustlinks/TL-99214-B",
     status: "Ready to Claim",
-    statusColor: "bg-[#fff4df] text-[#8b641c]",
+    statusColor: "bg-[#eef4ff] text-[#0284c7]",
     docCount: 14,
     highlightDocs: [
       "QBCC Form 16 Structural Engineering Final",
@@ -192,7 +192,7 @@ export default function ProDigitalKeyPage() {
             <div className="w-24 bg-[#f0f4f8] rounded-full h-3 border border-[#dfe6ef] overflow-hidden p-0.5">
               <div
                 className={`h-full rounded-full transition-all duration-500 ${
-                  sparkyCertVerified ? "w-full bg-[#24754c]" : "w-[92%] bg-[#efbd66]"
+                  sparkyCertVerified ? "w-full bg-[#24754c]" : "w-[92%] bg-[#38bdf8]"
                 }`}
               />
             </div>
@@ -232,16 +232,16 @@ export default function ProDigitalKeyPage() {
             className={`p-3 rounded-xl border text-xs space-y-1 transition-all ${
               sparkyCertVerified
                 ? "bg-[#f4fbf7] border-[#c7e3d1]"
-                : "bg-[#fffaf0] border-[#fce3b8]"
+                : "bg-[#eef4ff] border-[#bae6fd]"
             }`}
           >
             <div className="flex items-center justify-between">
-              <span className={`font-bold ${sparkyCertVerified ? "text-[#24754c]" : "text-[#8b641c]"}`}>
+              <span className={`font-bold ${sparkyCertVerified ? "text-[#24754c]" : "text-[#0369a1]"}`}>
                 {sparkyCertVerified ? "✓ Electrical Safety" : "⏳ Electrical Safety"}
               </span>
               <span
                 className={`text-[9.5px] px-1.5 py-0.2 rounded font-bold ${
-                  sparkyCertVerified ? "bg-[#24754c] text-white" : "bg-[#efbd66] text-[#071d3b]"
+                  sparkyCertVerified ? "bg-[#24754c] text-white" : "bg-[#e0f2fe] text-[#0369a1]"
                 }`}
               >
                 Form 16
@@ -291,7 +291,7 @@ export default function ProDigitalKeyPage() {
                 isDigitalKeySealed
                   ? "bg-[#24754c] text-white cursor-default"
                   : sparkyCertVerified
-                  ? "bg-[#071d3b] hover:bg-[#15345d] text-white ring-2 ring-[#efbd66]"
+                  ? "bg-[#071d3b] hover:bg-[#15345d] text-white ring-2 ring-[#38bdf8]"
                   : "bg-[#071d3b] hover:bg-[#15345d] text-white"
               }`}
             >
