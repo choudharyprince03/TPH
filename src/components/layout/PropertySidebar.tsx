@@ -68,7 +68,7 @@ export function PropertySidebar({
     {
       id: "digital-key",
       label: "Digital Key",
-      sublabel: "Deals & handovers",
+      sublabel: "Documents & handovers",
       icon: (
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
