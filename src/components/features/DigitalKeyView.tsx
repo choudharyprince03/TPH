@@ -1,6 +1,8 @@
 "use client";
+
 import React, { useState } from "react";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 import { PropertyData } from "@/lib/properties";
 
 interface DigitalKeyViewProps {
@@ -8,395 +10,875 @@ interface DigitalKeyViewProps {
   onOpenTrustLink?: () => void;
 }
 
-interface RecordPack {
+type PackFamily = "all" | "build" | "handover" | "seller" | "lease" | "finance";
+
+interface DealPack {
   id: string;
-  name: string;
-  recipient: string;
-  docCount: number;
-  createdAt: string;
-  status: "Active" | "Pending" | "Archived";
-  expiry: string;
+  family: "build" | "handover" | "seller" | "lease" | "finance";
+  familyLabel: string;
+  familyIcon: string;
+  title: string;
+  counterparty: string;
+  counterpartyRole: string;
+  trustlinkId: string;
+  trustlinkHref: string;
+  status: "Action Required" | "In Review" | "Signed & Sealed" | "Draft Assembled";
+  statusColor: string;
+  summary: string;
+  financialImpact?: string;
+  timeImpact?: string;
+  manifest: {
+    title: string;
+    labelType: "law" | "conditional" | "pro" | "optional";
+    labelText: string;
+    labelColor: string;
+    status: "Verified" | "Pending Sign" | "Draft" | "Sealed";
+  }[];
+  loopStep: 1 | 2 | 3 | 4; // 1: Assembled, 2: Review, 3: Signing, 4: Sealed
+  lastUpdated: string;
 }
 
+const INITIAL_DEAL_PACKS: DealPack[] = [
+  {
+    id: "PACK-BLD-004",
+    family: "build",
+    familyLabel: "Build & Change",
+    familyIcon: "🏗️",
+    title: "Priced Variation Notice #04 · Kitchen Stone Upgrade",
+    counterparty: "Olivia Hart",
+    counterpartyRole: "Builder · Hart Homes (QBCC #150821)",
+    trustlinkId: "TL-99214-B",
+    trustlinkHref: "/trustlinks/TL-99214-B",
+    status: "Action Required",
+    statusColor: "bg-[#fff4df] text-[#8b641c] border-[#fce3b8]",
+    summary: "Caesarstone Pure White 40mm island benchtop upgrade with waterfall ends. QBCC s83 variation agreement.",
+    financialImpact: "+$1,400 AUD (inc. GST)",
+    timeImpact: "+2 business days delay",
+    manifest: [
+      {
+        title: "QBCC Form 4 Variation Agreement Schedule",
+        labelType: "law",
+        labelText: "Required by Law",
+        labelColor: "bg-[#fef2f2] text-[#991b1b] border-[#fecaca]",
+        status: "Pending Sign",
+      },
+      {
+        title: "Caesarstone Pure White Specification Sheet & Warranty",
+        labelType: "pro",
+        labelText: "Requested by Pro",
+        labelColor: "bg-[#f0f4f9] text-[#071d3b] border-[#cbd5e2]",
+        status: "Verified",
+      },
+      {
+        title: "Kitchen Island Joinery As-Built Shop Drawings",
+        labelType: "optional",
+        labelText: "Optional Supporting",
+        labelColor: "bg-[#f8fafc] text-[#5b6e84] border-[#e2e8f0]",
+        status: "Verified",
+      },
+    ],
+    loopStep: 3,
+    lastUpdated: "Today 10:14 AM",
+  },
+  {
+    id: "PACK-HND-018",
+    family: "handover",
+    familyLabel: "Service & Handover",
+    familyIcon: "📦",
+    title: "Practical Completion & Statutory Handover Bundle",
+    counterparty: "Hart Homes & Certifiers",
+    counterpartyRole: "Head Contractor & QBCC Subcontractors",
+    trustlinkId: "TL-99214-B",
+    trustlinkHref: "/trustlinks/TL-99214-B",
+    status: "Action Required",
+    statusColor: "bg-[#eaf5ef] text-[#24754c] border-[#c7e3d1]",
+    summary: "14 statutory compliance certificates, warranties, and maintenance manuals compiled for sovereign handover.",
+    manifest: [
+      {
+        title: "QBCC Form 16 Structural Engineering Final (Elena Rostova)",
+        labelType: "law",
+        labelText: "Required by Law",
+        labelColor: "bg-[#fef2f2] text-[#991b1b] border-[#fecaca]",
+        status: "Verified",
+      },
+      {
+        title: "Form 43 Wet-Area Waterproofing Certificate (Dave Miller)",
+        labelType: "law",
+        labelText: "Required by Law",
+        labelColor: "bg-[#fef2f2] text-[#991b1b] border-[#fecaca]",
+        status: "Verified",
+      },
+      {
+        title: "AS 3660.1 Termite Barrier System Notice (Flick Pest)",
+        labelType: "conditional",
+        labelText: "Conditional Legal",
+        labelColor: "bg-[#fff7ed] text-[#c2410c] border-[#fed7aa]",
+        status: "Verified",
+      },
+      {
+        title: "Electrical Safety Certificate Form 16 (Lachlan Vance)",
+        labelType: "law",
+        labelText: "Required by Law",
+        labelColor: "bg-[#fef2f2] text-[#991b1b] border-[#fecaca]",
+        status: "Verified",
+      },
+    ],
+    loopStep: 2,
+    lastUpdated: "Yesterday 4:30 PM",
+  },
+  {
+    id: "PACK-DIS-002",
+    family: "seller",
+    familyLabel: "Seller Disclosure",
+    familyIcon: "🏡",
+    title: "Queensland Seller Disclosure Pack (Form 2 Prep)",
+    counterparty: "Lachlan Vance",
+    counterpartyRole: "Licensed Conveyancer · River City Conveyancing",
+    trustlinkId: "TL-88301-A",
+    trustlinkHref: "/trustlinks/TL-88301-A",
+    status: "In Review",
+    statusColor: "bg-[#f0f4f9] text-[#071d3b] border-[#cbd5e2]",
+    summary: "Pre-sale disclosure manifest under the Queensland Seller Disclosure Scheme (effective 1 Aug 2025).",
+    manifest: [
+      {
+        title: "QLD Seller Disclosure Statement Draft (Form 2)",
+        labelType: "law",
+        labelText: "Required by Law",
+        labelColor: "bg-[#fef2f2] text-[#991b1b] border-[#fecaca]",
+        status: "Draft",
+      },
+      {
+        title: "Current Title Search & Registered Survey Plan",
+        labelType: "law",
+        labelText: "Required by Law",
+        labelColor: "bg-[#fef2f2] text-[#991b1b] border-[#fecaca]",
+        status: "Verified",
+      },
+      {
+        title: "Pool Safety Certificate (Form 23)",
+        labelType: "conditional",
+        labelText: "Conditional Legal",
+        labelColor: "bg-[#fff7ed] text-[#c2410c] border-[#fed7aa]",
+        status: "Verified",
+      },
+      {
+        title: "Recent Council Rates & Water Infrastructure Notice",
+        labelType: "optional",
+        labelText: "Optional Supporting",
+        labelColor: "bg-[#f8fafc] text-[#5b6e84] border-[#e2e8f0]",
+        status: "Verified",
+      },
+    ],
+    loopStep: 2,
+    lastUpdated: "22 Sep 2026",
+  },
+  {
+    id: "PACK-LSE-001",
+    family: "lease",
+    familyLabel: "Appoint & Lease",
+    familyIcon: "🔑",
+    title: "Residential Property Management Appointment (Form 6)",
+    counterparty: "Graceville Real Estate",
+    counterpartyRole: "Licensed Managing Agent (OFT #44102)",
+    trustlinkId: "TL-99214-B",
+    trustlinkHref: "/trustlinks/TL-99214-B",
+    status: "Signed & Sealed",
+    statusColor: "bg-[#eaf5ef] text-[#24754c] border-[#c7e3d1]",
+    summary: "Executed OFT Form 6 agency appointment with scheduled inspection authority and fee schedule.",
+    manifest: [
+      {
+        title: "OFT Form 6 Appointment to Act as Property Agent",
+        labelType: "law",
+        labelText: "Required by Law",
+        labelColor: "bg-[#fef2f2] text-[#991b1b] border-[#fecaca]",
+        status: "Sealed",
+      },
+      {
+        title: "RTA Form 18a General Tenancy Agreement Standard Terms",
+        labelType: "conditional",
+        labelText: "Conditional Legal",
+        labelColor: "bg-[#fff7ed] text-[#c2410c] border-[#fed7aa]",
+        status: "Sealed",
+      },
+    ],
+    loopStep: 4,
+    lastUpdated: "14 Sep 2026",
+  },
+];
+
 export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProps) {
-  const [activeTab, setActiveTab] = useState<"saved" | "incoming" | "outgoing" | "history">("saved");
+  const [dealPacks, setDealPacks] = useState<DealPack[]>(INITIAL_DEAL_PACKS);
+  const [activeFamilyFilter, setActiveFamilyFilter] = useState<PackFamily>("all");
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
+
+  // Privacy drawer state
+  const [privacyDrawerOpen, setPrivacyDrawerOpen] = useState(false);
+
+  // Transfer drawer state
   const [transferOpen, setTransferOpen] = useState(false);
-  const [createModalOpen, setCreateModalOpen] = useState(false);
-  const [incomingClaimed, setIncomingClaimed] = useState(false);
 
-  // User created packs
-  const [savedPacks, setSavedPacks] = useState<RecordPack[]>([]);
+  // Modals
+  const [reviewSignModalPack, setReviewSignModalPack] = useState<DealPack | null>(null);
+  const [inspectHandoverModalOpen, setInspectHandoverModalOpen] = useState(false);
+  const [createPackModalOpen, setCreatePackModalOpen] = useState(false);
 
-  // Create pack modal form state
-  const [newPackName, setNewPackName] = useState("");
+  // Create pack state
+  const [newPackType, setNewPackType] = useState<"seller" | "build" | "lease" | "finance">("seller");
+  const [newPackTitle, setNewPackTitle] = useState("");
   const [newPackRecipient, setNewPackRecipient] = useState("");
-  const [selectedDocs, setSelectedDocs] = useState<string[]>(
-    property.documents.slice(0, 3).map((d) => d.title)
-  );
 
-  const handleCreatePack = (e: React.FormEvent) => {
+  const showToast = (msg: string) => {
+    setToastMessage(msg);
+    setTimeout(() => setToastMessage(null), 4000);
+  };
+
+  const filteredPacks = dealPacks.filter((p) => {
+    if (activeFamilyFilter === "all") return true;
+    return p.family === activeFamilyFilter;
+  });
+
+  const handleSignVariation = (packId: string) => {
+    setDealPacks((prev) =>
+      prev.map((p) =>
+        p.id === packId
+          ? {
+              ...p,
+              status: "Signed & Sealed",
+              statusColor: "bg-[#eaf5ef] text-[#24754c] border-[#c7e3d1]",
+              loopStep: 4,
+              lastUpdated: "Just now",
+              manifest: p.manifest.map((m) => ({
+                ...m,
+                status: "Sealed",
+              })),
+            }
+          : p
+      )
+    );
+    setReviewSignModalPack(null);
+    showToast("Signed & Executed! QBCC Variation Notice #04 has been sealed into your Digital Key vault.");
+  };
+
+  const handleAcceptHandover = () => {
+    setDealPacks((prev) =>
+      prev.map((p) =>
+        p.id === "PACK-HND-018"
+          ? {
+              ...p,
+              status: "Signed & Sealed",
+              statusColor: "bg-[#eaf5ef] text-[#24754c] border-[#c7e3d1]",
+              loopStep: 4,
+              lastUpdated: "Just now",
+            }
+          : p
+      )
+    );
+    setInspectHandoverModalOpen(false);
+    showToast("Handover bundle accepted! 14 statutory certificates are permanently sealed to 18 Banksia Crescent.");
+  };
+
+  const handleCreateNewPack = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!newPackName.trim()) return;
+    if (!newPackTitle.trim()) return;
 
-    const newPack: RecordPack = {
+    const newDeal: DealPack = {
       id: `PACK-${Date.now().toString().slice(-4)}`,
-      name: newPackName.trim(),
-      recipient: newPackRecipient.trim() || "Verified Professional via TrustLink",
-      docCount: selectedDocs.length,
-      createdAt: "Just now",
-      status: "Active",
-      expiry: "30 Days",
+      family: newPackType,
+      familyLabel:
+        newPackType === "seller"
+          ? "Seller Disclosure"
+          : newPackType === "build"
+          ? "Build & Change"
+          : newPackType === "lease"
+          ? "Appoint & Lease"
+          : "Finance & Mortgage",
+      familyIcon:
+        newPackType === "seller"
+          ? "🏡"
+          : newPackType === "build"
+          ? "🏗️"
+          : newPackType === "lease"
+          ? "🔑"
+          : "🏦",
+      title: newPackTitle.trim(),
+      counterparty: newPackRecipient.trim() || "Verified Professional via TrustLink",
+      counterpartyRole: "Professional Counterparty",
+      trustlinkId: property.trustlinkId || "TL-99214-B",
+      trustlinkHref: property.trustlinkHref || "/trustlinks/TL-99214-B",
+      status: "Draft Assembled",
+      statusColor: "bg-[#f0f4f9] text-[#071d3b] border-[#cbd5e2]",
+      summary: "Draft deal pack assembled by property owner under sovereign Digital Key governance.",
+      manifest: [
+        {
+          title: "Primary Matter Document Draft",
+          labelType: "law",
+          labelText: "Required by Law",
+          labelColor: "bg-[#fef2f2] text-[#991b1b] border-[#fecaca]",
+          status: "Draft",
+        },
+        {
+          title: "Supporting Evidence & Authorised Records",
+          labelType: "pro",
+          labelText: "Requested by Pro",
+          labelColor: "bg-[#f0f4f9] text-[#071d3b] border-[#cbd5e2]",
+          status: "Verified",
+        },
+      ],
+      loopStep: 1,
+      lastUpdated: "Just now",
     };
 
-    setSavedPacks([newPack, ...savedPacks]);
-    setNewPackName("");
+    setDealPacks([newDeal, ...dealPacks]);
+    setCreatePackModalOpen(false);
+    setNewPackTitle("");
     setNewPackRecipient("");
-    setCreateModalOpen(false);
-    setActiveTab("saved");
+    showToast(`Deal pack "${newDeal.title}" assembled! Ready for counterparty review in TrustLink.`);
   };
 
-  const toggleDocSelection = (title: string) => {
-    if (selectedDocs.includes(title)) {
-      setSelectedDocs(selectedDocs.filter((t) => t !== title));
-    } else {
-      setSelectedDocs([...selectedDocs, title]);
-    }
-  };
-
-  const trustlinkUrl = property.trustlinkHref || `/trustlinks/${property.trustlinkId || "TL-99214-B"}`;
+  const pendingActionCount = dealPacks.filter((p) => p.status === "Action Required").length;
 
   return (
-    <div className="space-y-6 text-[#102645] font-sans max-w-[1040px] mx-auto pb-12">
+    <div className="space-y-6 text-[#102645] font-sans max-w-[1080px] mx-auto pb-16">
       
-      {/* ── Page Header Block ────────────────────────────────────────── */}
-      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 pt-1">
+      {/* ── Toast Feedback ─────────────────────────────────────────────── */}
+      <AnimatePresence>
+        {toastMessage && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="fixed top-5 right-5 z-50 bg-[#071d3b] text-white px-4 py-3 rounded-xl shadow-xl border border-white/10 text-xs font-semibold flex items-center gap-2 max-w-md"
+          >
+            <span className="w-2 h-2 rounded-full bg-[#24754c] animate-pulse" />
+            <span>{toastMessage}</span>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* ── Top Header: Identity & Sovereignty ─────────────────────────── */}
+      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 pt-1 pb-2 border-b border-[#dfe6ef]">
         <div>
-          <div className="text-[10.5px] font-bold uppercase tracking-[2px] text-[#0284c7] mb-1">
-            YOUR RECORDS. YOUR DECISION.
+          <div className="flex items-center gap-2 mb-1">
+            <span className="text-[9.5px] font-bold uppercase tracking-[1.4px] text-[#24754c]">
+              Digital Key · Sovereign Record
+            </span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#24754c]" />
+            <span className="text-[10px] font-mono text-[#5b6e84]">
+              {property.propId}
+            </span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#102645] mb-1.5">
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#102645]">
             Digital Key
           </h1>
-          <p className="text-[13px] text-[#64748b]">
-            Receive, keep and move the records you control.
+          <p className="text-xs text-[#68788e] mt-1 max-w-2xl leading-relaxed">
+            The place to complete property deals. Assemble professional packs, review original contracts, make signing decisions, and keep permanent executed copies.
           </p>
         </div>
 
-        <button
-          onClick={() => setCreateModalOpen(true)}
-          className="self-start sm:self-auto px-4 py-2 rounded-lg bg-[#bbf7d0] hover:bg-[#a7f3d0] text-[#14532d] font-bold text-xs transition-colors shadow-2xs cursor-pointer"
-        >
-          Create a record pack
-        </button>
-      </div>
-
-      {/* ── Handover Info Banner (Light Green Card) ──────────────────── */}
-      <div className="border border-[#bbf7d0] bg-[#f0fdf4] rounded-xl p-4 sm:p-5 shadow-2xs text-[#14532d]">
-        <h3 className="text-sm font-bold text-[#14532d] mb-1 flex items-center gap-2">
-          <span>🛡️</span>
-          <span>Handover stays here until you choose what happens next.</span>
-        </h3>
-        <p className="text-xs text-[#15803d] leading-relaxed">
-          Builder handovers are reviewed from Overview and kept permanently here. Sharing a selected copy does not transfer ownership of the property record.
-        </p>
-      </div>
-
-      {/* ── Tabs Row ─────────────────────────────────────────────────── */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-1 border-b border-[#dfe6ef]">
-        {[
-          { id: "saved", label: `Saved packs ${savedPacks.length}` },
-          { id: "incoming", label: `Incoming ${incomingClaimed ? 0 : 1}`, highlight: !incomingClaimed },
-          { id: "outgoing", label: "Outgoing 0" },
-          { id: "history", label: "Transfer history 0" },
-        ].map((tab) => {
-          const isActive = activeTab === tab.id;
-          return (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id as any)}
-              className={`px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all flex items-center gap-1.5 ${
-                isActive
-                  ? "bg-[#071d3b] text-white shadow-xs"
-                  : "bg-white border border-[#dfe6ef] text-[#64748b] hover:text-[#102645] hover:bg-[#f8fafc]"
-              }`}
-            >
-              <span>{tab.label}</span>
-              {tab.highlight && (
-                <span className="w-1.5 h-1.5 rounded-full bg-[#0284c7] animate-pulse" />
-              )}
-            </button>
-          );
-        })}
-      </div>
-
-      {/* ── Tab Content Area ─────────────────────────────────────────── */}
-      
-      {/* 1. Saved Packs (Empty State from Image 2 or Created Packs) */}
-      {activeTab === "saved" && (
-        <div className="space-y-4">
-          {savedPacks.length === 0 ? (
-            <div className="border-2 border-dashed border-[#cbd5e1] bg-white rounded-2xl py-14 px-6 text-center flex flex-col items-center justify-center shadow-2xs">
-              <div className="w-12 h-12 rounded-xl bg-[#f1f5f9] flex items-center justify-center text-[#64748b] mb-3 border border-[#cbd5e1]">
-                <svg className="w-6 h-6 stroke-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
-                </svg>
-              </div>
-              <h4 className="text-sm font-bold text-[#102645]">
-                Your saved handovers live here
-              </h4>
-              <p className="text-xs text-[#64748b] mt-1 max-w-sm">
-                Records only leave when you choose the recipient, records and purpose.
-              </p>
-              <button
-                onClick={() => setCreateModalOpen(true)}
-                className="mt-4 px-3.5 py-1.5 bg-[#f8fafc] hover:bg-[#f1f5f9] text-xs text-[#071d3b] font-bold rounded-lg border border-[#cbd5e1] transition-colors"
-              >
-                + Create first record pack
-              </button>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {savedPacks.map((pack) => (
-                <div
-                  key={pack.id}
-                  className="bg-white border border-[#dfe6ef] rounded-xl p-4 flex flex-col justify-between shadow-2xs"
-                >
-                  <div>
-                    <div className="flex items-center justify-between gap-2 mb-2">
-                      <span className="text-[10px] font-mono font-bold text-[#8b641c] bg-[#fff4df] px-2 py-0.5 rounded border border-[#ffe0a3]">
-                        {pack.id}
-                      </span>
-                      <span className="text-[10px] font-bold text-[#24754c] bg-[#eaf5ef] px-2 py-0.5 rounded border border-[#d2e6d9]">
-                        {pack.status}
-                      </span>
-                    </div>
-                    <h4 className="text-sm font-bold text-[#102645] mb-1">{pack.name}</h4>
-                    <p className="text-xs text-[#64748b] mb-3">
-                      Scoped for: <span className="text-[#102645] font-semibold">{pack.recipient}</span>
-                    </p>
-                    <div className="text-[11px] text-[#64748b] flex items-center gap-3">
-                      <span>📄 {pack.docCount} records</span>
-                      <span>⏱ Valid {pack.expiry}</span>
-                      <span>📅 {pack.createdAt}</span>
-                    </div>
-                  </div>
-
-                  <div className="mt-4 pt-3 border-t border-[#dfe6ef] flex items-center justify-between">
-                    <Link
-                      href={trustlinkUrl}
-                      className="text-xs font-bold text-[#071d3b] hover:underline flex items-center gap-1"
-                    >
-                      <span>Share in Trust Link</span>
-                      <span>→</span>
-                    </Link>
-                    <button
-                      onClick={() => alert(`Record pack ${pack.id} downloaded as verified archive.`)}
-                      className="text-xs text-[#64748b] hover:text-[#102645]"
-                    >
-                      Download ZIP
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
+        <div className="flex items-center gap-2.5 self-start sm:self-auto flex-wrap">
+          <button
+            onClick={() => setPrivacyDrawerOpen(!privacyDrawerOpen)}
+            className="px-3.5 py-2 bg-white border border-[#cbd5e2] hover:bg-[#f3f6fb] text-[#102645] rounded-xl text-xs font-semibold transition-colors shadow-2xs flex items-center gap-1.5 cursor-pointer"
+          >
+            <span>🔒</span>
+            <span>Privacy Boundaries</span>
+          </button>
+          <button
+            onClick={() => setCreatePackModalOpen(true)}
+            className="px-4 py-2 bg-[#071d3b] hover:bg-[#15345d] text-white rounded-xl text-xs font-bold transition-colors shadow-xs flex items-center gap-1.5 cursor-pointer"
+          >
+            <span>+ Assemble Deal Pack</span>
+          </button>
         </div>
-      )}
+      </div>
 
-      {/* 2. Incoming Handovers (Builder handover for this property) */}
-      {activeTab === "incoming" && (
-        <div className="space-y-4">
-          {!incomingClaimed ? (
-            <div className="bg-white border border-[#dfe6ef] rounded-xl p-5 shadow-2xs">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <div className="flex items-start gap-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-[#f1f5f9] text-[#071d3b] flex items-center justify-center flex-shrink-0 border border-[#cbd5e1] text-lg font-bold">
-                    🏗️
+      {/* ── 4 Reassuring Metrics Tiles ─────────────────────────────────── */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="bg-white border border-[#dfe6ef] rounded-xl p-3.5 shadow-2xs">
+          <div className="text-[10px] font-bold uppercase tracking-wider text-[#68788e]">
+            Active Deal Packs
+          </div>
+          <div className="text-2xl font-bold text-[#102645] mt-0.5">
+            {dealPacks.length}
+          </div>
+          <div className="text-[10.5px] text-[#24754c] font-medium mt-0.5">
+            Build, handover, disclosure &amp; lease
+          </div>
+        </div>
+
+        <div className="bg-white border border-[#dfe6ef] rounded-xl p-3.5 shadow-2xs">
+          <div className="text-[10px] font-bold uppercase tracking-wider text-[#8b641c]">
+            Needs Your Decision
+          </div>
+          <div className="text-2xl font-bold text-[#8b641c] mt-0.5">
+            {pendingActionCount} {pendingActionCount === 1 ? "Action" : "Actions"}
+          </div>
+          <div className="text-[10.5px] text-[#8b641c] font-medium mt-0.5">
+            Awaiting signing or acceptance
+          </div>
+        </div>
+
+        <div className="bg-white border border-[#dfe6ef] rounded-xl p-3.5 shadow-2xs">
+          <div className="text-[10px] font-bold uppercase tracking-wider text-[#24754c]">
+            Sealed Originals
+          </div>
+          <div className="text-2xl font-bold text-[#24754c] mt-0.5">
+            14 Files
+          </div>
+          <div className="text-[10.5px] text-[#5b6e84] font-medium mt-0.5">
+            Form 16/43 &amp; statutory warranties
+          </div>
+        </div>
+
+        <div className="bg-white border border-[#dfe6ef] rounded-xl p-3.5 shadow-2xs">
+          <div className="text-[10px] font-bold uppercase tracking-wider text-[#071d3b]">
+            Privacy Partition
+          </div>
+          <div className="text-2xl font-bold text-[#071d3b] mt-0.5">
+            100% Isolated
+          </div>
+          <div className="text-[10.5px] text-[#5b6e84] font-medium mt-0.5">
+            Personal finance excluded from title
+          </div>
+        </div>
+      </div>
+
+      {/* ── Privacy Partition Explanation Banner (Page 9 of Brief) ────── */}
+      <AnimatePresence>
+        {privacyDrawerOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="overflow-hidden"
+          >
+            <div className="bg-[#f0f7f3] border border-[#c7e4d0] rounded-2xl p-5 text-xs text-[#1e3a2f] space-y-3 shadow-2xs">
+              <div className="flex items-center justify-between pb-2 border-b border-[#c7e4d0]">
+                <div className="flex items-center gap-2">
+                  <span className="text-base">🛡️</span>
+                  <strong className="text-sm font-bold text-[#102645]">
+                    A Shared Property Does Not Mean a Shared Vault
+                  </strong>
+                </div>
+                <button
+                  onClick={() => setPrivacyDrawerOpen(false)}
+                  className="text-xs text-[#527965] hover:text-[#102645] font-semibold cursor-pointer"
+                >
+                  ✕ Close
+                </button>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
+                <div className="bg-white/80 rounded-xl p-3.5 border border-[#c7e4d0] space-y-1.5">
+                  <div className="flex items-center gap-1.5 text-[#24754c] font-bold">
+                    <span>🏠</span>
+                    <span>Transferable Property Passport (Transfers at Sale)</span>
                   </div>
-                  <div>
-                    <div className="flex items-center gap-2 flex-wrap mb-1">
-                      <span className="text-[9.5px] font-bold uppercase tracking-[1.4px] text-[#8b641c]">
-                        BUILDER COMPLETION HANDOVER
-                      </span>
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-[#fff4df] text-[#8b641c]">
-                        Ready to claim
-                      </span>
+                  <p className="text-[11.5px] text-[#5b6e84] leading-relaxed">
+                    Statutory Form 16/43 certs, waterproofing records, council approvals, appliance warranties, and as-built plans. These stay with the physical property to protect its market value.
+                  </p>
+                </div>
+
+                <div className="bg-white/80 rounded-xl p-3.5 border border-[#cbd5e2] space-y-1.5">
+                  <div className="flex items-center gap-1.5 text-[#071d3b] font-bold">
+                    <span>🔒</span>
+                    <span>Strictly Private to You (Never Transferred)</span>
+                  </div>
+                  <p className="text-[11.5px] text-[#5b6e84] leading-relaxed">
+                    Mortgage documents, bank statements, personal ID, tax file numbers, private repair invoices, and tenancy histories. These remain permanently isolated and are never passed to buyers or renters.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* ── PRIORITY ACTION BANNER: "Needs Your Action" ────────────────── */}
+      {dealPacks.some((p) => p.status === "Action Required") && (
+        <div className="space-y-3">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#efbd66] animate-pulse" />
+            <h2 className="text-xs font-bold uppercase tracking-wider text-[#102645]">
+              Decisions Waiting For You (Action Hub)
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            
+            {/* Action 1: Builder Variation Notice #04 */}
+            {dealPacks.find((p) => p.id === "PACK-BLD-004" && p.status === "Action Required") && (
+              <div className="bg-white border-2 border-[#efbd66] rounded-2xl p-5 shadow-xs flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <span className="text-[9.5px] font-bold uppercase tracking-[1.4px] text-[#8b641c] flex items-center gap-1">
+                      <span>🏗️</span> Build &amp; Change Decision
+                    </span>
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#fff4df] text-[#8b641c] border border-[#fce3b8]">
+                      Sign Decision Pending
+                    </span>
+                  </div>
+
+                  <h3 className="text-base font-bold text-[#102645] mb-1">
+                    Variation Notice #04: Caesarstone Kitchen Island
+                  </h3>
+                  <p className="text-xs text-[#5b6e84] mb-3 leading-relaxed">
+                    Hart Homes submitted priced variation. Written agreement precedes physical work under QBCC contract rules.
+                  </p>
+
+                  <div className="p-3 bg-[#f8fafc] border border-[#dfe6ef] rounded-xl text-xs space-y-1 mb-4">
+                    <div className="flex justify-between">
+                      <span className="text-[#68788e]">Price Effect:</span>
+                      <strong className="text-[#102645]">+$1,400 AUD inc. GST</strong>
                     </div>
-                    <h4 className="text-sm font-bold text-[#102645] mb-0.5">
-                      Hart Homes Statutory & Construction Handover Bundle
-                    </h4>
-                    <p className="text-xs text-[#64748b]">
-                      QBCC #150821 · Form 16 Structural, Form 43 Wet-Area Waterproofing, Architectural Drawings, and Appliance Warranties.
-                    </p>
+                    <div className="flex justify-between">
+                      <span className="text-[#68788e]">Schedule Delay:</span>
+                      <strong className="text-[#102645]">+2 business days</strong>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-[#68788e]">Pro Contact:</span>
+                      <span className="text-[#071d3b] font-medium">Olivia Hart (Builder)</span>
+                    </div>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2 flex-wrap sm:flex-nowrap">
+                <div className="flex items-center gap-2 pt-3 border-t border-[#f0f4f8] flex-wrap">
+                  <button
+                    onClick={() => setReviewSignModalPack(dealPacks.find((p) => p.id === "PACK-BLD-004") || null)}
+                    className="flex-1 px-4 py-2 bg-[#071d3b] hover:bg-[#15345d] text-white text-xs font-bold rounded-xl transition-colors shadow-2xs flex items-center justify-center gap-1.5 cursor-pointer"
+                  >
+                    <span>✍️ Review &amp; Sign</span>
+                    <span>→</span>
+                  </button>
+                  <Link
+                    href="/trustlinks/TL-99214-B?tab=conversation"
+                    className="px-3 py-2 bg-white border border-[#cbd5e2] hover:bg-[#f3f6fb] text-[#102645] text-xs font-semibold rounded-xl transition-colors"
+                  >
+                    Ask Olivia
+                  </Link>
                   <button
                     onClick={() => {
-                      setIncomingClaimed(true);
-                      alert(`Handover accepted! All 14 verified documents have been placed into permanent Prop ID storage for ${property.street}.`);
+                      if (confirm("Decline Variation #04? Hart Homes will be notified to proceed with default contract specification.")) {
+                        showToast("Variation declined. Default builder specification retained.");
+                      }
                     }}
-                    className="px-3.5 py-2 bg-[#10b981] hover:bg-[#059669] text-white rounded-lg text-xs font-bold transition-colors shadow-2xs cursor-pointer"
+                    className="px-3 py-2 text-[#a44042] hover:bg-[#fef2f2] text-xs font-semibold rounded-xl transition-colors cursor-pointer"
                   >
-                    Accept Handover
-                  </button>
-                  <button
-                    onClick={() => alert("Previewing 14 statutory handover documents.")}
-                    className="px-3 py-2 bg-[#f8fafc] hover:bg-[#f1f5f9] text-[#102645] rounded-lg text-xs font-semibold border border-[#cbd5e1] transition-colors"
-                  >
-                    Inspect records
+                    Decline
                   </button>
                 </div>
               </div>
-            </div>
-          ) : (
-            <div className="border border-[#bbf7d0] bg-[#f0fdf4] rounded-xl p-6 text-center text-[#14532d]">
-              <div className="text-xl mb-2">✅</div>
-              <h4 className="text-sm font-bold text-[#14532d]">Handover Bundle Claimed</h4>
-              <p className="text-xs text-[#15803d] mt-1 max-w-md mx-auto">
-                Hart Homes builder documents are permanently logged in the {property.street} digital record and accessible for scoping anytime.
-              </p>
-            </div>
-          )}
-        </div>
-      )}
+            )}
 
-      {/* 3. Outgoing Tab */}
-      {activeTab === "outgoing" && (
-        <div className="border border-[#dfe6ef] bg-white rounded-xl p-8 text-center shadow-2xs">
-          <p className="text-xs text-[#64748b]">
-            No outgoing packages currently active outside of scoped TrustLinks.
-          </p>
-          <p className="text-[11px] text-[#94a3b8] mt-1">
-            Create a record pack to share selective documents with inspectors, tradies, or valuers.
-          </p>
-        </div>
-      )}
+            {/* Action 2: Builder Handover Bundle */}
+            {dealPacks.find((p) => p.id === "PACK-HND-018" && p.status === "Action Required") && (
+              <div className="bg-white border-2 border-[#24754c] rounded-2xl p-5 shadow-xs flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <span className="text-[9.5px] font-bold uppercase tracking-[1.4px] text-[#24754c] flex items-center gap-1">
+                      <span>📦</span> Practical Completion Handover
+                    </span>
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#eaf5ef] text-[#24754c] border border-[#c7e3d1]">
+                      14 Certs Ready
+                    </span>
+                  </div>
 
-      {/* 4. History Tab */}
-      {activeTab === "history" && (
-        <div className="border border-[#dfe6ef] bg-white rounded-xl p-6 space-y-3 shadow-2xs">
-          <div className="text-xs font-bold text-[#102645]">Digital Record Chain of Custody</div>
-          <div className="space-y-2 text-[11px] text-[#64748b]">
-            <div className="flex items-center justify-between py-1.5 border-b border-[#dfe6ef]">
-              <span>Prop ID Verified Record Registered</span>
-              <span className="font-mono text-[#94a3b8]">2024-03-12 · TPH System</span>
-            </div>
-            <div className="flex items-center justify-between py-1.5 border-b border-[#dfe6ef]">
-              <span>TrustLink TL-99214-B Provisioned for {property.street}</span>
-              <span className="font-mono text-[#94a3b8]">2024-03-14 · Owner Alex</span>
-            </div>
-            <div className="flex items-center justify-between py-1.5">
-              <span>Digital Key Enabled for Scoped Professional Sharing</span>
-              <span className="font-semibold text-[#24754c]">Active</span>
-            </div>
+                  <h3 className="text-base font-bold text-[#102645] mb-1">
+                    Hart Homes Handover Pack &amp; Warranties
+                  </h3>
+                  <p className="text-xs text-[#5b6e84] mb-3 leading-relaxed">
+                    Form 16 Structural, Form 43 Waterproofing, Termimesh 50-Yr Warranty, and Electrical certs compiled for client acceptance.
+                  </p>
+
+                  <div className="p-3 bg-[#f8fafc] border border-[#dfe6ef] rounded-xl text-xs space-y-1 mb-4">
+                    <div className="flex justify-between">
+                      <span className="text-[#68788e]">Licence:</span>
+                      <strong className="text-[#102645]">QBCC #150821</strong>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-[#68788e]">Records Attached:</span>
+                      <strong className="text-[#24754c]">14 Verified Files</strong>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-[#68788e]">Status:</span>
+                      <span className="text-[#24754c] font-semibold">Ready to seal into sovereign passport</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2 pt-3 border-t border-[#f0f4f8] flex-wrap">
+                  <button
+                    onClick={handleAcceptHandover}
+                    className="flex-1 px-4 py-2 bg-[#24754c] hover:bg-[#1e603e] text-white text-xs font-bold rounded-xl transition-colors shadow-2xs flex items-center justify-center gap-1.5 cursor-pointer"
+                  >
+                    <span>✓ Accept &amp; Seal to Passport</span>
+                  </button>
+                  <button
+                    onClick={() => setInspectHandoverModalOpen(true)}
+                    className="px-3 py-2 bg-white border border-[#cbd5e2] hover:bg-[#f3f6fb] text-[#102645] text-xs font-semibold rounded-xl transition-colors cursor-pointer"
+                  >
+                    Inspect 14 Records
+                  </button>
+                </div>
+              </div>
+            )}
+
           </div>
         </div>
       )}
 
-      {/* ── Professional access in Trust Link card (Light Theme) ────────── */}
-      <div className="bg-white border border-[#dfe6ef] rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-sm">
-        <div>
-          <h3 className="text-sm font-bold text-[#102645] mb-1">
-            Professional access is managed in Trust Link
-          </h3>
-          <p className="text-xs text-[#64748b]">
-            Create a scoped connection from a pack. Pause, revoke or communicate from Trust Link for {property.street}.
-          </p>
+      {/* ── Pack Families Workspace ────────────────────────────────────── */}
+      <div className="space-y-4">
+        
+        {/* Navigation & Category Filter Pills */}
+        <div className="flex items-center justify-between gap-3 flex-wrap border-b border-[#dfe6ef] pb-3">
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 max-w-full">
+            {[
+              { id: "all", label: "All Deal Packs", count: dealPacks.length },
+              { id: "build", label: "Build & Change", count: dealPacks.filter((p) => p.family === "build").length },
+              { id: "handover", label: "Service & Handover", count: dealPacks.filter((p) => p.family === "handover").length },
+              { id: "seller", label: "Seller Disclosure", count: dealPacks.filter((p) => p.family === "seller").length },
+              { id: "lease", label: "Appoint & Lease", count: dealPacks.filter((p) => p.family === "lease").length },
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveFamilyFilter(tab.id as PackFamily)}
+                className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-colors flex items-center gap-1.5 cursor-pointer ${
+                  activeFamilyFilter === tab.id
+                    ? "bg-[#071d3b] text-white shadow-xs"
+                    : "bg-[#f4f6f8] text-[#5b6e84] hover:bg-[#e8edf2] hover:text-[#102645]"
+                }`}
+              >
+                <span>{tab.label}</span>
+                <span
+                  className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
+                    activeFamilyFilter === tab.id
+                      ? "bg-white/20 text-white"
+                      : "bg-[#dfe6ef] text-[#071d3b]"
+                  }`}
+                >
+                  {tab.count}
+                </span>
+              </button>
+            ))}
+          </div>
+
+          <span className="text-xs text-[#68788e] font-medium hidden sm:inline">
+            Showing {filteredPacks.length} records
+          </span>
         </div>
 
-        {onOpenTrustLink ? (
-          <button
-            onClick={onOpenTrustLink}
-            className="px-4 py-2 bg-[#071d3b] hover:bg-[#15345d] text-white rounded-lg text-xs font-bold transition-colors flex items-center justify-center gap-1.5 whitespace-nowrap cursor-pointer shadow-2xs"
-          >
-            Open Trust Link
-          </button>
-        ) : (
-          <Link
-            href={trustlinkUrl}
-            className="px-4 py-2 bg-[#071d3b] hover:bg-[#15345d] text-white rounded-lg text-xs font-bold transition-colors flex items-center justify-center gap-1.5 whitespace-nowrap shadow-2xs"
-          >
-            Open Trust Link
-          </Link>
-        )}
+        {/* List of Deal Packs */}
+        <div className="space-y-4">
+          {filteredPacks.map((pack) => (
+            <div
+              key={pack.id}
+              className="bg-white border border-[#dfe6ef] rounded-2xl p-5 shadow-2xs hover:border-[#cbd5e1] transition-all"
+            >
+              <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-4">
+                
+                {/* Left: Pack Details & Manifest */}
+                <div className="space-y-2.5 flex-1 min-w-0">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="text-base">{pack.familyIcon}</span>
+                    <span className="font-mono text-[10px] font-bold px-2 py-0.5 rounded bg-[#f1f5f9] text-[#102645] border border-[#cbd5e1]">
+                      {pack.id}
+                    </span>
+                    <span className="text-[10.5px] font-bold text-[#5b6e84]">
+                      {pack.familyLabel}
+                    </span>
+                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${pack.statusColor}`}>
+                      {pack.status}
+                    </span>
+                  </div>
+
+                  <h3 className="text-base font-bold text-[#102645]">
+                    {pack.title}
+                  </h3>
+                  
+                  <p className="text-xs text-[#5b6e84] leading-relaxed">
+                    {pack.summary}
+                  </p>
+
+                  <div className="text-[11px] text-[#68788e]">
+                    Counterparty: <strong className="text-[#102645]">{pack.counterparty}</strong> ({pack.counterpartyRole})
+                  </div>
+
+                  {/* Document Manifest with the 4 Statutory Requirement Badges from Brief */}
+                  <div className="pt-2">
+                    <div className="text-[10.5px] font-bold text-[#68788e] uppercase tracking-wider mb-2">
+                      Included Manifest ({pack.manifest.length} items):
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      {pack.manifest.map((item, idx) => (
+                        <div
+                          key={idx}
+                          className="p-2.5 bg-[#f8fafc] border border-[#dfe6ef] rounded-xl flex items-center justify-between gap-2"
+                        >
+                          <div className="min-w-0">
+                            <div className="text-xs font-semibold text-[#102645] truncate">
+                              {item.title}
+                            </div>
+                            <span className={`inline-block text-[9px] font-bold px-1.5 py-0.2 rounded border mt-0.5 ${item.labelColor}`}>
+                              {item.labelText}
+                            </span>
+                          </div>
+                          <span
+                            className={`text-[10px] font-bold px-1.5 py-0.5 rounded flex-shrink-0 ${
+                              item.status === "Sealed" || item.status === "Verified"
+                                ? "bg-[#eaf5ef] text-[#24754c]"
+                                : "bg-[#fff4df] text-[#8b641c]"
+                            }`}
+                          >
+                            {item.status}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* 4-Step Lifecycle Loop Stepper (Page 8 of Brief) */}
+                  <div className="pt-2">
+                    <div className="text-[10px] font-bold text-[#68788e] uppercase tracking-wider mb-1.5">
+                      Exchange Loop Status:
+                    </div>
+                    <div className="flex items-center gap-1.5 text-[10.5px]">
+                      <span className={`px-2 py-0.5 rounded font-semibold ${pack.loopStep >= 1 ? "bg-[#eaf5ef] text-[#24754c]" : "bg-[#f4f6f8] text-[#8a9bb0]"}`}>
+                        1. Assembled ✓
+                      </span>
+                      <span className="text-[#cbd5e2]">→</span>
+                      <span className={`px-2 py-0.5 rounded font-semibold ${pack.loopStep >= 2 ? "bg-[#eaf5ef] text-[#24754c]" : "bg-[#f4f6f8] text-[#8a9bb0]"}`}>
+                        2. In Review {pack.loopStep >= 2 ? "✓" : ""}
+                      </span>
+                      <span className="text-[#cbd5e2]">→</span>
+                      <span className={`px-2 py-0.5 rounded font-semibold ${pack.loopStep >= 3 ? (pack.loopStep === 3 ? "bg-[#fff4df] text-[#8b641c] font-bold" : "bg-[#eaf5ef] text-[#24754c]") : "bg-[#f4f6f8] text-[#8a9bb0]"}`}>
+                        3. Signing Decision {pack.loopStep >= 4 ? "✓" : ""}
+                      </span>
+                      <span className="text-[#cbd5e2]">→</span>
+                      <span className={`px-2 py-0.5 rounded font-semibold ${pack.loopStep >= 4 ? "bg-[#071d3b] text-white" : "bg-[#f4f6f8] text-[#8a9bb0]"}`}>
+                        4. Sealed to Vault
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right: Actions */}
+                <div className="flex flex-col sm:flex-row lg:flex-col items-stretch lg:items-end gap-2 flex-shrink-0 pt-2 lg:pt-0">
+                  {pack.status === "Action Required" && pack.id === "PACK-BLD-004" ? (
+                    <button
+                      onClick={() => setReviewSignModalPack(pack)}
+                      className="px-4 py-2 bg-[#071d3b] hover:bg-[#15345d] text-white text-xs font-bold rounded-xl transition-colors shadow-2xs text-center cursor-pointer"
+                    >
+                      ✍️ Review &amp; Sign
+                    </button>
+                  ) : pack.status === "Action Required" && pack.id === "PACK-HND-018" ? (
+                    <button
+                      onClick={handleAcceptHandover}
+                      className="px-4 py-2 bg-[#24754c] hover:bg-[#1e603e] text-white text-xs font-bold rounded-xl transition-colors shadow-2xs text-center cursor-pointer"
+                    >
+                      ✓ Accept Handover
+                    </button>
+                  ) : null}
+
+                  <Link
+                    href={pack.trustlinkHref}
+                    className="px-3.5 py-1.5 bg-[#f4f6f8] hover:bg-[#e8edf2] text-[#071d3b] text-xs font-semibold rounded-lg border border-[#dfe6ef] transition-colors text-center flex items-center justify-center gap-1"
+                  >
+                    <span>🛡️ Manage in TrustLink</span>
+                    <span>→</span>
+                  </Link>
+
+                  <button
+                    onClick={() => showToast(`Exported immutable manifest for ${pack.id}`)}
+                    className="px-3.5 py-1.5 text-[#5b6e84] hover:text-[#102645] text-xs font-medium transition-colors text-center cursor-pointer"
+                  >
+                    Download Manifest JSON
+                  </button>
+
+                  <span className="text-[10px] text-[#8a9bb0] text-right mt-1">
+                    Updated {pack.lastUpdated}
+                  </span>
+                </div>
+
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
-      {/* ── Collapsible Transfer property record (Light Theme) ─────────── */}
-      <div className="bg-white border border-[#dfe6ef] rounded-xl overflow-hidden shadow-2xs transition-all">
+      {/* ── Collapsible Transfer property record (Settlement Gate) ──────── */}
+      <div className="bg-white border border-[#dfe6ef] rounded-2xl overflow-hidden shadow-2xs transition-all">
         <button
           onClick={() => setTransferOpen(!transferOpen)}
-          className="w-full p-4 sm:p-5 text-left flex items-center justify-between text-xs sm:text-sm font-bold text-[#102645] hover:bg-[#f8fafc] transition-colors"
+          className="w-full p-4 sm:p-5 text-left flex items-center justify-between text-xs sm:text-sm font-bold text-[#102645] hover:bg-[#f8fafc] transition-colors cursor-pointer"
         >
           <div className="flex items-center gap-2">
-            <span className={`text-[10px] text-[#071d3b] transition-transform ${transferOpen ? "rotate-90" : ""}`}>
-              ▶
-            </span>
-            <span>Transfer the property record to a new owner</span>
+            <span className="text-base">🤝</span>
+            <span>Transfer Property Record to New Owner (Settlement)</span>
           </div>
-          <span className="text-[11px] text-[#64748b] font-normal">
-            {transferOpen ? "Hide" : "Expand"}
+          <span className="text-xs text-[#5b6e84] font-normal">
+            {transferOpen ? "Hide" : "Show Settlement Gate ▾"}
           </span>
         </button>
 
         {transferOpen && (
           <div className="px-5 pb-5 pt-1 border-t border-[#dfe6ef] space-y-4">
-            <p className="text-xs text-[#64748b] leading-relaxed">
-              Transferring this digital home hands over permanent title to the new owner, including statutory documents, warranties, and equipment logbooks. This is typically initiated at property settlement.
+            <p className="text-xs text-[#5b6e84] leading-relaxed">
+              Transferring hands over permanent title to the new homeowner, including building certificates, Form 16/43 certs, warranties, and equipment logbooks. Personal borrower records and private finances are automatically unlinked and scrubbed.
             </p>
 
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                alert(`Ownership transfer initiated for ${property.street}. A verification code has been dispatched to the conveyancer.`);
+                showToast(`Settlement transfer token created for ${property.street}. Conveyancer notified.`);
                 setTransferOpen(false);
               }}
-              className="space-y-3 max-w-lg bg-[#f8fafc] p-4 rounded-xl border border-[#dfe6ef]"
+              className="space-y-3 max-w-lg bg-[#f8fafc] p-4 rounded-xl border border-[#dfe6ef] text-xs"
             >
               <div>
-                <label className="block text-[11px] font-bold text-[#102645] uppercase mb-1">
-                  New Owner Full Name
+                <label className="block font-bold text-[#102645] mb-1">
+                  New Owner Full Name *
                 </label>
                 <input
                   type="text"
                   required
                   placeholder="e.g. Eleanor Vance"
-                  className="w-full bg-white border border-[#cbd5e1] rounded-lg px-3 py-2 text-xs text-[#102645] placeholder-[#94a3b8] focus:outline-none focus:border-[#071d3b]"
+                  className="w-full bg-white border border-[#cbd5e1] rounded-lg px-3 py-2 text-xs text-[#102645] focus:outline-none focus:border-[#071d3b]"
                 />
               </div>
 
               <div>
-                <label className="block text-[11px] font-bold text-[#102645] uppercase mb-1">
-                  New Owner Email Address
+                <label className="block font-bold text-[#102645] mb-1">
+                  New Owner Email Address *
                 </label>
                 <input
                   type="email"
                   required
                   placeholder="e.g. eleanor.vance@example.com"
-                  className="w-full bg-white border border-[#cbd5e1] rounded-lg px-3 py-2 text-xs text-[#102645] placeholder-[#94a3b8] focus:outline-none focus:border-[#071d3b]"
+                  className="w-full bg-white border border-[#cbd5e1] rounded-lg px-3 py-2 text-xs text-[#102645] focus:outline-none focus:border-[#071d3b]"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-[11px] font-bold text-[#102645] uppercase mb-1">
+                  <label className="block font-bold text-[#102645] mb-1">
                     Settlement Date
                   </label>
                   <input
                     type="date"
                     required
+                    defaultValue="2026-10-15"
                     className="w-full bg-white border border-[#cbd5e1] rounded-lg px-3 py-2 text-xs text-[#102645] focus:outline-none focus:border-[#071d3b]"
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] font-bold text-[#102645] uppercase mb-1">
+                  <label className="block font-bold text-[#102645] mb-1">
                     Conveyancer Ref #
                   </label>
                   <input
                     type="text"
-                    placeholder="e.g. CNV-2024-88"
-                    className="w-full bg-white border border-[#cbd5e1] rounded-lg px-3 py-2 text-xs text-[#102645] placeholder-[#94a3b8] focus:outline-none focus:border-[#071d3b]"
+                    placeholder="e.g. CNV-2026-88"
+                    className="w-full bg-white border border-[#cbd5e1] rounded-lg px-3 py-2 text-xs text-[#102645] focus:outline-none focus:border-[#071d3b]"
                   />
                 </div>
               </div>
@@ -407,9 +889,9 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
                 </span>
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-[#efbd66] hover:bg-[#dfac55] text-[#071d3b] text-xs font-bold rounded-lg transition-colors cursor-pointer shadow-2xs"
+                  className="px-4 py-2 bg-[#071d3b] hover:bg-[#15345d] text-white text-xs font-bold rounded-lg transition-colors cursor-pointer shadow-2xs"
                 >
-                  Initiate Transfer
+                  Initiate Settlement Transfer
                 </button>
               </div>
             </form>
@@ -417,105 +899,259 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
         )}
       </div>
 
-      {/* ── Footer line ──────────────────────────────────────────────── */}
-      <div className="border-t border-[#dfe6ef] pt-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-[#94a3b8]">
-        <div>TPH · Your digital home.</div>
-        <div>Interactive concept · Sample records · Nothing is sent</div>
-      </div>
-
-      {/* ── Create Record Pack Modal (Light Theme) ───────────────────── */}
-      {createModalOpen && (
+      {/* ── MODAL 1: Review & Sign Variation Notice #04 ────────────────── */}
+      {reviewSignModalPack && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-xs z-50 flex items-center justify-center p-4">
-          <div className="bg-white border border-[#dfe6ef] rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-4 text-[#102645]">
-            <div className="flex items-center justify-between">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="bg-white border border-[#dfe6ef] rounded-2xl max-w-xl w-full p-6 shadow-2xl space-y-4"
+          >
+            <div className="flex items-center justify-between pb-2 border-b border-[#dfe6ef]">
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-[1.5px] text-[#0284c7]">
-                  NEW SCOPED PACK
+                <span className="text-[10px] font-bold uppercase tracking-wider text-[#8b641c]">
+                  QBCC Statutory Variation Signing
                 </span>
-                <h3 className="text-lg font-bold text-[#102645]">Create a Record Pack</h3>
+                <h3 className="text-lg font-bold text-[#102645]">
+                  Review &amp; Sign Contract Variation #04
+                </h3>
               </div>
               <button
-                onClick={() => setCreateModalOpen(false)}
-                className="text-[#64748b] hover:text-[#102645] p-1 rounded-md"
+                onClick={() => setReviewSignModalPack(null)}
+                className="w-7 h-7 rounded-full bg-[#f4f6f8] text-[#5b6e84] hover:bg-[#e2eaf4] flex items-center justify-center text-sm font-bold cursor-pointer"
               >
                 ✕
               </button>
             </div>
 
-            <form onSubmit={handleCreatePack} className="space-y-4 text-xs">
+            <div className="space-y-3.5 text-xs text-[#102645]">
+              <div className="bg-[#f8fafc] border border-[#dfe6ef] rounded-xl p-3.5 space-y-2">
+                <div className="font-bold text-[#102645]">
+                  Item Description &amp; Scope
+                </div>
+                <p className="text-[#5b6e84] leading-relaxed">
+                  Upgrade kitchen island benchtop from standard 20mm builder range laminate to 40mm engineered Caesarstone (Pure White) with 40mm mitred waterfall edge finishes and undermount sink cut-out.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div className="p-3 bg-[#fffaf0] border border-[#fce3b8] rounded-xl">
+                  <div className="text-[10px] uppercase font-bold text-[#8b641c]">Price Adjustment</div>
+                  <div className="text-base font-bold text-[#102645] mt-0.5">+$1,400 AUD inc. GST</div>
+                  <div className="text-[10px] text-[#68788e]">Payable at practical completion stage</div>
+                </div>
+
+                <div className="p-3 bg-[#f0f4f9] border border-[#cbd5e2] rounded-xl">
+                  <div className="text-[10px] uppercase font-bold text-[#071d3b]">Schedule Delay Effect</div>
+                  <div className="text-base font-bold text-[#071d3b] mt-0.5">+2 Business Days</div>
+                  <div className="text-[10px] text-[#68788e]">Stonemason fabrication window</div>
+                </div>
+              </div>
+
+              <div className="p-3 bg-[#f0f7f3] border border-[#c7e4d0] rounded-xl text-[11px] text-[#24754c] leading-relaxed">
+                ⚖️ <strong>QBCC Compliance Notice:</strong> By signing below, you agree to this variation in writing prior to work commencing in accordance with Queensland Building and Construction Commission requirements. Executed copy will be permanently archived in your Digital Key.
+              </div>
+
+              <div className="flex items-center justify-end gap-2 pt-2 border-t border-[#dfe6ef]">
+                <button
+                  type="button"
+                  onClick={() => setReviewSignModalPack(null)}
+                  className="px-4 py-2 bg-white border border-[#cbd5e2] text-[#5b6e84] rounded-xl text-xs font-semibold hover:bg-[#f4f6f8] cursor-pointer"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleSignVariation(reviewSignModalPack.id)}
+                  className="px-5 py-2 bg-[#071d3b] hover:bg-[#15345d] text-white rounded-xl text-xs font-bold transition-colors cursor-pointer shadow-xs flex items-center gap-1.5"
+                >
+                  <span>✍️ Sign with Verified ID</span>
+                  <span>→</span>
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      )}
+
+      {/* ── MODAL 2: Inspect 14 Statutory Records in Handover ───────────── */}
+      {inspectHandoverModalOpen && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-xs z-50 flex items-center justify-center p-4">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="bg-white border border-[#dfe6ef] rounded-2xl max-w-xl w-full p-6 shadow-2xl space-y-4"
+          >
+            <div className="flex items-center justify-between pb-2 border-b border-[#dfe6ef]">
               <div>
-                <label className="block text-[11px] font-bold text-[#102645] uppercase mb-1">
-                  Pack Name
+                <span className="text-[10px] font-bold uppercase tracking-wider text-[#24754c]">
+                  Statutory Completion Dossier
+                </span>
+                <h3 className="text-lg font-bold text-[#102645]">
+                  14 Handover Records for 18 Banksia Crescent
+                </h3>
+              </div>
+              <button
+                onClick={() => setInspectHandoverModalOpen(false)}
+                className="w-7 h-7 rounded-full bg-[#f4f6f8] text-[#5b6e84] hover:bg-[#e2eaf4] flex items-center justify-center text-sm font-bold cursor-pointer"
+              >
+                ✕
+              </button>
+            </div>
+
+            <div className="max-h-[380px] overflow-y-auto space-y-2 pr-1 text-xs">
+              {[
+                { title: "QBCC Form 16 - Structural Engineering Signoff", issuer: "Elena Rostova (RPEQ #18921)", size: "1.9 MB", verified: true },
+                { title: "QBCC Form 43 - Wet Area Waterproofing Certificate", issuer: "Miller Tiling (Dave Miller · QBCC #118492)", size: "1.4 MB", verified: true },
+                { title: "Termimesh Termite Barrier System Notice (AS 3660.1)", issuer: "Flick Pest Control (50-Yr Warranty)", size: "2.1 MB", verified: true },
+                { title: "Electrical Safety Certificate Form 16", issuer: "Lachlan Electrical (Lic #78192)", size: "1.2 MB", verified: true },
+                { title: "Glazing & Window Safety Certificate (AS 1288)", issuer: "Brisbane Architectural Glazing", size: "1.5 MB", verified: true },
+                { title: "Plumbing & Drainage Rough-in Form 4", issuer: "Southside Plumbing & Drainage", size: "1.1 MB", verified: true },
+                { title: "Final As-Built Architectural Working Drawings", issuer: "Hart Homes Architecture", size: "8.4 MB", verified: true },
+                { title: "Appliance Warranty & Operation Schedule", issuer: "Miele, Daikin, Tesla Powerwall", size: "3.2 MB", verified: true },
+              ].map((doc, idx) => (
+                <div key={idx} className="p-3 rounded-xl bg-[#f8fafc] border border-[#dfe6ef] flex items-center justify-between gap-3">
+                  <div className="min-w-0">
+                    <strong className="block text-xs font-bold text-[#102645] truncate">
+                      {doc.title}
+                    </strong>
+                    <span className="text-[10.5px] text-[#68788e]">
+                      {doc.issuer} · {doc.size}
+                    </span>
+                  </div>
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#eaf5ef] text-[#24754c] border border-[#c7e3d1] flex-shrink-0">
+                    ✓ Verified
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex items-center justify-between pt-2 border-t border-[#dfe6ef]">
+              <span className="text-[11px] text-[#68788e]">
+                All files sealed with cryptographic hash to Prop ID.
+              </span>
+              <button
+                type="button"
+                onClick={handleAcceptHandover}
+                className="px-4 py-2 bg-[#24754c] hover:bg-[#1e603e] text-white rounded-xl text-xs font-bold transition-colors cursor-pointer shadow-xs"
+              >
+                Accept &amp; Seal to Passport
+              </button>
+            </div>
+          </motion.div>
+        </div>
+      )}
+
+      {/* ── MODAL 3: Assemble Deal Pack ───────────────────────────────── */}
+      {createPackModalOpen && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-xs z-50 flex items-center justify-center p-4">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="bg-white border border-[#dfe6ef] rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-4"
+          >
+            <div className="flex items-center justify-between pb-2 border-b border-[#dfe6ef]">
+              <div>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-[#24754c]">
+                  Deal Pack Generator
+                </span>
+                <h3 className="text-lg font-bold text-[#102645]">
+                  Assemble a New Deal Pack
+                </h3>
+              </div>
+              <button
+                onClick={() => setCreatePackModalOpen(false)}
+                className="w-7 h-7 rounded-full bg-[#f4f6f8] text-[#5b6e84] hover:bg-[#e2eaf4] flex items-center justify-center text-sm font-bold cursor-pointer"
+              >
+                ✕
+              </button>
+            </div>
+
+            <form onSubmit={handleCreateNewPack} className="space-y-3.5 text-xs text-[#102645]">
+              <div>
+                <label className="block font-bold text-[#102645] mb-1">
+                  Select Pack Family *
+                </label>
+                <div className="grid grid-cols-2 gap-2">
+                  {[
+                    { id: "seller", label: "🏡 Seller Disclosure", desc: "Form 2 draft & title search" },
+                    { id: "build", label: "🏗️ Build & Change", desc: "Variations & specification" },
+                    { id: "lease", label: "🔑 Appoint & Lease", desc: "Form 6 & RTA Form 18a" },
+                    { id: "finance", label: "🏦 Finance & Mortgage", desc: "Borrower evidence pack" },
+                  ].map((family) => (
+                    <div
+                      key={family.id}
+                      onClick={() => setNewPackType(family.id as any)}
+                      className={`p-2.5 rounded-xl border cursor-pointer transition-all ${
+                        newPackType === family.id
+                          ? "bg-[#f3f6fb] border-[#071d3b] ring-1 ring-[#071d3b]"
+                          : "bg-white border-[#dfe6ef] hover:bg-[#fafbfc]"
+                      }`}
+                    >
+                      <strong className="block text-xs font-bold text-[#102645]">{family.label}</strong>
+                      <span className="text-[10px] text-[#68788e]">{family.desc}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <label className="block font-bold text-[#102645] mb-1">
+                  Pack Title *
                 </label>
                 <input
                   type="text"
                   required
-                  value={newPackName}
-                  onChange={(e) => setNewPackName(e.target.value)}
-                  placeholder="e.g. Pre-Purchase Building & Pest Pack"
-                  className="w-full bg-[#f8fafc] border border-[#cbd5e1] rounded-lg px-3 py-2 text-[#102645] placeholder-[#94a3b8] focus:bg-white focus:outline-none focus:border-[#071d3b]"
+                  value={newPackTitle}
+                  onChange={(e) => setNewPackTitle(e.target.value)}
+                  placeholder={
+                    newPackType === "seller"
+                      ? "e.g. QLD Seller Disclosure Statement Prep"
+                      : newPackType === "build"
+                      ? "e.g. Variation Notice: Ensuite Tile Upgrade"
+                      : "e.g. Tenancy Agreement Preparation"
+                  }
+                  className="w-full px-3 py-2 bg-[#f4f6f8] border border-[#dfe6ef] rounded-lg text-xs text-[#102645] focus:outline-none focus:border-[#071d3b]"
                 />
               </div>
 
               <div>
-                <label className="block text-[11px] font-bold text-[#102645] uppercase mb-1">
-                  Target Recipient / Purpose
+                <label className="block font-bold text-[#102645] mb-1">
+                  Named Professional Counterparty
                 </label>
                 <input
                   type="text"
                   value={newPackRecipient}
                   onChange={(e) => setNewPackRecipient(e.target.value)}
-                  placeholder="e.g. David Miller (Miller's Inspections)"
-                  className="w-full bg-[#f8fafc] border border-[#cbd5e1] rounded-lg px-3 py-2 text-[#102645] placeholder-[#94a3b8] focus:bg-white focus:outline-none focus:border-[#071d3b]"
+                  placeholder="e.g. River City Conveyancing or Hart Homes"
+                  className="w-full px-3 py-2 bg-[#f4f6f8] border border-[#dfe6ef] rounded-lg text-xs text-[#102645] focus:outline-none focus:border-[#071d3b]"
                 />
               </div>
 
-              <div>
-                <label className="block text-[11px] font-bold text-[#102645] uppercase mb-2">
-                  Select Documents to Bundle ({selectedDocs.length} selected)
-                </label>
-                <div className="max-h-48 overflow-y-auto space-y-1.5 p-2 bg-[#f8fafc] rounded-xl border border-[#dfe6ef]">
-                  {property.documents.map((doc) => (
-                    <label
-                      key={doc.title}
-                      className="flex items-center gap-2 p-1.5 rounded hover:bg-white cursor-pointer"
-                    >
-                      <input
-                        type="checkbox"
-                        checked={selectedDocs.includes(doc.title)}
-                        onChange={() => toggleDocSelection(doc.title)}
-                        className="rounded border-[#cbd5e1] text-[#071d3b] focus:ring-0"
-                      />
-                      <span className="text-[#102645] font-medium truncate flex-1">{doc.title}</span>
-                      <span className="text-[10px] text-[#64748b]">{doc.cat}</span>
-                    </label>
-                  ))}
-                </div>
+              <div className="p-3 bg-[#f0f7f3] border border-[#c7e4d0] rounded-xl text-[11px] text-[#24754c]">
+                ⚡ <strong>Queensland Workflow Engine:</strong> The assembled pack will automatically enforce statutory requirements, label mandatory legal items, and freeze versions for clean counterparty signing.
               </div>
 
-              <div className="p-3 bg-[#eaf5ef] rounded-lg border border-[#d2e6d9] text-[11px] text-[#24754c]">
-                🛡️ Scoped access allows viewing selected files through TrustLink without transferring ownership or exposing your private notes.
-              </div>
-
-              <div className="pt-2 flex items-center justify-end gap-2.5">
+              <div className="flex items-center justify-end gap-2 pt-2 border-t border-[#dfe6ef]">
                 <button
                   type="button"
-                  onClick={() => setCreateModalOpen(false)}
-                  className="px-4 py-2 bg-transparent hover:bg-slate-100 text-[#64748b] rounded-lg font-semibold"
+                  onClick={() => setCreatePackModalOpen(false)}
+                  className="px-4 py-2 bg-white border border-[#cbd5e2] text-[#5b6e84] rounded-xl text-xs font-semibold hover:bg-[#f4f6f8] cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-[#10b981] hover:bg-[#059669] text-white font-bold rounded-lg transition-colors cursor-pointer shadow-2xs"
+                  className="px-5 py-2 bg-[#071d3b] hover:bg-[#15345d] text-white rounded-xl text-xs font-bold transition-colors cursor-pointer shadow-xs"
                 >
-                  Generate Pack
+                  Assemble Pack
                 </button>
               </div>
             </form>
-          </div>
+          </motion.div>
         </div>
       )}
+
     </div>
   );
 }
