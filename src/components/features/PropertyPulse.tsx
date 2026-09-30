@@ -431,74 +431,82 @@ export function PropertyPulseNotification({
 
   return (
     <div
-      className={`bg-[#f0f7f3] border border-[#c7e4d0] rounded-xl px-3.5 sm:px-4 py-2.5 shadow-2xs transition-all ${className}`}
+      className={`bg-[#f0f7f3] border border-[#c7e4d0] rounded-xl p-3.5 shadow-2xs transition-all ${className}`}
       role="status"
     >
-      <div className="flex items-center justify-between gap-3 text-xs flex-wrap sm:flex-nowrap">
-        <div className="flex items-center gap-2.5 min-w-0 flex-1">
-          {/* Pulsing Green/Amber Radar Dot */}
+      {/* ── Top Header Row: Indicator, Title, Badge & Dismiss ── */}
+      <div className="flex items-center justify-between gap-2 mb-2">
+        <div className="flex items-center gap-2 min-w-0">
           <span className="relative flex h-2 w-2 flex-shrink-0">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#24754c] opacity-75" />
             <span className="relative inline-flex rounded-full h-2 w-2 bg-[#24754c]" />
           </span>
-
-          <span className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c] flex-shrink-0">
-            Property Pulse:
+          <span className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c] truncate">
+            Property Pulse
           </span>
-
-          <span className="text-[11px] sm:text-[12px] text-[#1e3a2f] font-medium truncate">
-            {briefText}
+          <span className="text-[9.5px] font-bold px-1.5 py-0.2 bg-[#dcf0e2] text-[#24754c] rounded border border-[#c2e5cb] flex-shrink-0">
+            {data.badge || "Live"}
           </span>
         </div>
 
-        <div className="flex items-center gap-2 flex-shrink-0 ml-auto sm:ml-0">
+        <button
+          onClick={() => setDismissed(true)}
+          aria-label="Dismiss notification"
+          className="text-[#8ca395] hover:text-[#102645] text-xs p-0.5 rounded cursor-pointer transition-colors flex-shrink-0"
+        >
+          ✕
+        </button>
+      </div>
+
+      {/* ── Brief Summary Text (Always readable, never squished) ── */}
+      <p className="text-[11.5px] text-[#1e3a2f] leading-relaxed mb-2.5">
+        {briefText}
+      </p>
+
+      {/* ── Action Toolbar: Details toggle + Action Buttons ── */}
+      <div className="flex items-center justify-between gap-2 pt-2 border-t border-[#d8eade]/70 flex-wrap">
+        <div>
           {items.length > 0 && (
             <button
               onClick={() => setExpanded(!expanded)}
-              className="text-[11px] text-[#527965] hover:text-[#102645] font-semibold cursor-pointer hidden md:inline"
+              className="text-[11px] text-[#3b6b52] hover:text-[#102645] font-semibold cursor-pointer inline-flex items-center gap-1 transition-colors"
             >
-              {expanded ? "Less ▴" : "Details ▾"}
+              <span>{expanded ? "Less details ▴" : "Details ▾"}</span>
             </button>
           )}
+        </div>
 
-          {/* Dedicated Button to go to Specific TrustLink related to this property */}
-          {showTrustLinkButton && specificTrustlink && (
-            <Link
-              href={specificTrustlink}
-              className="px-2.5 py-1 bg-[#071d3b] hover:bg-[#15345d] text-white text-[11px] font-bold rounded-lg transition-colors flex items-center gap-1 shadow-2xs shrink-0"
-              title={`Go to TrustLink (${data.trustlinkId || "active"}) for ${property || propId}`}
-            >
-              <span>🛡️ TrustLink</span>
-              <span className="text-[10px]">→</span>
-            </Link>
-          )}
-
+        <div className="flex items-center gap-2 flex-wrap ml-auto">
           {actionHref && (
             <Link
               href={actionHref}
-              className="text-[11px] font-bold text-[#071d3b] hover:text-[#24754c] hover:underline flex items-center gap-0.5"
+              className="text-[11px] font-bold text-[#071d3b] hover:text-[#24754c] hover:underline flex items-center gap-0.5 transition-colors"
             >
               <span>{actionLabel}</span>
               <span>→</span>
             </Link>
           )}
 
-          <button
-            onClick={() => setDismissed(true)}
-            aria-label="Dismiss notification"
-            className="text-[#8ca395] hover:text-[#102645] text-xs px-1 cursor-pointer"
-          >
-            ✕
-          </button>
+          {showTrustLinkButton && specificTrustlink && (
+            <Link
+              href={specificTrustlink}
+              className="px-2.5 py-1 bg-[#071d3b] hover:bg-[#15345d] text-white text-[11px] font-bold rounded-lg transition-colors flex items-center gap-1 shadow-2xs"
+              title={`Go to TrustLink (${data.trustlinkId || "active"}) for ${property || propId}`}
+            >
+              <span>🛡️ TrustLink</span>
+              <span className="text-[10px]">→</span>
+            </Link>
+          )}
         </div>
       </div>
 
+      {/* ── Expanded Detail Items ── */}
       {expanded && items.length > 0 && (
-        <div className="mt-2.5 pt-2 border-t border-[#d8eade] text-[11px] text-[#264e3b] space-y-1">
+        <div className="mt-2.5 pt-2 border-t border-[#d8eade] text-[11px] text-[#264e3b] space-y-1.5 bg-white/60 rounded-lg p-2.5">
           {items.map((item, i) => (
-            <div key={i} className="flex items-center gap-2">
-              <span className="text-[#24754c] text-[10px]">✓</span>
-              <span>{item}</span>
+            <div key={i} className="flex items-start gap-2">
+              <span className="text-[#24754c] text-[11px] font-bold mt-0.5">✓</span>
+              <span className="leading-tight">{item}</span>
             </div>
           ))}
         </div>
