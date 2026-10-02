@@ -96,7 +96,7 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
       recipient: "Hart Homes (Olivia Hart)",
       recipientRole: "Licensed Builder · QBCC #150821",
       status: builderHandoverAccepted ? "Fully Executed & Sealed" : "Signed by You / Waiting",
-      statusColor: builderHandoverAccepted ? "bg-[#eaf5ef] text-[#24754c] border-[#c7e3d1]" : "bg-[#eef4ff] text-[#0284c7] border-[#bae6fd]",
+      statusColor: builderHandoverAccepted ? "bg-[#eaf5ef] text-[#24754c] border-[#c7e3d1]" : "bg-[#fff4df] text-[#8b641c] border-[#fce3b8]",
       updatedAt: "Today 10:48 AM",
       trustlinkId: "TL-99214-B",
       trustlinkHref: "/trustlinks/TL-99214-B",
@@ -305,7 +305,7 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
               id: "decisions",
               label: "Overview & Decisions",
               badge: !builderHandoverAccepted ? "1 Action Waiting" : "Up to date",
-              badgeColor: !builderHandoverAccepted ? "bg-[#eef4ff] text-[#0284c7] border-[#bae6fd]" : "bg-[#eaf5ef] text-[#24754c] border-[#c7e3d1]",
+              badgeColor: !builderHandoverAccepted ? "bg-[#fff4df] text-[#8b641c] border-[#fce3b8]" : "bg-[#eaf5ef] text-[#24754c] border-[#c7e3d1]",
             },
             {
               id: "packs",
@@ -358,12 +358,12 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
             <div className="bg-[#071d3b] text-white rounded-2xl p-5 sm:p-6 shadow-sm relative overflow-hidden space-y-4">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-white/10">
                 <div className="flex items-center gap-2">
-                  <span className="text-[9.5px] font-bold uppercase tracking-[1.4px] bg-[#38bdf8] text-[#071d3b] px-2 py-0.5 rounded">
+                  <span className="text-[9.5px] font-bold uppercase tracking-[1.4px] bg-[#efbd66] text-[#071d3b] px-2 py-0.5 rounded">
                     Action Required · Deal Handover
                   </span>
                   <span className="text-xs text-[#b9c8db]">Issuer: Hart Homes (QBCC #150821)</span>
                 </div>
-                <span className="text-xs text-[#7dd3fc] font-semibold">
+                <span className="text-xs text-[#efbd66] font-semibold">
                   Due: Practical Completion Stage
                 </span>
               </div>
@@ -397,7 +397,7 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
                 <div className="flex flex-col sm:flex-row lg:flex-col items-stretch gap-2.5 min-w-[200px] flex-shrink-0">
                   <button
                     onClick={handleAcceptHandover}
-                    className="px-4 py-2.5 bg-[#38bdf8] hover:bg-[#0284c7] text-[#071d3b] rounded-xl text-xs font-bold transition-colors shadow-2xs text-center cursor-pointer flex items-center justify-center gap-1.5"
+                    className="px-4 py-2.5 bg-[#efbd66] hover:bg-[#dfac55] text-[#071d3b] rounded-xl text-xs font-bold transition-colors shadow-2xs text-center cursor-pointer flex items-center justify-center gap-1.5"
                   >
                     <span>✓ Accept &amp; Seal to Vault</span>
                   </button>

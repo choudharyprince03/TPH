@@ -193,10 +193,10 @@ export function DigitalKeyTab({ property, onGoToMessages }: DigitalKeyTabProps) 
         <div className="space-y-3">
           {/* Section header */}
           <div className="flex items-center gap-2">
-            <span className="text-[10px] font-bold uppercase tracking-[1.5px] text-[#0369a1]">
+            <span className="text-[10px] font-bold uppercase tracking-[1.5px] text-[#92400e]">
               Incoming
             </span>
-            <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-[#e0f2fe] text-[#0369a1] border border-[#bae6fd]">
+            <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-[#fef3c7] text-[#92400e] border border-[#fcd34d]">
               {pendingPacks.length}
             </span>
           </div>
@@ -206,12 +206,12 @@ export function DigitalKeyTab({ property, onGoToMessages }: DigitalKeyTabProps) 
             return (
               <div
                 key={pack.id}
-                className="bg-[#f0f9ff] border border-[#bae6fd] rounded-2xl overflow-hidden shadow-sm"
+                className="bg-[#fffbeb] border border-[#fcd34d] rounded-2xl overflow-hidden shadow-sm"
               >
                 {/* Pack header — always visible */}
                 <button
                   onClick={() => setExpandedPackId(isExpanded ? null : pack.id)}
-                  className="w-full px-5 py-4 flex items-center justify-between gap-4 text-left hover:bg-[#e0f2fe]/60 transition-colors cursor-pointer"
+                  className="w-full px-5 py-4 flex items-center justify-between gap-4 text-left hover:bg-[#fffadf] transition-colors cursor-pointer"
                 >
                   <div className="flex items-center gap-3 min-w-0">
                     <div
@@ -224,7 +224,7 @@ export function DigitalKeyTab({ property, onGoToMessages }: DigitalKeyTabProps) 
                         <span className="text-[13px] font-bold text-[#102645]">
                           {pack.senderName}
                         </span>
-                        <span className="text-[10px] font-medium text-[#0369a1] bg-[#e0f2fe] px-1.5 py-0.5 rounded border border-[#bae6fd]">
+                        <span className="text-[10px] font-medium text-[#92400e] bg-[#fef3c7] px-1.5 py-0.5 rounded border border-[#fcd34d]">
                           {pack.docCount} docs
                         </span>
                       </div>
@@ -540,7 +540,7 @@ export function DigitalKeyTab({ property, onGoToMessages }: DigitalKeyTabProps) 
               </span>
               <button
                 type="submit"
-                className="px-4 py-2 bg-[#38bdf8] hover:bg-[#0284c7] text-[#071d3b] font-bold text-xs rounded-lg transition-colors cursor-pointer shadow-2xs"
+                className="px-4 py-2 bg-[#efbd66] hover:bg-[#dfac55] text-[#071d3b] font-bold text-xs rounded-lg transition-colors cursor-pointer"
               >
                 Initiate Transfer
               </button>
