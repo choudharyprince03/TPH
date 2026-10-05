@@ -259,7 +259,7 @@ export default function ProDashboard() {
             <span className="text-base">🔑</span>
             <div className="min-w-0">
               <div className="text-[11.5px] font-semibold text-[#102645] group-hover:text-[#071d3b] truncate">
-                Handover Pack
+                Digital Key
               </div>
               <div className="text-[9.5px] text-[#68788e] truncate">Form 16/43 certs</div>
             </div>

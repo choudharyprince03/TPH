@@ -59,7 +59,7 @@ const NAV_SECTIONS: NavSection[] = [
       },
       {
         href: "/pro/digital-key",
-        label: "Handover",
+        label: "Digital Key",
         badge: "Ready",
         badgeColor: "bg-[#dcfce7] text-[#166534]",
         icon: (

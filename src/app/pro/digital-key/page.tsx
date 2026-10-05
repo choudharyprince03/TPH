@@ -122,7 +122,7 @@ export default function ProDigitalKeyPage() {
         <div>
           <div className="flex items-center gap-2 mb-1">
             <span className="text-[9.5px] font-bold uppercase tracking-wider text-[#24754c]">
-              Pro Hub · Digital Handover
+              Pro Hub · Digital Key
             </span>
             <span className="w-1.5 h-1.5 rounded-full bg-[#24754c]" />
             <span className="text-[10px] text-[#5b6e84] font-medium">
@@ -130,7 +130,7 @@ export default function ProDigitalKeyPage() {
             </span>
           </div>
           <h1 className="text-2xl font-bold tracking-tight text-[#102645]">
-            Digital Keys &amp; Handover Packs
+            Digital Keys
           </h1>
           <p className="text-xs text-[#68788e] mt-0.5">
             Assemble statutory compliance docs, subbie certs, and warranties into permanent client property passports.
