@@ -96,7 +96,7 @@ export function PropertySidebar({
         </svg>
       ),
       badge: (
-        <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-[#fbf3e4] text-[#946315] border border-[#fcd34d]">
+        <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-[#244159] text-[#dfc595] border border-[#3a5d7c]">
           2 incoming
         </span>
       ),
@@ -116,7 +116,7 @@ export function PropertySidebar({
         </svg>
       ),
       badge: (
-        <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-[#dcfce7] text-[#166534] border border-[#86efac]">
+        <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-[#133d32] text-[#6ee7b7] border border-[#1e6150]">
           2 active
         </span>
       ),
@@ -129,20 +129,20 @@ export function PropertySidebar({
       {mobileOpen && (
         <div
           onClick={() => setMobileOpen(false)}
-          className="fixed inset-0 bg-black/40 backdrop-blur-xs z-40 md:hidden"
+          className="fixed inset-0 bg-black/60 backdrop-blur-xs z-40 md:hidden"
         />
       )}
 
-      {/* Sidebar Rail - Light Theme */}
+      {/* Sidebar Rail - Pro Hub Deep Navy Theme */}
       <aside
-        className={`fixed md:sticky top-0 left-0 h-screen w-[240px] sm:w-[250px] bg-white border-r border-[#e2e5e5] text-[#183249] flex flex-col z-50 transition-transform duration-300 ease-in-out font-sans ${
+        className={`fixed md:sticky top-0 left-0 h-screen w-[240px] sm:w-[250px] bg-[#0b2034] border-r border-[#1c3a54] text-[#d7e0e7] flex flex-col z-50 transition-transform duration-300 ease-in-out font-sans select-none ${
           mobileOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
         }`}
       >
         {/* Brand & TPH Logo */}
-        <div className="p-4 border-b border-[#e2e5e5] flex items-center justify-between">
+        <div className="p-4 border-b border-[#1c3a54] flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2.5 group">
-            <div className="bg-white rounded-lg p-1.5 border border-[#e2e5e5] shadow-xs flex items-center justify-center flex-shrink-0">
+            <div className="bg-white rounded-lg p-1.5 border border-white/20 shadow-xs flex items-center justify-center flex-shrink-0">
               <img
                 src="/logo.png"
                 alt="The Property Helpline"
@@ -150,10 +150,10 @@ export function PropertySidebar({
               />
             </div>
             <div className="min-w-0">
-              <div className="font-bold text-[12px] tracking-tight leading-tight text-[#0F1A2C] group-hover:text-[#28715e] transition-colors truncate">
+              <div className="font-bold text-[12px] tracking-tight leading-tight text-white group-hover:text-[#C59B27] transition-colors truncate">
                 The Property Helpline
               </div>
-              <div className="text-[7.5px] font-bold uppercase tracking-[1.4px] text-[#28715e] leading-tight mt-0.5">
+              <div className="text-[7.5px] font-bold uppercase tracking-[1.4px] text-[#C59B27] leading-tight mt-0.5">
                 YOUR DIGITAL HOME
               </div>
             </div>
@@ -162,7 +162,7 @@ export function PropertySidebar({
           {/* Mobile Close Button */}
           <button
             onClick={() => setMobileOpen(false)}
-            className="md:hidden text-[#64727e] hover:text-[#183249] p-1 rounded-md"
+            className="md:hidden text-[#8ca4b7] hover:text-white p-1 rounded-md cursor-pointer"
             aria-label="Close menu"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -174,10 +174,10 @@ export function PropertySidebar({
         {/* This Home Header + Property Switcher */}
         <div className="px-4 pt-4 pb-2">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-[9px] font-bold uppercase tracking-[1.8px] text-[#64727e]">
+            <span className="text-[9px] font-bold uppercase tracking-[1.8px] text-[#8ca4b7]">
               THIS HOME
             </span>
-            <span className="text-[9px] font-mono font-bold text-[#946315] bg-[#fbf3e4] px-1.5 py-0.5 rounded border border-[#ffe0a3]">
+            <span className="text-[9px] font-mono font-bold text-[#dfc595] bg-[#244159] px-1.5 py-0.5 rounded border border-[#3a5d7c]">
               {property.propId}
             </span>
           </div>
@@ -186,18 +186,18 @@ export function PropertySidebar({
           <div className="relative">
             <button
               onClick={() => setSwitcherOpen(!switcherOpen)}
-              className="w-full flex items-center justify-between p-2 rounded-lg bg-[#f8fafc] border border-[#e2e5e5] hover:border-[#cbd5e1] hover:bg-[#f1f5f9] transition-colors text-left group"
+              className="w-full flex items-center justify-between p-2 rounded-lg bg-[#173249]/80 border border-[#244159] hover:border-[#3a5d7c] hover:bg-[#1f3f5b] transition-colors text-left group cursor-pointer"
             >
               <div className="min-w-0 pr-2">
-                <div className="text-[12px] font-bold text-[#183249] truncate group-hover:text-[#0F1A2C] transition-colors">
+                <div className="text-[12px] font-bold text-white truncate group-hover:text-[#C59B27] transition-colors">
                   {property.street}
                 </div>
-                <div className="text-[10px] text-[#64727e] truncate">
+                <div className="text-[10px] text-[#adc0cd] truncate">
                   {property.suburb} {property.state}
                 </div>
               </div>
               <svg
-                className={`w-3.5 h-3.5 text-[#64727e] transition-transform ${switcherOpen ? "rotate-180" : ""}`}
+                className={`w-3.5 h-3.5 text-[#8ca4b7] transition-transform ${switcherOpen ? "rotate-180" : ""}`}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -207,8 +207,8 @@ export function PropertySidebar({
             </button>
 
             {switcherOpen && (
-              <div className="absolute top-full left-0 right-0 mt-1.5 bg-white border border-[#e2e5e5] rounded-xl shadow-lg p-1.5 z-30 space-y-1">
-                <div className="text-[9px] uppercase font-bold text-[#64727e] px-2 py-1">
+              <div className="absolute top-full left-0 right-0 mt-1.5 bg-[#0b2034] border border-[#244159] rounded-xl shadow-xl p-1.5 z-30 space-y-1">
+                <div className="text-[9px] uppercase font-bold text-[#8ca4b7] px-2 py-1">
                   Switch Property
                 </div>
                 {PROPERTIES_LIST.map((p) => (
@@ -218,10 +218,10 @@ export function PropertySidebar({
                       if (onSwitchProperty) onSwitchProperty(p.id);
                       setSwitcherOpen(false);
                     }}
-                    className={`w-full text-left p-2 rounded-lg text-xs flex items-center justify-between transition-colors ${
+                    className={`w-full text-left p-2 rounded-lg text-xs flex items-center justify-between transition-colors cursor-pointer ${
                       p.id === property.id
-                        ? "bg-[#eef4ff] text-[#0F1A2C] font-bold"
-                        : "text-[#5b6e84] hover:bg-[#f1f5f9] hover:text-[#183249]"
+                        ? "bg-[#24415b] text-white font-bold"
+                        : "text-[#adc0cd] hover:bg-[#173249] hover:text-white"
                     }`}
                   >
                     <span className="truncate pr-2">{p.street}</span>
@@ -230,10 +230,10 @@ export function PropertySidebar({
                     )}
                   </button>
                 ))}
-                <div className="pt-1 border-t border-[#e2e5e5] mt-1">
+                <div className="pt-1 border-t border-[#1c3a54] mt-1">
                   <Link
                     href="/properties"
-                    className="block text-[10px] text-[#0F1A2C] hover:underline px-2 py-1 font-bold"
+                    className="block text-[10px] text-[#C59B27] hover:underline px-2 py-1 font-bold"
                   >
                     All properties →
                   </Link>
@@ -243,8 +243,8 @@ export function PropertySidebar({
           </div>
         </div>
 
-        {/* Nav Items — 4 clean tabs */}
-        <nav className="flex-1 px-3 py-3 space-y-0.5 overflow-y-auto" aria-label="Home Navigation">
+        {/* Nav Items — 5 clean tabs */}
+        <nav className="flex-1 px-3 py-3 space-y-1 overflow-y-auto" aria-label="Home Navigation">
           {NAV_ITEMS.map((item) => {
             const isActive = activeTab === item.id;
             return (
@@ -254,25 +254,25 @@ export function PropertySidebar({
                   onTabChange(item.id);
                   setMobileOpen(false);
                 }}
-                className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-left transition-all group ${
+                className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-left transition-all relative group cursor-pointer ${
                   isActive
-                    ? "bg-[#0F1A2C] text-white shadow-xs"
-                    : "text-[#5b6e84] hover:bg-[#F9F8F5] hover:text-[#183249]"
+                    ? "bg-[#24415b] text-white font-semibold before:content-[''] before:absolute before:-left-3 before:w-[3px] before:h-[20px] before:bg-[#C59B27] before:rounded-r shadow-xs"
+                    : "text-[#b6c6d3] hover:bg-[#173249] hover:text-white"
                 }`}
               >
-                <div className="flex items-center gap-3 min-w-0">
+                <div className="flex items-center gap-2.5 min-w-0">
                   <span
                     className={`transition-colors flex-shrink-0 ${
-                      isActive ? "text-[#C59B27]" : "text-[#64727e] group-hover:text-[#183249]"
+                      isActive ? "text-[#C59B27]" : "text-[#8ca4b7] group-hover:text-white"
                     }`}
                   >
                     {item.icon}
                   </span>
                   <div className="min-w-0">
-                    <div className={`text-[13px] font-semibold truncate ${isActive ? "text-white" : ""}`}>
+                    <div className={`text-[12px] font-semibold truncate ${isActive ? "text-white" : "text-[#d7e0e7] group-hover:text-white"}`}>
                       {item.label}
                     </div>
-                    <div className={`text-[10px] truncate ${isActive ? "text-white/60" : "text-[#94a3b8]"}`}>
+                    <div className={`text-[10px] truncate ${isActive ? "text-[#adc0cd]" : "text-[#7d92a4] group-hover:text-[#adc0cd]"}`}>
                       {item.sublabel}
                     </div>
                   </div>
@@ -284,25 +284,28 @@ export function PropertySidebar({
         </nav>
 
         {/* Footer */}
-        <div className="p-3 border-t border-[#e2e5e5] space-y-1 text-[11px]">
+        <div className="p-3.5 border-t border-[#1c3a54] space-y-1.5 text-[11px] bg-[#08192a]/50">
           <Link
             href="/explore"
-            className="flex items-center justify-between px-3 py-1.5 text-[#5b6e84] hover:text-[#183249] hover:bg-[#F9F8F5] rounded-lg transition-colors"
+            className="flex items-center justify-between px-3 py-1.5 text-[#adc0cd] hover:text-white hover:bg-[#173249] rounded-lg transition-colors font-medium"
           >
             <span>Find a specialist</span>
-            <span className="text-[10px] text-[#8a9bb0]">↗</span>
+            <span className="text-[10px] text-[#8ca4b7]">↗</span>
           </Link>
           <Link
             href="/pro"
-            className="flex items-center justify-between px-3 py-1.5 text-[#28715e] hover:bg-[#eaf4ef] rounded-lg transition-colors font-semibold"
+            className="flex items-center justify-between px-3 py-1.5 text-[#dfc595] hover:text-white hover:bg-[#173249] rounded-lg transition-colors font-semibold"
           >
             <span>I'm a Pro</span>
             <span className="text-[10px]">↗</span>
           </Link>
 
-          <div className="pt-2 border-t border-[#e2e5e5] flex items-center justify-between px-3 py-1 text-[#64727e] text-[10px]">
+          <div className="pt-2 border-t border-[#1c3a54] flex items-center justify-between px-3 py-1 text-[#8ca4b7] text-[10px]">
             <span>Verified Owner</span>
-            <span className="font-semibold text-[#28715e]">Active</span>
+            <span className="font-semibold text-[#28715e] flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#28715e]" />
+              Active
+            </span>
           </div>
         </div>
       </aside>
