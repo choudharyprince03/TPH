@@ -226,7 +226,9 @@ export function PropertySidebar({
                   >
                     <span className="truncate pr-2">{p.street}</span>
                     {p.id === property.id && (
-                      <span className="text-[10px] text-[#28715e] font-bold">✓</span>
+                      <svg className="w-3.5 h-3.5 text-[#28715e] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
                     )}
                   </button>
                 ))}

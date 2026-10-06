@@ -189,8 +189,11 @@ function PropertyDetailInner({ id }: { id: string }) {
                       <span className="font-mono text-xs px-2.5 py-1 bg-white/10 rounded-md font-bold text-[#C59B27] border border-white/20">
                         {property.propId}
                       </span>
-                      <span className="text-xs text-[#6ee7b7] flex items-center gap-1 font-medium">
-                        <span>✓</span> Verified Sovereign Property Record
+                      <span className="text-xs text-[#6ee7b7] flex items-center gap-1.5 font-medium">
+                        <svg className="w-3.5 h-3.5 text-[#6ee7b7]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span>Verified Sovereign Property Record</span>
                       </span>
                     </div>
                   </div>
@@ -200,14 +203,18 @@ function PropertyDetailInner({ id }: { id: string }) {
                       onClick={() => handleTabChange("digital-key")}
                       className="px-4 py-2.5 bg-[#C59B27] hover:bg-[#b58b20] text-[#0F1A2C] rounded-xl text-xs font-bold transition-all shadow-sm flex items-center gap-1.5 cursor-pointer"
                     >
-                      <span>📦</span>
+                      <svg className="w-4 h-4 text-[#0F1A2C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                      </svg>
                       <span>View Digital Key</span>
                     </button>
                     <button
                       onClick={() => handleTabChange("trustlink")}
                       className="px-4 py-2.5 bg-white/10 hover:bg-white/20 text-white rounded-xl text-xs font-semibold transition-colors border border-white/20 flex items-center gap-1.5 cursor-pointer"
                     >
-                      <span>🛡️</span>
+                      <svg className="w-4 h-4 text-[#C59B27]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                      </svg>
                       <span>TrustLink</span>
                     </button>
                   </div>
@@ -237,8 +244,17 @@ function PropertyDetailInner({ id }: { id: string }) {
                 >
                   <div className="text-[10px] font-bold uppercase tracking-wider text-[#946315]">Incoming</div>
                   <div className="text-2xl font-bold text-[#946315] mt-1">2 Packs</div>
-                  <div className="text-[11px] text-[#64727e] mt-0.5">
-                    {handoverAccepted ? "Saved to your record ✓" : "Olivia Hart & Lachlan Vance"}
+                  <div className="text-[11px] text-[#28715e] font-medium mt-0.5 flex items-center gap-1">
+                    {handoverAccepted ? (
+                      <>
+                        <svg className="w-3 h-3 text-[#28715e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span>Saved to your record</span>
+                      </>
+                    ) : (
+                      <span className="text-[#64727e]">Olivia Hart &amp; Lachlan Vance</span>
+                    )}
                   </div>
                 </div>
 
@@ -403,15 +419,21 @@ function PropertyDetailInner({ id }: { id: string }) {
                         </Link>
                         <Link
                           href="/trustlinks/welcome?tab=conversation"
-                          className="px-3 py-1.5 text-[#64727e] hover:text-[#183249] font-semibold text-[11px] transition-colors flex items-center gap-1"
+                          className="px-3 py-1.5 text-[#64727e] hover:text-[#183249] font-semibold text-[11px] transition-colors flex items-center gap-1.5"
                         >
-                          💬 Message
+                          <svg className="w-3.5 h-3.5 text-[#64727e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                          </svg>
+                          <span>Message</span>
                         </Link>
                         <button
                           onClick={() => alert("Olivia Hart's access has been paused.")}
-                          className="px-3 py-1.5 text-[#64727e] hover:text-[#183249] font-semibold text-[11px] transition-colors cursor-pointer"
+                          className="px-3 py-1.5 text-[#64727e] hover:text-[#183249] font-semibold text-[11px] transition-colors cursor-pointer flex items-center gap-1.5"
                         >
-                          ⏸ Pause
+                          <svg className="w-3.5 h-3.5 text-[#64727e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                          <span>Pause</span>
                         </button>
                         <button
                           onClick={() => alert("Olivia Hart's access has been removed.")}
@@ -465,15 +487,21 @@ function PropertyDetailInner({ id }: { id: string }) {
                         </Link>
                         <Link
                           href="/trustlinks/TL-88301-A?tab=conversation"
-                          className="px-3 py-1.5 text-[#64727e] hover:text-[#183249] font-semibold text-[11px] transition-colors flex items-center gap-1"
+                          className="px-3 py-1.5 text-[#64727e] hover:text-[#183249] font-semibold text-[11px] transition-colors flex items-center gap-1.5"
                         >
-                          💬 Message
+                          <svg className="w-3.5 h-3.5 text-[#64727e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                          </svg>
+                          <span>Message</span>
                         </Link>
                         <button
                           onClick={() => alert("Lachlan Vance's access has been paused.")}
-                          className="px-3 py-1.5 text-[#64727e] hover:text-[#183249] font-semibold text-[11px] transition-colors cursor-pointer"
+                          className="px-3 py-1.5 text-[#64727e] hover:text-[#183249] font-semibold text-[11px] transition-colors cursor-pointer flex items-center gap-1.5"
                         >
-                          ⏸ Pause
+                          <svg className="w-3.5 h-3.5 text-[#64727e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                          <span>Pause</span>
                         </button>
                         <button
                           onClick={() => alert("Lachlan Vance's access has been removed.")}
@@ -488,7 +516,9 @@ function PropertyDetailInner({ id }: { id: string }) {
               </div>
 
               <div className="p-4 rounded-xl bg-[#f0f7f3] border border-[#c7e4d0] flex items-center gap-3 text-[12px] text-[#1e3a2f]">
-                <span className="text-base flex-shrink-0">🔒</span>
+                <svg className="w-5 h-5 text-[#28715e] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
                 <span>
                   Your documents never leave your record. Professionals get a read-only scoped view of only what you approve, for only as long as you allow.
                 </span>

@@ -290,9 +290,11 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
             <span>·</span>
             <Link
               href={`/properties/${data.propId}?tab=digital-key`}
-              className="hover:underline flex items-center gap-1 font-semibold text-[#0F1A2C]"
+              className="hover:underline flex items-center gap-1.5 font-semibold text-[#0F1A2C]"
             >
-              <span>🏠</span>
+              <svg className="w-3.5 h-3.5 text-[#0F1A2C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+              </svg>
               <span>{data.property} · Back to my home</span>
             </Link>
             <span>·</span>
@@ -313,8 +315,10 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
         <section className="bg-white border border-[#e2e5e5] rounded-2xl p-5 sm:p-6 mb-6 shadow-sm">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-start gap-3.5">
-              <div className="w-11 h-11 rounded-xl bg-[#eaf4ef] text-[#28715e] border border-[#d2e6d9] flex items-center justify-center font-bold text-xl flex-shrink-0">
-                🔑
+              <div className="w-11 h-11 rounded-xl bg-[#eaf4ef] text-[#28715e] border border-[#d2e6d9] flex items-center justify-center flex-shrink-0">
+                <svg className="w-5 h-5 text-[#28715e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+                </svg>
               </div>
               <div>
                 <div className="flex items-center gap-2 mb-1 flex-wrap">
@@ -343,7 +347,10 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
                 href={`/properties/${data.propId}?tab=digital-key`}
                 className="px-4 py-2 bg-[#0F1A2C] hover:bg-[#1c3a54] text-white rounded-xl text-xs font-bold transition-colors shadow-2xs whitespace-nowrap flex items-center gap-1.5"
               >
-                <span>📦 Open Digital Key</span>
+                <svg className="w-3.5 h-3.5 text-[#C59B27]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                </svg>
+                <span>Open Digital Key</span>
                 <span>→</span>
               </Link>
             </div>
@@ -354,12 +361,14 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
         {paused && !stopped && (
           <div className="p-4 rounded-xl bg-[#fbf3e4] border border-[#f5dfb8] text-[#946315] text-[12px] mb-6 flex items-center justify-between gap-4">
             <div className="flex items-center gap-2">
-              <span>⏸️</span>
+              <svg className="w-4 h-4 text-[#946315] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
               <span>You paused this Trust Link. Shared access and new in-app messages remain paused until you resume.</span>
             </div>
             <button
               onClick={() => setPaused(false)}
-              className="px-3 py-1 bg-[#0F1A2C] text-white font-bold text-[11px] rounded-lg"
+              className="px-3 py-1 bg-[#0F1A2C] text-white font-bold text-[11px] rounded-lg cursor-pointer"
             >
               Resume original permissions
             </button>
@@ -375,21 +384,55 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
         {/* ── Sub-Navigation Tabs ─────────────────────────────────────── */}
         <nav className="flex items-center gap-4 sm:gap-7 border-b border-[#e2e5e5] mb-8 overflow-x-auto text-[13px] font-medium">
           {[
-            { id: "overview", label: "Overview", icon: "🤝" },
-            { id: "conversation", label: "Conversation", icon: "💬", count: `${messages.length}` },
-            { id: "permissions", label: "Permissions", icon: "⚙️" },
-            { id: "activity", label: "Activity", icon: "🕒" },
+            {
+              id: "overview",
+              label: "Overview",
+              icon: (
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              ),
+            },
+            {
+              id: "conversation",
+              label: "Conversation",
+              icon: (
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                </svg>
+              ),
+              count: `${messages.length}`,
+            },
+            {
+              id: "permissions",
+              label: "Permissions",
+              icon: (
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              ),
+            },
+            {
+              id: "activity",
+              label: "Activity",
+              icon: (
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              ),
+            },
           ].map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id as any)}
-              className={`py-3 relative flex items-center gap-2 whitespace-nowrap transition-colors ${
+              className={`py-3 relative flex items-center gap-2 whitespace-nowrap transition-colors cursor-pointer ${
                 activeTab === tab.id
                   ? "text-[#183249] font-bold after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-[#28715e]"
                   : "text-[#64727e] hover:text-[#183249]"
               }`}
             >
-              <span>{tab.icon}</span>
+              <span className="flex-shrink-0">{tab.icon}</span>
               <span>{tab.label}</span>
               {tab.count && (
                 <span className="text-[10px] font-bold px-1.5 py-0.2 bg-[#e2e5e5] text-[#183249] rounded-full">
@@ -440,19 +483,38 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
               <div className="flex items-center gap-2.5 pt-4 border-t border-[#e2e5e5] flex-wrap">
                 <button
                   onClick={() => setShowEditModal(true)}
-                  className="px-3.5 py-2 bg-white border border-[#cbd5e2] text-[#183249] rounded-xl text-[12px] font-semibold hover:bg-[#F9F8F5]"
+                  className="px-3.5 py-2 bg-white border border-[#cbd5e2] text-[#183249] rounded-xl text-[12px] font-semibold hover:bg-[#F9F8F5] flex items-center gap-1.5 cursor-pointer"
                 >
-                  ⚙️ Edit permissions
+                  <svg className="w-3.5 h-3.5 text-[#64727e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  <span>Edit permissions</span>
                 </button>
                 <button
                   onClick={() => setPaused(!paused)}
-                  className="px-3.5 py-2 bg-white border border-[#cbd5e2] text-[#183249] rounded-xl text-[12px] font-semibold hover:bg-[#F9F8F5]"
+                  className="px-3.5 py-2 bg-white border border-[#cbd5e2] text-[#183249] rounded-xl text-[12px] font-semibold hover:bg-[#F9F8F5] flex items-center gap-1.5 cursor-pointer"
                 >
-                  {paused ? "▶ Resume" : "⏸ Pause"}
+                  {paused ? (
+                    <>
+                      <svg className="w-3.5 h-3.5 text-[#28715e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <span>Resume</span>
+                    </>
+                  ) : (
+                    <>
+                      <svg className="w-3.5 h-3.5 text-[#64727e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <span>Pause</span>
+                    </>
+                  )}
                 </button>
                 <button
                   onClick={() => setShowStopModal(true)}
-                  className="px-3.5 py-2 bg-white border border-[#e4b8b8] text-[#a34b43] rounded-xl text-[12px] font-semibold hover:bg-[#fbeeee]"
+                  className="px-3.5 py-2 bg-white border border-[#e4b8b8] text-[#a34b43] rounded-xl text-[12px] font-semibold hover:bg-[#fbeeee] cursor-pointer"
                 >
                   Stop access
                 </button>
@@ -468,7 +530,7 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
               <div>
                 <div className="flex items-center justify-between pb-3 border-b border-[#e2e5e5] mb-4">
                   <h3 className="text-base font-bold text-[#183249]">Latest conversation</h3>
-                  <button onClick={() => setActiveTab("conversation")} className="text-[11px] font-bold text-[#0F1A2C] hover:underline">
+                  <button onClick={() => setActiveTab("conversation")} className="text-[11px] font-bold text-[#0F1A2C] hover:underline cursor-pointer">
                     Open →
                   </button>
                 </div>
@@ -483,9 +545,12 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
 
                 <button
                   onClick={() => setActiveTab("conversation")}
-                  className="w-full py-2.5 bg-[#0F1A2C] text-white rounded-xl text-[12px] font-semibold hover:bg-[#102d59] transition-colors mb-4"
+                  className="w-full py-2.5 bg-[#0F1A2C] text-white rounded-xl text-[12px] font-semibold hover:bg-[#102d59] transition-colors mb-4 flex items-center justify-center gap-1.5 cursor-pointer"
                 >
-                  Open conversation 💬
+                  <span>Open conversation</span>
+                  <svg className="w-3.5 h-3.5 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                  </svg>
                 </button>
 
                 <div className="p-3 bg-[#f9fafc] rounded-xl text-[11px] text-[#64727e] border border-[#e2e5e5] leading-relaxed">
@@ -495,11 +560,14 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
               </div>
 
               <div className="pt-4 border-t border-[#e2e5e5] mt-4 flex items-center justify-between text-[11px]">
-                <button onClick={() => setActiveTab("permissions")} className="text-[#0F1A2C] font-semibold hover:underline">
+                <button onClick={() => setActiveTab("permissions")} className="text-[#0F1A2C] font-semibold hover:underline cursor-pointer">
                   Review exact permissions →
                 </button>
-                <Link href="/properties/TPH-KEN-018" className="text-[#28715e] font-semibold hover:underline">
-                  Return to Prop ID 🏠
+                <Link href="/properties/TPH-KEN-018" className="text-[#28715e] font-semibold hover:underline flex items-center gap-1">
+                  <span>Return to Prop ID</span>
+                  <svg className="w-3.5 h-3.5 text-[#28715e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                  </svg>
                 </Link>
               </div>
             </section>
@@ -552,7 +620,7 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
                 <button
                   type="submit"
                   disabled={paused || stopped}
-                  className="px-5 py-2.5 bg-[#0F1A2C] hover:bg-[#102d59] text-white font-bold rounded-xl text-[12px] transition-colors"
+                  className="px-5 py-2.5 bg-[#0F1A2C] hover:bg-[#102d59] text-white font-bold rounded-xl text-[12px] transition-colors cursor-pointer"
                 >
                   Send →
                 </button>
@@ -563,9 +631,12 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
                 <span>Sample conversation · Prototype session</span>
                 <button
                   onClick={simulateReply}
-                  className="text-[#28715e] font-semibold hover:underline"
+                  className="text-[#28715e] font-semibold hover:underline flex items-center gap-1 cursor-pointer"
                 >
-                  Try a sample reply ⚡
+                  <svg className="w-3 h-3 text-[#28715e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                  <span>Try a sample reply</span>
                 </button>
               </div>
             </div>
@@ -584,9 +655,12 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
 
               <button
                 onClick={() => setActiveTab("permissions")}
-                className="w-full py-2.5 bg-white border border-[#cbd5e2] hover:bg-[#F9F8F5] text-[#183249] font-bold rounded-xl text-[12px] transition-colors mb-3 flex items-center justify-center gap-2"
+                className="w-full py-2.5 bg-white border border-[#cbd5e2] hover:bg-[#F9F8F5] text-[#183249] font-bold rounded-xl text-[12px] transition-colors mb-3 flex items-center justify-center gap-1.5 cursor-pointer"
               >
-                <span>Manage permissions 🛡️</span>
+                <svg className="w-3.5 h-3.5 text-[#0F1A2C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+                <span>Manage permissions</span>
               </button>
 
               <button
@@ -656,9 +730,13 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
               <div className="flex items-center gap-2.5 pt-4 border-t border-[#e2e5e5] flex-wrap">
                 <button
                   onClick={() => setShowEditModal(true)}
-                  className="px-3.5 py-2 bg-white border border-[#cbd5e2] text-[#183249] rounded-xl text-[12px] font-semibold hover:bg-[#F9F8F5]"
+                  className="px-3.5 py-2 bg-white border border-[#cbd5e2] text-[#183249] rounded-xl text-[12px] font-semibold hover:bg-[#F9F8F5] flex items-center gap-1.5 cursor-pointer"
                 >
-                  ⚙️ Edit permissions
+                  <svg className="w-3.5 h-3.5 text-[#64727e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  <span>Edit permissions</span>
                 </button>
                 <button
                   onClick={() => setPaused(!paused)}
@@ -776,13 +854,22 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
                 </p>
                 <button
                   onClick={() => setHandoverSealed(true)}
-                  className={`px-5 py-2.5 rounded-xl text-[12px] font-bold transition-all ${
+                  className={`px-5 py-2.5 rounded-xl text-[12px] font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
                     handoverSealed
                       ? "bg-[#28715e] text-white"
                       : "bg-[#C59B27] text-[#0F1A2C] hover:bg-[#e0ad52]"
                   }`}
                 >
-                  {handoverSealed ? "✓ Handover Sealed to Prop ID Vault" : "Accept & Seal to Prop ID Vault →"}
+                  {handoverSealed ? (
+                    <>
+                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Handover Sealed to Prop ID Vault</span>
+                    </>
+                  ) : (
+                    <span>Accept &amp; Seal to Prop ID Vault →</span>
+                  )}
                 </button>
               </div>
 
@@ -821,13 +908,22 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
                 </span>
                 <button
                   onClick={() => setVariationSigned(true)}
-                  className={`px-4 py-1.5 rounded-lg text-[11px] font-bold transition-colors ${
+                  className={`px-4 py-1.5 rounded-lg text-[11px] font-bold transition-colors flex items-center gap-1.5 cursor-pointer ${
                     variationSigned
                       ? "bg-[#eaf4ef] text-[#28715e]"
                       : "bg-[#0F1A2C] text-white hover:bg-[#102d59]"
                   }`}
                 >
-                  {variationSigned ? "✓ Approved & Signed" : "Digital Sign-Off (Approve)"}
+                  {variationSigned ? (
+                    <>
+                      <svg className="w-3.5 h-3.5 text-[#28715e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Approved &amp; Signed</span>
+                    </>
+                  ) : (
+                    <span>Digital Sign-Off (Approve)</span>
+                  )}
                 </button>
               </div>
             </div>
@@ -850,7 +946,11 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
                       <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[11px] font-bold ${
                         g.verified ? "bg-[#eaf4ef] text-[#28715e]" : "bg-[#fbf3e4] text-[#946315]"
                       }`}>
-                        {g.verified ? "✓" : "!"}
+                        {g.verified ? (
+                          <svg className="w-3 h-3 text-[#28715e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                          </svg>
+                        ) : "!"}
                       </span>
                       <strong className="text-[#183249] font-semibold">{g.title}</strong>
                     </div>
@@ -877,8 +977,14 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
                 <h2 className="text-xl font-bold text-[#183249]">Review Trust Link permissions</h2>
                 <p className="text-[11px] text-[#64727e]">{data.proName} · {data.purpose}</p>
               </div>
-              <button onClick={() => setShowEditModal(false)} className="text-[#64727e] hover:text-[#183249] text-lg font-bold">
-                ✕
+              <button
+                onClick={() => setShowEditModal(false)}
+                className="text-[#64727e] hover:text-[#183249] p-1.5 rounded-lg hover:bg-[#f1f5f9] cursor-pointer transition-colors"
+                aria-label="Close"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
               </button>
             </div>
 

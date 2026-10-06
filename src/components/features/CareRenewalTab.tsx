@@ -234,7 +234,10 @@ export function CareRenewalTab({ property, onOpenTrustLink }: CareRenewalTabProp
 
         <div className="flex items-center gap-3 self-start">
           <span className="text-[11px] text-[#28715e] font-semibold flex items-center gap-1.5 bg-[#eaf4ef] px-3 py-1 rounded-full border border-[#d2e6d9] shadow-2xs">
-            <span>🔒</span> Private by default
+            <svg className="w-3 h-3 text-[#28715e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+            Private by default
           </span>
           <button
             onClick={() => setAddTaskModalOpen(true)}
@@ -376,15 +379,24 @@ export function CareRenewalTab({ property, onOpenTrustLink }: CareRenewalTabProp
                               </span>
 
                               {/* Recurrence Badge */}
-                              <span className="text-[9.5px] font-medium text-[#64727e]">
-                                🔁 {t.recurrence}
+                              <span className="inline-flex items-center gap-1 text-[9.5px] font-medium text-[#64727e]">
+                                <svg className="w-2.5 h-2.5 text-[#64727e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                </svg>
+                                {t.recurrence}
                               </span>
                             </div>
 
                             {/* System linkage */}
                             {t.systemLinked && (
                               <div className="text-[11px] text-[#28715e] font-medium mt-1 flex items-center gap-1">
-                                <span>🔧 Linked to:</span>
+                                <span className="inline-flex items-center gap-1">
+                                  <svg className="w-3 h-3 text-[#28715e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                  </svg>
+                                  Linked to:
+                                </span>
                                 <span>{t.systemLinked}</span>
                               </div>
                             )}
@@ -398,7 +410,9 @@ export function CareRenewalTab({ property, onOpenTrustLink }: CareRenewalTabProp
 
                             {/* Due date */}
                             <div className="text-[11px] text-[#64727e] mt-2 flex items-center gap-1.5 font-medium">
-                              <span>📅</span>
+                              <svg className="w-3.5 h-3.5 text-[#64727e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                              </svg>
                               <span>
                                 {isDone ? "Completed · " : "Due: "}
                                 {t.dueDate}
@@ -411,20 +425,31 @@ export function CareRenewalTab({ property, onOpenTrustLink }: CareRenewalTabProp
                         <div className="flex items-center gap-1 flex-shrink-0">
                           <button
                             onClick={() => handleToggleTask(t.id)}
-                            className={`px-2.5 py-1 text-[11px] font-semibold rounded-lg border transition-colors cursor-pointer ${
+                            className={`px-2.5 py-1 text-[11px] font-semibold rounded-lg border transition-colors cursor-pointer inline-flex items-center gap-1 ${
                               isDone
                                 ? "bg-white text-[#64727e] border-[#cbd5e1] hover:bg-[#f1f5f9]"
                                 : "bg-[#eaf4ef] text-[#28715e] border-[#c2e2cf] hover:bg-[#d8eedf]"
                             }`}
                           >
-                            {isDone ? "Reopen" : "Done ✓"}
+                            {isDone ? (
+                              "Reopen"
+                            ) : (
+                              <>
+                                <span>Done</span>
+                                <svg className="w-3 h-3 text-[#28715e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                </svg>
+                              </>
+                            )}
                           </button>
                           <button
                             onClick={() => handleDeleteTask(t.id)}
                             className="p-1 text-[#94a3b8] hover:text-[#dc2626] rounded-lg transition-colors cursor-pointer"
                             title="Delete task"
                           >
-                            ✕
+                            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
                           </button>
                         </div>
                       </div>
@@ -565,7 +590,9 @@ export function CareRenewalTab({ property, onOpenTrustLink }: CareRenewalTabProp
                 onClick={() => setAddTaskModalOpen(false)}
                 className="text-[#64748b] hover:text-[#183249] p-1 cursor-pointer"
               >
-                ✕
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
               </button>
             </div>
 
@@ -710,7 +737,9 @@ export function CareRenewalTab({ property, onOpenTrustLink }: CareRenewalTabProp
                 onClick={() => setLinkDocModalOpen(false)}
                 className="text-[#64748b] hover:text-[#183249] p-1 cursor-pointer"
               >
-                ✕
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
               </button>
             </div>
 

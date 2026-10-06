@@ -104,10 +104,12 @@ export function ReferralModal({ isOpen, onClose, mode = "consumer" }: ReferralMo
           <div className="bg-[#0F1A2C] text-white p-6 sm:p-7 relative">
             <button
               onClick={onClose}
-              className="absolute top-5 right-5 text-white/60 hover:text-white p-1 rounded-lg text-lg leading-none"
+              className="absolute top-5 right-5 text-white/60 hover:text-white p-1 rounded-lg transition-colors"
               aria-label="Close modal"
             >
-              ✕
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
             </button>
             <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/10 border border-white/15 text-[10px] font-bold uppercase tracking-wider text-[#C59B27] mb-2">
               <svg className="w-3.5 h-3.5 text-[#C59B27]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -204,8 +206,10 @@ export function ReferralModal({ isOpen, onClose, mode = "consumer" }: ReferralMo
           <div className="p-6 sm:p-7 max-h-[68vh] overflow-y-auto">
             {formSubmitted ? (
               <div className="text-center py-8">
-                <div className="w-14 h-14 bg-[#eaf4ef] text-[#28715e] rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4 border border-[#d2e6d9]">
-                  ✓
+                <div className="w-14 h-14 bg-[#eaf4ef] text-[#28715e] rounded-2xl flex items-center justify-center mx-auto mb-4 border border-[#d2e6d9]">
+                  <svg className="w-7 h-7 text-[#28715e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
                 </div>
                 <h3 className="text-xl font-bold text-[#183249] mb-2">Invitation Prepared!</h3>
                 <p className="text-[13px] text-[#64727e] max-w-md mx-auto mb-6 leading-relaxed">
@@ -328,9 +332,18 @@ export function ReferralModal({ isOpen, onClose, mode = "consumer" }: ReferralMo
                         />
                         <button
                           onClick={() => handleCopy(proClientLink)}
-                          className="px-3.5 py-2 bg-[#F9F8F5] hover:bg-[#e4ebf5] text-[#0F1A2C] font-bold rounded-lg text-[11px] transition-colors border border-[#cbd5e2] whitespace-nowrap"
+                          className="px-3.5 py-2 bg-[#F9F8F5] hover:bg-[#e4ebf5] text-[#0F1A2C] font-bold rounded-lg text-[11px] transition-colors border border-[#cbd5e2] whitespace-nowrap inline-flex items-center gap-1"
                         >
-                          {copied ? "Copied! ✓" : "Copy Link"}
+                          {copied ? (
+                            <>
+                              <span>Copied!</span>
+                              <svg className="w-3 h-3 text-[#28715e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                              </svg>
+                            </>
+                          ) : (
+                            "Copy Link"
+                          )}
                         </button>
                       </div>
                     </div>
@@ -425,9 +438,18 @@ export function ReferralModal({ isOpen, onClose, mode = "consumer" }: ReferralMo
                         />
                         <button
                           onClick={() => handleCopy(proPartnerLink)}
-                          className="px-3.5 py-2 bg-[#F9F8F5] hover:bg-[#e4ebf5] text-[#0F1A2C] font-bold rounded-lg text-[11px] transition-colors border border-[#cbd5e2] whitespace-nowrap"
+                          className="px-3.5 py-2 bg-[#F9F8F5] hover:bg-[#e4ebf5] text-[#0F1A2C] font-bold rounded-lg text-[11px] transition-colors border border-[#cbd5e2] whitespace-nowrap inline-flex items-center gap-1"
                         >
-                          {copied ? "Copied! ✓" : "Copy Link"}
+                          {copied ? (
+                            <>
+                              <span>Copied!</span>
+                              <svg className="w-3 h-3 text-[#28715e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                              </svg>
+                            </>
+                          ) : (
+                            "Copy Link"
+                          )}
                         </button>
                       </div>
                     </div>
@@ -519,9 +541,18 @@ export function ReferralModal({ isOpen, onClose, mode = "consumer" }: ReferralMo
                         />
                         <button
                           onClick={() => handleCopy("https://thepropertyhelpline.com.au/pro/join?ref=ALEX-INVITE")}
-                          className="px-3.5 py-2 bg-[#F9F8F5] hover:bg-[#e4ebf5] text-[#0F1A2C] font-bold rounded-lg text-[11px] transition-colors border border-[#cbd5e2] whitespace-nowrap"
+                          className="px-3.5 py-2 bg-[#F9F8F5] hover:bg-[#e4ebf5] text-[#0F1A2C] font-bold rounded-lg text-[11px] transition-colors border border-[#cbd5e2] whitespace-nowrap inline-flex items-center gap-1"
                         >
-                          {copied ? "Copied! ✓" : "Copy Link"}
+                          {copied ? (
+                            <>
+                              <span>Copied!</span>
+                              <svg className="w-3 h-3 text-[#28715e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                              </svg>
+                            </>
+                          ) : (
+                            "Copy Link"
+                          )}
                         </button>
                       </div>
                     </div>
@@ -555,9 +586,18 @@ export function ReferralModal({ isOpen, onClose, mode = "consumer" }: ReferralMo
                         />
                         <button
                           onClick={() => handleCopy(consumerReferralLink)}
-                          className="px-4 py-2.5 bg-[#0F1A2C] hover:bg-[#102d59] text-white font-bold rounded-xl text-[12px] transition-colors whitespace-nowrap shadow-sm"
+                          className="px-4 py-2.5 bg-[#0F1A2C] hover:bg-[#102d59] text-white font-bold rounded-xl text-[12px] transition-colors whitespace-nowrap shadow-sm inline-flex items-center gap-1"
                         >
-                          {copied ? "Copied! ✓" : "Copy Link"}
+                          {copied ? (
+                            <>
+                              <span>Copied!</span>
+                              <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                              </svg>
+                            </>
+                          ) : (
+                            "Copy Link"
+                          )}
                         </button>
                       </div>
                     </div>

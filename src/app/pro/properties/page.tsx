@@ -104,7 +104,9 @@ export default function ProPropertiesPage() {
             href="/pro/tasks"
             className="px-3.5 py-2 bg-white border border-[#cbd5e2] hover:bg-[#F9F8F5] text-[#183249] rounded-xl text-xs font-semibold transition-colors shadow-2xs flex items-center gap-1.5"
           >
-            <span>📋</span>
+            <svg className="w-3.5 h-3.5 text-[#64727e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+            </svg>
             <span>Punch List (Defects)</span>
           </Link>
           <button
@@ -252,8 +254,22 @@ export default function ProPropertiesPage() {
               {/* Weather & Punch List Meta */}
               <div className="flex items-center justify-between text-[11px] text-[#64748b] pt-1">
                 <span>Weather delays: <strong className="text-[#183249] font-semibold">{site.weatherDelayDays} days</strong></span>
-                <span className={site.openPunchListItems > 0 ? "text-[#b45309] font-semibold flex items-center gap-1" : "text-[#28715e] font-medium flex items-center gap-1"}>
-                  {site.openPunchListItems > 0 ? `⚠️ ${site.openPunchListItems} Punch items logged` : "✓ 0 Defects pending"}
+                <span className={site.openPunchListItems > 0 ? "text-[#b45309] font-semibold flex items-center gap-1.5" : "text-[#28715e] font-medium flex items-center gap-1.5"}>
+                  {site.openPunchListItems > 0 ? (
+                    <>
+                      <svg className="w-3.5 h-3.5 text-[#b45309] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                      </svg>
+                      <span>{site.openPunchListItems} Punch items logged</span>
+                    </>
+                  ) : (
+                    <>
+                      <svg className="w-3.5 h-3.5 text-[#28715e] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>0 Defects pending</span>
+                    </>
+                  )}
                 </span>
               </div>
             </div>

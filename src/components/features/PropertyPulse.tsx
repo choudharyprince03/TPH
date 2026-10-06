@@ -563,9 +563,11 @@ export function PropertyPulseNotification({
               <button
                 onClick={handleDismiss}
                 aria-label="Close notification"
-                className="text-[#8ca395] hover:text-[#183249] text-xs p-1 rounded-md hover:bg-[#f0f4f2] transition-colors cursor-pointer"
+                className="text-[#8ca395] hover:text-[#183249] p-1 rounded-md hover:bg-[#f0f4f2] transition-colors cursor-pointer"
               >
-                ✕
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
               </button>
             </div>
 
@@ -602,7 +604,9 @@ export function PropertyPulseNotification({
               <div className="mb-3 space-y-1 text-[11px] text-[#264e3b]">
                 {items.slice(0, 2).map((item, idx) => (
                   <div key={idx} className="flex items-start gap-1.5">
-                    <span className="text-[#28715e] text-[10px] mt-0.5 font-bold">✓</span>
+                    <svg className="w-3 h-3 text-[#28715e] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
                     <span className="truncate">{item}</span>
                   </div>
                 ))}
@@ -930,9 +934,12 @@ export function PropertyPulse({
               <button
                 type="button"
                 onClick={() => setShowAddTaskModal(false)}
-                className="text-xs text-[#64727e] hover:text-[#183249]"
+                className="text-xs text-[#64727e] hover:text-[#183249] inline-flex items-center gap-1"
               >
-                ✕ Cancel
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+                <span>Cancel</span>
               </button>
             </div>
 

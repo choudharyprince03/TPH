@@ -2,30 +2,72 @@
 import React, { useState } from "react";
 import Link from "next/link";
 
+function getDocCategoryIcon(cat: string, className = "w-4 h-4") {
+  switch (cat) {
+    case "plans":
+      return (
+        <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.8">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+      );
+    case "certs":
+      return (
+        <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.8">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+      );
+    case "warranties":
+      return (
+        <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.8">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+      );
+    case "settlement":
+      return (
+        <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.8">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+        </svg>
+      );
+    case "reports":
+      return (
+        <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.8">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+      );
+    default:
+      return (
+        <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.8">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+        </svg>
+      );
+  }
+}
+
 const VAULT_DOCS = [
-  { id: 1, category: "plans", icon: "📋", title: "Approved Building Plans", source: "Brisbane City Council", date: "15 Jan 2024", size: "4.2 MB", status: "verified" },
-  { id: 2, category: "plans", icon: "📋", title: "Engineering & Structural Drawings", source: "Banksia Homes", date: "20 Jan 2024", size: "2.8 MB", status: "verified" },
-  { id: 3, category: "plans", icon: "📋", title: "Electrical Plans (AS/NZS 3000)", source: "Bright Spark Electrical", date: "28 Jan 2024", size: "1.1 MB", status: "verified" },
-  { id: 4, category: "certs", icon: "🔒", title: "Electrical Compliance Certificate", source: "Bright Spark Electrical", date: "10 Sep 2026", size: "0.3 MB", status: "verified" },
-  { id: 5, category: "certs", icon: "🔒", title: "Final Building Inspection (QBCC)", source: "SafeCheck Inspectors", date: "12 Sep 2026", size: "1.8 MB", status: "verified" },
-  { id: 6, category: "certs", icon: "🔒", title: "Certificate of Occupancy", source: "Brisbane City Council", date: "Expected 24 Sep 2026", size: "—", status: "pending" },
-  { id: 7, category: "certs", icon: "🔒", title: "Pool Safety Certificate (QLD)", source: "Pool Safety Inspector", date: "Expected 24 Sep 2026", size: "—", status: "missing" },
-  { id: 8, category: "warranties", icon: "🛠️", title: "Structural Warranty (7 years)", source: "Banksia Homes · QBCC", date: "24 Sep 2026", size: "0.2 MB", status: "pending" },
-  { id: 9, category: "warranties", icon: "🛠️", title: "Kitchen Appliance Warranty Pack", source: "Bosch Home Appliances", date: "Expected 24 Sep 2026", size: "—", status: "pending" },
-  { id: 10, category: "warranties", icon: "🛠️", title: "Roofing Materials Warranty (30yr)", source: "Colorbond · BlueScope Steel", date: "Expected 24 Sep 2026", size: "—", status: "pending" },
-  { id: 11, category: "settlement", icon: "⚖️", title: "Contract of Sale", source: "Chen & Associates", date: "03 Jan 2024", size: "1.4 MB", status: "verified" },
-  { id: 12, category: "settlement", icon: "⚖️", title: "PEXA Workspace — Settlement Record", source: "Chen & Associates", date: "Expected 24 Sep 2026", size: "—", status: "pending" },
-  { id: 13, category: "reports", icon: "🔍", title: "Building & Pest Inspection Report", source: "SafeCheck Inspectors", date: "05 Jan 2024", size: "3.1 MB", status: "verified" },
-  { id: 14, category: "reports", icon: "🔍", title: "Pre-Handover Inspection Report", source: "SafeCheck Inspectors", date: "12 Sep 2026", size: "2.4 MB", status: "verified" },
+  { id: 1, category: "plans", title: "Approved Building Plans", source: "Brisbane City Council", date: "15 Jan 2024", size: "4.2 MB", status: "verified" },
+  { id: 2, category: "plans", title: "Engineering & Structural Drawings", source: "Banksia Homes", date: "20 Jan 2024", size: "2.8 MB", status: "verified" },
+  { id: 3, category: "plans", title: "Electrical Plans (AS/NZS 3000)", source: "Bright Spark Electrical", date: "28 Jan 2024", size: "1.1 MB", status: "verified" },
+  { id: 4, category: "certs", title: "Electrical Compliance Certificate", source: "Bright Spark Electrical", date: "10 Sep 2026", size: "0.3 MB", status: "verified" },
+  { id: 5, category: "certs", title: "Final Building Inspection (QBCC)", source: "SafeCheck Inspectors", date: "12 Sep 2026", size: "1.8 MB", status: "verified" },
+  { id: 6, category: "certs", title: "Certificate of Occupancy", source: "Brisbane City Council", date: "Expected 24 Sep 2026", size: "—", status: "pending" },
+  { id: 7, category: "certs", title: "Pool Safety Certificate (QLD)", source: "Pool Safety Inspector", date: "Expected 24 Sep 2026", size: "—", status: "missing" },
+  { id: 8, category: "warranties", title: "Structural Warranty (7 years)", source: "Banksia Homes · QBCC", date: "24 Sep 2026", size: "0.2 MB", status: "pending" },
+  { id: 9, category: "warranties", title: "Kitchen Appliance Warranty Pack", source: "Bosch Home Appliances", date: "Expected 24 Sep 2026", size: "—", status: "pending" },
+  { id: 10, category: "warranties", title: "Roofing Materials Warranty (30yr)", source: "Colorbond · BlueScope Steel", date: "Expected 24 Sep 2026", size: "—", status: "pending" },
+  { id: 11, category: "settlement", title: "Contract of Sale", source: "Chen & Associates", date: "03 Jan 2024", size: "1.4 MB", status: "verified" },
+  { id: 12, category: "settlement", title: "PEXA Workspace — Settlement Record", source: "Chen & Associates", date: "Expected 24 Sep 2026", size: "—", status: "pending" },
+  { id: 13, category: "reports", title: "Building & Pest Inspection Report", source: "SafeCheck Inspectors", date: "05 Jan 2024", size: "3.1 MB", status: "verified" },
+  { id: 14, category: "reports", title: "Pre-Handover Inspection Report", source: "SafeCheck Inspectors", date: "12 Sep 2026", size: "2.4 MB", status: "verified" },
 ];
 
 const CATEGORIES = [
-  { id: "all", label: "All Documents", icon: "📁" },
-  { id: "plans", label: "Plans & Specs", icon: "📋" },
-  { id: "certs", label: "Certificates", icon: "🔒" },
-  { id: "warranties", label: "Warranties", icon: "🛠️" },
-  { id: "settlement", label: "Settlement", icon: "⚖️" },
-  { id: "reports", label: "Inspection Reports", icon: "🔍" },
+  { id: "all", label: "All Documents" },
+  { id: "plans", label: "Plans & Specs" },
+  { id: "certs", label: "Certificates" },
+  { id: "warranties", label: "Warranties" },
+  { id: "settlement", label: "Settlement" },
+  { id: "reports", label: "Inspection Reports" },
 ];
 
 const STATUS_STYLE: Record<string, string> = {
@@ -110,21 +152,31 @@ export default function VaultPage() {
 
         {/* Tabs */}
         <div className="flex gap-1 mb-6 p-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl w-fit">
-          {(["documents", "logbook"] as const).map((t) => (
-            <button key={t} onClick={() => setActiveTab(t)}
-              className={`px-5 py-2 rounded-lg text-xs font-bold capitalize transition-all ${
-                activeTab === t ? "bg-brand-navy text-white shadow" : "text-slate-500 hover:text-slate-700 dark:hover:text-slate-300"
-              }`}>
-              {t === "documents" ? "📁 Documents" : "📅 Prop Logbook"}
-            </button>
-          ))}
+          <button onClick={() => setActiveTab("documents")}
+            className={`inline-flex items-center gap-2 px-5 py-2 rounded-lg text-xs font-bold capitalize transition-all ${
+              activeTab === "documents" ? "bg-brand-navy text-white shadow" : "text-slate-500 hover:text-slate-700 dark:hover:text-slate-300"
+            }`}>
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+            </svg>
+            Documents
+          </button>
+          <button onClick={() => setActiveTab("logbook")}
+            className={`inline-flex items-center gap-2 px-5 py-2 rounded-lg text-xs font-bold capitalize transition-all ${
+              activeTab === "logbook" ? "bg-brand-navy text-white shadow" : "text-slate-500 hover:text-slate-700 dark:hover:text-slate-300"
+            }`}>
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            Prop Logbook
+          </button>
         </div>
 
         {activeTab === "documents" && (
           <div className="grid lg:grid-cols-4 gap-6">
             {/* Category sidebar */}
             <div className="space-y-1">
-              {CATEGORIES.map(({ id, label, icon }) => {
+              {CATEGORIES.map(({ id, label }) => {
                 const count = id === "all" ? VAULT_DOCS.length : VAULT_DOCS.filter((d) => d.category === id).length;
                 return (
                   <button key={id} onClick={() => setCategory(id)}
@@ -134,7 +186,7 @@ export default function VaultPage() {
                         : "text-slate-600 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-800 bg-transparent"
                     }`}>
                     <div className="flex items-center gap-2">
-                      <span>{icon}</span>
+                      <span className={category === id ? "text-white" : "text-slate-500"}>{getDocCategoryIcon(id)}</span>
                       <span className="text-xs">{label}</span>
                     </div>
                     <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${category === id ? "bg-white/20" : "bg-slate-100 dark:bg-slate-700 text-slate-500"}`}>
@@ -156,8 +208,8 @@ export default function VaultPage() {
               <div className="divide-y divide-slate-100 dark:divide-slate-700">
                 {filtered.map((doc) => (
                   <div key={doc.id} className="flex items-center gap-4 p-4 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
-                    <div className="w-10 h-11 bg-slate-100 dark:bg-slate-700 rounded-lg flex items-center justify-center text-lg flex-shrink-0">
-                      {doc.icon}
+                    <div className="w-10 h-11 bg-slate-100 dark:bg-slate-700 rounded-lg flex items-center justify-center flex-shrink-0 text-slate-600 dark:text-slate-300">
+                      {getDocCategoryIcon(doc.category, "w-5 h-5")}
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="font-semibold text-sm text-slate-900 dark:text-white truncate">{doc.title}</div>

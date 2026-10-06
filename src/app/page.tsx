@@ -131,23 +131,6 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-t from-[#0F1A2C]/55 via-transparent to-transparent" />
             </div>
 
-            {/* Floating Prop ID credential card */}
-            <FloatLoop className="absolute top-4 left-4 sm:top-5 sm:left-5" amplitude={4} duration={4.4}>
-              <motion.div
-                initial={{ opacity: 0, y: -12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.55, delay: 0.9 }}
-                className="bg-[#0F1A2C]/75 backdrop-blur-md border border-white/15 rounded-xl px-3.5 py-2.5 shadow-[0_10px_30px_rgba(0,0,0,0.3)]"
-              >
-                <div className="flex items-center gap-2 text-[9px] font-bold uppercase tracking-[1.8px] text-[#C59B27]">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#28715e] ring-2 ring-[#28715e]/30" />
-                  Prop ID
-                </div>
-                <div className="font-mono text-[13px] font-semibold text-white tracking-[1.5px] mt-0.5">
-                  TPH-KEN-018
-                </div>
-              </motion.div>
-            </FloatLoop>
 
             {/* Floating Photo Caption Badge */}
             <FloatLoop className="absolute -bottom-5 sm:bottom-5 -left-3 sm:-left-8" amplitude={6} duration={3.8}>

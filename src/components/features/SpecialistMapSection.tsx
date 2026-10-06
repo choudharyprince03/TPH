@@ -240,7 +240,10 @@ export default function SpecialistMapSection() {
               : "text-[#64727e] hover:text-[#183249]"
           }`}
         >
-          <span>🗺️ Map View</span>
+          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+          </svg>
+          <span>Map View</span>
         </button>
         <button
           onClick={() => setMobileTab("list")}
@@ -250,7 +253,10 @@ export default function SpecialistMapSection() {
               : "text-[#64727e] hover:text-[#183249]"
           }`}
         >
-          <span>👥 Specialists ({filteredSpecialists.length})</span>
+          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          <span>Specialists ({filteredSpecialists.length})</span>
         </button>
       </div>
 
@@ -644,13 +650,15 @@ export default function SpecialistMapSection() {
                     exit={{ opacity: 0, scale: 0.9 }}
                     className="relative bg-white rounded-2xl p-4 shadow-[0_16px_35px_rgba(7,29,59,0.18)] border border-[#e2e5e5] w-[270px] sm:w-[300px]"
                   >
-                    {/* Close Button '✕' */}
+                    {/* Close Button */}
                     <button
                       onClick={(e) => closePopup(pro.id, e)}
                       aria-label="Close popup"
                       className="absolute top-3 right-3 text-[#94a3b8] hover:text-[#183249] hover:bg-[#f1f5f9] w-6 h-6 rounded-full flex items-center justify-center transition-colors text-[11px] font-bold"
                     >
-                      ✕
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
                     </button>
 
                     {/* Card Content Row */}
@@ -679,7 +687,12 @@ export default function SpecialistMapSection() {
                           {pro.business}
                         </p>
                         <div className="flex items-center gap-1 text-[10px] text-[#b45309] font-medium mt-1">
-                          <span>★ {pro.rating.toFixed(1)}</span>
+                          <span className="inline-flex items-center gap-0.5 font-bold">
+                            <svg className="w-3 h-3 text-amber-500 fill-amber-500" viewBox="0 0 20 20">
+                              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            {pro.rating.toFixed(1)}
+                          </span>
                           <span className="text-[#8a97a7]">({pro.reviewsCount})</span>
                           <span className="text-[#cbd5e1]">·</span>
                           <span className="text-[#64727e] truncate">{pro.suburb}</span>
@@ -798,7 +811,9 @@ export default function SpecialistMapSection() {
                 onClick={() => setSearchQuery("")}
                 className="absolute right-2.5 top-1/2 -translate-y-1/2 text-xs text-[#8a97a7] hover:text-[#183249]"
               >
-                ✕
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
               </button>
             )}
           </div>
@@ -859,8 +874,11 @@ export default function SpecialistMapSection() {
                         <h4 className="text-[12px] font-bold text-[#183249] truncate group-hover:text-[#0F1A2C]">
                           {pro.name}
                         </h4>
-                        <span className="text-[10px] text-[#b45309] font-bold">
-                          ★ {pro.rating.toFixed(1)}
+                        <span className="inline-flex items-center gap-0.5 text-[10px] text-[#b45309] font-bold">
+                          <svg className="w-2.5 h-2.5 text-amber-500 fill-amber-500" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                          </svg>
+                          {pro.rating.toFixed(1)}
                         </span>
                       </div>
                       <p className="text-[10.5px] font-semibold text-[#28715e] truncate mt-0.5">
@@ -872,7 +890,17 @@ export default function SpecialistMapSection() {
 
                       <div className="flex items-center justify-between mt-2 pt-1.5 border-t border-[#edf2f7] text-[10px]">
                         <span className="text-[#8a97a7] font-medium">
-                          {isCalloutOpen ? "📍 Pin open on map" : "Click to view on map"}
+                          {isCalloutOpen ? (
+                            <span className="inline-flex items-center gap-1">
+                              <svg className="w-2.5 h-2.5 text-[#C59B27]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                              </svg>
+                              Pin open on map
+                            </span>
+                          ) : (
+                            "Click to view on map"
+                          )}
                         </span>
                         <Link
                           href={pro.profileUrl}

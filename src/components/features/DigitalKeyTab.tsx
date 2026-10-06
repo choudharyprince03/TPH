@@ -259,7 +259,9 @@ export function DigitalKeyTab({ property, onGoToMessages }: DigitalKeyTabProps) 
                               key={doc}
                               className="flex items-center gap-2 text-[12px] text-[#183249]"
                             >
-                              <span className="text-[#946315]">📄</span>
+                              <svg className="w-4 h-4 text-[#946315] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.8">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                              </svg>
                               <span>{doc}</span>
                             </div>
                           ))}
@@ -285,15 +287,21 @@ export function DigitalKeyTab({ property, onGoToMessages }: DigitalKeyTabProps) 
                       <div className="flex flex-col gap-2 sm:min-w-[180px]">
                         <button
                           onClick={() => acceptPack(pack.id)}
-                          className="w-full px-4 py-2.5 bg-[#0F1A2C] hover:bg-[#1c3a54] text-white font-bold text-xs rounded-xl transition-colors cursor-pointer shadow-sm text-center"
+                          className="w-full px-4 py-2.5 bg-[#0F1A2C] hover:bg-[#1c3a54] text-white font-bold text-xs rounded-xl transition-colors cursor-pointer shadow-sm text-center inline-flex items-center justify-center gap-1.5"
                         >
-                          ✓ Accept & save to Digital Key
+                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                          </svg>
+                          <span>Accept &amp; save to Digital Key</span>
                         </button>
                         <button
                           onClick={onGoToMessages}
-                          className="w-full px-4 py-2.5 bg-white hover:bg-[#f8fafc] text-[#183249] font-semibold text-xs rounded-xl border border-[#e2e5e5] transition-colors cursor-pointer text-center"
+                          className="w-full px-4 py-2.5 bg-white hover:bg-[#f8fafc] text-[#183249] font-semibold text-xs rounded-xl border border-[#e2e5e5] transition-colors cursor-pointer text-center inline-flex items-center justify-center gap-1.5"
                         >
-                          💬 Ask {pack.senderName.split(" ")[0]} a question
+                          <svg className="w-3.5 h-3.5 text-[#64727e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                          </svg>
+                          <span>Ask {pack.senderName.split(" ")[0]} a question</span>
                         </button>
                         <button
                           onClick={() => dismissPack(pack.id)}
@@ -343,7 +351,9 @@ export function DigitalKeyTab({ property, onGoToMessages }: DigitalKeyTabProps) 
                   <div>
                     <div className="flex items-center gap-2 flex-wrap mb-1">
                       <span className="text-[9px] font-bold uppercase tracking-[1px] px-2 py-0.5 rounded-full bg-[#dcfce7] text-[#166534] border border-[#86efac] flex items-center gap-1">
-                        <span>✓</span>
+                        <svg className="w-2.5 h-2.5 text-[#166534]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
                         <span>Verified Handover</span>
                       </span>
                       <span className="text-[10px] font-semibold text-[#64727e]">
@@ -365,13 +375,22 @@ export function DigitalKeyTab({ property, onGoToMessages }: DigitalKeyTabProps) 
                     className="px-3.5 py-2 rounded-xl bg-[#f0fdf4] hover:bg-[#dcfce7] text-[#166534] text-xs font-bold border border-[#bbf7d0] transition-colors cursor-pointer flex items-center gap-1.5"
                   >
                     <span>{isExpanded ? "Hide files" : `Inspect ${sh.documents.length} files`}</span>
-                    <span className="text-[10px]">{isExpanded ? "▲" : "▼"}</span>
+                    <svg className="w-3 h-3 text-[#166534]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                      {isExpanded ? (
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
+                      ) : (
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                      )}
+                    </svg>
                   </button>
                   <button
                     onClick={() => alert(`Downloading verified ZIP archive for ${sh.packName}...`)}
-                    className="px-3.5 py-2 rounded-xl bg-[#0F1A2C] hover:bg-[#1c3a54] text-white text-xs font-bold transition-colors cursor-pointer shadow-2xs"
+                    className="px-3.5 py-2 rounded-xl bg-[#0F1A2C] hover:bg-[#1c3a54] text-white text-xs font-bold transition-colors cursor-pointer shadow-2xs inline-flex items-center gap-1.5"
                   >
-                    ⬇ Download ZIP
+                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                    </svg>
+                    <span>Download ZIP</span>
                   </button>
                 </div>
               </div>
@@ -388,7 +407,9 @@ export function DigitalKeyTab({ property, onGoToMessages }: DigitalKeyTabProps) 
                       className="py-2.5 flex items-center justify-between gap-3 text-xs"
                     >
                       <div className="flex items-center gap-2.5 min-w-0">
-                        <span className="text-base text-[#166534]">📄</span>
+                        <svg className="w-4 h-4 text-[#166534] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.8">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
                         <div className="min-w-0">
                           <span className="font-semibold text-[#183249] truncate block">
                             {doc.title}
@@ -442,7 +463,9 @@ export function DigitalKeyTab({ property, onGoToMessages }: DigitalKeyTabProps) 
               className="px-5 py-3.5 flex items-center justify-between gap-4 hover:bg-[#fafbfc] transition-colors"
             >
               <div className="flex items-center gap-3 min-w-0">
-                <span className="text-lg">📄</span>
+                <svg className="w-4 h-4 text-slate-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.8">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
                 <div className="min-w-0">
                   <div className="text-[13px] font-semibold text-[#183249] truncate">{doc.title}</div>
                   <div className="text-[11px] text-[#64727e]">{doc.cat} · {doc.size}</div>

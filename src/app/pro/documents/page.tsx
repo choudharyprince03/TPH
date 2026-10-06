@@ -163,7 +163,7 @@ export default function ProDocumentsPage() {
       )
     );
     setToastMsg(
-      `✓ Successfully sealed "${doc.title}" to ${doc.property} (${doc.propId}) permanent homeowner Vault!`
+      `Successfully sealed "${doc.title}" to ${doc.property} (${doc.propId}) permanent homeowner Vault!`
     );
     setTimeout(() => setToastMsg(null), 5000);
   };
@@ -205,7 +205,9 @@ export default function ProDocumentsPage() {
             href="/pro/digital-key"
             className="px-3.5 py-2 bg-white border border-[#cbd5e2] hover:bg-[#F9F8F5] text-[#183249] rounded-xl text-xs font-semibold transition-colors shadow-2xs flex items-center gap-1.5"
           >
-            <span>🔑</span>
+            <svg className="w-3.5 h-3.5 text-[#0F1A2C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+            </svg>
             <span>Digital Key Handover</span>
           </Link>
           <button
@@ -226,14 +228,19 @@ export default function ProDocumentsPage() {
       {toastMsg && (
         <div className="p-3.5 bg-[#183249] text-white rounded-xl text-xs font-semibold shadow-lg flex items-center justify-between gap-3 animate-fade-in border border-white/10">
           <div className="flex items-center gap-2">
-            <span className="text-base">🔒</span>
+            <svg className="w-4 h-4 text-[#28715e] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
             <span>{toastMsg}</span>
           </div>
           <button
             onClick={() => setToastMsg(null)}
-            className="text-white/60 hover:text-white text-xs px-2 py-1 rounded"
+            className="text-white/60 hover:text-white text-xs px-2 py-1 rounded cursor-pointer"
+            aria-label="Close"
           >
-            ✕
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
           </button>
         </div>
       )}
@@ -299,9 +306,9 @@ export default function ProDocumentsPage() {
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full bg-[#fafbfc] border border-[#cbd5e2] rounded-xl px-3 py-1.5 pl-8 text-xs font-medium text-[#183249] placeholder-[#94a3b8] focus:outline-none focus:border-[#0F1A2C] shadow-2xs"
           />
-          <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-xs text-[#94a3b8]">
-            🔍
-          </span>
+          <svg className="w-3.5 h-3.5 text-[#94a3b8] absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
         </div>
       </div>
 
@@ -362,10 +369,13 @@ export default function ProDocumentsPage() {
                 {doc.isSealed ? (
                   <Link
                     href={`/properties/${doc.propId}?tab=digital-key`}
-                    className="px-3 py-1.5 bg-[#eaf4ef] hover:bg-[#d5ecd1] text-[#28715e] font-bold rounded-lg text-[11px] border border-[#c7e4d0] transition-colors flex items-center gap-1 shadow-2xs"
+                    className="px-3 py-1.5 bg-[#eaf4ef] hover:bg-[#d5ecd1] text-[#28715e] font-bold rounded-lg text-[11px] border border-[#c7e4d0] transition-colors flex items-center gap-1.5 shadow-2xs"
                     title={`Document is permanently deposited in ${doc.propId} Vault.`}
                   >
-                    <span>✓ Sealed to {doc.propId}</span>
+                    <svg className="w-3 h-3 text-[#28715e] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Sealed to {doc.propId}</span>
                     <span className="text-[10px]">↗</span>
                   </Link>
                 ) : (
@@ -400,9 +410,12 @@ export default function ProDocumentsPage() {
               </div>
               <button
                 onClick={() => setPreviewDoc(null)}
-                className="text-[#64748b] hover:text-[#183249] text-sm p-1 rounded-md hover:bg-[#f1f5f9]"
+                className="text-[#64748b] hover:text-[#183249] p-1.5 rounded-lg hover:bg-[#f1f5f9] cursor-pointer transition-colors"
+                aria-label="Close"
               >
-                ✕
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
               </button>
             </div>
 

@@ -71,7 +71,9 @@ export default function ProfessionalProfilePage({ params }: { params: Promise<{ 
                       {pro.name}
                     </h1>
                     <span className="inline-flex items-center gap-1 bg-[#eaf4ef] text-[#28715e] text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-[#cbe3d3]">
-                      <span>✓</span>
+                      <svg className="w-3 h-3 text-[#28715e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
                       <span>Verified Australian Specialist</span>
                     </span>
                   </div>
@@ -96,7 +98,9 @@ export default function ProfessionalProfilePage({ params }: { params: Promise<{ 
             {/* Quick Metadata Bar */}
             <div className="pt-4 border-t border-[#e2e5e5] flex flex-wrap items-center gap-4 sm:gap-6 text-[12px] text-[#64727e]">
               <div className="flex items-center gap-1 text-[#183249] font-semibold">
-                <span className="text-amber-500 text-sm">★</span>
+                <svg className="w-3.5 h-3.5 text-amber-500 fill-amber-500" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
                 <span>{pro.rating}</span>
                 <span className="text-[#64727e] font-normal">({pro.reviewsCount} verified reviews)</span>
               </div>
@@ -105,12 +109,19 @@ export default function ProfessionalProfilePage({ params }: { params: Promise<{ 
                 {pro.licence}
               </div>
               <span className="text-[#e2e5e5]">•</span>
-              <div>
-                📍 {pro.areas}
+              <div className="inline-flex items-center gap-1">
+                <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                {pro.areas}
               </div>
               <span className="text-[#e2e5e5]">•</span>
-              <div>
-                ⏳ {pro.experienceYears} Years Experience
+              <div className="inline-flex items-center gap-1">
+                <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                {pro.experienceYears} Years Experience
               </div>
             </div>
           </div>
@@ -119,10 +130,45 @@ export default function ProfessionalProfilePage({ params }: { params: Promise<{ 
         {/* ── Sub-Navigation Tabs ───────────────────────────────────── */}
         <nav className="flex items-center gap-5 border-b border-[#e2e5e5] mb-8 overflow-x-auto text-[13px] font-medium">
           {[
-            { id: "about", label: "About & Credentials", icon: "👤" },
-            { id: "services", label: "Services & Fees", icon: "💼" },
-            { id: "portfolio", label: "Project Gallery", icon: "📸", count: `${pro.portfolio.length}` },
-            { id: "reviews", label: "Client Reviews", icon: "💬", count: `${pro.reviews.length}` },
+            {
+              id: "about",
+              label: "About & Credentials",
+              icon: (
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+              ),
+            },
+            {
+              id: "services",
+              label: "Services & Fees",
+              icon: (
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              ),
+            },
+            {
+              id: "portfolio",
+              label: "Project Gallery",
+              icon: (
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              ),
+              count: `${pro.portfolio.length}`,
+            },
+            {
+              id: "reviews",
+              label: "Client Reviews",
+              icon: (
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                </svg>
+              ),
+              count: `${pro.reviews.length}`,
+            },
           ].map((tab) => (
             <button
               key={tab.id}
@@ -166,7 +212,11 @@ export default function ProfessionalProfilePage({ params }: { params: Promise<{ 
                   </p>
 
                   <div className="p-4 rounded-xl bg-[#F9F8F5] border border-[#e2e5e5] text-[12px] text-[#556b83] flex items-center gap-3">
-                    <span className="text-xl flex-shrink-0">🛡️</span>
+                    <div className="w-8 h-8 rounded-lg bg-[#28715e]/10 text-[#28715e] flex items-center justify-center flex-shrink-0">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="m12 2 8 3v7c0 6-8 10-8 10S4 18 4 12V5Z" />
+                      </svg>
+                    </div>
                     <span>
                       <strong>The Property Helpline Standard:</strong> Identity, trade licence currency, and public liability insurance verified by TPH Compliance.
                     </span>
@@ -326,7 +376,9 @@ export default function ProfessionalProfilePage({ params }: { params: Promise<{ 
                           </p>
                           <div className="mt-3 pt-3 border-t border-[#e2e5e5] flex items-center justify-between text-[11px] text-[#0F1A2C] font-semibold">
                             <span>Inspect full resolution</span>
-                            <span>🔍</span>
+                            <svg className="w-3.5 h-3.5 text-[#0F1A2C]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
                           </div>
                         </div>
                       </div>
@@ -358,8 +410,12 @@ export default function ProfessionalProfilePage({ params }: { params: Promise<{ 
                             <strong className="text-sm text-[#183249] font-bold">{r.author}</strong>
                             <span className="text-[11px] text-[#64727e] ml-2">({r.suburb})</span>
                           </div>
-                          <div className="flex items-center gap-1 text-amber-500 text-xs">
-                            {"★".repeat(r.rating)}
+                          <div className="flex items-center gap-0.5 text-amber-500">
+                            {[...Array(r.rating)].map((_, idx) => (
+                              <svg key={idx} className="w-3.5 h-3.5 fill-amber-500 text-amber-500" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                              </svg>
+                            ))}
                             <span className="text-[10px] text-[#8a97a7] ml-1">{r.date}</span>
                           </div>
                         </div>
@@ -405,22 +461,30 @@ export default function ProfessionalProfilePage({ params }: { params: Promise<{ 
                   className="w-full py-2.5 bg-white border border-[#cbd5e2] hover:bg-[#F9F8F5] text-[#183249] font-semibold text-[12px] rounded-xl transition-colors flex items-center justify-center gap-1.5"
                 >
                   <span>Attach Prop ID Passport</span>
-                  <span>🏠</span>
+                  <svg className="w-3.5 h-3.5 text-[#64727e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                  </svg>
                 </Link>
               </div>
 
               {/* TrustLink Guarantees */}
               <div className="pt-4 border-t border-[#e2e5e5] space-y-2.5 text-[11px] text-[#64727e]">
                 <div className="flex items-start gap-2">
-                  <span className="text-[#28715e]">✓</span>
+                  <svg className="w-3.5 h-3.5 text-[#28715e] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
                   <span><strong>Scoped Consent:</strong> Choose exactly which plans or certificates to share.</span>
                 </div>
                 <div className="flex items-start gap-2">
-                  <span className="text-[#28715e]">✓</span>
+                  <svg className="w-3.5 h-3.5 text-[#28715e] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
                   <span><strong>Revocable Anytime:</strong> Pause or stop access with a single click.</span>
                 </div>
                 <div className="flex items-start gap-2">
-                  <span className="text-[#28715e]">✓</span>
+                  <svg className="w-3.5 h-3.5 text-[#28715e] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
                   <span><strong>Zero Third-Party Marketing:</strong> Messages stay strictly between you and {pro.name.split(" ")[0]}.</span>
                 </div>
               </div>
@@ -451,9 +515,12 @@ export default function ProfessionalProfilePage({ params }: { params: Promise<{ 
             />
             <button
               onClick={() => setSelectedPhoto(null)}
-              className="absolute top-4 right-4 bg-white/20 hover:bg-white/40 text-white rounded-full p-2 text-xs font-bold"
+              className="absolute top-4 right-4 bg-white/20 hover:bg-white/40 text-white rounded-full px-3 py-1.5 text-xs font-bold inline-flex items-center gap-1.5 transition-colors"
             >
-              ✕ Close
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+              <span>Close</span>
             </button>
           </div>
         </div>

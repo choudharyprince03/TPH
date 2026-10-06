@@ -778,8 +778,11 @@ export default function ProDigitalKeyPage() {
                       />
                       <span>New tenancy commencement (Attaches Form 1a Entry Condition Report &amp; Form 17a)</span>
                     </label>
-                    <div className="text-xs text-[#28715e] font-semibold">
-                      ✓ RTA Form 22 Guardrails active: Max 2 docs per category enforced.
+                    <div className="text-xs text-[#28715e] font-semibold flex items-center gap-1.5">
+                      <svg className="w-3.5 h-3.5 text-[#28715e] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>RTA Form 22 Guardrails active: Max 2 docs per category enforced.</span>
                     </div>
                   </>
                 )}
@@ -797,8 +800,11 @@ export default function ProDigitalKeyPage() {
                         <option value="Self-Employed">Self-Employed / Sole Trader (Requires 2Y Tax Returns)</option>
                       </select>
                     </div>
-                    <div className="text-xs text-[#b45309] font-medium flex items-center">
-                      🔒 Kept in Private Borrower Compartment. Never transfers with property record.
+                    <div className="text-xs text-[#b45309] font-medium flex items-center gap-1.5">
+                      <svg className="w-3.5 h-3.5 text-[#b45309] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                      </svg>
+                      <span>Kept in Private Borrower Compartment. Never transfers with property record.</span>
                     </div>
                   </>
                 )}
@@ -820,8 +826,11 @@ export default function ProDigitalKeyPage() {
                     Generated Manifest ({dynamicallyAssembledItems.length} items)
                   </h3>
                 </div>
-                <span className="text-[11px] font-semibold text-[#28715e]">
-                  ✓ Verified against Queensland Rulebook
+                <span className="text-[11px] font-semibold text-[#28715e] flex items-center gap-1">
+                  <svg className="w-3 h-3 text-[#28715e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>Verified against Queensland Rulebook</span>
                 </span>
               </div>
 
@@ -1141,7 +1150,9 @@ export default function ProDigitalKeyPage() {
               <div className="bg-[#f8fafc] border border-[#e2e5e5] rounded-xl p-4 space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] font-bold uppercase tracking-wider text-[#64727e]">Moment 1</span>
-                  <span className="text-xs">📝</span>
+                  <svg className="w-4 h-4 text-[#64727e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                  </svg>
                 </div>
                 <h4 className="text-sm font-bold text-[#183249]">Requested Change</h4>
                 <p className="text-[11.5px] text-[#64727e] leading-relaxed">
@@ -1152,7 +1163,9 @@ export default function ProDigitalKeyPage() {
               <div className="bg-[#eef4ff] border border-[#cbd5e2] rounded-xl p-4 space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] font-bold uppercase tracking-wider text-[#0F1A2C]">Moment 2</span>
-                  <span className="text-xs">⚖️</span>
+                  <svg className="w-4 h-4 text-[#0F1A2C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+                  </svg>
                 </div>
                 <h4 className="text-sm font-bold text-[#0F1A2C]">Approved Variation</h4>
                 <p className="text-[11.5px] text-[#64727e] leading-relaxed">
@@ -1163,7 +1176,9 @@ export default function ProDigitalKeyPage() {
               <div className="bg-[#f8fafc] border border-[#e2e5e5] rounded-xl p-4 space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] font-bold uppercase tracking-wider text-[#64727e]">Moment 3</span>
-                  <span className="text-xs">🔨</span>
+                  <svg className="w-4 h-4 text-[#64727e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z" />
+                  </svg>
                 </div>
                 <h4 className="text-sm font-bold text-[#183249]">Completed Work</h4>
                 <p className="text-[11.5px] text-[#64727e] leading-relaxed">
@@ -1174,7 +1189,9 @@ export default function ProDigitalKeyPage() {
               <div className="bg-[#eaf4ef] border border-[#c7e3d1] rounded-xl p-4 space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] font-bold uppercase tracking-wider text-[#28715e]">Moment 4</span>
-                  <span className="text-xs">🔑</span>
+                  <svg className="w-4 h-4 text-[#28715e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+                  </svg>
                 </div>
                 <h4 className="text-sm font-bold text-[#28715e]">Accepted Handover</h4>
                 <p className="text-[11.5px] text-[#64727e] leading-relaxed">
@@ -1204,15 +1221,23 @@ export default function ProDigitalKeyPage() {
                   </div>
                   <div>
                     <span className="text-[#64727e] block text-[11px]">Executed Document</span>
-                    <strong className="text-[#0F1A2C]">Signed QBCC Form 7 ✓</strong>
+                    <strong className="text-[#0F1A2C] inline-flex items-center gap-1">
+                      Signed QBCC Form 7
+                      <svg className="w-3.5 h-3.5 text-[#28715e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                    </strong>
                   </div>
                 </div>
                 <div className="pt-2 border-t border-[#f1f5f9] flex justify-between items-center text-xs">
                   <span className="text-[#64727e]">
                     Copy returned to client within 5 business days as mandated by QBCC Act s65.
                   </span>
-                  <span className="font-bold text-[#28715e] flex items-center gap-1">
-                    <span>✓</span> Compliant Statutory Execution
+                  <span className="font-bold text-[#28715e] flex items-center gap-1.5">
+                    <svg className="w-3.5 h-3.5 text-[#28715e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Compliant Statutory Execution</span>
                   </span>
                 </div>
               </div>
@@ -1270,8 +1295,11 @@ export default function ProDigitalKeyPage() {
                   <div className="flex items-center gap-2 flex-wrap">
                     <span className="text-[#64727e]">Sealed Documents:</span>
                     {rcpt.highlightDocs.map((doc, idx) => (
-                      <span key={idx} className="bg-[#f8fafc] border border-[#e2e5e5] px-2.5 py-1 rounded-lg font-semibold text-[#183249]">
-                        ✓ {doc}
+                      <span key={idx} className="bg-[#f8fafc] border border-[#e2e5e5] px-2.5 py-1 rounded-lg font-semibold text-[#183249] inline-flex items-center gap-1.5">
+                        <svg className="w-3 h-3 text-[#28715e] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span>{doc}</span>
                       </span>
                     ))}
                   </div>
@@ -1371,9 +1399,12 @@ export default function ProDigitalKeyPage() {
               </div>
               <button
                 onClick={() => setSelectedPackModal(null)}
-                className="text-[#64748b] hover:text-[#183249] p-1.5 cursor-pointer"
+                className="text-[#64748b] hover:text-[#183249] p-1.5 cursor-pointer rounded-lg hover:bg-[#f1f5f9] transition-colors"
+                aria-label="Close"
               >
-                ✕
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
               </button>
             </div>
 
@@ -1452,9 +1483,12 @@ export default function ProDigitalKeyPage() {
               </div>
               <button
                 onClick={() => setPreviewDocModal(null)}
-                className="text-[#64748b] hover:text-[#183249] p-1 cursor-pointer"
+                className="text-[#64748b] hover:text-[#183249] p-1.5 cursor-pointer rounded-lg hover:bg-[#f1f5f9] transition-colors"
+                aria-label="Close"
               >
-                ✕
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
               </button>
             </div>
 

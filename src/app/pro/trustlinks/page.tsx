@@ -218,9 +218,11 @@ export default function ProTrustLinksListPage() {
               <div className="flex items-center gap-2 self-start lg:self-auto">
                 <button
                   onClick={() => handleCopyLink(portal.secureToken)}
-                  className="px-3 py-1.5 bg-[#F9F8F5] hover:bg-[#e8edf2] text-[#0F1A2C] text-xs font-bold rounded-lg border border-[#e2e5e5] transition-colors flex items-center gap-1 cursor-pointer"
+                  className="px-3 py-1.5 bg-[#F9F8F5] hover:bg-[#e8edf2] text-[#0F1A2C] text-xs font-bold rounded-lg border border-[#e2e5e5] transition-colors flex items-center gap-1.5 cursor-pointer"
                 >
-                  <span>🔗</span>
+                  <svg className="w-3.5 h-3.5 text-[#0F1A2C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                  </svg>
                   <span>{copiedId === portal.secureToken ? "Copied Link!" : "Copy Portal Link"}</span>
                 </button>
                 <Link
@@ -257,8 +259,11 @@ export default function ProTrustLinksListPage() {
             <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs border-t border-[#e2e5e5]">
               <div className="flex items-center gap-2">
                 {portal.unreadMessagesCount > 0 && (
-                  <span className="text-[10.5px] font-bold px-2 py-0.5 rounded bg-[#fbf3e4] text-[#946315] border border-[#fce3b8]">
-                    💬 1 Pending Client Query
+                  <span className="text-[10.5px] font-bold px-2 py-0.5 rounded bg-[#fbf3e4] text-[#946315] border border-[#fce3b8] flex items-center gap-1.5">
+                    <svg className="w-3 h-3 text-[#946315]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                    </svg>
+                    <span>1 Pending Client Query</span>
                   </span>
                 )}
                 <span className="text-[11px] text-[#64727e]">
@@ -269,9 +274,12 @@ export default function ProTrustLinksListPage() {
               <div className="flex items-center gap-2">
                 <Link
                   href={`/pro/trustlinks/${portal.id}`}
-                  className="px-3.5 py-1.5 bg-[#0F1A2C] hover:bg-[#1c3a54] text-white text-xs font-bold rounded-lg transition-colors shadow-2xs flex items-center gap-1"
+                  className="px-3.5 py-1.5 bg-[#0F1A2C] hover:bg-[#1c3a54] text-white text-xs font-bold rounded-lg transition-colors shadow-2xs flex items-center gap-1.5"
                 >
-                  <span>🛡️ Enter Collaboration Workspace</span>
+                  <svg className="w-3.5 h-3.5 text-[#C59B27]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                  <span>Enter Collaboration Workspace</span>
                   <span>→</span>
                 </Link>
               </div>

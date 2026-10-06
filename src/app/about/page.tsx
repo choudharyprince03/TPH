@@ -218,7 +218,10 @@ export default function AboutPage() {
                     {/* Left Narrative (7 cols) */}
                     <div className="lg:col-span-7">
                       <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#eaf4ef] text-[#28715e] text-[10px] font-bold uppercase tracking-wider mb-2">
-                        <span>✦</span> {p.tagline}
+                        <svg className="w-3 h-3 text-[#28715e]" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 2l2.4 7.2h7.6l-6 4.8 2.3 7.2-6.3-4.6-6.3 4.6 2.3-7.2-6-4.8h7.6z" />
+                        </svg>
+                        <span>{p.tagline}</span>
                       </div>
                       <h3 className="text-xl sm:text-2xl font-bold text-[#183249] tracking-tight mb-2.5">
                         {p.title}

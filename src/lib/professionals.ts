@@ -71,10 +71,10 @@ export const PROFESSIONALS_DATA: Professional[] = [
     coverUrl: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
     link: "/trustlinks/welcome",
     badges: [
-      { title: "Master Builders QLD", subtitle: "Accredited Active Member", icon: "🏆" },
-      { title: "QBCC Licensed #150821", subtitle: "Builder Open Licence", icon: "🛡️" },
-      { title: "$20M Public Liability", subtitle: "Certificate of Currency", icon: "📑" },
-      { title: "TPH Certified", subtitle: "Digital Handover Ready", icon: "🛡️" },
+      { title: "Master Builders QLD", subtitle: "Accredited Active Member", icon: "award" },
+      { title: "QBCC Licensed #150821", subtitle: "Builder Open Licence", icon: "shield" },
+      { title: "$20M Public Liability", subtitle: "Certificate of Currency", icon: "document" },
+      { title: "TPH Certified", subtitle: "Digital Handover Ready", icon: "shield" },
     ],
     services: [
       {
@@ -174,10 +174,10 @@ export const PROFESSIONALS_DATA: Professional[] = [
     coverUrl: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
     link: "/trustlinks/TL-88301-A",
     badges: [
-      { title: "QLD Law Society", subtitle: "Practising Solicitor", icon: "⚖️" },
-      { title: "PEXA Certified", subtitle: "Electronic Settlements", icon: "💻" },
-      { title: "Fixed Fee Schedule", subtitle: "Transparent Pricing", icon: "🏷️" },
-      { title: "TrustLink Connected", subtitle: "Direct Settlement Files", icon: "🛡️" },
+      { title: "QLD Law Society", subtitle: "Practising Solicitor", icon: "law" },
+      { title: "PEXA Certified", subtitle: "Electronic Settlements", icon: "laptop" },
+      { title: "Fixed Fee Schedule", subtitle: "Transparent Pricing", icon: "tag" },
+      { title: "TrustLink Connected", subtitle: "Direct Settlement Files", icon: "shield" },
     ],
     services: [
       {
@@ -257,10 +257,10 @@ export const PROFESSIONALS_DATA: Professional[] = [
     coverUrl: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80",
     link: "/trustlinks/TL-76100-C",
     badges: [
-      { title: "QBCC Certified Inspector", subtitle: "Licence #1089201", icon: "🔍" },
-      { title: "Engineers Australia", subtitle: "GradIEAust Member", icon: "📐" },
-      { title: "FLIR Thermal Diagnostics", subtitle: "Level 2 Certified", icon: "🌡️" },
-      { title: "Same-Day Reports", subtitle: "Sealed to Prop ID", icon: "⚡" },
+      { title: "QBCC Certified Inspector", subtitle: "Licence #1089201", icon: "search" },
+      { title: "Engineers Australia", subtitle: "GradIEAust Member", icon: "ruler" },
+      { title: "FLIR Thermal Diagnostics", subtitle: "Level 2 Certified", icon: "thermometer" },
+      { title: "Same-Day Reports", subtitle: "Sealed to Prop ID", icon: "lightning" },
     ],
     services: [
       {
@@ -340,10 +340,10 @@ export const PROFESSIONALS_DATA: Professional[] = [
     coverUrl: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
     link: "/trustlinks/welcome",
     badges: [
-      { title: "REIQ Accredited", subtitle: "Real Estate Institute of QLD", icon: "🏡" },
-      { title: "Western Suburbs Specialist", subtitle: "20+ Years Local Knowledge", icon: "📍" },
-      { title: "Transparent Pricing", subtitle: "No Marketing Markups", icon: "📊" },
-      { title: "Prop ID Ready", subtitle: "Passport Transparency", icon: "🛡️" },
+      { title: "REIQ Accredited", subtitle: "Real Estate Institute of QLD", icon: "home" },
+      { title: "Western Suburbs Specialist", subtitle: "20+ Years Local Knowledge", icon: "pin" },
+      { title: "Transparent Pricing", subtitle: "No Marketing Markups", icon: "chart" },
+      { title: "Prop ID Ready", subtitle: "Passport Transparency", icon: "shield" },
     ],
     services: [
       {
@@ -408,10 +408,10 @@ export const PROFESSIONALS_DATA: Professional[] = [
     coverUrl: "https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=1200&q=80",
     link: "/trustlinks/welcome",
     badges: [
-      { title: "Master Electrician", subtitle: "Licence #81042", icon: "⚡" },
-      { title: "Form 4 Certified", subtitle: "Statutory Compliance", icon: "📑" },
-      { title: "Clean Energy Council", subtitle: "Solar & Battery Accredited", icon: "☀️" },
-      { title: "Trade Workmanship", subtitle: "Written Warranty", icon: "🛡️" },
+      { title: "Master Electrician", subtitle: "Licence #81042", icon: "lightning" },
+      { title: "Form 4 Certified", subtitle: "Statutory Compliance", icon: "document" },
+      { title: "Clean Energy Council", subtitle: "Solar & Battery Accredited", icon: "sun" },
+      { title: "Trade Workmanship", subtitle: "Written Warranty", icon: "shield" },
     ],
     services: [
       {

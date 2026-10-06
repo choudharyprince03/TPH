@@ -66,6 +66,49 @@ export interface ExecutedReceipt {
   highlightDocs: string[];
 }
 
+function getPackFamilyIcon(family: string, className = "w-4 h-4") {
+  if (family.includes("Service") || family.includes("Handover")) {
+    return (
+      <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.8">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+      </svg>
+    );
+  }
+  if (family.includes("Build") || family.includes("Change")) {
+    return (
+      <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.8">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+      </svg>
+    );
+  }
+  if (family.includes("Sell")) {
+    return (
+      <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.8">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+      </svg>
+    );
+  }
+  if (family.includes("Appoint") || family.includes("Lease")) {
+    return (
+      <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.8">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+      </svg>
+    );
+  }
+  if (family.includes("Finance")) {
+    return (
+      <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.8">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
+      </svg>
+    );
+  }
+  return (
+    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.8">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+    </svg>
+  );
+}
+
 export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProps) {
   const [activeTab, setActiveTab] = useState<"decisions" | "packs" | "sent-returned" | "rules">("decisions");
   const [selectedFamilyFilter, setSelectedFamilyFilter] = useState<string>("all");
@@ -284,14 +327,19 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
               onClick={onOpenTrustLink}
               className="px-3.5 py-2 bg-white border border-[#cbd5e2] hover:bg-[#F9F8F5] text-[#183249] rounded-xl text-xs font-semibold transition-colors shadow-2xs flex items-center gap-1.5 cursor-pointer"
             >
-              <span>🛡️ TrustLink Access</span>
+              <svg className="w-3.5 h-3.5 text-[#28715e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="m12 2 8 3v7c0 6-8 10-8 10S4 18 4 12V5Z" />
+              </svg>
+              <span>TrustLink Access</span>
             </button>
           )}
           <button
             onClick={() => setCreateModalOpen(true)}
             className="px-4 py-2 bg-[#0F1A2C] hover:bg-[#1c3a54] text-white rounded-xl text-xs font-bold transition-colors shadow-xs flex items-center gap-1.5 cursor-pointer"
           >
-            <span>🔑</span>
+            <svg className="w-3.5 h-3.5 text-white/90" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+            </svg>
             <span>+ Assemble Record Pack</span>
           </button>
         </div>
@@ -399,7 +447,10 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
                     onClick={handleAcceptHandover}
                     className="px-4 py-2.5 bg-[#C59B27] hover:bg-[#b58b20] text-[#0F1A2C] rounded-xl text-xs font-bold transition-colors shadow-2xs text-center cursor-pointer flex items-center justify-center gap-1.5"
                   >
-                    <span>✓ Accept &amp; Seal to Vault</span>
+                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Accept &amp; Seal to Vault</span>
                   </button>
                   <Link
                     href={trustlinkUrl}
@@ -414,7 +465,9 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
             <div className="bg-[#f0fbf7] border border-[#c7e3d1] rounded-2xl p-5 text-xs text-[#28715e] flex items-center justify-between gap-4">
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 rounded-xl bg-[#28715e] text-white flex items-center justify-center text-base font-bold flex-shrink-0">
-                  ✓
+                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
                 </div>
                 <div>
                   <strong className="block text-sm font-bold text-[#183249]">
@@ -498,16 +551,16 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-xs">
               {[
-                { family: "Service & Handover", icon: "📦", job: "Relevant asset context; quote decision; returned job records; accepted handover." },
-                { family: "Build & Change", icon: "🔨", job: "Colour / equipment request; priced variation; approval; returned specification." },
-                { family: "Sell a Property", icon: "🏡", job: "Seller Form 2 disclosure preparation; title search evidence to agent/solicitor." },
-                { family: "Appoint & Lease", icon: "📜", job: "Residential OFT Form 6 agency appointment; Form 18a tenancy agreement." },
-                { family: "Finance a Home", icon: "🏦", job: "Named mortgage broker / lender evidence; payslips & valuation." },
-                { family: "My Tenancy", icon: "🔑", job: "Form 22 application, lease/bond records, renewal permission requests." },
+                { family: "Service & Handover", job: "Relevant asset context; quote decision; returned job records; accepted handover." },
+                { family: "Build & Change", job: "Colour / equipment request; priced variation; approval; returned specification." },
+                { family: "Sell a Property", job: "Seller Form 2 disclosure preparation; title search evidence to agent/solicitor." },
+                { family: "Appoint & Lease", job: "Residential OFT Form 6 agency appointment; Form 18a tenancy agreement." },
+                { family: "Finance a Home", job: "Named mortgage broker / lender evidence; payslips & valuation." },
+                { family: "My Tenancy", job: "Form 22 application, lease/bond records, renewal permission requests." },
               ].map((item, idx) => (
                 <div key={idx} className="p-3 rounded-xl bg-[#fafbfc] border border-[#e2e5e5] space-y-1">
                   <div className="flex items-center gap-2 font-bold text-[#183249]">
-                    <span>{item.icon}</span>
+                    <span className="text-[#0F1A2C]">{getPackFamilyIcon(item.family, "w-4 h-4")}</span>
                     <span>{item.family}</span>
                   </div>
                   <p className="text-[11px] text-[#64727e] leading-snug">
@@ -601,7 +654,9 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
                     {pack.items.map((item, idx) => (
                       <div key={idx} className="p-2.5 flex items-center justify-between gap-3 text-xs">
                         <div className="flex items-center gap-2.5 min-w-0">
-                          <span className="text-base">📄</span>
+                          <svg className="w-4 h-4 text-slate-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.8">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                          </svg>
                           <div className="min-w-0">
                             <div className="font-semibold text-[#183249] truncate">
                               {item.title}
@@ -646,7 +701,10 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
                       href={pack.trustlinkHref || trustlinkUrl}
                       className="px-3.5 py-1.5 bg-[#0F1A2C] hover:bg-[#1c3a54] text-white text-xs font-bold rounded-lg transition-colors flex items-center gap-1 shadow-2xs"
                     >
-                      <span>🛡️ Manage via TrustLink</span>
+                      <svg className="w-3.5 h-3.5 text-white/90" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="m12 2 8 3v7c0 6-8 10-8 10S4 18 4 12V5Z" />
+                      </svg>
+                      <span>Manage via TrustLink</span>
                       <span>→</span>
                     </Link>
                   </div>
@@ -717,7 +775,9 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
                         key={idx}
                         className="text-[11px] bg-[#f8fafc] text-[#183249] px-2.5 py-1 rounded-md border border-[#e2e5e5] flex items-center gap-1 font-semibold"
                       >
-                        <span className="text-[#28715e]">✓</span>
+                        <svg className="w-3 h-3 text-[#28715e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
                         <span>{doc}</span>
                       </span>
                     ))}
@@ -798,7 +858,9 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
                 onClick={() => setCreateModalOpen(false)}
                 className="w-7 h-7 rounded-full bg-[#F9F8F5] text-[#5b6e84] hover:bg-[#e2eaf4] flex items-center justify-center text-sm font-bold cursor-pointer"
               >
-                ✕
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
               </button>
             </div>
 
@@ -897,8 +959,11 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
                 </div>
               </div>
 
-              <div className="p-3 bg-[#eaf4ef] rounded-xl border border-[#c7e3d1] text-[11px] text-[#28715e]">
-                🔑 When created, this pack creates a frozen manifest. External recipients access it under scoped TrustLink permissions without seeing your private vault.
+              <div className="p-3 bg-[#eaf4ef] rounded-xl border border-[#c7e3d1] text-[11px] text-[#28715e] flex items-start gap-2">
+                <svg className="w-3.5 h-3.5 text-[#28715e] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+                </svg>
+                <span>When created, this pack creates a frozen manifest. External recipients access it under scoped TrustLink permissions without seeing your private vault.</span>
               </div>
 
               <div className="flex items-center justify-end gap-2 pt-2">
@@ -938,7 +1003,9 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
                 onClick={() => setPreviewModalDoc(null)}
                 className="w-7 h-7 rounded-full bg-[#F9F8F5] text-[#5b6e84] hover:bg-[#e2eaf4] flex items-center justify-center text-sm font-bold cursor-pointer"
               >
-                ✕
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
               </button>
             </div>
 
@@ -950,8 +1017,11 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
                 <div>File Size: <span className="text-[#5b6e84]">{previewModalDoc.size || "1.4 MB"}</span></div>
               </div>
 
-              <div className="p-3 bg-[#f0f4f9] rounded-xl text-[11px] text-[#0F1A2C]">
-                ✓ Immutable original hash verified under Queensland Electronic Transactions Act.
+              <div className="p-3 bg-[#f0f4f9] rounded-xl text-[11px] text-[#0F1A2C] flex items-start gap-2">
+                <svg className="w-3.5 h-3.5 text-[#28715e] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Immutable original hash verified under Queensland Electronic Transactions Act.</span>
               </div>
             </div>
 

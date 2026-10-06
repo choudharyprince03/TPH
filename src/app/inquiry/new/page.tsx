@@ -61,8 +61,10 @@ export default function StartInquiryPage() {
         <form onSubmit={handleSubmit} className="p-6 sm:p-8">
           {submitted ? (
             <div className="text-center py-8">
-              <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 text-verified rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
-                ✓
+              <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 text-verified rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-verified" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
               </div>
               <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-2">
                 Inquiry Sent & TrustLink Created!
