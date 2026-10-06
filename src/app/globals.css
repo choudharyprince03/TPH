@@ -1,43 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 
 @theme {
-  --color-brand-navy: #071d3b;
-  --color-brand-navy-dark: #041226;
-  --color-brand-navy-light: #102d59;
-  --color-brand-forest: #24754c;
-  --color-brand-forest-light: #2d8f5d;
-  --color-brand-gold: #efbd66;
-  --color-brand-emerald: #24754c;
-  --color-brand-surface: #f3f6fb;
-  --color-brand-paper: #fcfbf8;
-  --color-brand-border: #dfe6ef;
-  --color-brand-muted: #68788e;
-  --color-brand-ink: #102645;
+  --color-brand-navy: #0F1A2C;
+  --color-brand-navy-dark: #0b2034;
+  --color-brand-navy-light: #1c3a54;
+  --color-brand-forest: #28715e;
+  --color-brand-forest-light: #348872;
+  --color-brand-gold: #C59B27;
+  --color-brand-tertiary: #3A506B;
+  --color-brand-emerald: #28715e;
+  --color-brand-surface: #F9F8F5;
+  --color-brand-paper: #ffffff;
+  --color-brand-border: #e2e5e5;
+  --color-brand-muted: #64727e;
+  --color-brand-ink: #183249;
   
-  --color-verified-light: #eaf5ef;
-  --color-verified: #24754c;
-  --color-verified-dark: #1b593a;
+  --color-verified-light: #eaf4ef;
+  --color-verified: #28715e;
+  --color-verified-dark: #1e5949;
   
   --font-sans: "Inter", "Avenir Next", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
-  --font-display: Georgia, "Fraunces", ui-serif, serif;
+  --font-headline: "Manrope", sans-serif;
+  --font-display: "Manrope", Georgia, "Fraunces", ui-serif, serif;
 }
 
 :root {
-  --navy: #071d3b;
-  --ink: #102645;
-  --muted: #68788e;
-  --bg: #f3f6fb;
-  --line: #dfe6ef;
-  --green: #24754c;
-  --mint: #eaf5ef;
-  --gold: #efbd66;
-  --amber: #8b641c;
-  --rose: #a44042;
-  --paper: #fcfbf8;
-  --shadow: 0 12px 40px rgba(7, 29, 59, 0.05);
+  --navy: #0F1A2C;
+  --navy-deep: #0b2034;
+  --navy-soft: #1c3a54;
+  --gold: #C59B27;
+  --tertiary: #3A506B;
+  --paper: #ffffff;
+  --ivory: #F9F8F5;
+  --line: #e2e5e5;
+  --text: #183249;
+  --ink: #183249;
+  --muted: #64727e;
+  --green: #28715e;
+  --green-soft: #eaf4ef;
+  --mint: #eaf4ef;
+  --amber: #946315;
+  --amber-soft: #fbf3e4;
+  --red: #a34b43;
+  --red-soft: #faeeeb;
+  --rose: #a34b43;
+  --radius: 14px;
+  --shadow: 0 8px 30px rgba(23, 52, 73, 0.05);
 
-  --background: #f3f6fb;
-  --foreground: #102645;
+  --background: #F9F8F5;
+  --foreground: #183249;
 }
 
 /* ── Base ────────────────────────────────────────────────────────────────── */
@@ -264,6 +276,30 @@ body {
   .tap-target {
     min-height: 44px;
     min-width: 44px;
+  }
+
+  /* ── Stitch Design Tokens & Components ────────────────────── */
+  .font-headline {
+    font-family: var(--font-headline);
+  }
+
+  .material-swatch {
+    width: 75px;
+    height: 64px;
+    border-radius: 8px;
+    box-shadow: 0 8px 17px rgba(38, 60, 76, 0.08);
+    border: 5px solid rgba(255, 255, 255, 0.85);
+    transform: rotate(-3deg);
+  }
+
+  .material-swatch.oak {
+    background-color: #d7b58c;
+    background-image: repeating-linear-gradient(92deg, transparent 0px, transparent 10px, rgba(129, 96, 58, 0.12) 11px, rgba(129, 96, 58, 0.15) 12px);
+  }
+
+  .material-swatch.stone {
+    background-color: #dfded9;
+    background-image: linear-gradient(110deg, transparent 45%, rgba(192, 180, 164, 0.4) 49%, transparent 52%);
   }
 }
 
