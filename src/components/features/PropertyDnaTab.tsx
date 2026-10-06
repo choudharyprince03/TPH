@@ -23,7 +23,6 @@ export function PropertyDnaTab({ property, onOpenTrustLink }: PropertyDnaTabProp
   const [activeCategory, setActiveCategory] = useState<DnaCategory>("operational");
   const [linkModalOpen, setLinkModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
-  const [taskModalOpen, setTaskModalOpen] = useState(false);
 
   // Linked evidence documents per category
   const [linkedDocs, setLinkedDocs] = useState<LinkedDocument[]>([
@@ -336,6 +335,18 @@ export function PropertyDnaTab({ property, onOpenTrustLink }: PropertyDnaTabProp
                     </span>
                   </div>
                   <div className="py-3 flex items-center justify-between">
+                    <span className="text-[#68788e]">Pest protection system</span>
+                    <span className="text-[#102645] font-medium text-right max-w-[280px]">
+                      {property.operationalDna.pest}
+                    </span>
+                  </div>
+                  <div className="py-3 flex items-center justify-between">
+                    <span className="text-[#68788e]">Solar energy system</span>
+                    <span className="text-[#102645] font-medium text-right max-w-[280px]">
+                      {property.operationalDna.solar}
+                    </span>
+                  </div>
+                  <div className="py-3 flex items-center justify-between">
                     <span className="text-[#68788e]">Insurance renewal notes</span>
                     <span className="text-[#102645] font-medium">Suncorp Home &amp; Contents · Renews Nov</span>
                   </div>
@@ -343,35 +354,6 @@ export function PropertyDnaTab({ property, onOpenTrustLink }: PropertyDnaTabProp
 
                 <div className="pt-3 border-t border-[#dfe6ef] text-[11px] text-[#8a97a7] leading-relaxed">
                   Keep service details and useful renewal dates here. Use sample details in this prototype; leave account numbers and passwords out.
-                </div>
-              </div>
-
-              {/* Card 2: Care & Renewal Tasks */}
-              <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm space-y-4">
-                <div className="flex items-center justify-between pb-3 border-b border-[#dfe6ef]">
-                  <div>
-                    <span className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c] block mb-0.5">
-                      KEEP YOUR HOME RUNNING
-                    </span>
-                    <h3 className="text-base font-bold text-[#102645]">
-                      Care &amp; renewal tasks
-                    </h3>
-                  </div>
-                  <button
-                    onClick={() => setTaskModalOpen(true)}
-                    className="px-3 py-1.5 bg-white border border-[#cbd5e1] hover:bg-[#f8fafc] text-[#102645] rounded-xl text-xs font-semibold transition-colors cursor-pointer flex items-center gap-1"
-                  >
-                    <span>+ Add task</span>
-                  </button>
-                </div>
-
-                <div className="border-2 border-dashed border-[#cbd5e1] bg-[#fcfdfe] rounded-xl p-6 text-center">
-                  <h4 className="text-sm font-bold text-[#102645] mb-1">
-                    Stay ahead of the next job.
-                  </h4>
-                  <p className="text-xs text-[#68788e]">
-                    Add a service, maintenance job or renewal date. Keep the task with this property.
-                  </p>
                 </div>
               </div>
             </>
@@ -596,65 +578,7 @@ export function PropertyDnaTab({ property, onOpenTrustLink }: PropertyDnaTabProp
         </div>
       )}
 
-      {/* ── Add Task Modal ── */}
-      {taskModalOpen && (
-        <div className="fixed inset-0 bg-black/40 backdrop-blur-xs z-50 flex items-center justify-center p-4">
-          <div className="bg-white border border-[#dfe6ef] rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
-            <div className="flex items-center justify-between border-b border-[#dfe6ef] pb-3">
-              <div>
-                <h3 className="text-base font-bold text-[#102645]">Add Care &amp; Renewal Task</h3>
-                <p className="text-xs text-[#68788e]">Schedule maintenance or warranty inspection.</p>
-              </div>
-              <button
-                onClick={() => setTaskModalOpen(false)}
-                className="text-[#64748b] hover:text-[#102645] p-1"
-              >
-                ✕
-              </button>
-            </div>
 
-            <div className="space-y-3 text-xs">
-              <div>
-                <label className="block text-[11px] font-bold text-[#102645] mb-1">
-                  Task Title
-                </label>
-                <input
-                  type="text"
-                  placeholder="e.g. Annual Termite Barrier Inspection"
-                  className="w-full bg-[#f8fafc] border border-[#cbd5e1] rounded-xl px-3 py-2 text-xs text-[#102645] focus:outline-none focus:border-[#071d3b]"
-                />
-              </div>
-              <div>
-                <label className="block text-[11px] font-bold text-[#102645] mb-1">
-                  Due Date
-                </label>
-                <input
-                  type="date"
-                  className="w-full bg-[#f8fafc] border border-[#cbd5e1] rounded-xl px-3 py-2 text-xs text-[#102645] focus:outline-none focus:border-[#071d3b]"
-                />
-              </div>
-            </div>
-
-            <div className="pt-2 flex justify-end gap-2">
-              <button
-                onClick={() => setTaskModalOpen(false)}
-                className="px-4 py-2 bg-white border border-[#cbd5e1] text-[#102645] rounded-xl text-xs font-semibold hover:bg-[#f8fafc]"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={() => {
-                  alert("Task scheduled to property calendar.");
-                  setTaskModalOpen(false);
-                }}
-                className="px-4 py-2 bg-[#071d3b] text-white rounded-xl text-xs font-bold hover:bg-[#15345d]"
-              >
-                Add Task
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
 
     </div>
   );

@@ -1,0 +1,746 @@
+"use client";
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { PropertyData } from "@/lib/properties";
+
+interface CareRenewalTabProps {
+  property: PropertyData;
+  onOpenTrustLink?: () => void;
+}
+
+export interface CareRenewalTask {
+  id: string;
+  title: string;
+  category: "Maintenance" | "Warranty" | "Compliance" | "Insurance" | "General";
+  dueDate: string;
+  recurrence: "One-off" | "Quarterly" | "Bi-Annual" | "Annual" | "2-Year" | "5-Year";
+  priority: "High" | "Medium" | "Low";
+  completed: boolean;
+  systemLinked?: string;
+  notes?: string;
+}
+
+interface LinkedDocument {
+  id: string;
+  title: string;
+  category: string;
+  source: string;
+  visibility: string;
+}
+
+type TaskFilter = "all" | "upcoming" | "maintenance" | "renewals" | "completed";
+
+export function CareRenewalTab({ property, onOpenTrustLink }: CareRenewalTabProps) {
+  const storageKey = `tph_care_tasks_${property.propId}`;
+
+  // Default tasks tailored to the property's operational systems
+  const initialDefaultTasks: CareRenewalTask[] = [
+    {
+      id: "task-1",
+      title: "Termimesh Pest Barrier Annual Inspection",
+      category: "Maintenance",
+      dueDate: "2027-09-15",
+      recurrence: "Annual",
+      priority: "Medium",
+      completed: false,
+      systemLinked: property.operationalDna.pest || "Termimesh Physical Barrier System",
+      notes: "Annual inspection required to keep the 10-year timber pest installation warranty valid.",
+    },
+    {
+      id: "task-2",
+      title: "Rheem Heat Pump Anode & Pressure Relief Valve Service",
+      category: "Warranty",
+      dueDate: "2026-11-10",
+      recurrence: "2-Year",
+      priority: "High",
+      completed: false,
+      systemLinked: property.operationalDna.hotWater || "Rheem 270L Heat Pump (Valid to Sep 2031)",
+      notes: "Check sacrificial anode and PTR valve to protect the cylinder and maintain warranty coverage.",
+    },
+    {
+      id: "task-3",
+      title: "Daikin Ducted AC Air Filter Clean & Damper Balancing",
+      category: "Maintenance",
+      dueDate: "2026-10-28",
+      recurrence: "Bi-Annual",
+      priority: "Medium",
+      completed: false,
+      systemLinked: property.operationalDna.ac || "Daikin 14kW Inverter Ducted with AirTouch 5",
+      notes: "Clean return air filter media and check AirTouch 5 zone dampers ahead of summer.",
+    },
+    {
+      id: "task-4",
+      title: "Suncorp Home & Building Insurance Annual Policy Renewal",
+      category: "Insurance",
+      dueDate: "2026-11-18",
+      recurrence: "Annual",
+      priority: "High",
+      completed: false,
+      systemLinked: "Suncorp Home & Contents · Renews Nov",
+      notes: "Review sum insured valuation following final handover sign-off.",
+    },
+    {
+      id: "task-5",
+      title: "Interconnected Smoke Alarm Acoustic Test & Battery Sign-off",
+      category: "Compliance",
+      dueDate: "2026-09-01",
+      recurrence: "Annual",
+      priority: "Low",
+      completed: true,
+      systemLinked: "AS 3786-2014 Photoelectric Interconnected Alarms",
+      notes: "Statutory Queensland compliance checked and verified for handover documentation.",
+    },
+  ];
+
+  const [tasks, setTasks] = useState<CareRenewalTask[]>(initialDefaultTasks);
+  const [filter, setFilter] = useState<TaskFilter>("all");
+  const [addTaskModalOpen, setAddTaskModalOpen] = useState(false);
+  const [linkDocModalOpen, setLinkDocModalOpen] = useState(false);
+
+  // New task form state
+  const [newTaskTitle, setNewTaskTitle] = useState("");
+  const [newTaskCategory, setNewTaskCategory] = useState<CareRenewalTask["category"]>("Maintenance");
+  const [newTaskDueDate, setNewTaskDueDate] = useState("");
+  const [newTaskRecurrence, setNewTaskRecurrence] = useState<CareRenewalTask["recurrence"]>("Annual");
+  const [newTaskPriority, setNewTaskPriority] = useState<CareRenewalTask["priority"]>("Medium");
+  const [newTaskSystem, setNewTaskSystem] = useState("");
+  const [newTaskNotes, setNewTaskNotes] = useState("");
+
+  // Linked evidence documents
+  const [linkedDocs, setLinkedDocs] = useState<LinkedDocument[]>([
+    {
+      id: "doc-care-1",
+      title: "Appliance care guide",
+      category: "Warranties",
+      source: "Added by you",
+      visibility: "Private",
+    },
+    {
+      id: "doc-care-2",
+      title: "Home maintenance checklist",
+      category: "Maintenance",
+      source: "Added by you",
+      visibility: "Private",
+    },
+    {
+      id: "doc-care-3",
+      title: "Appliance Care & Warranty Schedule.pdf",
+      category: "Warranties",
+      source: "Hart Homes",
+      visibility: "Private",
+    },
+  ]);
+
+  // Load from localStorage on client
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(storageKey);
+      if (saved) {
+        setTasks(JSON.parse(saved));
+      }
+    } catch {
+      // Ignore fallback
+    }
+  }, [storageKey]);
+
+  // Save to localStorage
+  const updateTasks = (newTasks: CareRenewalTask[]) => {
+    setTasks(newTasks);
+    try {
+      localStorage.setItem(storageKey, JSON.stringify(newTasks));
+    } catch {
+      // Ignore
+    }
+  };
+
+  const handleToggleTask = (id: string) => {
+    const updated = tasks.map((t) => (t.id === id ? { ...t, completed: !t.completed } : t));
+    updateTasks(updated);
+  };
+
+  const handleDeleteTask = (id: string) => {
+    const updated = tasks.filter((t) => t.id !== id);
+    updateTasks(updated);
+  };
+
+  const handleCreateTask = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newTaskTitle.trim()) return;
+
+    const created: CareRenewalTask = {
+      id: `task-${Date.now()}`,
+      title: newTaskTitle.trim(),
+      category: newTaskCategory,
+      dueDate: newTaskDueDate || new Date().toISOString().split("T")[0],
+      recurrence: newTaskRecurrence,
+      priority: newTaskPriority,
+      completed: false,
+      systemLinked: newTaskSystem.trim() || undefined,
+      notes: newTaskNotes.trim() || undefined,
+    };
+
+    updateTasks([created, ...tasks]);
+    setAddTaskModalOpen(false);
+
+    // Reset inputs
+    setNewTaskTitle("");
+    setNewTaskCategory("Maintenance");
+    setNewTaskDueDate("");
+    setNewTaskRecurrence("Annual");
+    setNewTaskPriority("Medium");
+    setNewTaskSystem("");
+    setNewTaskNotes("");
+  };
+
+  const handleLinkExistingDoc = (title: string, cat: string) => {
+    const doc: LinkedDocument = {
+      id: `doc-${Date.now()}`,
+      title,
+      category: cat,
+      source: "Added by you",
+      visibility: "Private",
+    };
+    setLinkedDocs([...linkedDocs, doc]);
+    setLinkDocModalOpen(false);
+  };
+
+  // Filtered task counts
+  const pendingTasks = tasks.filter((t) => !t.completed);
+  const completedTasks = tasks.filter((t) => t.completed);
+
+  const filteredTasks = tasks.filter((t) => {
+    if (filter === "completed") return t.completed;
+    if (filter === "upcoming") return !t.completed;
+    if (filter === "maintenance") return !t.completed && (t.category === "Maintenance" || t.category === "General");
+    if (filter === "renewals") return !t.completed && (t.category === "Warranty" || t.category === "Insurance" || t.category === "Compliance");
+    return true;
+  });
+
+  return (
+    <div className="space-y-6 max-w-[1060px] mx-auto pb-12 font-sans text-[#102645]">
+      {/* ── Page Header ────────────────────────────────────────── */}
+      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+        <div>
+          <span className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c] block mb-1">
+            KEEP YOUR HOME RUNNING
+          </span>
+          <h1 className="text-3xl font-bold tracking-tight text-[#102645] mb-1.5">
+            Care &amp; renewal tasks
+          </h1>
+          <p className="text-[13px] text-[#68788e]">
+            Organise routine maintenance, warranty expirations, and scheduled service jobs that keep your home running.
+          </p>
+        </div>
+
+        <div className="flex items-center gap-3 self-start">
+          <span className="text-[11px] text-[#24754c] font-semibold flex items-center gap-1.5 bg-[#eaf5ef] px-3 py-1 rounded-full border border-[#d2e6d9] shadow-2xs">
+            <span>🔒</span> Private by default
+          </span>
+          <button
+            onClick={() => setAddTaskModalOpen(true)}
+            className="px-4 py-2 bg-[#071d3b] hover:bg-[#15345d] text-white rounded-xl text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 cursor-pointer"
+          >
+            <span className="text-sm leading-none">+</span>
+            <span>Add task</span>
+          </button>
+        </div>
+      </div>
+
+      {/* ── Quick Metrics Bar ──────────────────────────────────── */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div className="bg-white border border-[#dfe6ef] rounded-xl p-3.5 shadow-2xs">
+          <div className="text-[10px] uppercase font-bold text-[#68788e] tracking-wider">Pending tasks</div>
+          <div className="text-xl font-bold text-[#102645] mt-1">{pendingTasks.length} items</div>
+          <div className="text-[11px] text-[#b45309] font-medium mt-0.5">Keep property in warranty</div>
+        </div>
+        <div className="bg-white border border-[#dfe6ef] rounded-xl p-3.5 shadow-2xs">
+          <div className="text-[10px] uppercase font-bold text-[#68788e] tracking-wider">Active warranties</div>
+          <div className="text-xl font-bold text-[#24754c] mt-1">2 systems</div>
+          <div className="text-[11px] text-[#68788e] mt-0.5">Rheem (2031) · Daikin (2031)</div>
+        </div>
+        <div className="bg-white border border-[#dfe6ef] rounded-xl p-3.5 shadow-2xs">
+          <div className="text-[10px] uppercase font-bold text-[#68788e] tracking-wider">Next scheduled</div>
+          <div className="text-xl font-bold text-[#071d3b] mt-1">28 Oct 2026</div>
+          <div className="text-[11px] text-[#68788e] mt-0.5">Daikin AC Filter Service</div>
+        </div>
+        <div className="bg-white border border-[#dfe6ef] rounded-xl p-3.5 shadow-2xs">
+          <div className="text-[10px] uppercase font-bold text-[#68788e] tracking-wider">Completed logs</div>
+          <div className="text-xl font-bold text-[#475569] mt-1">{completedTasks.length} recorded</div>
+          <div className="text-[11px] text-[#24754c] font-medium mt-0.5">Statutory certs signed</div>
+        </div>
+      </div>
+
+      {/* ── Category Filter Dropdown ──────────────────────────────────── */}
+      <div className="flex items-center gap-3">
+        <label htmlFor="care-category-filter" className="text-xs font-bold text-[#68788e]">
+          Category:
+        </label>
+        <div className="relative inline-block min-w-[240px]">
+          <select
+            id="care-category-filter"
+            value={filter}
+            onChange={(e) => setFilter(e.target.value as TaskFilter)}
+            className="w-full appearance-none bg-white border border-[#dfe6ef] hover:border-[#cbd5e1] text-[#102645] font-bold text-xs rounded-xl px-4 py-2 pr-9 shadow-2xs focus:outline-none focus:border-[#071d3b] cursor-pointer transition-colors"
+          >
+            <option value="all">All tasks ({tasks.length})</option>
+            <option value="upcoming">Upcoming ({pendingTasks.length})</option>
+            <option value="maintenance">Maintenance &amp; Systems</option>
+            <option value="renewals">Warranties &amp; Renewals</option>
+            <option value="completed">Completed ({completedTasks.length})</option>
+          </select>
+          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-[#68788e]">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Main Two-Column Layout ──────────────────────────────────── */}
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-6 items-start">
+        {/* ═════════════════════════════════════════════════════════════
+            LEFT COLUMN (TASKS LIST & CALLOUT)
+        ═════════════════════════════════════════════════════════════ */}
+        <div className="space-y-5">
+          {/* Main Tasks Card */}
+          <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm space-y-4">
+            <div className="flex items-center justify-between pb-3 border-b border-[#dfe6ef]">
+              <div>
+                <span className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c] block mb-0.5">
+                  PROPERTY WORKLIST
+                </span>
+                <h3 className="text-base font-bold text-[#102645]">
+                  Scheduled jobs &amp; reminders
+                </h3>
+              </div>
+              <button
+                onClick={() => setAddTaskModalOpen(true)}
+                className="px-3 py-1.5 bg-white border border-[#cbd5e1] hover:bg-[#f8fafc] text-[#102645] rounded-xl text-xs font-semibold transition-colors cursor-pointer flex items-center gap-1"
+              >
+                <span>+ Add task</span>
+              </button>
+            </div>
+
+            {/* Task Items */}
+            {filteredTasks.length === 0 ? (
+              <div className="py-8 text-center text-[#68788e] text-xs">
+                No tasks match this filter. Click <span className="font-bold text-[#071d3b] cursor-pointer" onClick={() => setAddTaskModalOpen(true)}>+ Add task</span> to create a new reminder.
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {filteredTasks.map((t) => {
+                  const isDone = t.completed;
+                  return (
+                    <div
+                      key={t.id}
+                      className={`p-4 rounded-xl border transition-all ${
+                        isDone
+                          ? "bg-[#f8fafc] border-[#e2e8f0] opacity-75"
+                          : "bg-white border-[#dfe6ef] hover:border-[#cbd5e1] hover:shadow-2xs"
+                      }`}
+                    >
+                      <div className="flex items-start justify-between gap-3">
+                        <div className="flex items-start gap-3 min-w-0">
+                          <input
+                            type="checkbox"
+                            checked={isDone}
+                            onChange={() => handleToggleTask(t.id)}
+                            className="mt-1 w-4 h-4 rounded text-[#071d3b] focus:ring-0 cursor-pointer border-[#cbd5e1]"
+                          />
+                          <div className="min-w-0">
+                            <div className="flex items-center gap-2 flex-wrap">
+                              <h4
+                                className={`text-[13.5px] font-bold text-[#102645] ${
+                                  isDone ? "line-through text-[#64748b]" : ""
+                                }`}
+                              >
+                                {t.title}
+                              </h4>
+
+                              {/* Priority Badge */}
+                              <span
+                                className={`text-[9.5px] font-bold px-2 py-0.5 rounded-full border ${
+                                  t.priority === "High"
+                                    ? "bg-[#fef2f2] text-[#991b1b] border-[#fecaca]"
+                                    : t.priority === "Medium"
+                                    ? "bg-[#fffbeb] text-[#92400e] border-[#fde68a]"
+                                    : "bg-[#f1f5f9] text-[#475569] border-[#cbd5e1]"
+                                }`}
+                              >
+                                {t.priority}
+                              </span>
+
+                              {/* Category Badge */}
+                              <span className="text-[9.5px] font-bold px-2 py-0.5 rounded-full bg-[#f0f4f9] text-[#1e3a5f] border border-[#d2ddec]">
+                                {t.category}
+                              </span>
+
+                              {/* Recurrence Badge */}
+                              <span className="text-[9.5px] font-medium text-[#68788e]">
+                                🔁 {t.recurrence}
+                              </span>
+                            </div>
+
+                            {/* System linkage */}
+                            {t.systemLinked && (
+                              <div className="text-[11px] text-[#24754c] font-medium mt-1 flex items-center gap-1">
+                                <span>🔧 Linked to:</span>
+                                <span>{t.systemLinked}</span>
+                              </div>
+                            )}
+
+                            {/* Notes */}
+                            {t.notes && (
+                              <p className="text-[12px] text-[#68788e] mt-1 leading-relaxed">
+                                {t.notes}
+                              </p>
+                            )}
+
+                            {/* Due date */}
+                            <div className="text-[11px] text-[#68788e] mt-2 flex items-center gap-1.5 font-medium">
+                              <span>📅</span>
+                              <span>
+                                {isDone ? "Completed · " : "Due: "}
+                                {t.dueDate}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Actions */}
+                        <div className="flex items-center gap-1 flex-shrink-0">
+                          <button
+                            onClick={() => handleToggleTask(t.id)}
+                            className={`px-2.5 py-1 text-[11px] font-semibold rounded-lg border transition-colors cursor-pointer ${
+                              isDone
+                                ? "bg-white text-[#68788e] border-[#cbd5e1] hover:bg-[#f1f5f9]"
+                                : "bg-[#eaf5ef] text-[#24754c] border-[#c2e2cf] hover:bg-[#d8eedf]"
+                            }`}
+                          >
+                            {isDone ? "Reopen" : "Done ✓"}
+                          </button>
+                          <button
+                            onClick={() => handleDeleteTask(t.id)}
+                            className="p-1 text-[#94a3b8] hover:text-[#dc2626] rounded-lg transition-colors cursor-pointer"
+                            title="Delete task"
+                          >
+                            ✕
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+
+          {/* ── Callout Box (from screenshot) ── */}
+          <div className="border-2 border-dashed border-[#cbd5e1] bg-[#fcfdfe] rounded-2xl p-6 text-center space-y-2">
+            <h4 className="text-sm font-bold text-[#102645]">
+              Stay ahead of the next job.
+            </h4>
+            <p className="text-xs text-[#68788e] max-w-md mx-auto">
+              Add a service, maintenance job or renewal date. Keep the task with this property.
+            </p>
+            <div className="pt-1">
+              <button
+                onClick={() => setAddTaskModalOpen(true)}
+                className="px-4 py-2 bg-[#071d3b] hover:bg-[#15345d] text-white rounded-xl text-xs font-bold transition-all shadow-xs inline-flex items-center gap-1.5 cursor-pointer"
+              >
+                <span>+ Add task</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* ═════════════════════════════════════════════════════════════
+            RIGHT COLUMN (LINKED DOCUMENTS & HELP)
+        ═════════════════════════════════════════════════════════════ */}
+        <div className="space-y-5">
+          {/* Linked Documents Card */}
+          <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm space-y-4">
+            <div className="flex items-center justify-between pb-3 border-b border-[#dfe6ef]">
+              <div>
+                <span className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c] block mb-0.5">
+                  SUPPORTING EVIDENCE
+                </span>
+                <h3 className="text-base font-bold text-[#102645]">
+                  Linked documents
+                </h3>
+              </div>
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#f1f5f9] text-[#475569] border border-[#cbd5e1]">
+                {linkedDocs.length}
+              </span>
+            </div>
+
+            {/* Document list */}
+            <div className="space-y-2.5">
+              {linkedDocs.map((doc) => (
+                <div
+                  key={doc.id}
+                  className="p-3 rounded-xl border border-[#dfe6ef] bg-[#fafbfc] hover:bg-[#f1f5f9] transition-colors flex items-center justify-between gap-3"
+                >
+                  <div className="min-w-0">
+                    <div className="text-[12.5px] font-semibold text-[#102645] truncate">
+                      {doc.title}
+                    </div>
+                    <div className="text-[10.5px] text-[#68788e] truncate mt-0.5">
+                      {doc.category} · {doc.source} · {doc.visibility}
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => alert(`Opening preview for ${doc.title}`)}
+                    className="px-3 py-1 bg-white border border-[#cbd5e1] hover:bg-[#f8fafc] text-[#102645] text-xs font-semibold rounded-lg transition-colors cursor-pointer flex-shrink-0"
+                  >
+                    Open
+                  </button>
+                </div>
+              ))}
+            </div>
+
+            {/* Action Buttons */}
+            <div className="pt-2 flex items-center gap-2">
+              <button
+                onClick={() => setLinkDocModalOpen(true)}
+                className="flex-1 py-2 px-3 bg-white border border-[#cbd5e1] hover:bg-[#f8fafc] text-[#102645] text-xs font-bold rounded-xl transition-colors cursor-pointer text-center"
+              >
+                Link existing
+              </button>
+              <button
+                onClick={() => alert("Upload a new warranty or service certificate to link to Care & Renewal.")}
+                className="flex-1 py-2 px-3 bg-[#071d3b] hover:bg-[#15345d] text-white text-xs font-bold rounded-xl transition-colors cursor-pointer text-center flex items-center justify-center gap-1"
+              >
+                <span>+ Add document</span>
+              </button>
+            </div>
+
+            <p className="text-[11px] text-[#8a97a7] leading-relaxed pt-1">
+              Linking does not share a document. Existing Trust Link permissions stay as you approved them.
+            </p>
+          </div>
+
+          {/* Need help with a job card */}
+          <div className="bg-[#f8fafc] border border-[#dfe6ef] rounded-2xl p-5 shadow-2xs space-y-3">
+            <h4 className="text-sm font-bold text-[#102645]">
+              Need help with a job?
+            </h4>
+            <p className="text-xs text-[#68788e] leading-relaxed">
+              Choose a professional and review exactly which documents and maintenance records you want to share.
+            </p>
+            <button
+              onClick={onOpenTrustLink}
+              className="text-xs font-bold text-[#071d3b] hover:underline flex items-center gap-1 cursor-pointer"
+            >
+              <span>Find property help</span>
+              <span>→</span>
+            </button>
+          </div>
+
+          {/* History link */}
+          <div className="px-2">
+            <button
+              onClick={() => alert("Viewing complete service and maintenance history log for this property.")}
+              className="text-xs text-[#68788e] hover:text-[#102645] font-semibold flex items-center gap-1 cursor-pointer"
+            >
+              <span>View property history</span>
+              <span>→</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Add Task Modal ────────────────────────────────────────── */}
+      {addTaskModalOpen && (
+        <div className="fixed inset-0 bg-black/40 backdrop-blur-xs z-50 flex items-center justify-center p-4">
+          <div className="bg-white border border-[#dfe6ef] rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
+            <div className="flex items-center justify-between border-b border-[#dfe6ef] pb-3">
+              <div>
+                <h3 className="text-base font-bold text-[#102645]">Add Care &amp; Renewal Task</h3>
+                <p className="text-xs text-[#68788e]">
+                  Schedule routine service, warranty inspection or renewal.
+                </p>
+              </div>
+              <button
+                onClick={() => setAddTaskModalOpen(false)}
+                className="text-[#64748b] hover:text-[#102645] p-1 cursor-pointer"
+              >
+                ✕
+              </button>
+            </div>
+
+            <form onSubmit={handleCreateTask} className="space-y-3 text-xs">
+              <div>
+                <label className="block text-[11px] font-bold text-[#102645] mb-1">
+                  Task Title *
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={newTaskTitle}
+                  onChange={(e) => setNewTaskTitle(e.target.value)}
+                  placeholder="e.g. Annual Termite Barrier Inspection"
+                  className="w-full bg-[#f8fafc] border border-[#cbd5e1] rounded-xl px-3 py-2 text-xs text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-[11px] font-bold text-[#102645] mb-1">
+                    Category
+                  </label>
+                  <select
+                    value={newTaskCategory}
+                    onChange={(e) => setNewTaskCategory(e.target.value as CareRenewalTask["category"])}
+                    className="w-full bg-[#f8fafc] border border-[#cbd5e1] rounded-xl px-3 py-2 text-xs text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                  >
+                    <option value="Maintenance">Maintenance</option>
+                    <option value="Warranty">Warranty</option>
+                    <option value="Compliance">Compliance</option>
+                    <option value="Insurance">Insurance</option>
+                    <option value="General">General</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-[11px] font-bold text-[#102645] mb-1">
+                    Due Date *
+                  </label>
+                  <input
+                    type="date"
+                    required
+                    value={newTaskDueDate}
+                    onChange={(e) => setNewTaskDueDate(e.target.value)}
+                    className="w-full bg-[#f8fafc] border border-[#cbd5e1] rounded-xl px-3 py-2 text-xs text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-[11px] font-bold text-[#102645] mb-1">
+                    Frequency
+                  </label>
+                  <select
+                    value={newTaskRecurrence}
+                    onChange={(e) => setNewTaskRecurrence(e.target.value as CareRenewalTask["recurrence"])}
+                    className="w-full bg-[#f8fafc] border border-[#cbd5e1] rounded-xl px-3 py-2 text-xs text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                  >
+                    <option value="One-off">One-off</option>
+                    <option value="Quarterly">Quarterly</option>
+                    <option value="Bi-Annual">Bi-Annual</option>
+                    <option value="Annual">Annual</option>
+                    <option value="2-Year">Every 2 Years</option>
+                    <option value="5-Year">Every 5 Years</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-[11px] font-bold text-[#102645] mb-1">
+                    Priority
+                  </label>
+                  <select
+                    value={newTaskPriority}
+                    onChange={(e) => setNewTaskPriority(e.target.value as CareRenewalTask["priority"])}
+                    className="w-full bg-[#f8fafc] border border-[#cbd5e1] rounded-xl px-3 py-2 text-xs text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                  >
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                    <option value="Low">Low</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-[11px] font-bold text-[#102645] mb-1">
+                  Linked System or Appliance (Optional)
+                </label>
+                <input
+                  type="text"
+                  value={newTaskSystem}
+                  onChange={(e) => setNewTaskSystem(e.target.value)}
+                  placeholder="e.g. Daikin Inverter AC / Rheem Heat Pump"
+                  className="w-full bg-[#f8fafc] border border-[#cbd5e1] rounded-xl px-3 py-2 text-xs text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                />
+              </div>
+
+              <div>
+                <label className="block text-[11px] font-bold text-[#102645] mb-1">
+                  Notes / Instructions
+                </label>
+                <textarea
+                  rows={2}
+                  value={newTaskNotes}
+                  onChange={(e) => setNewTaskNotes(e.target.value)}
+                  placeholder="Additional details, service trade contacts or warranty notes..."
+                  className="w-full bg-[#f8fafc] border border-[#cbd5e1] rounded-xl px-3 py-2 text-xs text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                />
+              </div>
+
+              <div className="pt-2 flex justify-end gap-2">
+                <button
+                  type="button"
+                  onClick={() => setAddTaskModalOpen(false)}
+                  className="px-4 py-2 bg-white border border-[#cbd5e1] text-[#102645] rounded-xl text-xs font-semibold hover:bg-[#f8fafc] cursor-pointer"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-2 bg-[#071d3b] text-white rounded-xl text-xs font-bold hover:bg-[#15345d] cursor-pointer"
+                >
+                  Save Task
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* ── Link Existing Document Modal ──────────────────────────── */}
+      {linkDocModalOpen && (
+        <div className="fixed inset-0 bg-black/40 backdrop-blur-xs z-50 flex items-center justify-center p-4">
+          <div className="bg-white border border-[#dfe6ef] rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
+            <div className="flex items-center justify-between border-b border-[#dfe6ef] pb-3">
+              <div>
+                <h3 className="text-base font-bold text-[#102645]">Link an Existing Document</h3>
+                <p className="text-xs text-[#68788e]">Select a document from your property vault.</p>
+              </div>
+              <button
+                onClick={() => setLinkDocModalOpen(false)}
+                className="text-[#64748b] hover:text-[#102645] p-1 cursor-pointer"
+              >
+                ✕
+              </button>
+            </div>
+
+            <div className="space-y-2 max-h-60 overflow-y-auto">
+              {property.documents.map((doc) => (
+                <div
+                  key={doc.title}
+                  onClick={() => handleLinkExistingDoc(doc.title, doc.cat)}
+                  className="p-3 rounded-xl border border-[#dfe6ef] hover:border-[#071d3b] hover:bg-[#f8fafc] cursor-pointer transition-colors flex items-center justify-between"
+                >
+                  <div className="min-w-0">
+                    <div className="text-xs font-bold text-[#102645] truncate">{doc.title}</div>
+                    <div className="text-[10px] text-[#68788e]">{doc.cat} · {doc.size}</div>
+                  </div>
+                  <span className="text-xs font-bold text-[#24754c]">+ Link</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="pt-2 flex justify-end">
+              <button
+                onClick={() => setLinkDocModalOpen(false)}
+                className="px-4 py-2 bg-white border border-[#cbd5e1] text-[#102645] rounded-xl text-xs font-semibold hover:bg-[#f8fafc] cursor-pointer"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}

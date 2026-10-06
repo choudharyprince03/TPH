@@ -139,7 +139,6 @@ export default function ProTrustLinkDetailPage({ params }: { params: Promise<{ i
         mode="pro"
         actionHref={`/trustlinks/${tl.id}`}
         actionLabel="Client View"
-        className="mb-6"
       />
 
       {/* ── Client Digital Key & Handover Status Card ── */}

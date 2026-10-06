@@ -132,10 +132,10 @@ export default function LeadsPage() {
 
         <div className="flex items-center gap-2 self-start sm:self-auto">
           <Link
-            href="/pro/customers"
+            href="/pro/properties"
             className="px-4 py-2.5 bg-white border border-[#cbd5e2] hover:bg-[#f3f6fb] text-[#102645] rounded-xl text-[12px] font-semibold transition-colors shadow-sm"
           >
-            Property Data Records
+            Active Projects
           </Link>
           <Link
             href="/pro/trustlinks"
@@ -190,25 +190,28 @@ export default function LeadsPage() {
 
       {/* ── Search & Filter Bar ──────────────────────────────────────── */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-        <div className="flex items-center gap-2 overflow-x-auto pb-1">
-          {[
-            { id: "All", label: "All Enquiries" },
-            { id: "New", label: "New with Site Data (2)" },
-            { id: "In Review", label: "In Review" },
-            { id: "TrustLink Issued", label: "TrustLink Issued" },
-          ].map((f) => (
-            <button
-              key={f.id}
-              onClick={() => setFilter(f.id)}
-              className={`px-3.5 py-1.5 rounded-full text-[12px] font-medium transition-all whitespace-nowrap ${
-                filter === f.id
-                  ? "bg-[#071d3b] text-white font-semibold shadow-sm"
-                  : "bg-white border border-[#dfe6ef] text-[#68788e] hover:bg-[#f3f6fb]"
-              }`}
+        <div className="flex items-center gap-2">
+          <label htmlFor="pro-leads-filter" className="text-xs font-bold text-[#68788e]">
+            Category:
+          </label>
+          <div className="relative inline-block min-w-[220px]">
+            <select
+              id="pro-leads-filter"
+              value={filter}
+              onChange={(e) => setFilter(e.target.value)}
+              className="w-full appearance-none bg-white border border-[#dfe6ef] hover:border-[#cbd5e1] text-[#102645] font-bold text-xs rounded-xl px-4 py-2 pr-9 shadow-2xs focus:outline-none focus:border-[#071d3b] cursor-pointer transition-colors"
             >
-              {f.label}
-            </button>
-          ))}
+              <option value="All">All Enquiries</option>
+              <option value="New">New with Site Data (2)</option>
+              <option value="In Review">In Review</option>
+              <option value="TrustLink Issued">TrustLink Issued</option>
+            </select>
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-[#68788e]">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </div>
         </div>
 
         <div className="w-full sm:w-72">

@@ -296,7 +296,6 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
           mode="consumer"
           actionHref={`/properties/${data.propId}`}
           actionLabel="View Prop ID"
-          className="mb-6"
         />
 
         {/* ── Connected Digital Key Status Card ── */}

@@ -314,7 +314,6 @@ function MyPropertyWorldContent() {
                     mode="consumer"
                     actionHref="/properties/TPH-KEN-018"
                     actionLabel="Open Prop ID"
-                    className="shadow-2xs"
                   />
 
                   {/* 3. Needs Attention Card */}

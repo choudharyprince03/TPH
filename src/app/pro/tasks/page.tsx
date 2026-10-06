@@ -138,27 +138,29 @@ export default function ProTasksPage() {
 
       {/* ── Filter Chips & Summary ──────────────────────────────────── */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-2 mb-6">
-        <div className="flex items-center gap-2 overflow-x-auto pb-1">
-          {FILTERS.map((f) => (
-            <button
-              key={f}
-              onClick={() => setFilter(f)}
-              className={`px-3.5 py-1.5 rounded-full text-[12px] font-medium transition-all whitespace-nowrap cursor-pointer ${
-                filter === f
-                  ? "bg-[#071d3b] text-white font-semibold shadow-2xs"
-                  : "bg-white border border-[#dfe6ef] text-[#68788e] hover:bg-[#f3f6fb]"
-              }`}
+        <div className="flex items-center gap-3">
+          <label htmlFor="pro-tasks-filter" className="text-xs font-bold text-[#68788e]">
+            Category:
+          </label>
+          <div className="relative inline-block min-w-[220px]">
+            <select
+              id="pro-tasks-filter"
+              value={filter}
+              onChange={(e) => setFilter(e.target.value)}
+              className="w-full appearance-none bg-white border border-[#dfe6ef] hover:border-[#cbd5e1] text-[#102645] font-bold text-xs rounded-xl px-4 py-2 pr-9 shadow-2xs focus:outline-none focus:border-[#071d3b] cursor-pointer transition-colors"
             >
-              {f}
-              {f === "Pending" && (
-                <span className={`ml-1.5 px-1.5 py-0.2 rounded-full text-[10px] font-bold ${
-                  filter === f ? "bg-white/20 text-white" : "bg-[#f0f4f9] text-[#071d3b]"
-                }`}>
-                  {pendingCount}
-                </span>
-              )}
-            </button>
-          ))}
+              {FILTERS.map((f) => (
+                <option key={f} value={f}>
+                  {f}{f === "Pending" ? ` (${pendingCount})` : ""}
+                </option>
+              ))}
+            </select>
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-[#68788e]">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </div>
         </div>
 
         <span className="text-[11px] text-[#68788e] font-medium hidden sm:inline">

@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export interface PulseTask {
   id: string;
@@ -323,17 +324,23 @@ const CONSUMER_DEFAULT_PULSE_TASKS: PulseTask[] = [
 export interface PropertyPulseNotificationProps {
   propId?: string;
   property?: string;
+  suburb?: string;
+  client?: string;
   mode?: "consumer" | "pro";
   className?: string;
   actionHref?: string;
   actionLabel?: string;
   trustlinkHref?: string;
   showTrustLinkButton?: boolean;
+  forceShow?: boolean;
 }
 
 const PROPERTY_PULSE_BRIEFS: Record<
   string,
   {
+    property?: string;
+    suburb?: string;
+    client?: string;
     consumer: string;
     pro: string;
     badge?: string;
@@ -344,9 +351,12 @@ const PROPERTY_PULSE_BRIEFS: Record<
   }
 > = {
   "TPH-KEN-018": {
+    property: "18 Banksia Crescent",
+    suburb: "Kenmore QLD 4069",
+    client: "Alex & Emily",
     consumer: "Handover pack ready for review · Laundry door touch-up booked today 11:15 AM · Variation #04 pending sign-off.",
     pro: "Form 16 structural engineering cleared · Painter onsite 11:15 AM · Client Variation #04 ($1,400) pending sign-off.",
-    badge: "Handover Active",
+    badge: "Practical Completion",
     trustlinkId: "TL-99214-B",
     consumerTrustlink: "/trustlinks/TL-99214-B",
     proTrustlink: "/pro/trustlinks/TL-99214-B",
@@ -357,9 +367,12 @@ const PROPERTY_PULSE_BRIEFS: Record<
     ],
   },
   "TPH-GRV-007": {
+    property: "7 Cedar Street",
+    suburb: "Graceville QLD 4075",
+    client: "Sofia Nguyen",
     consumer: "Conveyancing advice uploaded by Lachlan Vance · Structural framing inspection certificate sealed to Prop ID.",
     pro: "Frame stage cleared by certifier · Form 43 waterproofing certificate required prior to tiling.",
-    badge: "Active Renovation",
+    badge: "Fixing & Fit-out",
     trustlinkId: "TL-88301-A",
     consumerTrustlink: "/trustlinks/TL-88301-A",
     proTrustlink: "/pro/trustlinks/TL-88301-A",
@@ -370,6 +383,9 @@ const PROPERTY_PULSE_BRIEFS: Record<
     ],
   },
   "TPH-BRK-042": {
+    property: "42 Ridge Road",
+    suburb: "Brookfield QLD 4069",
+    client: "Noah & Mia Wilson",
     consumer: "12-month post-handover warranty inspection scheduled · QBCC Form 21 & Colorbond warranties sealed in Vault.",
     pro: "12-month defect liability audit underway · Final maintenance sign-off scheduled with client.",
     badge: "Warranty Care",
@@ -383,6 +399,9 @@ const PROPERTY_PULSE_BRIEFS: Record<
     ],
   },
   "TPH-TOW-029": {
+    property: "29 Tower Mill Way",
+    suburb: "Spring Hill QLD 4000",
+    client: "Liam & Chloe",
     consumer: "Claire Dupont completed AS 4349.1 timber pest audit · Diagnostic report sealed in TrustLink.",
     pro: "AS 4349.1 pre-settlement inspection signed · Thermal moisture imaging report sealed.",
     badge: "Diagnostic Sealed",
@@ -398,23 +417,100 @@ const PROPERTY_PULSE_BRIEFS: Record<
 };
 
 export function PropertyPulseNotification({
-  propId = "TPH-KEN-018",
-  property,
-  mode = "consumer",
+  propId: initialPropId = "TPH-KEN-018",
+  property: initialProperty,
+  suburb: initialSuburb,
+  client: initialClient,
+  mode: initialMode = "consumer",
   className = "",
-  actionHref,
-  actionLabel = "View",
+  actionHref: initialActionHref,
+  actionLabel: initialActionLabel,
   trustlinkHref,
   showTrustLinkButton = true,
+  forceShow = false,
 }: PropertyPulseNotificationProps) {
-  const [expanded, setExpanded] = useState(false);
-  const [dismissed, setDismissed] = useState(false);
+  const [currentPropId, setCurrentPropId] = useState(initialPropId);
+  const [currentProperty, setCurrentProperty] = useState(initialProperty);
+  const [currentSuburb, setCurrentSuburb] = useState(initialSuburb);
+  const [currentClient, setCurrentClient] = useState(initialClient);
+  const [currentMode, setCurrentMode] = useState(initialMode);
+  const [currentActionHref, setCurrentActionHref] = useState(initialActionHref);
+  const [currentActionLabel, setCurrentActionLabel] = useState(initialActionLabel);
 
-  if (dismissed) return null;
+  const [visible, setVisible] = useState(false);
+  const [animatingOut, setAnimatingOut] = useState(false);
 
-  const data = PROPERTY_PULSE_BRIEFS[propId] || {
-    consumer: `Active records verified for ${property || propId}. Digital documents and maintenance items are current.`,
-    pro: `Active build site · All milestone gates and statutory paperwork registered for ${property || propId}.`,
+  // Sync if initial props change
+  useEffect(() => {
+    setCurrentPropId(initialPropId);
+  }, [initialPropId]);
+
+  useEffect(() => {
+    if (initialProperty) setCurrentProperty(initialProperty);
+  }, [initialProperty]);
+
+  useEffect(() => {
+    if (initialSuburb) setCurrentSuburb(initialSuburb);
+  }, [initialSuburb]);
+
+  useEffect(() => {
+    if (initialClient) setCurrentClient(initialClient);
+  }, [initialClient]);
+
+  useEffect(() => {
+    if (initialActionHref) setCurrentActionHref(initialActionHref);
+  }, [initialActionHref]);
+
+  useEffect(() => {
+    if (initialActionLabel) setCurrentActionLabel(initialActionLabel);
+  }, [initialActionLabel]);
+
+  useEffect(() => {
+    setCurrentMode(initialMode);
+  }, [initialMode]);
+
+  // Entrance timer
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setVisible(true);
+    }, 400);
+    return () => clearTimeout(timer);
+  }, [forceShow]);
+
+  // Support interactive triggering via custom event (e.g. clicking "Live Pulse" on a project card)
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const handleTrigger = (e: any) => {
+      if (e?.detail) {
+        if (e.detail.propId) setCurrentPropId(e.detail.propId);
+        if (e.detail.property) setCurrentProperty(e.detail.property);
+        if (e.detail.suburb) setCurrentSuburb(e.detail.suburb);
+        if (e.detail.client) setCurrentClient(e.detail.client);
+        if (e.detail.mode) setCurrentMode(e.detail.mode);
+        if (e.detail.actionHref) setCurrentActionHref(e.detail.actionHref);
+        if (e.detail.actionLabel) setCurrentActionLabel(e.detail.actionLabel);
+      }
+      setAnimatingOut(false);
+      setVisible(true);
+    };
+    window.addEventListener("tph:show-pulse-popup", handleTrigger);
+    return () => window.removeEventListener("tph:show-pulse-popup", handleTrigger);
+  }, []);
+
+  const handleDismiss = () => {
+    setAnimatingOut(true);
+    setTimeout(() => {
+      setVisible(false);
+      setAnimatingOut(false);
+    }, 250);
+  };
+
+  const data = PROPERTY_PULSE_BRIEFS[currentPropId] || {
+    property: currentProperty || currentPropId,
+    suburb: currentSuburb || "QLD",
+    client: currentClient || "Owner",
+    consumer: `Active records verified for ${currentProperty || currentPropId}. Digital documents and maintenance items are current.`,
+    pro: `Active build site · All milestone gates and statutory paperwork registered for ${currentProperty || currentPropId}.`,
     badge: "Verified",
     trustlinkId: "TL-99214-B",
     consumerTrustlink: "/trustlinks/TL-99214-B",
@@ -422,96 +518,138 @@ export function PropertyPulseNotification({
     items: ["Documents up to date", "No overdue notices"],
   };
 
-  const briefText = mode === "pro" ? data.pro : data.consumer;
+  const propertyTitle = currentProperty || data.property || currentPropId;
+  const suburbText = currentSuburb || data.suburb;
+  const clientText = currentClient || data.client;
+  const briefText = currentMode === "pro" ? data.pro : data.consumer;
   const items = data.items || [];
-  const specificTrustlink =
+  const targetLink =
+    currentActionHref ||
     trustlinkHref ||
-    (mode === "pro" ? data.proTrustlink : data.consumerTrustlink) ||
-    (mode === "pro" ? "/pro/trustlinks/TL-99214-B" : "/trustlinks/TL-99214-B");
+    (currentMode === "pro" ? data.proTrustlink : data.consumerTrustlink) ||
+    (currentMode === "pro" ? "/pro/trustlinks/TL-99214-B" : "/trustlinks/TL-99214-B");
+  const actionText =
+    currentActionLabel ||
+    (currentMode === "pro" ? "Open Handover Workspace" : "Open TrustLink Record");
 
   return (
-    <div
-      className={`bg-[#f0f7f3] border border-[#c7e4d0] rounded-xl p-3.5 shadow-2xs transition-all ${className}`}
-      role="status"
-    >
-      {/* ── Top Header Row: Indicator, Title, Badge & Dismiss ── */}
-      <div className="flex items-center justify-between gap-2 mb-2">
-        <div className="flex items-center gap-2 min-w-0">
-          <span className="relative flex h-2 w-2 flex-shrink-0">
+    <>
+      {/* Floating Notification Box at Right Bottom Corner */}
+      {visible && (
+        <aside
+          aria-label="Property Pulse Notification"
+          className={`fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-[250] max-w-[420px] w-[calc(100%-2.5rem)] sm:w-full transition-all duration-300 transform pointer-events-auto ${
+            animatingOut
+              ? "opacity-0 translate-y-3 scale-95 pointer-events-none"
+              : "opacity-100 translate-y-0 scale-100"
+          }`}
+        >
+          <div className="bg-white/95 backdrop-blur-md border border-[#b8dec4] rounded-2xl shadow-2xl p-4 sm:p-5 text-[#102645] relative overflow-hidden ring-1 ring-black/5">
+            {/* Top green accent strip */}
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#24754c] via-[#48996e] to-[#24754c]" />
+
+            {/* Header row */}
+            <div className="flex items-start justify-between gap-3 mb-2.5">
+              <div className="flex items-center gap-2">
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#24754c] opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#24754c]" />
+                </span>
+                <span className="text-[10px] font-bold uppercase tracking-[1.3px] text-[#24754c]">
+                  Property Pulse · {currentMode === "pro" ? "Live Notification" : "Live Update"}
+                </span>
+              </div>
+
+              <button
+                onClick={handleDismiss}
+                aria-label="Close notification"
+                className="text-[#8ca395] hover:text-[#102645] text-xs p-1 rounded-md hover:bg-[#f0f4f2] transition-colors cursor-pointer"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* Property & status info */}
+            <div className="flex items-baseline justify-between gap-2 mb-1">
+              <h4 className="text-[13px] font-bold text-[#102645] truncate">
+                {propertyTitle}
+              </h4>
+              <span className="text-[10px] font-bold px-2 py-0.5 bg-[#eaf5ef] text-[#24754c] rounded-md shrink-0">
+                {data.badge || "Live"}
+              </span>
+            </div>
+
+            <p className="text-[11px] text-[#5b6e84] mb-2.5">
+              {clientText ? (
+                <>
+                  Client: <span className="font-semibold text-[#102645]">{clientText}</span> ·{" "}
+                </>
+              ) : null}
+              {suburbText ? `${suburbText} ` : ""}
+              <span className="text-[#8a9bb0]">({currentPropId})</span>
+            </p>
+
+            {/* Minimal brief notification box */}
+            <div className="bg-[#f0f7f3] border border-[#c7e4d0] rounded-xl p-2.5 text-[11px] text-[#1e3a2f] mb-3 leading-relaxed">
+              <span className="font-semibold text-[#24754c]">
+                {currentMode === "pro" ? "Latest Site Pulse: " : "Latest Property Pulse: "}
+              </span>
+              {briefText}
+            </div>
+
+            {/* Micro highlights */}
+            {items && items.length > 0 && (
+              <div className="mb-3 space-y-1 text-[11px] text-[#264e3b]">
+                {items.slice(0, 2).map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-1.5">
+                    <span className="text-[#24754c] text-[10px] mt-0.5 font-bold">✓</span>
+                    <span className="truncate">{item}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Actions row */}
+            <div className="flex items-center justify-between gap-3 pt-2 border-t border-[#edf3ef]">
+              <Link
+                href={targetLink}
+                onClick={handleDismiss}
+                className="text-[11px] font-bold text-[#071d3b] hover:text-[#24754c] flex items-center gap-1 group"
+              >
+                <span>{actionText}</span>
+                <span className="group-hover:translate-x-0.5 transition-transform">→</span>
+              </Link>
+
+              <button
+                onClick={handleDismiss}
+                className="text-[11px] text-[#68788e] hover:text-[#102645] font-medium px-2 py-1 rounded-lg hover:bg-[#f4f6f8] cursor-pointer transition-colors"
+              >
+                Dismiss
+              </button>
+            </div>
+          </div>
+        </aside>
+      )}
+
+      {/* Floating Reopen Pill when Dismissed */}
+      {!visible && (
+        <button
+          onClick={() => {
+            setAnimatingOut(false);
+            setVisible(true);
+          }}
+          className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-[240] px-3.5 py-2 bg-white/95 backdrop-blur-md border border-[#b8dec4] hover:border-[#24754c] text-[#24754c] rounded-full shadow-lg text-xs font-semibold flex items-center gap-2 cursor-pointer transition-all hover:scale-105 ring-1 ring-black/5"
+          title="Open Property Pulse Notification"
+          aria-label="Open Property Pulse"
+        >
+          <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#24754c] opacity-75" />
             <span className="relative inline-flex rounded-full h-2 w-2 bg-[#24754c]" />
           </span>
-          <span className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c] truncate">
-            Property Pulse
-          </span>
-          <span className="text-[9.5px] font-bold px-1.5 py-0.2 bg-[#dcf0e2] text-[#24754c] rounded border border-[#c2e5cb] flex-shrink-0">
-            {data.badge || "Live"}
-          </span>
-        </div>
-
-        <button
-          onClick={() => setDismissed(true)}
-          aria-label="Dismiss notification"
-          className="text-[#8ca395] hover:text-[#102645] text-xs p-0.5 rounded cursor-pointer transition-colors flex-shrink-0"
-        >
-          ✕
+          <span>Property Pulse</span>
         </button>
-      </div>
-
-      {/* ── Brief Summary Text (Always readable, never squished) ── */}
-      <p className="text-[11.5px] text-[#1e3a2f] leading-relaxed mb-2.5">
-        {briefText}
-      </p>
-
-      {/* ── Action Toolbar: Details toggle + Action Buttons ── */}
-      <div className="flex items-center justify-between gap-2 pt-2 border-t border-[#d8eade]/70 flex-wrap">
-        <div>
-          {items.length > 0 && (
-            <button
-              onClick={() => setExpanded(!expanded)}
-              className="text-[11px] text-[#3b6b52] hover:text-[#102645] font-semibold cursor-pointer inline-flex items-center gap-1 transition-colors"
-            >
-              <span>{expanded ? "Less details ▴" : "Details ▾"}</span>
-            </button>
-          )}
-        </div>
-
-        <div className="flex items-center gap-2 flex-wrap ml-auto">
-          {actionHref && (
-            <Link
-              href={actionHref}
-              className="text-[11px] font-bold text-[#071d3b] hover:text-[#24754c] hover:underline flex items-center gap-0.5 transition-colors"
-            >
-              <span>{actionLabel}</span>
-              <span>→</span>
-            </Link>
-          )}
-
-          {showTrustLinkButton && specificTrustlink && (
-            <Link
-              href={specificTrustlink}
-              className="px-2.5 py-1 bg-[#071d3b] hover:bg-[#15345d] text-white text-[11px] font-bold rounded-lg transition-colors flex items-center gap-1 shadow-2xs"
-              title={`Go to TrustLink (${data.trustlinkId || "active"}) for ${property || propId}`}
-            >
-              <span>🛡️ TrustLink</span>
-              <span className="text-[10px]">→</span>
-            </Link>
-          )}
-        </div>
-      </div>
-
-      {/* ── Expanded Detail Items ── */}
-      {expanded && items.length > 0 && (
-        <div className="mt-2.5 pt-2 border-t border-[#d8eade] text-[11px] text-[#264e3b] space-y-1.5 bg-white/60 rounded-lg p-2.5">
-          {items.map((item, i) => (
-            <div key={i} className="flex items-start gap-2">
-              <span className="text-[#24754c] text-[11px] font-bold mt-0.5">✓</span>
-              <span className="leading-tight">{item}</span>
-            </div>
-          ))}
-        </div>
       )}
-    </div>
+    </>
   );
 }
 
@@ -530,134 +668,20 @@ export function PropertyPulsePopup({
   client = "Alex & Emily",
   forceShow = false,
 }: PropertyPulsePopupProps) {
-  const [visible, setVisible] = useState(false);
-  const [animatingOut, setAnimatingOut] = useState(false);
+  const pathname = usePathname();
 
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const urlForce = urlParams.get("pulse") === "1" || urlParams.get("pulse_popup") === "1";
-    const alreadyShown = sessionStorage.getItem("tph_pro_pulse_popup_shown");
-
-    if (!alreadyShown || forceShow || urlForce) {
-      const timer = setTimeout(() => {
-        setVisible(true);
-        sessionStorage.setItem("tph_pro_pulse_popup_shown", "true");
-      }, 750);
-      return () => clearTimeout(timer);
-    }
-  }, [forceShow]);
-
-  // Support interactive triggering via custom event
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const handleTrigger = () => {
-      setAnimatingOut(false);
-      setVisible(true);
-    };
-    window.addEventListener("tph:show-pulse-popup", handleTrigger);
-    return () => window.removeEventListener("tph:show-pulse-popup", handleTrigger);
-  }, []);
-
-  const handleDismiss = () => {
-    setAnimatingOut(true);
-    setTimeout(() => {
-      setVisible(false);
-      setAnimatingOut(false);
-    }, 250);
-  };
-
-  if (!visible) return null;
-
-  const data = PROPERTY_PULSE_BRIEFS[propId] || PROPERTY_PULSE_BRIEFS["TPH-KEN-018"];
+  // Only render on /pro overview to prevent double popups on other /pro/* pages that mount their own PropertyPulseNotification
+  if (pathname !== "/pro") return null;
 
   return (
-    <aside
-      aria-label="Property Pulse Notification"
-      className={`fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-[250] max-w-[420px] w-[calc(100%-2.5rem)] sm:w-full transition-all duration-300 transform ${
-        animatingOut
-          ? "opacity-0 translate-y-3 scale-95 pointer-events-none"
-          : "opacity-100 translate-y-0 scale-100"
-      }`}
-    >
-      <div className="bg-white/95 backdrop-blur-md border border-[#b8dec4] rounded-2xl shadow-2xl p-4 sm:p-5 text-[#102645] relative overflow-hidden ring-1 ring-black/5">
-        {/* Top green accent strip */}
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#24754c] via-[#48996e] to-[#24754c]" />
-
-        {/* Header row */}
-        <div className="flex items-start justify-between gap-3 mb-2.5">
-          <div className="flex items-center gap-2">
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#24754c] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#24754c]" />
-            </span>
-            <span className="text-[10px] font-bold uppercase tracking-[1.3px] text-[#24754c]">
-              Property Pulse · Live Notification
-            </span>
-          </div>
-
-          <button
-            onClick={handleDismiss}
-            aria-label="Close notification"
-            className="text-[#8ca395] hover:text-[#102645] text-xs p-1 rounded-md hover:bg-[#f0f4f2] transition-colors cursor-pointer"
-          >
-            ✕
-          </button>
-        </div>
-
-        {/* Property & client info */}
-        <div className="flex items-baseline justify-between gap-2 mb-1">
-          <h4 className="text-[13px] font-bold text-[#102645] truncate">
-            {property}
-          </h4>
-          <span className="text-[10px] font-bold px-2 py-0.5 bg-[#eaf5ef] text-[#24754c] rounded-md shrink-0">
-            {data.badge || "Live"}
-          </span>
-        </div>
-
-        <p className="text-[11px] text-[#5b6e84] mb-2.5">
-          Client: <span className="font-semibold text-[#102645]">{client}</span> · {suburb} ({propId})
-        </p>
-
-        {/* Minimal brief notification box */}
-        <div className="bg-[#f0f7f3] border border-[#c7e4d0] rounded-xl p-2.5 text-[11px] text-[#1e3a2f] mb-3 leading-relaxed">
-          <span className="font-semibold text-[#24754c]">Latest Site Pulse: </span>
-          {data.pro}
-        </div>
-
-        {/* Micro highlights */}
-        {data.items && data.items.length > 0 && (
-          <div className="mb-3 space-y-1 text-[11px] text-[#264e3b]">
-            {data.items.slice(0, 2).map((item, idx) => (
-              <div key={idx} className="flex items-start gap-1.5">
-                <span className="text-[#24754c] text-[10px] mt-0.5 font-bold">✓</span>
-                <span className="truncate">{item}</span>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* Actions row */}
-        <div className="flex items-center justify-between gap-3 pt-2 border-t border-[#edf3ef]">
-          <Link
-            href="/pro/trustlinks/TL-99214-B"
-            onClick={handleDismiss}
-            className="text-[11px] font-bold text-[#071d3b] hover:text-[#24754c] flex items-center gap-1 group"
-          >
-            <span>Open Handover Workspace</span>
-            <span className="group-hover:translate-x-0.5 transition-transform">→</span>
-          </Link>
-
-          <button
-            onClick={handleDismiss}
-            className="text-[11px] text-[#68788e] hover:text-[#102645] font-medium px-2 py-1 rounded-lg hover:bg-[#f4f6f8] cursor-pointer transition-colors"
-          >
-            Dismiss
-          </button>
-        </div>
-      </div>
-    </aside>
+    <PropertyPulseNotification
+      propId={propId}
+      property={property}
+      suburb={suburb}
+      client={client}
+      mode="pro"
+      forceShow={forceShow}
+    />
   );
 }
 

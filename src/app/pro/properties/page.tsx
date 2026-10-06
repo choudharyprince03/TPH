@@ -1,182 +1,305 @@
 "use client";
+
 import React, { useState } from "react";
 import Link from "next/link";
 import { PropertyPulseNotification } from "@/components/features/PropertyPulse";
 
-interface Project {
+interface ConstructionSite {
   id: string;
   propId: string;
   address: string;
   suburb: string;
-  client: string;
-  stage: string;
-  progress: number;
-  contractSum: string;
-  trustlinkId: string;
-  status: string;
+  supervisor: string;
+  currentMilestone: string;
+  milestoneProgress: number;
+  lotPlan: string;
+  councilDA: string;
+  activeTradesOnSite: string[];
+  weatherDelayDays: number;
+  openPunchListItems: number;
+  stageStatus: "Practical Completion" | "Fixing & Fit-out" | "Warranty Care";
   statusColor: string;
 }
 
-const PROJECTS: Project[] = [
+const CONSTRUCTION_SITES: ConstructionSite[] = [
   {
     id: "PRJ-018",
     propId: "TPH-KEN-018",
     address: "18 Banksia Crescent",
     suburb: "Kenmore QLD 4069",
-    client: "Alex & Emily",
-    stage: "Stage 5: Practical Completion & Digital Handover",
-    progress: 92,
-    contractSum: "$1,180,000 AUD",
-    trustlinkId: "welcome",
-    status: "Handover Phase",
-    statusColor: "bg-[#fff4df] text-[#8b641c]",
+    supervisor: "Mark Evans (Site Supervisor)",
+    currentMilestone: "Milestone 5: Practical Completion & Handover Inspection",
+    milestoneProgress: 92,
+    lotPlan: "Lot 18 on RP 88201",
+    councilDA: "BCC DA-2023-41829",
+    activeTradesOnSite: ["Miller Tiling (Sealant Touch-up)", "Prime Finish Painters"],
+    weatherDelayDays: 0,
+    openPunchListItems: 2,
+    stageStatus: "Practical Completion",
+    statusColor: "bg-[#fff4df] text-[#8b641c] border-[#fce3b8]",
   },
   {
     id: "PRJ-007",
     propId: "TPH-GRV-007",
     address: "7 Cedar Street",
     suburb: "Graceville QLD 4075",
-    client: "Sofia Nguyen",
-    stage: "Stage 4: Fixing & Cabinetry Fit-out",
-    progress: 65,
-    contractSum: "$940,000 AUD",
-    trustlinkId: "TL-88301-A",
-    status: "Under Construction",
-    statusColor: "bg-[#eaf5ef] text-[#24754c]",
+    supervisor: "Mark Evans (Site Supervisor)",
+    currentMilestone: "Milestone 4: Internal Fixing & Joinery Installation",
+    milestoneProgress: 65,
+    lotPlan: "Lot 12 on RP 48102",
+    councilDA: "BCC DA-2024-11029",
+    activeTradesOnSite: ["Lachlan Electrical (Rough-in)", "Custom Joinery Brisbane"],
+    weatherDelayDays: 2,
+    openPunchListItems: 0,
+    stageStatus: "Fixing & Fit-out",
+    statusColor: "bg-[#eaf5ef] text-[#24754c] border-[#c7e3d1]",
   },
   {
     id: "PRJ-042",
     propId: "TPH-BRK-042",
     address: "42 Ridge Road",
     suburb: "Brookfield QLD 4069",
-    client: "Noah & Mia Wilson",
-    stage: "Stage 6: Post-Settlement Warranty Care",
-    progress: 100,
-    contractSum: "$1,450,000 AUD",
-    trustlinkId: "TL-76100-C",
-    status: "Settled / Warranty",
-    statusColor: "bg-[#f3f6fb] text-[#68788e]",
+    supervisor: "Olivia Hart (Director)",
+    currentMilestone: "Milestone 6: Post-Settlement Structural Warranty Audit",
+    milestoneProgress: 100,
+    lotPlan: "Lot 5 on SP 182301",
+    councilDA: "BCC DA-2022-89211",
+    activeTradesOnSite: ["Termimesh Annual Inspector (Scheduled)"],
+    weatherDelayDays: 0,
+    openPunchListItems: 0,
+    stageStatus: "Warranty Care",
+    statusColor: "bg-[#f3f6fb] text-[#68788e] border-[#dfe6ef]",
   },
 ];
 
 export default function ProPropertiesPage() {
   const [filter, setFilter] = useState("All");
 
-  const filtered = PROJECTS.filter((p) => {
-    if (filter === "Handover" && p.status !== "Handover Phase") return false;
-    if (filter === "Active" && p.status !== "Under Construction") return false;
-    if (filter === "Settled" && p.status !== "Settled / Warranty") return false;
+  const filtered = CONSTRUCTION_SITES.filter((p) => {
+    if (filter === "Handover" && p.stageStatus !== "Practical Completion") return false;
+    if (filter === "Active" && p.stageStatus !== "Fixing & Fit-out") return false;
+    if (filter === "Warranty" && p.stageStatus !== "Warranty Care") return false;
     return true;
   });
 
   return (
-    <div className="p-6 sm:p-9 lg:p-11 max-w-[1240px] w-full">
+    <div className="p-4 sm:p-6 lg:p-8 max-w-[1240px] w-full font-sans space-y-6 text-[#102645]">
 
       {/* ── Page Header ────────────────────────────────────────────── */}
-      <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 pb-4 border-b border-[#dfe6ef]">
         <div>
-          <div className="text-[9px] font-bold uppercase tracking-[1.4px] text-[#24754c] mb-1">
-            Projects &amp; Construction Sites · Hart Homes
+          <div className="text-[9.5px] font-bold uppercase tracking-[1.4px] text-[#24754c] mb-1">
+            Site Operations &amp; Construction Management · Hart Homes
           </div>
-          <h1 className="text-3xl sm:text-4xl font-semibold tracking-[-0.8px] text-[#102645]">
-            Active Projects
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#102645]">
+            Construction Sites &amp; Projects
           </h1>
-          <p className="text-[13px] text-[#68788e] mt-1">
-            Residential build sites linked to living Prop ID records and client TrustLinks.
+          <p className="text-xs text-[#68788e] mt-1 max-w-2xl leading-relaxed">
+            Real-time site management: track on-site trades, construction milestones, DA approvals, weather delays, and defect punch lists.
           </p>
         </div>
 
-        <button
-          onClick={() => alert("Add Project: Register a new build address and allocate initial Prop ID.")}
-          className="px-4 py-2.5 bg-[#071d3b] hover:bg-[#102d59] text-white rounded-xl text-[12px] font-semibold transition-colors shadow-sm self-start sm:self-auto"
-        >
-          + Add New Project
-        </button>
+        <div className="flex items-center gap-2 self-start sm:self-auto flex-wrap">
+          <Link
+            href="/pro/tasks"
+            className="px-3.5 py-2 bg-white border border-[#cbd5e2] hover:bg-[#f3f6fb] text-[#102645] rounded-xl text-xs font-semibold transition-colors shadow-2xs flex items-center gap-1.5"
+          >
+            <span>📋</span>
+            <span>Punch List (Defects)</span>
+          </Link>
+          <button
+            onClick={() => alert("Add Build Site: Register cadastral survey, council DA reference, and assign Site Supervisor.")}
+            className="px-4 py-2 bg-[#071d3b] hover:bg-[#102d59] text-white rounded-xl text-xs font-bold transition-colors shadow-xs"
+          >
+            + Register New Build Site
+          </button>
+        </div>
       </div>
 
-      {/* ── Minimal Property Pulse Notification ── */}
+      {/* ── Operational Quick Metrics ── */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div className="bg-white border border-[#dfe6ef] rounded-2xl p-4 shadow-2xs">
+          <div className="text-[10px] font-bold text-[#68788e] uppercase">Active Sites</div>
+          <div className="text-xl font-bold text-[#102645] mt-0.5">3 Active Builds</div>
+          <div className="text-[10px] text-[#24754c] mt-0.5">All sites on schedule</div>
+        </div>
+        <div className="bg-white border border-[#dfe6ef] rounded-2xl p-4 shadow-2xs">
+          <div className="text-[10px] font-bold text-[#68788e] uppercase">Trades On Site Today</div>
+          <div className="text-xl font-bold text-[#071d3b] mt-0.5">5 Subbie Crews</div>
+          <div className="text-[10px] text-[#5b6e84] mt-0.5">Kenmore &amp; Graceville</div>
+        </div>
+        <div className="bg-white border border-[#dfe6ef] rounded-2xl p-4 shadow-2xs">
+          <div className="text-[10px] font-bold text-[#68788e] uppercase">Weather Delays</div>
+          <div className="text-xl font-bold text-[#24754c] mt-0.5">2 Days Total</div>
+          <div className="text-[10px] text-[#24754c] mt-0.5">Zero delay notices pending</div>
+        </div>
+        <div className="bg-white border border-[#dfe6ef] rounded-2xl p-4 shadow-2xs">
+          <div className="text-[10px] font-bold text-[#68788e] uppercase">Punch List Items</div>
+          <div className="text-xl font-bold text-[#8b641c] mt-0.5">2 Open Items</div>
+          <div className="text-[10px] text-[#8b641c] mt-0.5">Pre-handover paint touchup</div>
+        </div>
+      </div>
+
+      {/* ── Property Pulse Floating Notification ── */}
       <PropertyPulseNotification
         propId="TPH-KEN-018"
         property="18 Banksia Crescent"
         mode="pro"
-        actionHref="/pro/trustlinks/TL-99214-B"
-        actionLabel="Handover Workspace"
-        className="mb-6"
+        actionHref="/pro/tasks"
+        actionLabel="Site Punch List"
       />
 
-      {/* ── Filter Chips ────────────────────────────────────────────── */}
-      <div className="flex gap-2 overflow-x-auto pb-2 mb-6">
-        {["All", "Handover", "Active", "Settled"].map((f) => (
-          <button
-            key={f}
-            onClick={() => setFilter(f)}
-            className={`px-3.5 py-1.5 rounded-full text-[12px] font-medium transition-all whitespace-nowrap ${
-              filter === f
-                ? "bg-[#071d3b] text-white font-semibold"
-                : "bg-white border border-[#dfe6ef] text-[#68788e] hover:bg-[#f3f6fb]"
-            }`}
-          >
-            {f === "Handover" ? "Handover Ready" : f}
-          </button>
-        ))}
+      {/* ── Section Header with Dropdown on Top Right ─────────────── */}
+      <div className="flex items-center justify-between gap-3 pt-1">
+        <div className="flex items-center gap-2">
+          <h2 className="text-sm font-bold text-[#102645]">
+            Active Sites &amp; Projects
+          </h2>
+          <span className="text-[11px] font-semibold text-[#68788e] bg-[#f1f5f9] px-2 py-0.5 rounded-full">
+            {filtered.length} {filtered.length === 1 ? "site" : "sites"}
+          </span>
+        </div>
+
+        {/* Dropdown on Top Right */}
+        <div className="flex items-center gap-2">
+          <label htmlFor="stage-filter" className="text-xs text-[#68788e] font-medium hidden sm:inline">
+            Stage:
+          </label>
+          <div className="relative">
+            <select
+              id="stage-filter"
+              value={filter}
+              onChange={(e) => setFilter(e.target.value)}
+              className="bg-white border border-[#cbd5e2] hover:bg-[#f3f6fb] text-[#102645] rounded-xl px-3.5 py-1.5 text-xs font-semibold focus:outline-none focus:border-[#071d3b] shadow-2xs cursor-pointer appearance-none pr-8 transition-colors"
+            >
+              <option value="All">All Sites (3)</option>
+              <option value="Handover">Practical Completion (1)</option>
+              <option value="Active">Fixing &amp; Construction (1)</option>
+              <option value="Warranty">Warranty &amp; Aftercare (1)</option>
+            </select>
+            <span className="absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-[#68788e] text-[10px]">
+              ▼
+            </span>
+          </div>
+        </div>
       </div>
 
-      {/* ── Projects Cards Grid ─────────────────────────────────────── */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-        {filtered.map((prj) => (
+      {/* ── Construction Site Cards Grid (Minimalist) ────────────────────────────── */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {filtered.map((site) => (
           <article
-            key={prj.id}
-            className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow"
+            key={site.id}
+            className="bg-white border border-[#e2e8f0] hover:border-[#cbd5e1] rounded-2xl p-5 shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between group"
           >
-            <div>
-              <div className="flex items-start justify-between gap-2 mb-3">
-                <span className="text-xs font-mono font-bold text-[#68788e] bg-[#f3f6fb] px-2 py-0.5 rounded">
-                  {prj.propId}
-                </span>
-                <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${prj.statusColor}`}>
-                  {prj.status}
-                </span>
-              </div>
-
-              <h3 className="text-lg font-bold text-[#102645] mb-0.5">
-                {prj.address}
-              </h3>
-              <p className="text-[12px] text-[#68788e] mb-3">
-                {prj.suburb} · Client: <strong className="text-[#102645]">{prj.client}</strong>
-              </p>
-
-              <div className="p-3 bg-[#f9fafc] rounded-xl text-[11px] text-[#68788e] mb-4">
-                <strong className="block text-[#102645] mb-1">{prj.stage}</strong>
-                <span>Contract value: {prj.contractSum}</span>
-              </div>
-
-              {/* Progress bar */}
-              <div className="space-y-1 mb-4">
-                <div className="flex justify-between text-[10px] text-[#68788e]">
-                  <span>Construction progress</span>
-                  <strong className="text-[#102645]">{prj.progress}%</strong>
+            <div className="space-y-3.5">
+              {/* Header: Prop ID, DA info & Stage status */}
+              <div className="flex items-start justify-between gap-2">
+                <div>
+                  <span className="text-[10px] font-mono font-bold text-[#071d3b] bg-[#f1f5f9] px-2 py-0.5 rounded-md border border-[#e2e8f0]">
+                    {site.propId}
+                  </span>
+                  <div className="text-[10px] text-[#94a3b8] font-mono mt-1">
+                    {site.lotPlan} · {site.councilDA}
+                  </div>
                 </div>
-                <div className="w-full h-1.5 bg-[#dfe6ef] rounded-full overflow-hidden">
+                <span className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full border ${site.statusColor}`}>
+                  {site.stageStatus}
+                </span>
+              </div>
+
+              {/* Title & Supervisor */}
+              <div>
+                <h3 className="text-base font-bold text-[#102645] leading-snug">
+                  {site.address}
+                </h3>
+                <p className="text-xs text-[#64748b] mt-0.5">
+                  {site.suburb} · Assigned: <strong className="text-[#102645] font-semibold">{site.supervisor}</strong>
+                </p>
+              </div>
+
+              {/* Milestone Progress (Sleek minimalist bar) */}
+              <div className="space-y-1.5 pt-0.5">
+                <div className="flex justify-between items-center text-[11px]">
+                  <span className="font-medium text-[#475569] truncate">{site.currentMilestone}</span>
+                  <strong className="text-[#102645] ml-2 shrink-0">{site.milestoneProgress}%</strong>
+                </div>
+                <div className="w-full h-1.5 bg-[#f1f5f9] rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-[#24754c] rounded-full"
-                    style={{ width: `${prj.progress}%` }}
+                    className="h-full bg-[#24754c] rounded-full transition-all duration-500"
+                    style={{ width: `${site.milestoneProgress}%` }}
                   />
                 </div>
               </div>
+
+              {/* Trades On Site Today (Minimalist tag pills) */}
+              <div className="space-y-1.5">
+                <div className="text-[10px] font-bold uppercase tracking-wider text-[#94a3b8]">
+                  Trades on site today
+                </div>
+                <div className="flex flex-wrap gap-1.5">
+                  {site.activeTradesOnSite.map((trade, idx) => (
+                    <span
+                      key={idx}
+                      className="inline-flex items-center gap-1.5 text-[11px] bg-[#f8fafc] text-[#334155] px-2.5 py-1 rounded-lg border border-[#e2e8f0]"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#24754c]" />
+                      <span>{trade}</span>
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Weather & Punch List Meta */}
+              <div className="flex items-center justify-between text-[11px] text-[#64748b] pt-1">
+                <span>Weather delays: <strong className="text-[#102645] font-semibold">{site.weatherDelayDays} days</strong></span>
+                <span className={site.openPunchListItems > 0 ? "text-[#b45309] font-semibold flex items-center gap-1" : "text-[#24754c] font-medium flex items-center gap-1"}>
+                  {site.openPunchListItems > 0 ? `⚠️ ${site.openPunchListItems} Punch items logged` : "✓ 0 Defects pending"}
+                </span>
+              </div>
             </div>
 
-            <div className="pt-3 border-t border-[#dfe6ef] flex items-center justify-between text-[11px]">
-              <Link
-                href={`/properties/${prj.propId}`}
-                className="text-[#68788e] hover:text-[#102645] font-semibold"
+            {/* Footer: Live Pulse Notification Trigger + Inspect Punch List Button */}
+            <div className="pt-3.5 border-t border-[#f1f5f9] mt-4 flex items-center justify-between gap-2">
+              <button
+                type="button"
+                onClick={() => {
+                  if (typeof window !== "undefined") {
+                    window.dispatchEvent(
+                      new CustomEvent("tph:show-pulse-popup", {
+                        detail: {
+                          propId: site.propId,
+                          property: site.address,
+                          suburb: site.suburb,
+                          client:
+                            site.propId === "TPH-KEN-018"
+                              ? "Alex & Emily"
+                              : site.propId === "TPH-GRV-007"
+                              ? "Sofia Nguyen"
+                              : "Noah & Mia Wilson",
+                          actionHref: "/pro/tasks",
+                          actionLabel: "Inspect Punch List",
+                          mode: "pro",
+                        },
+                      })
+                    );
+                  }
+                }}
+                className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-[#24754c] hover:text-[#185334] px-2.5 py-1.5 rounded-lg hover:bg-[#eaf5ef] transition-colors cursor-pointer"
+                title="View Live Property Pulse"
               >
-                Prop ID Record
-              </Link>
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#24754c] opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#24754c]" />
+                </span>
+                <span>Live Pulse</span>
+              </button>
+
               <Link
-                href={`/pro/trustlinks/${prj.trustlinkId}`}
-                className="px-3.5 py-1.5 bg-[#071d3b] text-white font-bold rounded-lg hover:bg-[#102d59] transition-colors"
+                href="/pro/tasks"
+                className="px-3.5 py-1.5 bg-[#071d3b] hover:bg-[#15345d] text-white text-[11.5px] font-bold rounded-xl transition-colors shadow-2xs flex items-center gap-1"
               >
-                Manage Handover →
+                <span>Inspect Punch List</span>
+                <span>→</span>
               </Link>
             </div>
           </article>

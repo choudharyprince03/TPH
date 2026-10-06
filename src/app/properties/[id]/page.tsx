@@ -7,6 +7,7 @@ import { PropertyPulseNotification } from "@/components/features/PropertyPulse";
 import { PropertySidebar, PropertyWorkspaceTab } from "@/components/layout/PropertySidebar";
 import { DigitalKeyView } from "@/components/features/DigitalKeyView";
 import { PropertyDnaTab } from "@/components/features/PropertyDnaTab";
+import { CareRenewalTab } from "@/components/features/CareRenewalTab";
 
 function PropertyDetailInner({ id }: { id: string }) {
   const router = useRouter();
@@ -16,13 +17,15 @@ function PropertyDetailInner({ id }: { id: string }) {
   const [currentId, setCurrentId] = useState(id);
   const property = getPropertyById(currentId);
 
-  const validTabs: PropertyWorkspaceTab[] = ["overview", "dna", "digital-key", "trustlink"];
+  const validTabs: PropertyWorkspaceTab[] = ["overview", "dna", "care-renewal", "digital-key", "trustlink"];
 
   const initialTab: PropertyWorkspaceTab = 
     tabParam === "access" || tabParam === "trustlink" || tabParam === "messages"
       ? "trustlink" 
       : tabParam === "dna"
       ? "dna"
+      : tabParam === "care-renewal" || tabParam === "tasks"
+      ? "care-renewal"
       : tabParam && validTabs.includes(tabParam as PropertyWorkspaceTab) 
       ? (tabParam as PropertyWorkspaceTab) 
       : "overview";
@@ -39,6 +42,8 @@ function PropertyDetailInner({ id }: { id: string }) {
   useEffect(() => {
     if (tabParam === "access" || tabParam === "trustlink" || tabParam === "messages") {
       setActiveTab("trustlink");
+    } else if (tabParam === "care-renewal" || tabParam === "tasks") {
+      setActiveTab("care-renewal");
     } else if (tabParam && validTabs.includes(tabParam as PropertyWorkspaceTab)) {
       setActiveTab(tabParam as PropertyWorkspaceTab);
     }
@@ -303,6 +308,16 @@ function PropertyDetailInner({ id }: { id: string }) {
           ══════════════════════════════════════════ */}
           {activeTab === "dna" && (
             <PropertyDnaTab
+              property={property}
+              onOpenTrustLink={() => handleTabChange("trustlink")}
+            />
+          )}
+
+          {/* ══════════════════════════════════════════
+              TAB: CARE & RENEWAL
+          ══════════════════════════════════════════ */}
+          {activeTab === "care-renewal" && (
+            <CareRenewalTab
               property={property}
               onOpenTrustLink={() => handleTabChange("trustlink")}
             />

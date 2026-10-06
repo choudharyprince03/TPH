@@ -303,26 +303,26 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
           {[
             {
               id: "decisions",
-              label: "Overview & Decisions",
+              label: "Overview",
               badge: !builderHandoverAccepted ? "1 Action Waiting" : "Up to date",
               badgeColor: !builderHandoverAccepted ? "bg-[#fff4df] text-[#8b641c] border-[#fce3b8]" : "bg-[#eaf5ef] text-[#24754c] border-[#c7e3d1]",
             },
             {
               id: "packs",
-              label: "Pack Families & Manifests",
+              label: "Document Packs",
               badge: `${packsList.length} Packs`,
               badgeColor: "bg-[#f1f5f9] text-[#071d3b] border-[#cbd5e2]",
             },
             {
               id: "sent-returned",
-              label: "Sent & Returned Ledger",
-              badge: `${receipts.length} Executed`,
+              label: "Signed History",
+              badge: `${receipts.length} Signed`,
               badgeColor: "bg-[#f1f5f9] text-[#071d3b] border-[#cbd5e2]",
             },
             {
               id: "rules",
-              label: "Statutory Rules & Guardrails",
-              badge: "QLD Rules",
+              label: "Legal Rules",
+              badge: "Regulations",
               badgeColor: "bg-[#f0f4f9] text-[#24754c] border-[#c7e3d1]",
             },
           ].map((tab) => {
