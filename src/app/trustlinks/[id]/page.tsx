@@ -228,14 +228,25 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
     <div className="w-full flex-1 flex flex-col bg-[#F9F8F5] text-[#183249]">
       <div className="max-w-[1240px] mx-auto px-6 lg:px-9 py-8 w-full flex-1">
 
-        {/* ── Breadcrumb ─────────────────────────────────────────────── */}
-        <nav className="flex items-center gap-2 text-[11px] text-[#64727e] mb-6" aria-label="Breadcrumb">
-          <Link href="/properties" className="hover:underline">My Property World</Link>
-          <span>›</span>
-          <Link href="/trustlinks" className="hover:underline">Trust Link</Link>
-          <span>›</span>
-          <span className="text-[#183249] font-semibold">{data.proName}</span>
-        </nav>
+        {/* ── Breadcrumb & Back to Trust Link ─────────────────────────── */}
+        <div className="flex items-center gap-3 mb-6 flex-wrap">
+          <Link
+            href="/trustlinks"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white hover:bg-[#F9F8F5] text-[#183249] text-[12px] font-semibold rounded-lg border border-[#e2e5e5] transition-colors shadow-2xs group cursor-pointer"
+            title="Back to Trust Link"
+          >
+            <span className="transition-transform group-hover:-translate-x-0.5 font-bold">←</span>
+            <span>Back</span>
+          </Link>
+          <span className="h-4 w-px bg-[#e2e5e5]" />
+          <nav className="flex items-center gap-2 text-[11px] text-[#64727e]" aria-label="Breadcrumb">
+            <Link href="/properties" className="hover:underline">My Property World</Link>
+            <span>›</span>
+            <Link href="/trustlinks" className="hover:underline">Trust Link</Link>
+            <span>›</span>
+            <span className="text-[#183249] font-semibold">{data.proName}</span>
+          </nav>
+        </div>
 
         {/* ── Trust Masthead (Prototype .trust-mast) ─────────────────── */}
         <section className="bg-[#e9f0f5] border border-[#d8e2ec] rounded-2xl p-6 sm:p-8 mb-6 shadow-sm">
