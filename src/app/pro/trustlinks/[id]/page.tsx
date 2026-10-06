@@ -16,7 +16,7 @@ const TRUSTLINK_DATA: Record<string, {
     suburb: "Kenmore QLD 4069",
     stage: "Digital Handover",
     status: "Handover Ready",
-    statusColor: "bg-[#fff4df] text-[#8b641c]",
+    statusColor: "bg-[#fbf3e4] text-[#946315]",
     progress: 92,
   },
   "TL-99214-B": {
@@ -27,7 +27,7 @@ const TRUSTLINK_DATA: Record<string, {
     suburb: "Kenmore QLD 4069",
     stage: "Digital Handover",
     status: "Handover Ready",
-    statusColor: "bg-[#fff4df] text-[#8b641c]",
+    statusColor: "bg-[#fbf3e4] text-[#946315]",
     progress: 92,
   },
   "TL-88301-A": {
@@ -38,7 +38,7 @@ const TRUSTLINK_DATA: Record<string, {
     suburb: "Graceville QLD 4075",
     stage: "Structural Framing",
     status: "Active",
-    statusColor: "bg-[#eaf5ef] text-[#24754c]",
+    statusColor: "bg-[#eaf4ef] text-[#28715e]",
     progress: 45,
   },
   "TL-76100-C": {
@@ -49,7 +49,7 @@ const TRUSTLINK_DATA: Record<string, {
     suburb: "Brookfield QLD 4069",
     stage: "Aftercare",
     status: "Delivered",
-    statusColor: "bg-[#f3f6fb] text-[#68788e]",
+    statusColor: "bg-[#F9F8F5] text-[#64727e]",
     progress: 100,
   },
 };
@@ -97,22 +97,22 @@ export default function ProTrustLinkDetailPage({ params }: { params: Promise<{ i
     <div className="p-6 sm:p-9 lg:p-11 max-w-[1240px] w-full">
 
       {/* ── Breadcrumb ─────────────────────────────────────────────── */}
-      <nav className="flex items-center gap-2 text-[11px] text-[#68788e] mb-6" aria-label="Breadcrumb">
+      <nav className="flex items-center gap-2 text-[11px] text-[#64727e] mb-6" aria-label="Breadcrumb">
         <Link href="/pro/trustlinks" className="hover:underline">TrustLinks</Link>
         <span>›</span>
-        <span className="text-[#102645] font-semibold">{tl.id}</span>
+        <span className="text-[#183249] font-semibold">{tl.id}</span>
       </nav>
 
       {/* ── Masthead ───────────────────────────────────────────────── */}
       <section className="bg-[#e9f0f5] border border-[#d8e2ec] rounded-2xl p-6 sm:p-8 mb-6 shadow-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
         <div>
-          <div className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c] mb-1">
+          <div className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#28715e] mb-1">
             Builder Handover Workspace · {tl.propId}
           </div>
-          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#102645]">
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#183249]">
             {tl.customer}
           </h1>
-          <div className="text-[12px] text-[#68788e] mt-1 flex items-center gap-2 flex-wrap">
+          <div className="text-[12px] text-[#64727e] mt-1 flex items-center gap-2 flex-wrap">
             <span>{tl.property}, {tl.suburb}</span>
             <span>·</span>
             <span>{tl.stage}</span>
@@ -125,7 +125,7 @@ export default function ProTrustLinkDetailPage({ params }: { params: Promise<{ i
           </span>
           <Link
             href={`/trustlinks/${tl.id}`}
-            className="px-4 py-2 bg-white border border-[#cbd5e2] hover:bg-[#f3f6fb] text-[#102645] rounded-xl text-[12px] font-semibold transition-colors"
+            className="px-4 py-2 bg-white border border-[#cbd5e2] hover:bg-[#F9F8F5] text-[#183249] rounded-xl text-[12px] font-semibold transition-colors"
           >
             Client view ↗
           </Link>
@@ -142,28 +142,28 @@ export default function ProTrustLinkDetailPage({ params }: { params: Promise<{ i
       />
 
       {/* ── Client Digital Key & Handover Status Card ── */}
-      <section className="bg-white border border-[#dfe6ef] rounded-2xl p-5 sm:p-6 mb-8 shadow-sm">
+      <section className="bg-white border border-[#e2e5e5] rounded-2xl p-5 sm:p-6 mb-8 shadow-sm">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-start gap-3.5">
-            <div className="w-11 h-11 rounded-xl bg-[#eaf5ef] text-[#24754c] border border-[#d2e6d9] flex items-center justify-center font-bold text-xl flex-shrink-0">
+            <div className="w-11 h-11 rounded-xl bg-[#eaf4ef] text-[#28715e] border border-[#d2e6d9] flex items-center justify-center font-bold text-xl flex-shrink-0">
               🔑
             </div>
             <div>
               <div className="flex items-center gap-2 mb-1 flex-wrap">
-                <span className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c]">
+                <span className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#28715e]">
                   CLIENT DIGITAL KEY ATTACHED
                 </span>
-                <span className="font-mono text-[10px] font-bold px-2 py-0.5 rounded bg-[#f1f5f9] text-[#102645] border border-[#cbd5e1]">
+                <span className="font-mono text-[10px] font-bold px-2 py-0.5 rounded bg-[#f1f5f9] text-[#183249] border border-[#cbd5e1]">
                   DK-KEN-018
                 </span>
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-[#fff4df] text-[#8b641c]">
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-[#fbf3e4] text-[#946315]">
                   Handover Bundle Ready to Claim
                 </span>
               </div>
-              <h3 className="text-base font-bold text-[#102645]">
+              <h3 className="text-base font-bold text-[#183249]">
                 Digital Key Dossier for {tl.customer}
               </h3>
-              <p className="text-xs text-[#68788e] mt-0.5">
+              <p className="text-xs text-[#64727e] mt-0.5">
                 Statutory Form 16, AS 3740 Form 43 waterproofing, and appliance warranties are packaged into the client's Digital Key.
               </p>
             </div>
@@ -172,7 +172,7 @@ export default function ProTrustLinkDetailPage({ params }: { params: Promise<{ i
           <div className="flex items-center gap-2 self-start sm:self-auto flex-wrap sm:flex-nowrap">
             <Link
               href="/pro/digital-key"
-              className="px-4 py-2 bg-[#071d3b] hover:bg-[#15345d] text-white rounded-xl text-xs font-bold transition-colors shadow-2xs whitespace-nowrap flex items-center gap-1.5"
+              className="px-4 py-2 bg-[#0F1A2C] hover:bg-[#1c3a54] text-white rounded-xl text-xs font-bold transition-colors shadow-2xs whitespace-nowrap flex items-center gap-1.5"
             >
               <span>🔑 Manage in Pro Digital Keys</span>
               <span>→</span>
@@ -182,7 +182,7 @@ export default function ProTrustLinkDetailPage({ params }: { params: Promise<{ i
       </section>
 
       {/* ── Sub-Navigation Tabs ─────────────────────────────────────── */}
-      <nav className="flex items-center gap-5 border-b border-[#dfe6ef] mb-8 overflow-x-auto text-[13px] font-medium">
+      <nav className="flex items-center gap-5 border-b border-[#e2e5e5] mb-8 overflow-x-auto text-[13px] font-medium">
         {[
           {
             id: "gates",
@@ -227,14 +227,14 @@ export default function ProTrustLinkDetailPage({ params }: { params: Promise<{ i
             onClick={() => setActiveTab(t.id as any)}
             className={`py-3 relative flex items-center gap-2 whitespace-nowrap transition-colors ${
               activeTab === t.id
-                ? "text-[#102645] font-bold after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-[#24754c]"
-                : "text-[#68788e] hover:text-[#102645]"
+                ? "text-[#183249] font-bold after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-[#28715e]"
+                : "text-[#64727e] hover:text-[#183249]"
             }`}
           >
             <span>{t.icon}</span>
             <span>{t.label}</span>
             {t.count && (
-              <span className="text-[10px] font-bold px-1.5 py-0.2 bg-[#dfe6ef] text-[#102645] rounded-full">
+              <span className="text-[10px] font-bold px-1.5 py-0.2 bg-[#e2e5e5] text-[#183249] rounded-full">
                 {t.count}
               </span>
             )}
@@ -245,13 +245,13 @@ export default function ProTrustLinkDetailPage({ params }: { params: Promise<{ i
       {/* ── TAB 1: GATES ────────────────────────────────────────────── */}
       {activeTab === "gates" && (
         <div className="space-y-6">
-          <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm">
-            <div className="flex items-center justify-between pb-4 border-b border-[#dfe6ef] mb-6">
+          <div className="bg-white border border-[#e2e5e5] rounded-2xl p-6 shadow-sm">
+            <div className="flex items-center justify-between pb-4 border-b border-[#e2e5e5] mb-6">
               <div>
-                <h2 className="text-lg font-bold text-[#102645]">5-Gate Handover Verification</h2>
-                <p className="text-[12px] text-[#68788e]">All gates must be cleared to seal the handover package to client Prop ID.</p>
+                <h2 className="text-lg font-bold text-[#183249]">5-Gate Handover Verification</h2>
+                <p className="text-[12px] text-[#64727e]">All gates must be cleared to seal the handover package to client Prop ID.</p>
               </div>
-              <span className="text-[12px] font-bold text-[#24754c]">
+              <span className="text-[12px] font-bold text-[#28715e]">
                 4 of 5 gates verified
               </span>
             </div>
@@ -264,26 +264,26 @@ export default function ProTrustLinkDetailPage({ params }: { params: Promise<{ i
                 { gate: "Gate 4", title: "Pre-Handover PCI Walkthrough & Touch-up Register", note: "Laundry paint touch-up open item logged with painter.", ok: true },
                 { gate: "Gate 5", title: "Client Variation Notice #04 Digital Sign-Off", note: "Caesarstone island upgrade approval.", ok: variationSigned },
               ].map((g) => (
-                <div key={g.gate} className="p-4 rounded-xl border border-[#dfe6ef] bg-[#f9fafc] flex items-center justify-between">
+                <div key={g.gate} className="p-4 rounded-xl border border-[#e2e5e5] bg-[#f9fafc] flex items-center justify-between">
                   <div>
                     <div className="flex items-center gap-2">
                       <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${
-                        g.ok ? "bg-[#eaf5ef] text-[#24754c]" : "bg-[#fff4df] text-[#8b641c]"
+                        g.ok ? "bg-[#eaf4ef] text-[#28715e]" : "bg-[#fbf3e4] text-[#946315]"
                       }`}>
                         {g.ok ? (
-                          <svg className="w-3 h-3 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-3 h-3 text-[#28715e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
                           </svg>
                         ) : (
                           "!"
                         )}
                       </span>
-                      <strong className="text-[#102645] font-semibold">{g.gate}: {g.title}</strong>
+                      <strong className="text-[#183249] font-semibold">{g.gate}: {g.title}</strong>
                     </div>
-                    <p className="text-[11px] text-[#68788e] mt-1 ml-7">{g.note}</p>
+                    <p className="text-[11px] text-[#64727e] mt-1 ml-7">{g.note}</p>
                   </div>
                   <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${
-                    g.ok ? "bg-[#eaf5ef] text-[#24754c]" : "bg-[#fff4df] text-[#8b641c]"
+                    g.ok ? "bg-[#eaf4ef] text-[#28715e]" : "bg-[#fbf3e4] text-[#946315]"
                   }`}>
                     {g.ok ? "Verified" : "Pending Sign-Off"}
                   </span>
@@ -291,16 +291,16 @@ export default function ProTrustLinkDetailPage({ params }: { params: Promise<{ i
               ))}
             </div>
 
-            <div className="pt-6 mt-6 border-t border-[#dfe6ef] flex items-center justify-between">
-              <span className="text-[11px] text-[#68788e]">
+            <div className="pt-6 mt-6 border-t border-[#e2e5e5] flex items-center justify-between">
+              <span className="text-[11px] text-[#64727e]">
                 Sealing delivers documents to client Prop ID without exposing internal subcontractor costs.
               </span>
               <button
                 onClick={() => setHandoverSealed(true)}
                 className={`px-5 py-2.5 rounded-xl text-[12px] font-bold transition-all inline-flex items-center gap-1.5 ${
                   handoverSealed
-                    ? "bg-[#24754c] text-white"
-                    : "bg-[#071d3b] text-white hover:bg-[#102d59]"
+                    ? "bg-[#28715e] text-white"
+                    : "bg-[#0F1A2C] text-white hover:bg-[#102d59]"
                 }`}
               >
                 {handoverSealed ? (
@@ -321,21 +321,21 @@ export default function ProTrustLinkDetailPage({ params }: { params: Promise<{ i
 
       {/* ── TAB 2: DOCUMENTS ────────────────────────────────────────── */}
       {activeTab === "documents" && (
-        <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm space-y-4">
-          <div className="flex items-center justify-between pb-3 border-b border-[#dfe6ef]">
+        <div className="bg-white border border-[#e2e5e5] rounded-2xl p-6 shadow-sm space-y-4">
+          <div className="flex items-center justify-between pb-3 border-b border-[#e2e5e5]">
             <div>
-              <h2 className="text-lg font-bold text-[#102645]">Handover Document Package</h2>
-              <p className="text-[12px] text-[#68788e]">Documents packaged for transfer to client Prop ID vault.</p>
+              <h2 className="text-lg font-bold text-[#183249]">Handover Document Package</h2>
+              <p className="text-[12px] text-[#64727e]">Documents packaged for transfer to client Prop ID vault.</p>
             </div>
             <button
               onClick={() => alert("Upload Handover Document: Select compliance certificate or plan to append.")}
-              className="px-3.5 py-1.5 bg-[#071d3b] text-white text-[11px] font-bold rounded-lg"
+              className="px-3.5 py-1.5 bg-[#0F1A2C] text-white text-[11px] font-bold rounded-lg"
             >
               + Upload document
             </button>
           </div>
 
-          <div className="divide-y divide-[#dfe6ef] text-[12px]">
+          <div className="divide-y divide-[#e2e5e5] text-[12px]">
             {[
               { title: "Home Plans — Full Architectural Set.pdf", cat: "Plans", status: "Ready" },
               { title: "QBCC Form 16 Structural Engineering Final.pdf", cat: "Statutory", status: "Verified" },
@@ -345,17 +345,17 @@ export default function ProTrustLinkDetailPage({ params }: { params: Promise<{ i
             ].map((d) => (
               <div key={d.title} className="py-3 flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="w-7 h-7 rounded-lg bg-[#f0f4f9] border border-[#dfe6ef] flex items-center justify-center text-[#204068] flex-shrink-0">
+                  <div className="w-7 h-7 rounded-lg bg-[#f0f4f9] border border-[#e2e5e5] flex items-center justify-center text-[#204068] flex-shrink-0">
                     <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
                   </div>
                   <div>
-                    <strong className="block text-[#102645]">{d.title}</strong>
-                    <span className="text-[10px] text-[#68788e]">{d.cat} · Scoped for Client</span>
+                    <strong className="block text-[#183249]">{d.title}</strong>
+                    <span className="text-[10px] text-[#64727e]">{d.cat} · Scoped for Client</span>
                   </div>
                 </div>
-                <span className="text-[10px] font-bold px-2 py-0.5 bg-[#eaf5ef] text-[#24754c] rounded">
+                <span className="text-[10px] font-bold px-2 py-0.5 bg-[#eaf4ef] text-[#28715e] rounded">
                   {d.status}
                 </span>
               </div>
@@ -366,31 +366,31 @@ export default function ProTrustLinkDetailPage({ params }: { params: Promise<{ i
 
       {/* ── TAB 3: MESSAGES ─────────────────────────────────────────── */}
       {activeTab === "messages" && (
-        <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm flex flex-col h-[520px]">
-          <h2 className="text-base font-bold text-[#102645] pb-3 border-b border-[#dfe6ef]">
+        <div className="bg-white border border-[#e2e5e5] rounded-2xl p-6 shadow-sm flex flex-col h-[520px]">
+          <h2 className="text-base font-bold text-[#183249] pb-3 border-b border-[#e2e5e5]">
             Client Discussion Channel · Alex
           </h2>
 
           <div className="flex-1 overflow-y-auto py-4 space-y-3">
             {messages.map((m) => (
-              <div key={m.id} className="p-4 rounded-2xl bg-[#f3f6fb] text-[12px] text-[#102645] leading-relaxed max-w-[85%]">
-                <div className="font-bold text-[10px] text-[#68788e] mb-1">{m.sender} · {m.time}</div>
+              <div key={m.id} className="p-4 rounded-2xl bg-[#F9F8F5] text-[12px] text-[#183249] leading-relaxed max-w-[85%]">
+                <div className="font-bold text-[10px] text-[#64727e] mb-1">{m.sender} · {m.time}</div>
                 <p>{m.text}</p>
               </div>
             ))}
           </div>
 
-          <form onSubmit={handleSendReply} className="pt-3 border-t border-[#dfe6ef] flex gap-2">
+          <form onSubmit={handleSendReply} className="pt-3 border-t border-[#e2e5e5] flex gap-2">
             <input
               type="text"
               value={replyText}
               onChange={(e) => setReplyText(e.target.value)}
               placeholder="Reply to Alex..."
-              className="flex-1 p-2.5 border border-[#dfe6ef] rounded-xl text-[12px] text-[#102645] bg-[#fcfbf8] focus:outline-none"
+              className="flex-1 p-2.5 border border-[#e2e5e5] rounded-xl text-[12px] text-[#183249] bg-[#fcfbf8] focus:outline-none"
             />
             <button
               type="submit"
-              className="px-5 py-2.5 bg-[#071d3b] text-white font-bold rounded-xl text-[12px] hover:bg-[#102d59]"
+              className="px-5 py-2.5 bg-[#0F1A2C] text-white font-bold rounded-xl text-[12px] hover:bg-[#102d59]"
             >
               Reply →
             </button>
@@ -400,44 +400,44 @@ export default function ProTrustLinkDetailPage({ params }: { params: Promise<{ i
 
       {/* ── TAB 4: VARIATIONS ───────────────────────────────────────── */}
       {activeTab === "variations" && (
-        <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm space-y-4">
-          <div className="flex items-center justify-between pb-3 border-b border-[#dfe6ef]">
+        <div className="bg-white border border-[#e2e5e5] rounded-2xl p-6 shadow-sm space-y-4">
+          <div className="flex items-center justify-between pb-3 border-b border-[#e2e5e5]">
             <div>
-              <h2 className="text-lg font-bold text-[#102645]">Variation Notices &amp; Change Orders</h2>
-              <p className="text-[12px] text-[#68788e]">Track variation approvals tied to QBCC requirements.</p>
+              <h2 className="text-lg font-bold text-[#183249]">Variation Notices &amp; Change Orders</h2>
+              <p className="text-[12px] text-[#64727e]">Track variation approvals tied to QBCC requirements.</p>
             </div>
           </div>
 
-          <div className="p-4 rounded-xl border border-[#dfe6ef] bg-[#f9fafc]">
+          <div className="p-4 rounded-xl border border-[#e2e5e5] bg-[#f9fafc]">
             <div className="flex items-start justify-between mb-2">
               <div>
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-[#fff4df] text-[#8b641c] uppercase tracking-wider">
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-[#fbf3e4] text-[#946315] uppercase tracking-wider">
                   Notice #04
                 </span>
-                <h3 className="text-base font-bold text-[#102645] mt-1">
+                <h3 className="text-base font-bold text-[#183249] mt-1">
                   Caesarstone 40mm Kitchen Island Upgrade
                 </h3>
               </div>
-              <strong className="text-base font-bold text-[#102645]">+$1,400 AUD</strong>
+              <strong className="text-base font-bold text-[#183249]">+$1,400 AUD</strong>
             </div>
 
-            <p className="text-[12px] text-[#68788e] mb-4">
+            <p className="text-[12px] text-[#64727e] mb-4">
               Upgrade from standard 20mm edge to 40mm mitred edge in Caesarstone &apos;Pure White&apos; across kitchen island and butler&apos;s pantry waterfall ends.
             </p>
 
-            <div className="pt-3 border-t border-[#dfe6ef] flex items-center justify-between">
-              <span className="text-[11px] text-[#68788e]">Status: {variationSigned ? "Signed & Closed" : "Awaiting Client Sign-Off"}</span>
+            <div className="pt-3 border-t border-[#e2e5e5] flex items-center justify-between">
+              <span className="text-[11px] text-[#64727e]">Status: {variationSigned ? "Signed & Closed" : "Awaiting Client Sign-Off"}</span>
               <button
                 onClick={() => setVariationSigned(true)}
                 className={`px-4 py-1.5 rounded-lg text-[11px] font-bold transition-colors inline-flex items-center gap-1.5 ${
                   variationSigned
-                    ? "bg-[#eaf5ef] text-[#24754c]"
-                    : "bg-[#071d3b] text-white hover:bg-[#102d59]"
+                    ? "bg-[#eaf4ef] text-[#28715e]"
+                    : "bg-[#0F1A2C] text-white hover:bg-[#102d59]"
                 }`}
               >
                 {variationSigned ? (
                   <>
-                    <svg className="w-3 h-3 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-3 h-3 text-[#28715e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
                     </svg>
                     <span>Variation Signed</span>

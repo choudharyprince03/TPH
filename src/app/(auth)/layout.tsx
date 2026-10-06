@@ -7,11 +7,11 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
       {/* Left branding panel */}
       <div
         className="hidden lg:flex w-[42%] flex-col justify-between p-12 relative overflow-hidden"
-        style={{ background: "linear-gradient(165deg, #071d3b 0%, #041226 65%, #020b18 100%)" }}
+        style={{ background: "linear-gradient(165deg, #0F1A2C 0%, #041226 65%, #020b18 100%)" }}
       >
         {/* Subtle decorative brand aura glow */}
-        <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-[#efbd66]/10 blur-3xl" />
-        <div className="absolute bottom-20 -left-16 w-80 h-80 rounded-full bg-[#24754c]/15 blur-3xl" />
+        <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-[#C59B27]/10 blur-3xl" />
+        <div className="absolute bottom-20 -left-16 w-80 h-80 rounded-full bg-[#28715e]/15 blur-3xl" />
 
         {/* Official Brand Logo */}
         <Link href="/" className="flex items-center gap-3.5 relative z-10 group">
@@ -23,10 +23,10 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
             />
           </div>
           <div>
-            <div className="text-white font-bold text-lg leading-tight group-hover:text-[#efbd66] transition-colors">
+            <div className="text-white font-bold text-lg leading-tight group-hover:text-[#C59B27] transition-colors">
               The Property Helpline
             </div>
-            <div className="text-[#efbd66] text-[9px] font-bold uppercase tracking-[2px] mt-0.5">
+            <div className="text-[#C59B27] text-[9px] font-bold uppercase tracking-[2px] mt-0.5">
               YOUR DIGITAL HOME
             </div>
           </div>
@@ -35,14 +35,14 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         {/* Core value props */}
         <div className="relative z-10 space-y-7">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-[10px] font-bold text-[#efbd66] uppercase tracking-wider mb-4">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#efbd66] animate-pulse" />
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-[10px] font-bold text-[#C59B27] uppercase tracking-wider mb-4">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#C59B27] animate-pulse" />
               Australia&apos;s Property Platform
             </div>
             <h2 className="font-display text-3xl font-bold text-white leading-tight mb-4">
               Build trust.<br />
               Hand over calmly.<br />
-              <span className="text-[#efbd66]">Own with confidence.</span>
+              <span className="text-[#C59B27]">Own with confidence.</span>
             </h2>
             <p className="text-[#b6c7db] text-sm leading-relaxed max-w-sm">
               The only platform where builders, owners, and property professionals share one secure, permanent record — your Prop ID.
@@ -53,7 +53,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
             {[
               {
                 icon: (
-                  <svg className="w-5 h-5 text-[#efbd66]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-[#C59B27]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                   </svg>
                 ),
@@ -62,7 +62,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
               },
               {
                 icon: (
-                  <svg className="w-5 h-5 text-[#efbd66]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-[#C59B27]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                   </svg>
                 ),
@@ -71,7 +71,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
               },
               {
                 icon: (
-                  <svg className="w-5 h-5 text-[#efbd66]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-[#C59B27]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                   </svg>
                 ),
@@ -110,9 +110,9 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
       {/* Right content panel */}
       <div className="flex-1 flex flex-col overflow-y-auto bg-[#fcfbf8]">
         {/* Mobile top brand bar */}
-        <div className="lg:hidden flex items-center justify-between p-4 border-b border-[#dfe6ef] bg-white">
+        <div className="lg:hidden flex items-center justify-between p-4 border-b border-[#e2e5e5] bg-white">
           <Link href="/" className="flex items-center gap-3">
-            <div className="bg-white rounded-xl p-1.5 border border-[#dfe6ef] shadow-xs flex items-center justify-center">
+            <div className="bg-white rounded-xl p-1.5 border border-[#e2e5e5] shadow-xs flex items-center justify-center">
               <img
                 src="/logo.png"
                 alt="The Property Helpline"
@@ -120,11 +120,11 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
               />
             </div>
             <div>
-              <span className="font-bold text-[#071d3b] text-sm block leading-tight">The Property Helpline</span>
-              <span className="text-[8px] font-semibold uppercase tracking-wider text-[#efbd66]">YOUR DIGITAL HOME</span>
+              <span className="font-bold text-[#0F1A2C] text-sm block leading-tight">The Property Helpline</span>
+              <span className="text-[8px] font-semibold uppercase tracking-wider text-[#C59B27]">YOUR DIGITAL HOME</span>
             </div>
           </Link>
-          <Link href="/" className="text-xs font-semibold text-[#556b83] hover:text-[#071d3b]">
+          <Link href="/" className="text-xs font-semibold text-[#556b83] hover:text-[#0F1A2C]">
             Back to Home →
           </Link>
         </div>

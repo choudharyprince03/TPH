@@ -51,7 +51,7 @@ const INITIAL_TRADIES: Tradie[] = [
     client: "Alex & Emily",
     status: "pending_cert",
     statusLabel: "Pending Cert",
-    statusColor: "bg-[#fff4df] text-[#8b641c] border-[#fce3b8]",
+    statusColor: "bg-[#fbf3e4] text-[#946315] border-[#fce3b8]",
     requiredCert: "Electrical Safety Certificate (Form 16)",
     certStatus: "awaiting_sms",
     smsLinkSent: true,
@@ -71,7 +71,7 @@ const INITIAL_TRADIES: Tradie[] = [
     client: "Alex & Emily",
     status: "verified",
     statusLabel: "Verified",
-    statusColor: "bg-[#eaf5ef] text-[#24754c] border-[#c7e3d1]",
+    statusColor: "bg-[#eaf4ef] text-[#28715e] border-[#c7e3d1]",
     requiredCert: "Waterproofing Certificate (Form 43)",
     certStatus: "verified",
     smsLinkSent: true,
@@ -90,7 +90,7 @@ const INITIAL_TRADIES: Tradie[] = [
     client: "Sofia Nguyen",
     status: "in_progress",
     statusLabel: "In Progress",
-    statusColor: "bg-[#f0f4f9] text-[#071d3b] border-[#cbd5e2]",
+    statusColor: "bg-[#f0f4f9] text-[#0F1A2C] border-[#cbd5e2]",
     requiredCert: "Plumbing & Drainage (Form 4)",
     certStatus: "not_required",
     smsLinkSent: false,
@@ -109,7 +109,7 @@ const INITIAL_TRADIES: Tradie[] = [
     client: "Alex & Emily",
     status: "verified",
     statusLabel: "Verified",
-    statusColor: "bg-[#eaf5ef] text-[#24754c] border-[#c7e3d1]",
+    statusColor: "bg-[#eaf4ef] text-[#28715e] border-[#c7e3d1]",
     requiredCert: "Termite Management Notice (AS 3660.1)",
     certStatus: "verified",
     smsLinkSent: true,
@@ -128,7 +128,7 @@ const INITIAL_TRADIES: Tradie[] = [
     client: "Thomas Murray",
     status: "verified",
     statusLabel: "Verified",
-    statusColor: "bg-[#eaf5ef] text-[#24754c] border-[#c7e3d1]",
+    statusColor: "bg-[#eaf4ef] text-[#28715e] border-[#c7e3d1]",
     requiredCert: "Form 16 Slab Inspection",
     certStatus: "verified",
     smsLinkSent: true,
@@ -327,7 +327,7 @@ export default function TradiePage() {
               ...t,
               status: "verified",
               statusLabel: "Verified",
-              statusColor: "bg-[#eaf5ef] text-[#24754c] border-[#c7e3d1]",
+              statusColor: "bg-[#eaf4ef] text-[#28715e] border-[#c7e3d1]",
               certStatus: "verified",
             }
           : t
@@ -375,7 +375,7 @@ export default function TradiePage() {
       client: newTradieProperty.includes("Banksia") ? "Alex & Emily" : "Sofia Nguyen",
       status: "pending_cert",
       statusLabel: "Pending Cert",
-      statusColor: "bg-[#fff4df] text-[#8b641c] border-[#fce3b8]",
+      statusColor: "bg-[#fbf3e4] text-[#946315] border-[#fce3b8]",
       requiredCert: newTradieCert,
       certStatus: "awaiting_sms",
       smsLinkSent: true,
@@ -418,30 +418,30 @@ export default function TradiePage() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed top-5 right-5 z-50 bg-[#071d3b] text-white px-4 py-2.5 rounded-xl shadow-lg border border-white/10 text-xs font-semibold flex items-center gap-2 max-w-md"
+            className="fixed top-5 right-5 z-50 bg-[#0F1A2C] text-white px-4 py-2.5 rounded-xl shadow-lg border border-white/10 text-xs font-semibold flex items-center gap-2 max-w-md"
           >
-            <span className="w-2 h-2 rounded-full bg-[#24754c] animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-[#28715e] animate-pulse" />
             <span>{toastMessage}</span>
           </motion.div>
         )}
       </AnimatePresence>
 
       {/* ── Top Bar ──────────────────────────────────────────────────────── */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-3 border-b border-[#dfe6ef]">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-3 border-b border-[#e2e5e5]">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-[9.5px] font-bold uppercase tracking-wider text-[#24754c]">
+            <span className="text-[9.5px] font-bold uppercase tracking-wider text-[#28715e]">
               Pro Hub · Tradies
             </span>
-            <span className="w-1.5 h-1.5 rounded-full bg-[#24754c]" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#28715e]" />
             <span className="text-[10px] text-[#5b6e84] font-medium">
               Hart Homes
             </span>
           </div>
-          <h1 className="text-2xl font-bold tracking-tight text-[#102645]">
+          <h1 className="text-2xl font-bold tracking-tight text-[#183249]">
             Tradies
           </h1>
-          <p className="text-xs text-[#68788e] mt-0.5">
+          <p className="text-xs text-[#64727e] mt-0.5">
             Manage trade contractors, compliance certificates, and messages.
           </p>
         </div>
@@ -449,7 +449,7 @@ export default function TradiePage() {
         <div className="flex items-center gap-2 self-start sm:self-auto">
           <button
             onClick={() => setInviteModalOpen(true)}
-            className="px-3.5 py-1.5 bg-[#071d3b] hover:bg-[#15345d] text-white rounded-xl text-xs font-semibold transition-colors shadow-xs flex items-center gap-1.5 cursor-pointer"
+            className="px-3.5 py-1.5 bg-[#0F1A2C] hover:bg-[#1c3a54] text-white rounded-xl text-xs font-semibold transition-colors shadow-xs flex items-center gap-1.5 cursor-pointer"
           >
             <span>+ Invite Tradie</span>
           </button>
@@ -458,35 +458,35 @@ export default function TradiePage() {
 
       {/* ── Stats Strip ─────────────────────────────────────────────────── */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <div className="bg-white border border-[#dfe6ef] rounded-xl p-3 shadow-2xs">
-          <div className="text-[10px] font-bold uppercase tracking-wider text-[#68788e]">
+        <div className="bg-white border border-[#e2e5e5] rounded-xl p-3 shadow-2xs">
+          <div className="text-[10px] font-bold uppercase tracking-wider text-[#64727e]">
             Tradies
           </div>
-          <div className="text-xl font-bold text-[#102645] mt-0.5">
+          <div className="text-xl font-bold text-[#183249] mt-0.5">
             {tradies.length}
           </div>
-          <div className="text-[10px] text-[#24754c] font-medium mt-0.5">
+          <div className="text-[10px] text-[#28715e] font-medium mt-0.5">
             Active on site
           </div>
         </div>
 
-        <div className="bg-white border border-[#dfe6ef] rounded-xl p-3 shadow-2xs">
-          <div className="text-[10px] font-bold uppercase tracking-wider text-[#8b641c]">
+        <div className="bg-white border border-[#e2e5e5] rounded-xl p-3 shadow-2xs">
+          <div className="text-[10px] font-bold uppercase tracking-wider text-[#946315]">
             Pending Certs
           </div>
-          <div className="text-xl font-bold text-[#8b641c] mt-0.5">
+          <div className="text-xl font-bold text-[#946315] mt-0.5">
             {pendingCount}
           </div>
-          <div className="text-[10px] text-[#8b641c] font-medium mt-0.5">
+          <div className="text-[10px] text-[#946315] font-medium mt-0.5">
             Form 16 required
           </div>
         </div>
 
-        <div className="bg-white border border-[#dfe6ef] rounded-xl p-3 shadow-2xs">
-          <div className="text-[10px] font-bold uppercase tracking-wider text-[#24754c]">
+        <div className="bg-white border border-[#e2e5e5] rounded-xl p-3 shadow-2xs">
+          <div className="text-[10px] font-bold uppercase tracking-wider text-[#28715e]">
             Verified Certs
           </div>
-          <div className="text-xl font-bold text-[#24754c] mt-0.5">
+          <div className="text-xl font-bold text-[#28715e] mt-0.5">
             {verifiedCount}
           </div>
           <div className="text-[10px] text-[#5b6e84] font-medium mt-0.5">
@@ -494,11 +494,11 @@ export default function TradiePage() {
           </div>
         </div>
 
-        <div className="bg-white border border-[#dfe6ef] rounded-xl p-3 shadow-2xs">
-          <div className="text-[10px] font-bold uppercase tracking-wider text-[#071d3b]">
+        <div className="bg-white border border-[#e2e5e5] rounded-xl p-3 shadow-2xs">
+          <div className="text-[10px] font-bold uppercase tracking-wider text-[#0F1A2C]">
             SMS Links
           </div>
-          <div className="text-xl font-bold text-[#071d3b] mt-0.5">
+          <div className="text-xl font-bold text-[#0F1A2C] mt-0.5">
             Active
           </div>
           <div className="text-[10px] text-[#5b6e84] font-medium mt-0.5">
@@ -511,20 +511,20 @@ export default function TradiePage() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
         
         {/* ── Left Column: Tradie List (5 cols) ─────────────────────────── */}
-        <div className="lg:col-span-5 bg-white border border-[#dfe6ef] rounded-2xl p-4 shadow-2xs flex flex-col space-y-3">
+        <div className="lg:col-span-5 bg-white border border-[#e2e5e5] rounded-2xl p-4 shadow-2xs flex flex-col space-y-3">
           
           {/* Header & Filter */}
-          <div className="space-y-2.5 pb-2 border-b border-[#dfe6ef]">
+          <div className="space-y-2.5 pb-2 border-b border-[#e2e5e5]">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <h2 className="text-sm font-bold text-[#102645]">Tradies</h2>
+                <h2 className="text-sm font-bold text-[#183249]">Tradies</h2>
                 <span className="text-[10px] font-bold px-2 py-0.2 bg-[#f0f4f8] text-[#5b6e84] rounded-full">
                   {filteredTradies.length}
                 </span>
               </div>
               <button
                 onClick={() => setInviteModalOpen(true)}
-                className="text-xs font-semibold text-[#071d3b] hover:underline cursor-pointer"
+                className="text-xs font-semibold text-[#0F1A2C] hover:underline cursor-pointer"
               >
                 + Invite
               </button>
@@ -537,7 +537,7 @@ export default function TradiePage() {
                 value={filterQuery}
                 onChange={(e) => setFilterQuery(e.target.value)}
                 placeholder="Search tradie, trade, or site..."
-                className="w-full px-3 py-1.5 pl-8 bg-[#f4f6f8] border border-[#dfe6ef] rounded-lg text-xs text-[#102645] placeholder-[#8a9bb0] focus:outline-none focus:border-[#071d3b]"
+                className="w-full px-3 py-1.5 pl-8 bg-[#F9F8F5] border border-[#e2e5e5] rounded-lg text-xs text-[#183249] placeholder-[#8a9bb0] focus:outline-none focus:border-[#0F1A2C]"
               />
               <span className="absolute left-2.5 top-2 text-[#8a9bb0] text-xs">🔍</span>
             </div>
@@ -548,8 +548,8 @@ export default function TradiePage() {
                 onClick={() => setFilterCategory("all")}
                 className={`px-2.5 py-1 rounded-md text-[11px] font-semibold transition-colors cursor-pointer ${
                   filterCategory === "all"
-                    ? "bg-[#071d3b] text-white"
-                    : "bg-[#f4f6f8] text-[#5b6e84] hover:bg-[#e8edf2]"
+                    ? "bg-[#0F1A2C] text-white"
+                    : "bg-[#F9F8F5] text-[#5b6e84] hover:bg-[#e8edf2]"
                 }`}
               >
                 All ({tradies.length})
@@ -558,8 +558,8 @@ export default function TradiePage() {
                 onClick={() => setFilterCategory("pending")}
                 className={`px-2.5 py-1 rounded-md text-[11px] font-semibold transition-colors cursor-pointer flex items-center gap-1 ${
                   filterCategory === "pending"
-                    ? "bg-[#8b641c] text-white"
-                    : "bg-[#fff4df] text-[#8b641c] hover:bg-[#feeccb]"
+                    ? "bg-[#946315] text-white"
+                    : "bg-[#fbf3e4] text-[#946315] hover:bg-[#feeccb]"
                 }`}
               >
                 <span>Pending</span>
@@ -569,8 +569,8 @@ export default function TradiePage() {
                 onClick={() => setFilterCategory("verified")}
                 className={`px-2.5 py-1 rounded-md text-[11px] font-semibold transition-colors cursor-pointer ${
                   filterCategory === "verified"
-                    ? "bg-[#24754c] text-white"
-                    : "bg-[#eaf5ef] text-[#24754c] hover:bg-[#d6ecd0]"
+                    ? "bg-[#28715e] text-white"
+                    : "bg-[#eaf4ef] text-[#28715e] hover:bg-[#d6ecd0]"
                 }`}
               >
                 Verified ({verifiedCount})
@@ -588,18 +588,18 @@ export default function TradiePage() {
                   onClick={() => setSelectedTradieId(tradie.id)}
                   className={`p-3 rounded-xl border transition-all cursor-pointer text-left relative ${
                     isSelected
-                      ? "bg-[#f3f6fb] border-[#071d3b] shadow-xs ring-1 ring-[#071d3b]"
-                      : "bg-white border-[#dfe6ef] hover:border-[#cbd5e1] hover:bg-[#fafbfc]"
+                      ? "bg-[#F9F8F5] border-[#0F1A2C] shadow-xs ring-1 ring-[#0F1A2C]"
+                      : "bg-white border-[#e2e5e5] hover:border-[#cbd5e1] hover:bg-[#fafbfc]"
                   }`}
                 >
                   <div className="flex items-start justify-between gap-2">
                     <div className="min-w-0">
                       <div className="flex items-center gap-1.5">
-                        <strong className="text-xs font-bold text-[#102645] truncate">
+                        <strong className="text-xs font-bold text-[#183249] truncate">
                           {tradie.name}
                         </strong>
                         {tradie.unreadCount ? (
-                          <span className="w-2 h-2 rounded-full bg-[#efbd66]" />
+                          <span className="w-2 h-2 rounded-full bg-[#C59B27]" />
                         ) : null}
                       </div>
                       <div className="text-[11px] text-[#5b6e84] truncate">
@@ -614,7 +614,7 @@ export default function TradiePage() {
                   </div>
 
                   <div className="mt-2 pt-2 border-t border-[#f0f4f8] flex items-center justify-between text-[10.5px]">
-                    <span className="text-[#24754c] font-medium truncate flex items-center gap-1">
+                    <span className="text-[#28715e] font-medium truncate flex items-center gap-1">
                       <span>📍</span>
                       <span>{tradie.property.split(",")[0]}</span>
                     </span>
@@ -630,10 +630,10 @@ export default function TradiePage() {
         <div className="lg:col-span-7 space-y-4">
           
           {/* Profile Header */}
-          <div className="bg-white border border-[#dfe6ef] rounded-2xl p-4 shadow-2xs">
+          <div className="bg-white border border-[#e2e5e5] rounded-2xl p-4 shadow-2xs">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-[#071d3b] text-white flex items-center justify-center font-bold text-sm flex-shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-[#0F1A2C] text-white flex items-center justify-center font-bold text-sm flex-shrink-0">
                   {selectedTradie.name
                     .split(" ")
                     .map((n) => n[0])
@@ -641,7 +641,7 @@ export default function TradiePage() {
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <h2 className="text-sm font-bold text-[#102645]">
+                    <h2 className="text-sm font-bold text-[#183249]">
                       {selectedTradie.name}
                     </h2>
                     <span className={`text-[9.5px] font-bold px-2 py-0.5 rounded-full border ${selectedTradie.statusColor}`}>
@@ -657,7 +657,7 @@ export default function TradiePage() {
               <div className="flex items-center gap-2 self-start sm:self-auto text-xs">
                 <a
                   href={`tel:${selectedTradie.phone}`}
-                  className="px-2.5 py-1.5 bg-[#f4f6f8] hover:bg-[#e8edf2] text-[#102645] rounded-lg font-semibold transition-colors border border-[#dfe6ef] flex items-center gap-1 text-[11px]"
+                  className="px-2.5 py-1.5 bg-[#F9F8F5] hover:bg-[#e8edf2] text-[#183249] rounded-lg font-semibold transition-colors border border-[#e2e5e5] flex items-center gap-1 text-[11px]"
                 >
                   <span>📞</span>
                   <span>{selectedTradie.phone}</span>
@@ -666,16 +666,16 @@ export default function TradiePage() {
             </div>
 
             {/* Site tag */}
-            <div className="mt-3 pt-2.5 border-t border-[#dfe6ef] flex flex-wrap items-center justify-between gap-2 text-xs">
+            <div className="mt-3 pt-2.5 border-t border-[#e2e5e5] flex flex-wrap items-center justify-between gap-2 text-xs">
               <div className="flex items-center gap-1.5">
-                <span className="text-[#68788e]">Site:</span>
-                <span className="font-semibold text-[#102645] bg-[#f0f4f8] px-2 py-0.5 rounded-md text-[11px]">
+                <span className="text-[#64727e]">Site:</span>
+                <span className="font-semibold text-[#183249] bg-[#f0f4f8] px-2 py-0.5 rounded-md text-[11px]">
                   {selectedTradie.property.split(",")[0]} ({selectedTradie.client})
                 </span>
               </div>
               <Link
                 href="/pro/digital-key"
-                className="text-xs font-semibold text-[#071d3b] hover:underline flex items-center gap-1"
+                className="text-xs font-semibold text-[#0F1A2C] hover:underline flex items-center gap-1"
               >
                 <span>Handover Pack</span>
                 <span>→</span>
@@ -697,13 +697,13 @@ export default function TradiePage() {
                   <span
                     className={`text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded ${
                       selectedTradie.status === "pending_cert"
-                        ? "bg-[#efbd66] text-[#071d3b]"
-                        : "bg-[#24754c] text-white"
+                        ? "bg-[#C59B27] text-[#0F1A2C]"
+                        : "bg-[#28715e] text-white"
                     }`}
                   >
                     {selectedTradie.status === "pending_cert" ? "Required" : "Verified"}
                   </span>
-                  <span className="text-xs font-bold text-[#102645]">
+                  <span className="text-xs font-bold text-[#183249]">
                     {selectedTradie.requiredCert}
                   </span>
                 </div>
@@ -718,19 +718,19 @@ export default function TradiePage() {
                 <div className="flex items-center gap-2 flex-shrink-0">
                   <button
                     onClick={handleResendSmsLink}
-                    className="px-2.5 py-1.5 bg-white border border-[#cbd5e2] hover:bg-[#f3f6fb] text-[#102645] rounded-xl text-xs font-semibold transition-colors shadow-2xs cursor-pointer"
+                    className="px-2.5 py-1.5 bg-white border border-[#cbd5e2] hover:bg-[#F9F8F5] text-[#183249] rounded-xl text-xs font-semibold transition-colors shadow-2xs cursor-pointer"
                   >
                     Resend SMS Link
                   </button>
                   <button
                     onClick={handleUploadOnBehalf}
-                    className="px-2.5 py-1.5 bg-[#071d3b] hover:bg-[#15345d] text-white rounded-xl text-xs font-semibold transition-colors shadow-2xs cursor-pointer"
+                    className="px-2.5 py-1.5 bg-[#0F1A2C] hover:bg-[#1c3a54] text-white rounded-xl text-xs font-semibold transition-colors shadow-2xs cursor-pointer"
                   >
                     Upload File
                   </button>
                 </div>
               ) : (
-                <div className="px-2.5 py-1 bg-[#24754c] text-white rounded-xl text-[11px] font-semibold flex items-center gap-1">
+                <div className="px-2.5 py-1 bg-[#28715e] text-white rounded-xl text-[11px] font-semibold flex items-center gap-1">
                   <span>✓ Handover Ready</span>
                 </div>
               )}
@@ -739,10 +739,10 @@ export default function TradiePage() {
 
           {/* ── Conversation Card ─────────────────────────────────────────── */}
           {!isChatOpen ? (
-            <div className="bg-white border border-[#dfe6ef] rounded-2xl p-4 shadow-2xs flex items-center justify-between">
+            <div className="bg-white border border-[#e2e5e5] rounded-2xl p-4 shadow-2xs flex items-center justify-between">
               <div className="flex items-center gap-2.5 min-w-0">
-                <span className="w-2 h-2 rounded-full bg-[#24754c] flex-shrink-0" />
-                <span className="text-xs font-bold text-[#102645]">Conversation</span>
+                <span className="w-2 h-2 rounded-full bg-[#28715e] flex-shrink-0" />
+                <span className="text-xs font-bold text-[#183249]">Conversation</span>
                 <span className="text-[11px] text-[#5b6e84] truncate">· {selectedTradie.name}</span>
                 <span className="text-[11px] text-[#8a9bb0]">({activeChat.length} messages)</span>
               </div>
@@ -750,19 +750,19 @@ export default function TradiePage() {
               <button
                 type="button"
                 onClick={() => setIsChatOpen(true)}
-                className="px-3.5 py-1.5 bg-[#071d3b] hover:bg-[#15345d] text-white rounded-xl text-xs font-semibold flex items-center gap-1.5 cursor-pointer shadow-xs transition-colors flex-shrink-0"
+                className="px-3.5 py-1.5 bg-[#0F1A2C] hover:bg-[#1c3a54] text-white rounded-xl text-xs font-semibold flex items-center gap-1.5 cursor-pointer shadow-xs transition-colors flex-shrink-0"
               >
                 <span>Open Chat</span>
                 <span>▾</span>
               </button>
             </div>
           ) : (
-            <div className="bg-white border border-[#dfe6ef] rounded-2xl shadow-2xs overflow-hidden transition-all">
+            <div className="bg-white border border-[#e2e5e5] rounded-2xl shadow-2xs overflow-hidden transition-all">
               {/* Header */}
-              <div className="px-4 py-3 bg-[#fafbfc] border-b border-[#dfe6ef] flex items-center justify-between">
+              <div className="px-4 py-3 bg-[#fafbfc] border-b border-[#e2e5e5] flex items-center justify-between">
                 <div className="flex items-center gap-2 min-w-0">
-                  <span className="w-2 h-2 rounded-full bg-[#24754c] flex-shrink-0" />
-                  <span className="text-xs font-bold text-[#102645] truncate">
+                  <span className="w-2 h-2 rounded-full bg-[#28715e] flex-shrink-0" />
+                  <span className="text-xs font-bold text-[#183249] truncate">
                     Conversation
                   </span>
                   <span className="text-[11px] text-[#8a9bb0] truncate">
@@ -773,7 +773,7 @@ export default function TradiePage() {
                 <button
                   type="button"
                   onClick={() => setIsChatOpen(false)}
-                  className="px-2.5 py-1 bg-white border border-[#cbd5e2] hover:bg-[#f3f6fb] text-[#5b6e84] hover:text-[#102645] rounded-lg text-xs font-semibold flex items-center gap-1 cursor-pointer transition-colors"
+                  className="px-2.5 py-1 bg-white border border-[#cbd5e2] hover:bg-[#F9F8F5] text-[#5b6e84] hover:text-[#183249] rounded-lg text-xs font-semibold flex items-center gap-1 cursor-pointer transition-colors"
                 >
                   <span>Minimize</span>
                   <span className="text-[9px]">▲</span>
@@ -800,8 +800,8 @@ export default function TradiePage() {
                       <div
                         className={`max-w-[85%] rounded-2xl px-3.5 py-2.5 text-xs leading-relaxed ${
                           msg.senderRole === "builder"
-                            ? "bg-[#071d3b] text-white rounded-tr-none shadow-xs"
-                            : "bg-[#f4f6f8] text-[#102645] rounded-tl-none border border-[#dfe6ef]"
+                            ? "bg-[#0F1A2C] text-white rounded-tr-none shadow-xs"
+                            : "bg-[#F9F8F5] text-[#183249] rounded-tl-none border border-[#e2e5e5]"
                         }`}
                       >
                         <p>{msg.text}</p>
@@ -839,13 +839,13 @@ export default function TradiePage() {
                     e.preventDefault();
                     handleSendMessage();
                   }}
-                  className="p-3 bg-white border-t border-[#dfe6ef] flex items-center gap-2"
+                  className="p-3 bg-white border-t border-[#e2e5e5] flex items-center gap-2"
                 >
                   <button
                     type="button"
                     onClick={handleUploadOnBehalf}
                     title="Attach File"
-                    className="p-2 text-[#5b6e84] hover:text-[#071d3b] hover:bg-[#f4f6f8] rounded-lg transition-colors cursor-pointer"
+                    className="p-2 text-[#5b6e84] hover:text-[#0F1A2C] hover:bg-[#F9F8F5] rounded-lg transition-colors cursor-pointer"
                   >
                     📎
                   </button>
@@ -854,12 +854,12 @@ export default function TradiePage() {
                     value={inputMessage}
                     onChange={(e) => setInputMessage(e.target.value)}
                     placeholder={`Message ${selectedTradie.name.split(" ")[0]}...`}
-                    className="flex-1 px-3 py-2 bg-[#f4f6f8] border border-[#dfe6ef] rounded-xl text-xs text-[#102645] placeholder-[#8a9bb0] focus:outline-none focus:border-[#071d3b]"
+                    className="flex-1 px-3 py-2 bg-[#F9F8F5] border border-[#e2e5e5] rounded-xl text-xs text-[#183249] placeholder-[#8a9bb0] focus:outline-none focus:border-[#0F1A2C]"
                   />
                   <button
                     type="submit"
                     disabled={!inputMessage.trim()}
-                    className="px-3.5 py-2 bg-[#071d3b] hover:bg-[#15345d] disabled:opacity-40 text-white rounded-xl text-xs font-semibold transition-colors shadow-xs flex items-center gap-1 cursor-pointer"
+                    className="px-3.5 py-2 bg-[#0F1A2C] hover:bg-[#1c3a54] disabled:opacity-40 text-white rounded-xl text-xs font-semibold transition-colors shadow-xs flex items-center gap-1 cursor-pointer"
                   >
                     <span>Send</span>
                     <span>→</span>
@@ -877,20 +877,20 @@ export default function TradiePage() {
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="bg-white border border-[#dfe6ef] rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-4"
+            className="bg-white border border-[#e2e5e5] rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-4"
           >
-            <div className="flex items-center justify-between pb-2 border-b border-[#dfe6ef]">
+            <div className="flex items-center justify-between pb-2 border-b border-[#e2e5e5]">
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-[#24754c]">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-[#28715e]">
                   Onboarding
                 </span>
-                <h3 className="text-lg font-bold text-[#102645]">
+                <h3 className="text-lg font-bold text-[#183249]">
                   Invite Tradie
                 </h3>
               </div>
               <button
                 onClick={() => setInviteModalOpen(false)}
-                className="w-7 h-7 rounded-full bg-[#f4f6f8] text-[#5b6e84] hover:bg-[#e2eaf4] flex items-center justify-center text-sm font-bold cursor-pointer"
+                className="w-7 h-7 rounded-full bg-[#F9F8F5] text-[#5b6e84] hover:bg-[#e2eaf4] flex items-center justify-center text-sm font-bold cursor-pointer"
               >
                 ✕
               </button>
@@ -898,7 +898,7 @@ export default function TradiePage() {
 
             <form onSubmit={handleInviteTradieSubmit} className="space-y-3.5 text-xs">
               <div>
-                <label className="block font-bold text-[#102645] mb-1">
+                <label className="block font-bold text-[#183249] mb-1">
                   Full Name *
                 </label>
                 <input
@@ -907,12 +907,12 @@ export default function TradiePage() {
                   value={newTradieName}
                   onChange={(e) => setNewTradieName(e.target.value)}
                   placeholder="e.g. Lachlan Vance"
-                  className="w-full px-3 py-2 bg-[#f4f6f8] border border-[#dfe6ef] rounded-lg text-xs text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                  className="w-full px-3 py-2 bg-[#F9F8F5] border border-[#e2e5e5] rounded-lg text-xs text-[#183249] focus:outline-none focus:border-[#0F1A2C]"
                 />
               </div>
 
               <div>
-                <label className="block font-bold text-[#102645] mb-1">
+                <label className="block font-bold text-[#183249] mb-1">
                   Business Name
                 </label>
                 <input
@@ -920,19 +920,19 @@ export default function TradiePage() {
                   value={newTradieBusiness}
                   onChange={(e) => setNewTradieBusiness(e.target.value)}
                   placeholder="e.g. Vance Electrical"
-                  className="w-full px-3 py-2 bg-[#f4f6f8] border border-[#dfe6ef] rounded-lg text-xs text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                  className="w-full px-3 py-2 bg-[#F9F8F5] border border-[#e2e5e5] rounded-lg text-xs text-[#183249] focus:outline-none focus:border-[#0F1A2C]"
                 />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block font-bold text-[#102645] mb-1">
+                  <label className="block font-bold text-[#183249] mb-1">
                     Trade *
                   </label>
                   <select
                     value={newTradieTrade}
                     onChange={(e) => setNewTradieTrade(e.target.value)}
-                    className="w-full px-3 py-2 bg-[#f4f6f8] border border-[#dfe6ef] rounded-lg text-xs text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                    className="w-full px-3 py-2 bg-[#F9F8F5] border border-[#e2e5e5] rounded-lg text-xs text-[#183249] focus:outline-none focus:border-[#0F1A2C]"
                   >
                     <option value="Licensed Electrician">Licensed Electrician</option>
                     <option value="Licensed Plumber & Drainer">Licensed Plumber & Drainer</option>
@@ -943,7 +943,7 @@ export default function TradiePage() {
                 </div>
 
                 <div>
-                  <label className="block font-bold text-[#102645] mb-1">
+                  <label className="block font-bold text-[#183249] mb-1">
                     Mobile Number *
                   </label>
                   <input
@@ -952,19 +952,19 @@ export default function TradiePage() {
                     value={newTradiePhone}
                     onChange={(e) => setNewTradiePhone(e.target.value)}
                     placeholder="+61 412 000 000"
-                    className="w-full px-3 py-2 bg-[#f4f6f8] border border-[#dfe6ef] rounded-lg text-xs text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                    className="w-full px-3 py-2 bg-[#F9F8F5] border border-[#e2e5e5] rounded-lg text-xs text-[#183249] focus:outline-none focus:border-[#0F1A2C]"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block font-bold text-[#102645] mb-1">
+                <label className="block font-bold text-[#183249] mb-1">
                   Job Site
                 </label>
                 <select
                   value={newTradieProperty}
                   onChange={(e) => setNewTradieProperty(e.target.value)}
-                  className="w-full px-3 py-2 bg-[#f4f6f8] border border-[#dfe6ef] rounded-lg text-xs text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                  className="w-full px-3 py-2 bg-[#F9F8F5] border border-[#e2e5e5] rounded-lg text-xs text-[#183249] focus:outline-none focus:border-[#0F1A2C]"
                 >
                   <option value="18 Banksia Crescent, Kenmore">18 Banksia Crescent, Kenmore (Alex & Emily)</option>
                   <option value="7 Cedar Street, Graceville">7 Cedar Street, Graceville (Sofia Nguyen)</option>
@@ -973,7 +973,7 @@ export default function TradiePage() {
               </div>
 
               <div>
-                <label className="block font-bold text-[#102645] mb-1">
+                <label className="block font-bold text-[#183249] mb-1">
                   Required Certificate
                 </label>
                 <input
@@ -981,11 +981,11 @@ export default function TradiePage() {
                   value={newTradieCert}
                   onChange={(e) => setNewTradieCert(e.target.value)}
                   placeholder="e.g. Electrical Safety Certificate Form 16"
-                  className="w-full px-3 py-2 bg-[#f4f6f8] border border-[#dfe6ef] rounded-lg text-xs text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                  className="w-full px-3 py-2 bg-[#F9F8F5] border border-[#e2e5e5] rounded-lg text-xs text-[#183249] focus:outline-none focus:border-[#0F1A2C]"
                 />
               </div>
 
-              <div className="bg-[#f0f9f4] border border-[#c7e3d1] rounded-xl p-3 text-[11px] text-[#24754c]">
+              <div className="bg-[#f0f9f4] border border-[#c7e3d1] rounded-xl p-3 text-[11px] text-[#28715e]">
                 An SMS link will be sent to their mobile for certificate uploads without login.
               </div>
 
@@ -993,13 +993,13 @@ export default function TradiePage() {
                 <button
                   type="button"
                   onClick={() => setInviteModalOpen(false)}
-                  className="px-4 py-2 bg-white border border-[#cbd5e2] text-[#5b6e84] rounded-xl text-xs font-semibold hover:bg-[#f4f6f8] cursor-pointer"
+                  className="px-4 py-2 bg-white border border-[#cbd5e2] text-[#5b6e84] rounded-xl text-xs font-semibold hover:bg-[#F9F8F5] cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-[#071d3b] hover:bg-[#15345d] text-white rounded-xl text-xs font-bold cursor-pointer shadow-xs"
+                  className="px-4 py-2 bg-[#0F1A2C] hover:bg-[#1c3a54] text-white rounded-xl text-xs font-bold cursor-pointer shadow-xs"
                 >
                   Send Invite
                 </button>
@@ -1015,20 +1015,20 @@ export default function TradiePage() {
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="bg-white border border-[#dfe6ef] rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4"
+            className="bg-white border border-[#e2e5e5] rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4"
           >
-            <div className="flex items-center justify-between pb-2 border-b border-[#dfe6ef]">
+            <div className="flex items-center justify-between pb-2 border-b border-[#e2e5e5]">
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-[#24754c]">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-[#28715e]">
                   Compliance
                 </span>
-                <h3 className="text-lg font-bold text-[#102645]">
+                <h3 className="text-lg font-bold text-[#183249]">
                   Request Certificate
                 </h3>
               </div>
               <button
                 onClick={() => setRequestCertModalOpen(false)}
-                className="w-7 h-7 rounded-full bg-[#f4f6f8] text-[#5b6e84] hover:bg-[#e2eaf4] flex items-center justify-center text-sm font-bold cursor-pointer"
+                className="w-7 h-7 rounded-full bg-[#F9F8F5] text-[#5b6e84] hover:bg-[#e2eaf4] flex items-center justify-center text-sm font-bold cursor-pointer"
               >
                 ✕
               </button>
@@ -1036,13 +1036,13 @@ export default function TradiePage() {
 
             <div className="space-y-3 text-xs">
               <div>
-                <label className="block font-bold text-[#102645] mb-1">
+                <label className="block font-bold text-[#183249] mb-1">
                   Subcontractor
                 </label>
                 <select
                   value={selectedTradie.id}
                   onChange={(e) => setSelectedTradieId(e.target.value)}
-                  className="w-full px-3 py-2 bg-[#f4f6f8] border border-[#dfe6ef] rounded-lg text-xs text-[#102645]"
+                  className="w-full px-3 py-2 bg-[#F9F8F5] border border-[#e2e5e5] rounded-lg text-xs text-[#183249]"
                 >
                   {tradies.map((t) => (
                     <option key={t.id} value={t.id}>
@@ -1053,10 +1053,10 @@ export default function TradiePage() {
               </div>
 
               <div>
-                <label className="block font-bold text-[#102645] mb-1">
+                <label className="block font-bold text-[#183249] mb-1">
                   Certificate Type
                 </label>
-                <select className="w-full px-3 py-2 bg-[#f4f6f8] border border-[#dfe6ef] rounded-lg text-xs text-[#102645]">
+                <select className="w-full px-3 py-2 bg-[#F9F8F5] border border-[#e2e5e5] rounded-lg text-xs text-[#183249]">
                   <option>QBCC Form 16 - Electrical Safety Certificate</option>
                   <option>QBCC Form 43 - Wet Area Waterproofing Certificate</option>
                   <option>AS 3660.1 - Termite Management Notice</option>
@@ -1064,7 +1064,7 @@ export default function TradiePage() {
                 </select>
               </div>
 
-              <div className="p-3 bg-[#fffaf0] border border-[#fce3b8] rounded-xl text-[11px] text-[#8b641c]">
+              <div className="p-3 bg-[#fffaf0] border border-[#fce3b8] rounded-xl text-[11px] text-[#946315]">
                 An SMS reminder with a direct upload link will be sent to the subcontractor.
               </div>
 
@@ -1072,7 +1072,7 @@ export default function TradiePage() {
                 <button
                   type="button"
                   onClick={() => setRequestCertModalOpen(false)}
-                  className="px-4 py-2 bg-white border border-[#cbd5e2] text-[#5b6e84] rounded-xl text-xs font-semibold hover:bg-[#f4f6f8] cursor-pointer"
+                  className="px-4 py-2 bg-white border border-[#cbd5e2] text-[#5b6e84] rounded-xl text-xs font-semibold hover:bg-[#F9F8F5] cursor-pointer"
                 >
                   Cancel
                 </button>
@@ -1082,7 +1082,7 @@ export default function TradiePage() {
                     setRequestCertModalOpen(false);
                     handleResendSmsLink();
                   }}
-                  className="px-4 py-2 bg-[#071d3b] hover:bg-[#15345d] text-white rounded-xl text-xs font-bold cursor-pointer shadow-xs"
+                  className="px-4 py-2 bg-[#0F1A2C] hover:bg-[#1c3a54] text-white rounded-xl text-xs font-bold cursor-pointer shadow-xs"
                 >
                   Send Request
                 </button>

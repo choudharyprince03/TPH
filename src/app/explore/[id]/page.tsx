@@ -12,21 +12,21 @@ export default function ProfessionalProfilePage({ params }: { params: Promise<{ 
   const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
 
   return (
-    <div className="w-full flex-1 flex flex-col bg-[#f4f6f8] text-[#102645] font-sans">
+    <div className="w-full flex-1 flex flex-col bg-[#F9F8F5] text-[#183249] font-sans">
       {/* ── Top Breadcrumbs ────────────────────────────────────────── */}
-      <div className="bg-white border-b border-[#dfe6ef] py-3.5 px-6 lg:px-9">
-        <div className="max-w-[1240px] mx-auto flex items-center justify-between text-[11px] text-[#68788e]">
+      <div className="bg-white border-b border-[#e2e5e5] py-3.5 px-6 lg:px-9">
+        <div className="max-w-[1240px] mx-auto flex items-center justify-between text-[11px] text-[#64727e]">
           <nav className="flex items-center gap-2">
             <Link href="/" className="hover:underline">Home</Link>
             <span>›</span>
             <Link href="/explore" className="hover:underline">Find help</Link>
             <span>›</span>
-            <span className="text-[#102645] font-semibold">{pro.name}</span>
+            <span className="text-[#183249] font-semibold">{pro.name}</span>
           </nav>
 
           <Link
             href="/explore"
-            className="flex items-center gap-1.5 font-semibold text-[#071d3b] hover:underline"
+            className="flex items-center gap-1.5 font-semibold text-[#0F1A2C] hover:underline"
           >
             <span>← Back to all specialists</span>
           </Link>
@@ -36,9 +36,9 @@ export default function ProfessionalProfilePage({ params }: { params: Promise<{ 
       <div className="max-w-[1240px] mx-auto px-6 lg:px-9 py-8 w-full flex-1">
 
         {/* ── Profile Masthead Card with Cover Photo ─────────────────── */}
-        <section className="bg-white border border-[#dfe6ef] rounded-2xl overflow-hidden shadow-sm mb-8">
+        <section className="bg-white border border-[#e2e5e5] rounded-2xl overflow-hidden shadow-sm mb-8">
           {/* Cover Photo */}
-          <div className="relative w-full h-48 sm:h-64 bg-[#071d3b] overflow-hidden">
+          <div className="relative w-full h-48 sm:h-64 bg-[#0F1A2C] overflow-hidden">
             <img
               src={pro.coverUrl}
               alt={`${pro.business} cover`}
@@ -46,7 +46,7 @@ export default function ProfessionalProfilePage({ params }: { params: Promise<{ 
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
             <div className="absolute top-4 right-4">
-              <span className="bg-white/90 backdrop-blur-sm text-[#071d3b] font-bold text-[10px] px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
+              <span className="bg-white/90 backdrop-blur-sm text-[#0F1A2C] font-bold text-[10px] px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
                 {pro.category.toUpperCase()} SPECIALIST
               </span>
             </div>
@@ -57,7 +57,7 @@ export default function ProfessionalProfilePage({ params }: { params: Promise<{ 
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 -mt-14 sm:-mt-16 mb-6">
               {/* Avatar Headshot Photo */}
               <div className="flex items-end gap-5">
-                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden border-4 border-white shadow-lg bg-[#071d3b] flex-shrink-0 relative">
+                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden border-4 border-white shadow-lg bg-[#0F1A2C] flex-shrink-0 relative">
                   <img
                     src={pro.avatarUrl}
                     alt={pro.name}
@@ -67,16 +67,16 @@ export default function ProfessionalProfilePage({ params }: { params: Promise<{ 
 
                 <div className="min-w-0">
                   <div className="flex items-center gap-2 flex-wrap mb-1">
-                    <h1 className="text-2xl sm:text-3xl font-bold text-[#102645] leading-tight">
+                    <h1 className="text-2xl sm:text-3xl font-bold text-[#183249] leading-tight">
                       {pro.name}
                     </h1>
-                    <span className="inline-flex items-center gap-1 bg-[#eaf5ef] text-[#24754c] text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-[#cbe3d3]">
+                    <span className="inline-flex items-center gap-1 bg-[#eaf4ef] text-[#28715e] text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-[#cbe3d3]">
                       <span>✓</span>
                       <span>Verified Australian Specialist</span>
                     </span>
                   </div>
-                  <p className="text-[13px] font-semibold text-[#071d3b]">
-                    {pro.role} · <span className="text-[#68788e] font-normal">{pro.business}</span>
+                  <p className="text-[13px] font-semibold text-[#0F1A2C]">
+                    {pro.role} · <span className="text-[#64727e] font-normal">{pro.business}</span>
                   </p>
                 </div>
               </div>
@@ -85,7 +85,7 @@ export default function ProfessionalProfilePage({ params }: { params: Promise<{ 
               <div className="flex items-center gap-2.5 flex-wrap">
                 <Link
                   href={pro.link}
-                  className="px-5 py-2.5 bg-[#071d3b] hover:bg-[#102d59] text-white rounded-xl text-[12px] font-bold transition-all shadow-sm flex items-center gap-1.5"
+                  className="px-5 py-2.5 bg-[#0F1A2C] hover:bg-[#102d59] text-white rounded-xl text-[12px] font-bold transition-all shadow-sm flex items-center gap-1.5"
                 >
                   <span>Connect via TrustLink™</span>
                   <span>→</span>
@@ -94,21 +94,21 @@ export default function ProfessionalProfilePage({ params }: { params: Promise<{ 
             </div>
 
             {/* Quick Metadata Bar */}
-            <div className="pt-4 border-t border-[#dfe6ef] flex flex-wrap items-center gap-4 sm:gap-6 text-[12px] text-[#68788e]">
-              <div className="flex items-center gap-1 text-[#102645] font-semibold">
+            <div className="pt-4 border-t border-[#e2e5e5] flex flex-wrap items-center gap-4 sm:gap-6 text-[12px] text-[#64727e]">
+              <div className="flex items-center gap-1 text-[#183249] font-semibold">
                 <span className="text-amber-500 text-sm">★</span>
                 <span>{pro.rating}</span>
-                <span className="text-[#68788e] font-normal">({pro.reviewsCount} verified reviews)</span>
+                <span className="text-[#64727e] font-normal">({pro.reviewsCount} verified reviews)</span>
               </div>
-              <span className="text-[#dfe6ef]">•</span>
-              <div className="font-mono text-[#071d3b] font-semibold">
+              <span className="text-[#e2e5e5]">•</span>
+              <div className="font-mono text-[#0F1A2C] font-semibold">
                 {pro.licence}
               </div>
-              <span className="text-[#dfe6ef]">•</span>
+              <span className="text-[#e2e5e5]">•</span>
               <div>
                 📍 {pro.areas}
               </div>
-              <span className="text-[#dfe6ef]">•</span>
+              <span className="text-[#e2e5e5]">•</span>
               <div>
                 ⏳ {pro.experienceYears} Years Experience
               </div>
@@ -117,7 +117,7 @@ export default function ProfessionalProfilePage({ params }: { params: Promise<{ 
         </section>
 
         {/* ── Sub-Navigation Tabs ───────────────────────────────────── */}
-        <nav className="flex items-center gap-5 border-b border-[#dfe6ef] mb-8 overflow-x-auto text-[13px] font-medium">
+        <nav className="flex items-center gap-5 border-b border-[#e2e5e5] mb-8 overflow-x-auto text-[13px] font-medium">
           {[
             { id: "about", label: "About & Credentials", icon: "👤" },
             { id: "services", label: "Services & Fees", icon: "💼" },
@@ -129,14 +129,14 @@ export default function ProfessionalProfilePage({ params }: { params: Promise<{ 
               onClick={() => setActiveTab(tab.id as any)}
               className={`py-3 relative flex items-center gap-2 whitespace-nowrap transition-colors ${
                 activeTab === tab.id
-                  ? "text-[#102645] font-bold after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-[#24754c]"
-                  : "text-[#68788e] hover:text-[#102645]"
+                  ? "text-[#183249] font-bold after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-[#28715e]"
+                  : "text-[#64727e] hover:text-[#183249]"
               }`}
             >
               <span>{tab.icon}</span>
               <span>{tab.label}</span>
               {tab.count && (
-                <span className="text-[10px] font-bold px-1.5 py-0.2 bg-[#dfe6ef] text-[#102645] rounded-full">
+                <span className="text-[10px] font-bold px-1.5 py-0.2 bg-[#e2e5e5] text-[#183249] rounded-full">
                   {tab.count}
                 </span>
               )}
@@ -154,18 +154,18 @@ export default function ProfessionalProfilePage({ params }: { params: Promise<{ 
             {activeTab === "about" && (
               <div className="space-y-6">
                 {/* Bio Card */}
-                <section className="bg-white border border-[#dfe6ef] rounded-2xl p-6 sm:p-8 shadow-sm">
-                  <div className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c] mb-1">
+                <section className="bg-white border border-[#e2e5e5] rounded-2xl p-6 sm:p-8 shadow-sm">
+                  <div className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#28715e] mb-1">
                     Specialist Background
                   </div>
-                  <h2 className="text-xl font-bold text-[#102645] mb-3">
+                  <h2 className="text-xl font-bold text-[#183249] mb-3">
                     About {pro.name}
                   </h2>
                   <p className="text-[13px] text-[#4e6582] leading-relaxed mb-6">
                     {pro.bio}
                   </p>
 
-                  <div className="p-4 rounded-xl bg-[#f4f6f8] border border-[#dfe6ef] text-[12px] text-[#556b83] flex items-center gap-3">
+                  <div className="p-4 rounded-xl bg-[#F9F8F5] border border-[#e2e5e5] text-[12px] text-[#556b83] flex items-center gap-3">
                     <span className="text-xl flex-shrink-0">🛡️</span>
                     <span>
                       <strong>The Property Helpline Standard:</strong> Identity, trade licence currency, and public liability insurance verified by TPH Compliance.
@@ -174,34 +174,34 @@ export default function ProfessionalProfilePage({ params }: { params: Promise<{ 
                 </section>
 
                 {/* Verification Badges Grid */}
-                <section className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm">
-                  <h3 className="text-base font-bold text-[#102645] mb-4">
+                <section className="bg-white border border-[#e2e5e5] rounded-2xl p-6 shadow-sm">
+                  <h3 className="text-base font-bold text-[#183249] mb-4">
                     Licences, Accreditations &amp; Insurance
                   </h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {pro.badges.map((b) => (
                       <div
                         key={b.title}
-                        className="p-4 rounded-xl border border-[#dfe6ef] bg-[#f9fafc] flex items-start gap-3.5 hover:border-[#071d3b]/30 transition-colors"
+                        className="p-4 rounded-xl border border-[#e2e5e5] bg-[#f9fafc] flex items-start gap-3.5 hover:border-[#0F1A2C]/30 transition-colors"
                       >
-                        <div className="w-9 h-9 rounded-lg bg-white border border-[#dfe6ef] flex items-center justify-center flex-shrink-0 shadow-2xs">
+                        <div className="w-9 h-9 rounded-lg bg-white border border-[#e2e5e5] flex items-center justify-center flex-shrink-0 shadow-2xs">
                           {b.title.includes("Certified") || b.title.includes("Licence") || b.title.includes("Licensed") || b.title.includes("Insurance") || b.title.includes("Liability") ? (
-                            <svg className="w-5 h-5 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-5 h-5 text-[#28715e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                             </svg>
                           ) : b.title.includes("Master") || b.title.includes("Member") || b.title.includes("Society") || b.title.includes("Assoc") ? (
-                            <svg className="w-5 h-5 text-[#efbd66]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-5 h-5 text-[#C59B27]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v13m0-13V4.5a2.5 2.5 0 115 0V8h-5zm0 0H7a2.5 2.5 0 110-5 2.5 2.5 0 012.5 2.5V8H12zm-8 4h16v9a1 1 0 01-1 1H5a1 1 0 01-1-1v-9z" />
                             </svg>
                           ) : (
-                            <svg className="w-5 h-5 text-[#071d3b]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-5 h-5 text-[#0F1A2C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                             </svg>
                           )}
                         </div>
                         <div>
-                          <strong className="block text-[13px] text-[#102645]">{b.title}</strong>
-                          <span className="text-[11px] text-[#68788e]">{b.subtitle}</span>
+                          <strong className="block text-[13px] text-[#183249]">{b.title}</strong>
+                          <span className="text-[11px] text-[#64727e]">{b.subtitle}</span>
                         </div>
                       </div>
                     ))}
@@ -209,12 +209,12 @@ export default function ProfessionalProfilePage({ params }: { params: Promise<{ 
                 </section>
 
                 {/* Featured Project Snapshot */}
-                <section className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm">
-                  <div className="flex items-center justify-between pb-3 border-b border-[#dfe6ef] mb-4">
-                    <h3 className="text-base font-bold text-[#102645]">Recent Featured Project</h3>
+                <section className="bg-white border border-[#e2e5e5] rounded-2xl p-6 shadow-sm">
+                  <div className="flex items-center justify-between pb-3 border-b border-[#e2e5e5] mb-4">
+                    <h3 className="text-base font-bold text-[#183249]">Recent Featured Project</h3>
                     <button
                       onClick={() => setActiveTab("portfolio")}
-                      className="text-[11px] font-bold text-[#071d3b] hover:underline"
+                      className="text-[11px] font-bold text-[#0F1A2C] hover:underline"
                     >
                       View all {pro.portfolio.length} photos →
                     </button>
@@ -230,14 +230,14 @@ export default function ProfessionalProfilePage({ params }: { params: Promise<{ 
                         />
                       </div>
                       <div className="flex flex-col justify-center">
-                        <span className="text-[10px] font-bold px-2 py-0.5 bg-[#eaf5ef] text-[#24754c] rounded w-fit mb-2">
+                        <span className="text-[10px] font-bold px-2 py-0.5 bg-[#eaf4ef] text-[#28715e] rounded w-fit mb-2">
                           {pro.portfolio[0].tag}
                         </span>
-                        <h4 className="text-lg font-bold text-[#102645]">{pro.portfolio[0].title}</h4>
-                        <p className="text-[12px] text-[#68788e] mt-1">{pro.portfolio[0].subtitle}</p>
+                        <h4 className="text-lg font-bold text-[#183249]">{pro.portfolio[0].title}</h4>
+                        <p className="text-[12px] text-[#64727e] mt-1">{pro.portfolio[0].subtitle}</p>
                         <Link
                           href={pro.link}
-                          className="mt-4 text-[12px] font-bold text-[#071d3b] hover:underline flex items-center gap-1"
+                          className="mt-4 text-[12px] font-bold text-[#0F1A2C] hover:underline flex items-center gap-1"
                         >
                           <span>Review full case file in TrustLink</span>
                           <span>→</span>
@@ -252,28 +252,28 @@ export default function ProfessionalProfilePage({ params }: { params: Promise<{ 
             {/* ── TAB 2: SERVICES & FEES ──────────────────────────────── */}
             {activeTab === "services" && (
               <div className="space-y-4">
-                <section className="bg-white border border-[#dfe6ef] rounded-2xl p-6 sm:p-8 shadow-sm">
-                  <div className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c] mb-1">
+                <section className="bg-white border border-[#e2e5e5] rounded-2xl p-6 sm:p-8 shadow-sm">
+                  <div className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#28715e] mb-1">
                     What We Offer
                   </div>
-                  <h2 className="text-xl font-bold text-[#102645] mb-2">
+                  <h2 className="text-xl font-bold text-[#183249] mb-2">
                     Services &amp; Transparent Price Guide
                   </h2>
-                  <p className="text-[12px] text-[#68788e] mb-6">
+                  <p className="text-[12px] text-[#64727e] mb-6">
                     Connect through TrustLink to agree upon an exact written scope before accepting work or transferring deposits.
                   </p>
 
-                  <div className="divide-y divide-[#dfe6ef]">
+                  <div className="divide-y divide-[#e2e5e5]">
                     {pro.services.map((s) => (
                       <div key={s.title} className="py-5 flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                         <div className="max-w-md">
-                          <h3 className="text-base font-bold text-[#102645] mb-1">{s.title}</h3>
-                          <p className="text-[12px] text-[#68788e] leading-relaxed">{s.desc}</p>
+                          <h3 className="text-base font-bold text-[#183249] mb-1">{s.title}</h3>
+                          <p className="text-[12px] text-[#64727e] leading-relaxed">{s.desc}</p>
                         </div>
                         {s.priceGuide && (
                           <div className="sm:text-right flex-shrink-0">
-                            <span className="text-[11px] text-[#68788e] block uppercase font-semibold">Guide</span>
-                            <span className="text-[13px] font-bold text-[#24754c]">{s.priceGuide}</span>
+                            <span className="text-[11px] text-[#64727e] block uppercase font-semibold">Guide</span>
+                            <span className="text-[13px] font-bold text-[#28715e]">{s.priceGuide}</span>
                           </div>
                         )}
                       </div>
@@ -286,14 +286,14 @@ export default function ProfessionalProfilePage({ params }: { params: Promise<{ 
             {/* ── TAB 3: PROJECT GALLERY (DUMMY PHOTOS) ───────────────── */}
             {activeTab === "portfolio" && (
               <div className="space-y-6">
-                <section className="bg-white border border-[#dfe6ef] rounded-2xl p-6 sm:p-8 shadow-sm">
-                  <div className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c] mb-1">
+                <section className="bg-white border border-[#e2e5e5] rounded-2xl p-6 sm:p-8 shadow-sm">
+                  <div className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#28715e] mb-1">
                     Visual Work Portfolio
                   </div>
-                  <h2 className="text-xl font-bold text-[#102645] mb-2">
+                  <h2 className="text-xl font-bold text-[#183249] mb-2">
                     Recent Projects &amp; Completed Works
                   </h2>
-                  <p className="text-[12px] text-[#68788e] mb-6">
+                  <p className="text-[12px] text-[#64727e] mb-6">
                     Actual photographs and case studies demonstrating build finishes, diagnostics, and compliance records.
                   </p>
 
@@ -302,7 +302,7 @@ export default function ProfessionalProfilePage({ params }: { params: Promise<{ 
                       <div
                         key={item.id}
                         onClick={() => setSelectedPhoto(item.imageUrl)}
-                        className="group bg-[#f9fafc] border border-[#dfe6ef] rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between"
+                        className="group bg-[#f9fafc] border border-[#e2e5e5] rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between"
                       >
                         <div className="relative h-48 w-full overflow-hidden bg-slate-100">
                           <img
@@ -318,13 +318,13 @@ export default function ProfessionalProfilePage({ params }: { params: Promise<{ 
                         </div>
 
                         <div className="p-4">
-                          <h3 className="text-base font-bold text-[#102645] group-hover:text-[#071d3b] transition-colors">
+                          <h3 className="text-base font-bold text-[#183249] group-hover:text-[#0F1A2C] transition-colors">
                             {item.title}
                           </h3>
-                          <p className="text-[11px] text-[#68788e] mt-1">
+                          <p className="text-[11px] text-[#64727e] mt-1">
                             {item.subtitle}
                           </p>
-                          <div className="mt-3 pt-3 border-t border-[#dfe6ef] flex items-center justify-between text-[11px] text-[#071d3b] font-semibold">
+                          <div className="mt-3 pt-3 border-t border-[#e2e5e5] flex items-center justify-between text-[11px] text-[#0F1A2C] font-semibold">
                             <span>Inspect full resolution</span>
                             <span>🔍</span>
                           </div>
@@ -339,31 +339,31 @@ export default function ProfessionalProfilePage({ params }: { params: Promise<{ 
             {/* ── TAB 4: CLIENT REVIEWS ───────────────────────────────── */}
             {activeTab === "reviews" && (
               <div className="space-y-6">
-                <section className="bg-white border border-[#dfe6ef] rounded-2xl p-6 sm:p-8 shadow-sm">
-                  <div className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c] mb-1">
+                <section className="bg-white border border-[#e2e5e5] rounded-2xl p-6 sm:p-8 shadow-sm">
+                  <div className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#28715e] mb-1">
                     Feedback From Verified Homeowners
                   </div>
-                  <h2 className="text-xl font-bold text-[#102645] mb-2">
+                  <h2 className="text-xl font-bold text-[#183249] mb-2">
                     Client Reviews &amp; Testimonials
                   </h2>
-                  <p className="text-[12px] text-[#68788e] mb-6">
+                  <p className="text-[12px] text-[#64727e] mb-6">
                     All reviews are submitted by property owners who concluded a project or digital handover via TrustLink.
                   </p>
 
-                  <div className="divide-y divide-[#dfe6ef] space-y-4">
+                  <div className="divide-y divide-[#e2e5e5] space-y-4">
                     {pro.reviews.map((r) => (
                       <div key={r.id} className="pt-4 first:pt-0">
                         <div className="flex items-center justify-between mb-2">
                           <div>
-                            <strong className="text-sm text-[#102645] font-bold">{r.author}</strong>
-                            <span className="text-[11px] text-[#68788e] ml-2">({r.suburb})</span>
+                            <strong className="text-sm text-[#183249] font-bold">{r.author}</strong>
+                            <span className="text-[11px] text-[#64727e] ml-2">({r.suburb})</span>
                           </div>
                           <div className="flex items-center gap-1 text-amber-500 text-xs">
                             {"★".repeat(r.rating)}
                             <span className="text-[10px] text-[#8a97a7] ml-1">{r.date}</span>
                           </div>
                         </div>
-                        <p className="text-[12px] text-[#4e6582] leading-relaxed italic bg-[#f9fafc] p-4 rounded-xl border border-[#dfe6ef]">
+                        <p className="text-[12px] text-[#4e6582] leading-relaxed italic bg-[#f9fafc] p-4 rounded-xl border border-[#e2e5e5]">
                           &ldquo;{r.comment}&rdquo;
                         </p>
                       </div>
@@ -377,15 +377,15 @@ export default function ProfessionalProfilePage({ params }: { params: Promise<{ 
 
           {/* Right Column (4 cols): Sticky TrustLink Action Card */}
           <div className="lg:col-span-4">
-            <aside className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm sticky top-6 space-y-6">
+            <aside className="bg-white border border-[#e2e5e5] rounded-2xl p-6 shadow-sm sticky top-6 space-y-6">
               <div>
-                <div className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c] mb-1">
+                <div className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#28715e] mb-1">
                   Connect Directly
                 </div>
-                <h3 className="text-xl font-bold text-[#102645] mb-2">
+                <h3 className="text-xl font-bold text-[#183249] mb-2">
                   Start with TrustLink™
                 </h3>
-                <p className="text-[12px] text-[#68788e] leading-relaxed">
+                <p className="text-[12px] text-[#64727e] leading-relaxed">
                   Connect with {pro.name} without exposing personal contact details or giving away unsolicited access.
                 </p>
               </div>
@@ -394,7 +394,7 @@ export default function ProfessionalProfilePage({ params }: { params: Promise<{ 
               <div className="space-y-3">
                 <Link
                   href={pro.link}
-                  className="w-full py-3 bg-[#071d3b] hover:bg-[#102d59] text-white font-bold text-[12px] rounded-xl transition-colors shadow-sm flex items-center justify-center gap-2"
+                  className="w-full py-3 bg-[#0F1A2C] hover:bg-[#102d59] text-white font-bold text-[12px] rounded-xl transition-colors shadow-sm flex items-center justify-center gap-2"
                 >
                   <span>Open TrustLink Connection</span>
                   <span>→</span>
@@ -402,7 +402,7 @@ export default function ProfessionalProfilePage({ params }: { params: Promise<{ 
 
                 <Link
                   href="/properties"
-                  className="w-full py-2.5 bg-white border border-[#cbd5e2] hover:bg-[#f3f6fb] text-[#102645] font-semibold text-[12px] rounded-xl transition-colors flex items-center justify-center gap-1.5"
+                  className="w-full py-2.5 bg-white border border-[#cbd5e2] hover:bg-[#F9F8F5] text-[#183249] font-semibold text-[12px] rounded-xl transition-colors flex items-center justify-center gap-1.5"
                 >
                   <span>Attach Prop ID Passport</span>
                   <span>🏠</span>
@@ -410,24 +410,24 @@ export default function ProfessionalProfilePage({ params }: { params: Promise<{ 
               </div>
 
               {/* TrustLink Guarantees */}
-              <div className="pt-4 border-t border-[#dfe6ef] space-y-2.5 text-[11px] text-[#68788e]">
+              <div className="pt-4 border-t border-[#e2e5e5] space-y-2.5 text-[11px] text-[#64727e]">
                 <div className="flex items-start gap-2">
-                  <span className="text-[#24754c]">✓</span>
+                  <span className="text-[#28715e]">✓</span>
                   <span><strong>Scoped Consent:</strong> Choose exactly which plans or certificates to share.</span>
                 </div>
                 <div className="flex items-start gap-2">
-                  <span className="text-[#24754c]">✓</span>
+                  <span className="text-[#28715e]">✓</span>
                   <span><strong>Revocable Anytime:</strong> Pause or stop access with a single click.</span>
                 </div>
                 <div className="flex items-start gap-2">
-                  <span className="text-[#24754c]">✓</span>
+                  <span className="text-[#28715e]">✓</span>
                   <span><strong>Zero Third-Party Marketing:</strong> Messages stay strictly between you and {pro.name.split(" ")[0]}.</span>
                 </div>
               </div>
 
               {/* Direct Availability Note */}
-              <div className="p-3 bg-[#f3f6fb] rounded-xl text-[11px] text-[#071d3b] border border-[#dfe6ef] flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#24754c] animate-pulse" />
+              <div className="p-3 bg-[#F9F8F5] rounded-xl text-[11px] text-[#0F1A2C] border border-[#e2e5e5] flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-[#28715e] animate-pulse" />
                 <span>Currently accepting inquiries in {pro.areas.split(",")[0]}.</span>
               </div>
             </aside>

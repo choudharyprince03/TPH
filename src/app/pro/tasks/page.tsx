@@ -114,22 +114,22 @@ export default function ProTasksPage() {
       {/* ── Page Header ────────────────────────────────────────────── */}
       <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
         <div>
-          <div className="text-[9px] font-bold uppercase tracking-[1.4px] text-[#24754c] mb-1">
+          <div className="text-[9px] font-bold uppercase tracking-[1.4px] text-[#28715e] mb-1">
             Workflow &amp; Field Coordination · Hart Homes
           </div>
-          <h1 className="text-3xl sm:text-4xl font-semibold tracking-[-0.8px] text-[#102645]">
+          <h1 className="text-3xl sm:text-4xl font-semibold tracking-[-0.8px] text-[#183249]">
             Follow-ups &amp; Tasks
           </h1>
-          <p className="text-[13px] text-[#68788e] mt-1">
+          <p className="text-[13px] text-[#64727e] mt-1">
             Coordinate site trades, certifier inspections, and client handover milestones.
           </p>
         </div>
 
         <Link
           href="/pro/tasks/new"
-          className="px-4 py-2.5 bg-[#071d3b] hover:bg-[#102d59] text-white rounded-xl text-[12px] font-semibold transition-colors shadow-sm self-start sm:self-auto inline-flex items-center gap-1.5"
+          className="px-4 py-2.5 bg-[#0F1A2C] hover:bg-[#102d59] text-white rounded-xl text-[12px] font-semibold transition-colors shadow-sm self-start sm:self-auto inline-flex items-center gap-1.5"
         >
-          <svg className="w-4 h-4 text-[#efbd66]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-4 h-4 text-[#C59B27]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 4v16m8-8H4" />
           </svg>
           <span>Add New Task</span>
@@ -139,7 +139,7 @@ export default function ProTasksPage() {
       {/* ── Filter Chips & Summary ──────────────────────────────────── */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-2 mb-6">
         <div className="flex items-center gap-3">
-          <label htmlFor="pro-tasks-filter" className="text-xs font-bold text-[#68788e]">
+          <label htmlFor="pro-tasks-filter" className="text-xs font-bold text-[#64727e]">
             Category:
           </label>
           <div className="relative inline-block min-w-[220px]">
@@ -147,7 +147,7 @@ export default function ProTasksPage() {
               id="pro-tasks-filter"
               value={filter}
               onChange={(e) => setFilter(e.target.value)}
-              className="w-full appearance-none bg-white border border-[#dfe6ef] hover:border-[#cbd5e1] text-[#102645] font-bold text-xs rounded-xl px-4 py-2 pr-9 shadow-2xs focus:outline-none focus:border-[#071d3b] cursor-pointer transition-colors"
+              className="w-full appearance-none bg-white border border-[#e2e5e5] hover:border-[#cbd5e1] text-[#183249] font-bold text-xs rounded-xl px-4 py-2 pr-9 shadow-2xs focus:outline-none focus:border-[#0F1A2C] cursor-pointer transition-colors"
             >
               {FILTERS.map((f) => (
                 <option key={f} value={f}>
@@ -155,7 +155,7 @@ export default function ProTasksPage() {
                 </option>
               ))}
             </select>
-            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-[#68788e]">
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-[#64727e]">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
               </svg>
@@ -163,27 +163,27 @@ export default function ProTasksPage() {
           </div>
         </div>
 
-        <span className="text-[11px] text-[#68788e] font-medium hidden sm:inline">
+        <span className="text-[11px] text-[#64727e] font-medium hidden sm:inline">
           Showing {filtered.length} of {tasks.length} tasks
         </span>
       </div>
 
       {/* ── Task List ───────────────────────────────────────────────── */}
-      <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm divide-y divide-[#dfe6ef] text-[12px] mb-10">
+      <div className="bg-white border border-[#e2e5e5] rounded-2xl p-6 shadow-sm divide-y divide-[#e2e5e5] text-[12px] mb-10">
         {filtered.length === 0 ? (
           <div className="py-12 text-center">
-            <div className="w-12 h-12 rounded-xl bg-[#f4f6f8] text-[#68788e] flex items-center justify-center mx-auto mb-3">
+            <div className="w-12 h-12 rounded-xl bg-[#F9F8F5] text-[#64727e] flex items-center justify-center mx-auto mb-3">
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
               </svg>
             </div>
-            <p className="text-[13px] font-bold text-[#102645]">No tasks match this filter</p>
-            <p className="text-[11px] text-[#68788e] mt-0.5 mb-4">
+            <p className="text-[13px] font-bold text-[#183249]">No tasks match this filter</p>
+            <p className="text-[11px] text-[#64727e] mt-0.5 mb-4">
               Clear the filter or schedule a new site milestone.
             </p>
             <Link
               href="/pro/tasks/new"
-              className="px-4 py-2 bg-[#071d3b] hover:bg-[#102d59] text-white text-[11px] font-bold rounded-lg transition-colors inline-flex items-center gap-1.5"
+              className="px-4 py-2 bg-[#0F1A2C] hover:bg-[#102d59] text-white text-[11px] font-bold rounded-lg transition-colors inline-flex items-center gap-1.5"
             >
               + Add New Task
             </Link>
@@ -196,16 +196,16 @@ export default function ProTasksPage() {
                   type="checkbox"
                   checked={task.completed}
                   onChange={() => toggleTask(task.id)}
-                  className="w-4 h-4 rounded text-[#071d3b] cursor-pointer mt-0.5"
+                  className="w-4 h-4 rounded text-[#0F1A2C] cursor-pointer mt-0.5"
                 />
                 <div className="min-w-0">
                   <div className="flex items-center gap-2 flex-wrap mb-0.5">
-                    <strong className={`text-[13px] font-semibold ${task.completed ? "line-through text-[#8a97a7]" : "text-[#102645]"}`}>
+                    <strong className={`text-[13px] font-semibold ${task.completed ? "line-through text-[#8a97a7]" : "text-[#183249]"}`}>
                       {task.title}
                     </strong>
                     
                     {/* Category Tag */}
-                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[#f0f4f9] text-[#071d3b]">
+                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[#f0f4f9] text-[#0F1A2C]">
                       {task.category}
                     </span>
 
@@ -218,14 +218,14 @@ export default function ProTasksPage() {
 
                     {/* Handover Gate Tag */}
                     {task.isHandoverGate && (
-                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[#eaf5ef] text-[#24754c] border border-[#c7e3d1]">
+                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[#eaf4ef] text-[#28715e] border border-[#c7e3d1]">
                         Handover Gate
                       </span>
                     )}
                   </div>
 
-                  <p className="text-[11px] text-[#68788e]">
-                    {task.property} · Client: <span className="text-[#102645] font-medium">{task.client}</span> · Due: <span className="font-semibold text-[#102645]">{task.due}</span>
+                  <p className="text-[11px] text-[#64727e]">
+                    {task.property} · Client: <span className="text-[#183249] font-medium">{task.client}</span> · Due: <span className="font-semibold text-[#183249]">{task.due}</span>
                     {task.assignee && (
                       <span> · Assigned: <span className="text-[#556b83] font-medium">{task.assignee}</span></span>
                     )}
@@ -236,7 +236,7 @@ export default function ProTasksPage() {
               <div className="flex items-center gap-2 self-start sm:self-auto flex-shrink-0 ml-7 sm:ml-0">
                 <Link
                   href="/pro/trustlinks/welcome"
-                  className="px-3 py-1.5 bg-[#f3f6fb] hover:bg-[#e4ecf7] text-[#071d3b] font-semibold rounded-lg text-[11px] transition-colors"
+                  className="px-3 py-1.5 bg-[#F9F8F5] hover:bg-[#e4ecf7] text-[#0F1A2C] font-semibold rounded-lg text-[11px] transition-colors"
                 >
                   Open TrustLink →
                 </Link>

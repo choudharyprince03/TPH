@@ -225,16 +225,16 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
   };
 
   return (
-    <div className="w-full flex-1 flex flex-col bg-[#f4f6f8] text-[#102645]">
+    <div className="w-full flex-1 flex flex-col bg-[#F9F8F5] text-[#183249]">
       <div className="max-w-[1240px] mx-auto px-6 lg:px-9 py-8 w-full flex-1">
 
         {/* ── Breadcrumb ─────────────────────────────────────────────── */}
-        <nav className="flex items-center gap-2 text-[11px] text-[#68788e] mb-6" aria-label="Breadcrumb">
+        <nav className="flex items-center gap-2 text-[11px] text-[#64727e] mb-6" aria-label="Breadcrumb">
           <Link href="/properties" className="hover:underline">My Property World</Link>
           <span>›</span>
           <Link href="/trustlinks" className="hover:underline">Trust Link</Link>
           <span>›</span>
-          <span className="text-[#102645] font-semibold">{data.proName}</span>
+          <span className="text-[#183249] font-semibold">{data.proName}</span>
         </nav>
 
         {/* ── Trust Masthead (Prototype .trust-mast) ─────────────────── */}
@@ -245,19 +245,19 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
                 data.avatarTone === "blue"
                   ? "bg-[#e6eaf3] text-[#425b7c]"
                   : data.avatarTone === "green"
-                  ? "bg-[#eaf5ef] text-[#24754c]"
+                  ? "bg-[#eaf4ef] text-[#28715e]"
                   : "bg-[#eee8dc] text-[#76623f]"
               }`}>
                 {data.proAvatar}
               </div>
               <div>
-                <div className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c] mb-0.5">
+                <div className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#28715e] mb-0.5">
                   Connected Professional
                 </div>
-                <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#102645]">
+                <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#183249]">
                   {data.proName}
                 </h1>
-                <div className="text-[12px] text-[#68788e] mt-0.5">
+                <div className="text-[12px] text-[#64727e] mt-0.5">
                   {data.proRole} · {data.proBusiness}
                 </div>
               </div>
@@ -265,21 +265,21 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
 
             <span className={`px-3 py-1 rounded-full text-[11px] font-bold self-start sm:self-auto ${
               stopped
-                ? "bg-[#fbeeee] text-[#a44042]"
+                ? "bg-[#fbeeee] text-[#a34b43]"
                 : paused
-                ? "bg-[#fff4df] text-[#8b641c]"
-                : "bg-[#eaf5ef] text-[#24754c]"
+                ? "bg-[#fbf3e4] text-[#946315]"
+                : "bg-[#eaf4ef] text-[#28715e]"
             }`}>
               {stopped ? "Access Ended" : paused ? "Access Paused" : "Active"}
             </span>
           </div>
 
           <div className="flex items-center gap-3 text-[11px] text-[#566d86] mt-5 pt-4 border-t border-[#d8e2ec] flex-wrap">
-            <span className="font-semibold text-[#102645]">{data.purpose}</span>
+            <span className="font-semibold text-[#183249]">{data.purpose}</span>
             <span>·</span>
             <Link
               href={`/properties/${data.propId}?tab=digital-key`}
-              className="hover:underline flex items-center gap-1 font-semibold text-[#071d3b]"
+              className="hover:underline flex items-center gap-1 font-semibold text-[#0F1A2C]"
             >
               <span>🏠</span>
               <span>{data.property} · Back to my home</span>
@@ -299,29 +299,29 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
         />
 
         {/* ── Connected Digital Key Status Card ── */}
-        <section className="bg-white border border-[#dfe6ef] rounded-2xl p-5 sm:p-6 mb-6 shadow-sm">
+        <section className="bg-white border border-[#e2e5e5] rounded-2xl p-5 sm:p-6 mb-6 shadow-sm">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-start gap-3.5">
-              <div className="w-11 h-11 rounded-xl bg-[#eaf5ef] text-[#24754c] border border-[#d2e6d9] flex items-center justify-center font-bold text-xl flex-shrink-0">
+              <div className="w-11 h-11 rounded-xl bg-[#eaf4ef] text-[#28715e] border border-[#d2e6d9] flex items-center justify-center font-bold text-xl flex-shrink-0">
                 🔑
               </div>
               <div>
                 <div className="flex items-center gap-2 mb-1 flex-wrap">
-                  <span className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c]">
+                  <span className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#28715e]">
                     HOME RECORD CONNECTED
                   </span>
-                  <span className="font-mono text-[10px] font-bold px-2 py-0.5 rounded bg-[#f1f5f9] text-[#102645] border border-[#cbd5e1]">
+                  <span className="font-mono text-[10px] font-bold px-2 py-0.5 rounded bg-[#f1f5f9] text-[#183249] border border-[#cbd5e1]">
                     {data.propId}
                   </span>
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-[#eaf5ef] text-[#24754c] flex items-center gap-1">
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-[#eaf4ef] text-[#28715e] flex items-center gap-1">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#10b981] animate-pulse" />
                     <span>Active</span>
                   </span>
                 </div>
-                <h3 className="text-base font-bold text-[#102645]">
+                <h3 className="text-base font-bold text-[#183249]">
                   Documents from your Digital Key
                 </h3>
-                <p className="text-xs text-[#68788e] mt-0.5">
+                <p className="text-xs text-[#64727e] mt-0.5">
                   {data.property} — you control exactly which documents {data.proName} can see. You can remove access at any time.
                 </p>
               </div>
@@ -330,7 +330,7 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
             <div className="flex items-center gap-2 self-start sm:self-auto flex-wrap sm:flex-nowrap">
               <Link
                 href={`/properties/${data.propId}?tab=digital-key`}
-                className="px-4 py-2 bg-[#071d3b] hover:bg-[#15345d] text-white rounded-xl text-xs font-bold transition-colors shadow-2xs whitespace-nowrap flex items-center gap-1.5"
+                className="px-4 py-2 bg-[#0F1A2C] hover:bg-[#1c3a54] text-white rounded-xl text-xs font-bold transition-colors shadow-2xs whitespace-nowrap flex items-center gap-1.5"
               >
                 <span>📦 Open Digital Key</span>
                 <span>→</span>
@@ -341,14 +341,14 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
 
         {/* ── Paused / Stopped Banner ─────────────────────────────────── */}
         {paused && !stopped && (
-          <div className="p-4 rounded-xl bg-[#fff4df] border border-[#f5dfb8] text-[#8b641c] text-[12px] mb-6 flex items-center justify-between gap-4">
+          <div className="p-4 rounded-xl bg-[#fbf3e4] border border-[#f5dfb8] text-[#946315] text-[12px] mb-6 flex items-center justify-between gap-4">
             <div className="flex items-center gap-2">
               <span>⏸️</span>
               <span>You paused this Trust Link. Shared access and new in-app messages remain paused until you resume.</span>
             </div>
             <button
               onClick={() => setPaused(false)}
-              className="px-3 py-1 bg-[#071d3b] text-white font-bold text-[11px] rounded-lg"
+              className="px-3 py-1 bg-[#0F1A2C] text-white font-bold text-[11px] rounded-lg"
             >
               Resume original permissions
             </button>
@@ -356,13 +356,13 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
         )}
 
         {stopped && (
-          <div className="p-4 rounded-xl bg-[#fbeeee] border border-[#f3d4d4] text-[#a44042] text-[12px] mb-6">
+          <div className="p-4 rounded-xl bg-[#fbeeee] border border-[#f3d4d4] text-[#a34b43] text-[12px] mb-6">
             Access ended. No future platform access is permitted through this link. Your own records remain available.
           </div>
         )}
 
         {/* ── Sub-Navigation Tabs ─────────────────────────────────────── */}
-        <nav className="flex items-center gap-4 sm:gap-7 border-b border-[#dfe6ef] mb-8 overflow-x-auto text-[13px] font-medium">
+        <nav className="flex items-center gap-4 sm:gap-7 border-b border-[#e2e5e5] mb-8 overflow-x-auto text-[13px] font-medium">
           {[
             { id: "overview", label: "Overview", icon: "🤝" },
             { id: "conversation", label: "Conversation", icon: "💬", count: `${messages.length}` },
@@ -374,14 +374,14 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
               onClick={() => setActiveTab(tab.id as any)}
               className={`py-3 relative flex items-center gap-2 whitespace-nowrap transition-colors ${
                 activeTab === tab.id
-                  ? "text-[#102645] font-bold after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-[#24754c]"
-                  : "text-[#68788e] hover:text-[#102645]"
+                  ? "text-[#183249] font-bold after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-[#28715e]"
+                  : "text-[#64727e] hover:text-[#183249]"
               }`}
             >
               <span>{tab.icon}</span>
               <span>{tab.label}</span>
               {tab.count && (
-                <span className="text-[10px] font-bold px-1.5 py-0.2 bg-[#dfe6ef] text-[#102645] rounded-full">
+                <span className="text-[10px] font-bold px-1.5 py-0.2 bg-[#e2e5e5] text-[#183249] rounded-full">
                   {tab.count}
                 </span>
               )}
@@ -394,100 +394,100 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-7">
 
             {/* Left Card: This Connection */}
-            <section className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm">
-              <div className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c] mb-1">
+            <section className="bg-white border border-[#e2e5e5] rounded-2xl p-6 shadow-sm">
+              <div className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#28715e] mb-1">
                 This connection
               </div>
-              <h2 className="text-xl font-bold text-[#102645] mb-2">{data.purpose}</h2>
-              <p className="text-[12px] text-[#68788e] mb-6">{data.note}</p>
+              <h2 className="text-xl font-bold text-[#183249] mb-2">{data.purpose}</h2>
+              <p className="text-[12px] text-[#64727e] mb-6">{data.note}</p>
 
-              <dl className="divide-y divide-[#dfe6ef] text-[12px] mb-6">
+              <dl className="divide-y divide-[#e2e5e5] text-[12px] mb-6">
                 <div className="py-2.5 grid grid-cols-[140px_1fr] gap-2">
-                  <dt className="text-[#68788e]">Connected with</dt>
-                  <dd className="text-[#102645] font-semibold">
+                  <dt className="text-[#64727e]">Connected with</dt>
+                  <dd className="text-[#183249] font-semibold">
                     {data.proName}<br />
-                    <small className="text-[#68788e] font-normal">{data.proRole}</small>
+                    <small className="text-[#64727e] font-normal">{data.proRole}</small>
                   </dd>
                 </div>
                 <div className="py-2.5 grid grid-cols-[140px_1fr] gap-2">
-                  <dt className="text-[#68788e]">Property context</dt>
-                  <dd className="text-[#102645] font-semibold">
+                  <dt className="text-[#64727e]">Property context</dt>
+                  <dd className="text-[#183249] font-semibold">
                     {data.property}<br />
-                    <small className="text-[#68788e] font-normal">Your Prop ID ({data.propId})</small>
+                    <small className="text-[#64727e] font-normal">Your Prop ID ({data.propId})</small>
                   </dd>
                 </div>
                 <div className="py-2.5 grid grid-cols-[140px_1fr] gap-2">
-                  <dt className="text-[#68788e]">Allowed contact</dt>
-                  <dd className="text-[#102645] font-semibold">{data.channel}</dd>
+                  <dt className="text-[#64727e]">Allowed contact</dt>
+                  <dd className="text-[#183249] font-semibold">{data.channel}</dd>
                 </div>
                 <div className="py-2.5 grid grid-cols-[140px_1fr] gap-2">
-                  <dt className="text-[#68788e]">Permission ends</dt>
-                  <dd className="text-[#102645] font-semibold">{data.expiry}</dd>
+                  <dt className="text-[#64727e]">Permission ends</dt>
+                  <dd className="text-[#183249] font-semibold">{data.expiry}</dd>
                 </div>
               </dl>
 
-              <div className="flex items-center gap-2.5 pt-4 border-t border-[#dfe6ef] flex-wrap">
+              <div className="flex items-center gap-2.5 pt-4 border-t border-[#e2e5e5] flex-wrap">
                 <button
                   onClick={() => setShowEditModal(true)}
-                  className="px-3.5 py-2 bg-white border border-[#cbd5e2] text-[#102645] rounded-xl text-[12px] font-semibold hover:bg-[#f3f6fb]"
+                  className="px-3.5 py-2 bg-white border border-[#cbd5e2] text-[#183249] rounded-xl text-[12px] font-semibold hover:bg-[#F9F8F5]"
                 >
                   ⚙️ Edit permissions
                 </button>
                 <button
                   onClick={() => setPaused(!paused)}
-                  className="px-3.5 py-2 bg-white border border-[#cbd5e2] text-[#102645] rounded-xl text-[12px] font-semibold hover:bg-[#f3f6fb]"
+                  className="px-3.5 py-2 bg-white border border-[#cbd5e2] text-[#183249] rounded-xl text-[12px] font-semibold hover:bg-[#F9F8F5]"
                 >
                   {paused ? "▶ Resume" : "⏸ Pause"}
                 </button>
                 <button
                   onClick={() => setShowStopModal(true)}
-                  className="px-3.5 py-2 bg-white border border-[#e4b8b8] text-[#a44042] rounded-xl text-[12px] font-semibold hover:bg-[#fbeeee]"
+                  className="px-3.5 py-2 bg-white border border-[#e4b8b8] text-[#a34b43] rounded-xl text-[12px] font-semibold hover:bg-[#fbeeee]"
                 >
                   Stop access
                 </button>
               </div>
 
-              <p className="text-[10px] text-[#68788e] mt-4 leading-relaxed">
+              <p className="text-[10px] text-[#64727e] mt-4 leading-relaxed">
                 Stopping access cannot retrieve downloaded copies or prevent contact outside the platform.
               </p>
             </section>
 
             {/* Right Card: Latest Conversation */}
-            <section className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+            <section className="bg-white border border-[#e2e5e5] rounded-2xl p-6 shadow-sm flex flex-col justify-between">
               <div>
-                <div className="flex items-center justify-between pb-3 border-b border-[#dfe6ef] mb-4">
-                  <h3 className="text-base font-bold text-[#102645]">Latest conversation</h3>
-                  <button onClick={() => setActiveTab("conversation")} className="text-[11px] font-bold text-[#071d3b] hover:underline">
+                <div className="flex items-center justify-between pb-3 border-b border-[#e2e5e5] mb-4">
+                  <h3 className="text-base font-bold text-[#183249]">Latest conversation</h3>
+                  <button onClick={() => setActiveTab("conversation")} className="text-[11px] font-bold text-[#0F1A2C] hover:underline">
                     Open →
                   </button>
                 </div>
 
                 {/* Latest Speech Bubble */}
-                <div className="bg-[#f3f6fb] p-4 rounded-2xl rounded-bl-sm text-[12px] text-[#102645] mb-4">
+                <div className="bg-[#F9F8F5] p-4 rounded-2xl rounded-bl-sm text-[12px] text-[#183249] mb-4">
                   <p className="leading-relaxed">{messages[messages.length - 1].text}</p>
-                  <small className="block text-[10px] text-[#68788e] mt-2">
+                  <small className="block text-[10px] text-[#64727e] mt-2">
                     {messages[messages.length - 1].sender} · {messages[messages.length - 1].time}
                   </small>
                 </div>
 
                 <button
                   onClick={() => setActiveTab("conversation")}
-                  className="w-full py-2.5 bg-[#071d3b] text-white rounded-xl text-[12px] font-semibold hover:bg-[#102d59] transition-colors mb-4"
+                  className="w-full py-2.5 bg-[#0F1A2C] text-white rounded-xl text-[12px] font-semibold hover:bg-[#102d59] transition-colors mb-4"
                 >
                   Open conversation 💬
                 </button>
 
-                <div className="p-3 bg-[#f9fafc] rounded-xl text-[11px] text-[#68788e] border border-[#dfe6ef] leading-relaxed">
-                  <strong className="text-[#102645]">{docs.filter((d) => d.shared).length} selected document(s)</strong> · {data.addressShared ? "Property address included in your permission." : "Property address is private."}
+                <div className="p-3 bg-[#f9fafc] rounded-xl text-[11px] text-[#64727e] border border-[#e2e5e5] leading-relaxed">
+                  <strong className="text-[#183249]">{docs.filter((d) => d.shared).length} selected document(s)</strong> · {data.addressShared ? "Property address included in your permission." : "Property address is private."}
                   <br />Other properties, private notes, and financial schedules are excluded.
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-[#dfe6ef] mt-4 flex items-center justify-between text-[11px]">
-                <button onClick={() => setActiveTab("permissions")} className="text-[#071d3b] font-semibold hover:underline">
+              <div className="pt-4 border-t border-[#e2e5e5] mt-4 flex items-center justify-between text-[11px]">
+                <button onClick={() => setActiveTab("permissions")} className="text-[#0F1A2C] font-semibold hover:underline">
                   Review exact permissions →
                 </button>
-                <Link href="/properties/TPH-KEN-018" className="text-[#24754c] font-semibold hover:underline">
+                <Link href="/properties/TPH-KEN-018" className="text-[#28715e] font-semibold hover:underline">
                   Return to Prop ID 🏠
                 </Link>
               </div>
@@ -501,8 +501,8 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
           <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-7">
             
             {/* Conversation Thread */}
-            <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm flex flex-col h-[560px]">
-              <h3 className="text-base font-bold text-[#102645] pb-3 border-b border-[#dfe6ef]">
+            <div className="bg-white border border-[#e2e5e5] rounded-2xl p-6 shadow-sm flex flex-col h-[560px]">
+              <h3 className="text-base font-bold text-[#183249] pb-3 border-b border-[#e2e5e5]">
                 Conversation with {data.proName.split(" ")[0]}
               </h3>
 
@@ -515,8 +515,8 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
                     <div
                       className={`p-4 rounded-2xl text-[12px] max-w-[85%] leading-relaxed ${
                         m.isMe
-                          ? "bg-[#071d3b] text-white rounded-br-sm"
-                          : "bg-[#f3f6fb] text-[#102645] rounded-bl-sm"
+                          ? "bg-[#0F1A2C] text-white rounded-br-sm"
+                          : "bg-[#F9F8F5] text-[#183249] rounded-bl-sm"
                       }`}
                     >
                       <p>{m.text}</p>
@@ -529,30 +529,30 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
               </div>
 
               {/* Message Composer */}
-              <form onSubmit={handleSendMessage} className="pt-3 border-t border-[#dfe6ef] flex gap-2">
+              <form onSubmit={handleSendMessage} className="pt-3 border-t border-[#e2e5e5] flex gap-2">
                 <input
                   type="text"
                   value={newMessage}
                   onChange={(e) => setNewMessage(e.target.value)}
                   disabled={paused || stopped}
                   placeholder={paused ? "Access paused..." : "Write a message to the builder..."}
-                  className="flex-1 p-2.5 border border-[#dfe6ef] rounded-xl text-[12px] text-[#102645] bg-[#fcfbf8] focus:outline-none"
+                  className="flex-1 p-2.5 border border-[#e2e5e5] rounded-xl text-[12px] text-[#183249] bg-[#fcfbf8] focus:outline-none"
                 />
                 <button
                   type="submit"
                   disabled={paused || stopped}
-                  className="px-5 py-2.5 bg-[#071d3b] hover:bg-[#102d59] text-white font-bold rounded-xl text-[12px] transition-colors"
+                  className="px-5 py-2.5 bg-[#0F1A2C] hover:bg-[#102d59] text-white font-bold rounded-xl text-[12px] transition-colors"
                 >
                   Send →
                 </button>
               </form>
 
               {/* Interactive Simulation Footer */}
-              <div className="pt-2 mt-2 flex items-center justify-between text-[10px] text-[#68788e]">
+              <div className="pt-2 mt-2 flex items-center justify-between text-[10px] text-[#64727e]">
                 <span>Sample conversation · Prototype session</span>
                 <button
                   onClick={simulateReply}
-                  className="text-[#24754c] font-semibold hover:underline"
+                  className="text-[#28715e] font-semibold hover:underline"
                 >
                   Try a sample reply ⚡
                 </button>
@@ -560,27 +560,27 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
             </div>
 
             {/* Right Sidecard: Clear Boundaries */}
-            <aside className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm self-start">
-              <div className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c] mb-1">
+            <aside className="bg-white border border-[#e2e5e5] rounded-2xl p-6 shadow-sm self-start">
+              <div className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#28715e] mb-1">
                 Trust Link stays with you
               </div>
-              <h3 className="text-xl font-bold text-[#102645] mb-2 leading-tight">
+              <h3 className="text-xl font-bold text-[#183249] mb-2 leading-tight">
                 One conversation.<br />Clear boundaries.
               </h3>
-              <p className="text-[12px] text-[#68788e] leading-relaxed mb-6">
+              <p className="text-[12px] text-[#64727e] leading-relaxed mb-6">
                 Messages belong to this professional and this purpose. Your other property records, valuations and conversations are kept strictly separate.
               </p>
 
               <button
                 onClick={() => setActiveTab("permissions")}
-                className="w-full py-2.5 bg-white border border-[#cbd5e2] hover:bg-[#f3f6fb] text-[#102645] font-bold rounded-xl text-[12px] transition-colors mb-3 flex items-center justify-center gap-2"
+                className="w-full py-2.5 bg-white border border-[#cbd5e2] hover:bg-[#F9F8F5] text-[#183249] font-bold rounded-xl text-[12px] transition-colors mb-3 flex items-center justify-center gap-2"
               >
                 <span>Manage permissions 🛡️</span>
               </button>
 
               <button
                 onClick={() => setActiveTab("permissions")}
-                className="text-[12px] text-[#071d3b] font-semibold hover:underline"
+                className="text-[12px] text-[#0F1A2C] font-semibold hover:underline"
               >
                 Review permissions →
               </button>
@@ -594,70 +594,70 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-7">
             
             {/* Permission Receipt Card */}
-            <section className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm">
-              <div className="flex items-center justify-between pb-3 border-b border-[#dfe6ef] mb-4">
-                <h3 className="text-base font-bold text-[#102645]">Your permission receipt</h3>
-                <span className="text-[10px] font-bold px-2 py-0.5 bg-[#eaf5ef] text-[#24754c] rounded">
+            <section className="bg-white border border-[#e2e5e5] rounded-2xl p-6 shadow-sm">
+              <div className="flex items-center justify-between pb-3 border-b border-[#e2e5e5] mb-4">
+                <h3 className="text-base font-bold text-[#183249]">Your permission receipt</h3>
+                <span className="text-[10px] font-bold px-2 py-0.5 bg-[#eaf4ef] text-[#28715e] rounded">
                   Version {data.permissionVersion}
                 </span>
               </div>
 
-              <dl className="divide-y divide-[#dfe6ef] text-[12px] mb-6">
+              <dl className="divide-y divide-[#e2e5e5] text-[12px] mb-6">
                 <div className="py-2.5 grid grid-cols-[140px_1fr] gap-2">
-                  <dt className="text-[#68788e]">Recipient</dt>
-                  <dd className="text-[#102645] font-semibold">
+                  <dt className="text-[#64727e]">Recipient</dt>
+                  <dd className="text-[#183249] font-semibold">
                     {data.proName}<br />
-                    <small className="text-[#68788e] font-normal">{data.proRole}</small>
+                    <small className="text-[#64727e] font-normal">{data.proRole}</small>
                   </dd>
                 </div>
                 <div className="py-2.5 grid grid-cols-[140px_1fr] gap-2">
-                  <dt className="text-[#68788e]">Purpose</dt>
-                  <dd className="text-[#102645]">{data.purpose}</dd>
+                  <dt className="text-[#64727e]">Purpose</dt>
+                  <dd className="text-[#183249]">{data.purpose}</dd>
                 </div>
                 <div className="py-2.5 grid grid-cols-[140px_1fr] gap-2">
-                  <dt className="text-[#68788e]">Property address</dt>
-                  <dd className="text-[#102645]">{data.addressShared ? `${data.property}, ${data.suburb}` : "Not shared"}</dd>
+                  <dt className="text-[#64727e]">Property address</dt>
+                  <dd className="text-[#183249]">{data.addressShared ? `${data.property}, ${data.suburb}` : "Not shared"}</dd>
                 </div>
                 <div className="py-2.5 grid grid-cols-[140px_1fr] gap-2">
-                  <dt className="text-[#68788e]">Documents</dt>
-                  <dd className="text-[#102645]">
+                  <dt className="text-[#64727e]">Documents</dt>
+                  <dd className="text-[#183249]">
                     {docs.filter((d) => d.shared).map((d) => d.name).join(", ") || "None selected"}
                   </dd>
                 </div>
                 <div className="py-2.5 grid grid-cols-[140px_1fr] gap-2">
-                  <dt className="text-[#68788e]">Contact channel</dt>
-                  <dd className="text-[#102645]">{data.channel}</dd>
+                  <dt className="text-[#64727e]">Contact channel</dt>
+                  <dd className="text-[#183249]">{data.channel}</dd>
                 </div>
                 <div className="py-2.5 grid grid-cols-[140px_1fr] gap-2">
-                  <dt className="text-[#68788e]">Expiry</dt>
-                  <dd className="text-[#102645]">{data.expiry}</dd>
+                  <dt className="text-[#64727e]">Expiry</dt>
+                  <dd className="text-[#183249]">{data.expiry}</dd>
                 </div>
                 <div className="py-2.5 grid grid-cols-[140px_1fr] gap-2">
-                  <dt className="text-[#68788e]">Current access</dt>
+                  <dt className="text-[#64727e]">Current access</dt>
                   <dd>
-                    <span className="text-[10px] font-bold px-2 py-0.5 bg-[#eaf5ef] text-[#24754c] rounded">
+                    <span className="text-[10px] font-bold px-2 py-0.5 bg-[#eaf4ef] text-[#28715e] rounded">
                       {stopped ? "Ended" : paused ? "Paused" : "Active"}
                     </span>
                   </dd>
                 </div>
               </dl>
 
-              <div className="flex items-center gap-2.5 pt-4 border-t border-[#dfe6ef] flex-wrap">
+              <div className="flex items-center gap-2.5 pt-4 border-t border-[#e2e5e5] flex-wrap">
                 <button
                   onClick={() => setShowEditModal(true)}
-                  className="px-3.5 py-2 bg-white border border-[#cbd5e2] text-[#102645] rounded-xl text-[12px] font-semibold hover:bg-[#f3f6fb]"
+                  className="px-3.5 py-2 bg-white border border-[#cbd5e2] text-[#183249] rounded-xl text-[12px] font-semibold hover:bg-[#F9F8F5]"
                 >
                   ⚙️ Edit permissions
                 </button>
                 <button
                   onClick={() => setPaused(!paused)}
-                  className="px-3.5 py-2 bg-white border border-[#cbd5e2] text-[#102645] rounded-xl text-[12px] font-semibold hover:bg-[#f3f6fb]"
+                  className="px-3.5 py-2 bg-white border border-[#cbd5e2] text-[#183249] rounded-xl text-[12px] font-semibold hover:bg-[#F9F8F5]"
                 >
                   {paused ? "Resume access" : "Pause"}
                 </button>
                 <button
                   onClick={() => setShowStopModal(true)}
-                  className="px-3.5 py-2 bg-white border border-[#e4b8b8] text-[#a44042] rounded-xl text-[12px] font-semibold hover:bg-[#fbeeee]"
+                  className="px-3.5 py-2 bg-white border border-[#e4b8b8] text-[#a34b43] rounded-xl text-[12px] font-semibold hover:bg-[#fbeeee]"
                 >
                   Stop access
                 </button>
@@ -668,35 +668,35 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
                   setStopped(true);
                   alert(`Blocked ${data.proName} across all TrustLinks. Existing records retained in Prop ID.`);
                 }}
-                className="text-[11px] text-[#a44042] font-semibold hover:underline mt-4 block"
+                className="text-[11px] text-[#a34b43] font-semibold hover:underline mt-4 block"
               >
                 Block this professional across my Trust Links
               </button>
             </section>
 
             {/* Right Sidecard: You Remain in Control */}
-            <aside className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm self-start">
-              <div className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c] mb-1">
+            <aside className="bg-white border border-[#e2e5e5] rounded-2xl p-6 shadow-sm self-start">
+              <div className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#28715e] mb-1">
                 You remain in control
               </div>
-              <h3 className="text-xl font-bold text-[#102645] mb-2 leading-tight">
+              <h3 className="text-xl font-bold text-[#183249] mb-2 leading-tight">
                 Sharing can change.<br />Your records stay.
               </h3>
-              <p className="text-[12px] text-[#68788e] leading-relaxed mb-4">
+              <p className="text-[12px] text-[#64727e] leading-relaxed mb-4">
                 Edit the items and duration while the link is open. Pause to temporarily stop access. Stop access to permanently end this permission.
               </p>
 
-              <div className="p-3.5 bg-[#f3f6fb] rounded-xl text-[11px] text-[#556b83] mb-4">
+              <div className="p-3.5 bg-[#F9F8F5] rounded-xl text-[11px] text-[#556b83] mb-4">
                 Reopening an ended connection requires a new request and fresh consent.
               </div>
 
-              <p className="text-[10px] text-[#68788e] leading-relaxed mb-4">
+              <p className="text-[10px] text-[#64727e] leading-relaxed mb-4">
                 Downloaded copies cannot be recalled. Records a professional has already retained outside the platform cannot be deleted by this control.
               </p>
 
               <button
                 onClick={() => setActiveTab("activity")}
-                className="text-[12px] font-bold text-[#071d3b] hover:underline"
+                className="text-[12px] font-bold text-[#0F1A2C] hover:underline"
               >
                 View the activity history →
               </button>
@@ -708,39 +708,39 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
         {/* ── TAB 5: ACTIVITY TIMELINE ────────────────────────────────── */}
         {activeTab === "activity" && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-7">
-            <section className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm">
-              <h3 className="text-base font-bold text-[#102645] pb-3 border-b border-[#dfe6ef] mb-4">
+            <section className="bg-white border border-[#e2e5e5] rounded-2xl p-6 shadow-sm">
+              <h3 className="text-base font-bold text-[#183249] pb-3 border-b border-[#e2e5e5] mb-4">
                 Trust Link activity
               </h3>
 
-              <div className="relative pl-6 border-l-2 border-[#dfe6ef] space-y-6 text-[12px] my-4">
+              <div className="relative pl-6 border-l-2 border-[#e2e5e5] space-y-6 text-[12px] my-4">
                 {events.map((e, idx) => (
                   <div key={idx} className="relative">
-                    <div className="absolute -left-[31px] top-1 w-3 h-3 rounded-full bg-[#24754c] ring-4 ring-white" />
-                    <span className="text-[10px] text-[#68788e] block">{e.time}</span>
-                    <strong className="block text-[#102645] font-semibold">{e.text}</strong>
-                    {e.detail && <p className="text-[11px] text-[#68788e] mt-0.5">{e.detail}</p>}
+                    <div className="absolute -left-[31px] top-1 w-3 h-3 rounded-full bg-[#28715e] ring-4 ring-white" />
+                    <span className="text-[10px] text-[#64727e] block">{e.time}</span>
+                    <strong className="block text-[#183249] font-semibold">{e.text}</strong>
+                    {e.detail && <p className="text-[11px] text-[#64727e] mt-0.5">{e.detail}</p>}
                   </div>
                 ))}
               </div>
             </section>
 
-            <aside className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm self-start">
-              <div className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c] mb-1">
+            <aside className="bg-white border border-[#e2e5e5] rounded-2xl p-6 shadow-sm self-start">
+              <div className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#28715e] mb-1">
                 A clear record of your choices
               </div>
-              <h3 className="text-xl font-bold text-[#102645] mb-2 leading-tight">
+              <h3 className="text-xl font-bold text-[#183249] mb-2 leading-tight">
                 Who. What. When.
               </h3>
-              <p className="text-[12px] text-[#68788e] leading-relaxed mb-4">
+              <p className="text-[12px] text-[#64727e] leading-relaxed mb-4">
                 The activity history keeps permission changes, acceptance, pauses and access changes in verifiable chronological context.
               </p>
-              <div className="p-3.5 bg-[#f3f6fb] rounded-xl text-[11px] text-[#556b83] mb-4">
+              <div className="p-3.5 bg-[#F9F8F5] rounded-xl text-[11px] text-[#556b83] mb-4">
                 Cryptographic append-only event ledger tied to Prop ID.
               </div>
               <button
                 onClick={() => setActiveTab("permissions")}
-                className="text-[12px] font-bold text-[#071d3b] hover:underline"
+                className="text-[12px] font-bold text-[#0F1A2C] hover:underline"
               >
                 View current permission receipt →
               </button>
@@ -752,9 +752,9 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
         {activeTab === "handover" && (
           <div className="space-y-6">
             {/* Practical completion hero */}
-            <div className="bg-[#071d3b] text-white rounded-2xl p-6 sm:p-8 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div className="bg-[#0F1A2C] text-white rounded-2xl p-6 sm:p-8 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
               <div>
-                <div className="text-[#efbd66] text-[10px] font-bold uppercase tracking-[1.6px] mb-1">
+                <div className="text-[#C59B27] text-[10px] font-bold uppercase tracking-[1.6px] mb-1">
                   Practical Completion Handover
                 </div>
                 <h2 className="text-2xl font-bold text-white mb-2">
@@ -767,8 +767,8 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
                   onClick={() => setHandoverSealed(true)}
                   className={`px-5 py-2.5 rounded-xl text-[12px] font-bold transition-all ${
                     handoverSealed
-                      ? "bg-[#24754c] text-white"
-                      : "bg-[#efbd66] text-[#071d3b] hover:bg-[#e0ad52]"
+                      ? "bg-[#28715e] text-white"
+                      : "bg-[#C59B27] text-[#0F1A2C] hover:bg-[#e0ad52]"
                   }`}
                 >
                   {handoverSealed ? "✓ Handover Sealed to Prop ID Vault" : "Accept & Seal to Prop ID Vault →"}
@@ -776,7 +776,7 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
               </div>
 
               <div className="text-right">
-                <span className="font-mono text-[12px] text-[#efbd66] font-bold px-3 py-1 rounded-lg bg-white/10 block mb-1">
+                <span className="font-mono text-[12px] text-[#C59B27] font-bold px-3 py-1 rounded-lg bg-white/10 block mb-1">
                   4 of 5 Gates Cleared
                 </span>
                 <span className="text-[10px] text-[#b9c8db]">QBCC #150821 Verified</span>
@@ -784,36 +784,36 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
             </div>
 
             {/* Variation Notice #04 */}
-            <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm">
+            <div className="bg-white border border-[#e2e5e5] rounded-2xl p-6 shadow-sm">
               <div className="flex items-start justify-between gap-4 mb-2">
                 <div>
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-[#fff4df] text-[#8b641c] uppercase tracking-wider">
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-[#fbf3e4] text-[#946315] uppercase tracking-wider">
                     Variation Notice #04
                   </span>
-                  <h3 className="text-base font-bold text-[#102645] mt-1.5">
+                  <h3 className="text-base font-bold text-[#183249] mt-1.5">
                     Caesarstone 40mm Kitchen Island Upgrade
                   </h3>
                 </div>
                 <div className="text-right">
-                  <div className="text-base font-bold text-[#102645]">+$1,400 AUD</div>
-                  <div className="text-[10px] text-[#68788e]">0 days schedule impact</div>
+                  <div className="text-base font-bold text-[#183249]">+$1,400 AUD</div>
+                  <div className="text-[10px] text-[#64727e]">0 days schedule impact</div>
                 </div>
               </div>
 
-              <p className="text-[12px] text-[#68788e] mb-4">
+              <p className="text-[12px] text-[#64727e] mb-4">
                 Upgrade from standard 20mm edge to 40mm mitred edge in Caesarstone &apos;Pure White&apos; across kitchen island and butler&apos;s pantry waterfall ends. Includes stonemason compliance certificate.
               </p>
 
-              <div className="pt-3 border-t border-[#dfe6ef] flex items-center justify-between">
-                <span className="text-[11px] font-mono text-[#68788e]">
+              <div className="pt-3 border-t border-[#e2e5e5] flex items-center justify-between">
+                <span className="text-[11px] font-mono text-[#64727e]">
                   Hash: <strong>0x89ab...4e11</strong>
                 </span>
                 <button
                   onClick={() => setVariationSigned(true)}
                   className={`px-4 py-1.5 rounded-lg text-[11px] font-bold transition-colors ${
                     variationSigned
-                      ? "bg-[#eaf5ef] text-[#24754c]"
-                      : "bg-[#071d3b] text-white hover:bg-[#102d59]"
+                      ? "bg-[#eaf4ef] text-[#28715e]"
+                      : "bg-[#0F1A2C] text-white hover:bg-[#102d59]"
                   }`}
                 >
                   {variationSigned ? "✓ Approved & Signed" : "Digital Sign-Off (Approve)"}
@@ -822,8 +822,8 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
             </div>
 
             {/* Handover Gate Status */}
-            <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm">
-              <h3 className="text-base font-bold text-[#102645] pb-3 border-b border-[#dfe6ef] mb-4">
+            <div className="bg-white border border-[#e2e5e5] rounded-2xl p-6 shadow-sm">
+              <h3 className="text-base font-bold text-[#183249] pb-3 border-b border-[#e2e5e5] mb-4">
                 Handover Gate Checklist
               </h3>
               <div className="space-y-2.5 text-[12px]">
@@ -834,17 +834,17 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
                   { gate: "Gate 4", title: "Joint Pre-Handover Walkthrough & Touch-up Register", verified: true },
                   { gate: "Gate 5", title: "Client Variation Notice #04 Digital Sign-Off", verified: variationSigned },
                 ].map((g) => (
-                  <div key={g.gate} className="p-3 rounded-xl border border-[#dfe6ef] bg-[#f9fafc] flex items-center justify-between">
+                  <div key={g.gate} className="p-3 rounded-xl border border-[#e2e5e5] bg-[#f9fafc] flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[11px] font-bold ${
-                        g.verified ? "bg-[#eaf5ef] text-[#24754c]" : "bg-[#fff4df] text-[#8b641c]"
+                        g.verified ? "bg-[#eaf4ef] text-[#28715e]" : "bg-[#fbf3e4] text-[#946315]"
                       }`}>
                         {g.verified ? "✓" : "!"}
                       </span>
-                      <strong className="text-[#102645] font-semibold">{g.title}</strong>
+                      <strong className="text-[#183249] font-semibold">{g.title}</strong>
                     </div>
                     <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${
-                      g.verified ? "bg-[#eaf5ef] text-[#24754c]" : "bg-[#fff4df] text-[#8b641c]"
+                      g.verified ? "bg-[#eaf4ef] text-[#28715e]" : "bg-[#fbf3e4] text-[#946315]"
                     }`}>
                       {g.verified ? "Verified" : "Pending Sign-Off"}
                     </span>
@@ -859,20 +859,20 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
 
       {/* ── MODAL: EDIT PERMISSIONS (Prototype .modal) ─────────────── */}
       {showEditModal && (
-        <div className="fixed inset-0 z-50 bg-[#071d3b]/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-50 bg-[#0F1A2C]/70 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="bg-white rounded-2xl max-w-lg w-full p-6 sm:p-7 shadow-2xl max-h-[90vh] overflow-y-auto">
-            <div className="flex items-start justify-between pb-3 border-b border-[#dfe6ef] mb-4">
+            <div className="flex items-start justify-between pb-3 border-b border-[#e2e5e5] mb-4">
               <div>
-                <h2 className="text-xl font-bold text-[#102645]">Review Trust Link permissions</h2>
-                <p className="text-[11px] text-[#68788e]">{data.proName} · {data.purpose}</p>
+                <h2 className="text-xl font-bold text-[#183249]">Review Trust Link permissions</h2>
+                <p className="text-[11px] text-[#64727e]">{data.proName} · {data.purpose}</p>
               </div>
-              <button onClick={() => setShowEditModal(false)} className="text-[#68788e] hover:text-[#102645] text-lg font-bold">
+              <button onClick={() => setShowEditModal(false)} className="text-[#64727e] hover:text-[#183249] text-lg font-bold">
                 ✕
               </button>
             </div>
 
             <form onSubmit={handleSavePermissions} className="space-y-4 text-[12px]">
-              <div className="p-3 bg-[#f3f6fb] rounded-xl text-[#556b83] text-[11px]">
+              <div className="p-3 bg-[#F9F8F5] rounded-xl text-[#556b83] text-[11px]">
                 Your display name, purpose and messages remain part of this connection. Private notes and other properties are excluded.
               </div>
 
@@ -885,14 +885,14 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
                   className="mt-1"
                 />
                 <div>
-                  <strong className="block text-[#102645]">Share this property’s address</strong>
-                  <small className="text-[#68788e]">{data.property}, {data.suburb}</small>
+                  <strong className="block text-[#183249]">Share this property’s address</strong>
+                  <small className="text-[#64727e]">{data.property}, {data.suburb}</small>
                 </div>
               </label>
 
               {/* Selected documents checklist */}
               <div className="space-y-2">
-                <label className="block font-bold text-[#102645]">Selected documents</label>
+                <label className="block font-bold text-[#183249]">Selected documents</label>
                 {docs.map((d) => (
                   <label key={d.id} className="flex items-center gap-3 p-1.5 rounded hover:bg-[#f9fafc] cursor-pointer">
                     <input
@@ -900,19 +900,19 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
                       checked={d.shared}
                       onChange={() => toggleDoc(d.id)}
                     />
-                    <span className="text-[#102645]">{d.name}</span>
+                    <span className="text-[#183249]">{d.name}</span>
                   </label>
                 ))}
               </div>
 
               {/* Allowed Contact Channel */}
               <div>
-                <label htmlFor="channel-select" className="block font-bold text-[#102645] mb-1">Allowed contact</label>
+                <label htmlFor="channel-select" className="block font-bold text-[#183249] mb-1">Allowed contact</label>
                 <select
                   id="channel-select"
                   name="channel"
                   defaultValue={data.channel}
-                  className="w-full p-2.5 border border-[#dfe6ef] rounded-xl text-[#102645] bg-white"
+                  className="w-full p-2.5 border border-[#e2e5e5] rounded-xl text-[#183249] bg-white"
                 >
                   <option>In-app messages</option>
                   <option>In-app messages + email</option>
@@ -922,27 +922,27 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
 
               {/* Permission Expiry */}
               <div>
-                <label htmlFor="expiry-input" className="block font-bold text-[#102645] mb-1">Permission ends</label>
+                <label htmlFor="expiry-input" className="block font-bold text-[#183249] mb-1">Permission ends</label>
                 <input
                   id="expiry-input"
                   type="text"
                   name="expiry"
                   defaultValue={data.expiry}
-                  className="w-full p-2.5 border border-[#dfe6ef] rounded-xl text-[#102645] bg-white"
+                  className="w-full p-2.5 border border-[#e2e5e5] rounded-xl text-[#183249] bg-white"
                 />
               </div>
 
-              <div className="pt-4 border-t border-[#dfe6ef] flex items-center justify-end gap-2">
+              <div className="pt-4 border-t border-[#e2e5e5] flex items-center justify-end gap-2">
                 <button
                   type="button"
                   onClick={() => setShowEditModal(false)}
-                  className="px-4 py-2 border border-[#cbd5e2] text-[#102645] font-semibold rounded-xl text-[12px]"
+                  className="px-4 py-2 border border-[#cbd5e2] text-[#183249] font-semibold rounded-xl text-[12px]"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 bg-[#071d3b] text-white font-bold rounded-xl text-[12px] hover:bg-[#102d59]"
+                  className="px-5 py-2 bg-[#0F1A2C] text-white font-bold rounded-xl text-[12px] hover:bg-[#102d59]"
                 >
                   Save approved permissions
                 </button>
@@ -954,10 +954,10 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
 
       {/* ── MODAL: STOP ACCESS ──────────────────────────────────────── */}
       {showStopModal && (
-        <div className="fixed inset-0 z-50 bg-[#071d3b]/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-50 bg-[#0F1A2C]/70 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl">
-            <h3 className="text-lg font-bold text-[#102645] mb-2">Stop access to this Trust Link?</h3>
-            <p className="text-[12px] text-[#68788e] leading-relaxed mb-4">
+            <h3 className="text-lg font-bold text-[#183249] mb-2">Stop access to this Trust Link?</h3>
+            <p className="text-[12px] text-[#64727e] leading-relaxed mb-4">
               All active sharing permissions with {data.proName} will terminate immediately. Your own records, documents, and historical messages remain preserved in your Prop ID.
             </p>
             <div className="flex gap-3">
@@ -966,13 +966,13 @@ export default function TrustLinkDetailPage({ params }: { params: Promise<{ id: 
                   setStopped(true);
                   setShowStopModal(false);
                 }}
-                className="flex-1 py-2.5 bg-[#a44042] text-white font-bold rounded-xl text-[12px]"
+                className="flex-1 py-2.5 bg-[#a34b43] text-white font-bold rounded-xl text-[12px]"
               >
                 Confirm stop access
               </button>
               <button
                 onClick={() => setShowStopModal(false)}
-                className="flex-1 py-2.5 border border-[#cbd5e2] text-[#102645] font-bold rounded-xl text-[12px]"
+                className="flex-1 py-2.5 border border-[#cbd5e2] text-[#183249] font-bold rounded-xl text-[12px]"
               >
                 Keep access
               </button>

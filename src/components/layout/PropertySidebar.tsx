@@ -96,7 +96,7 @@ export function PropertySidebar({
         </svg>
       ),
       badge: (
-        <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-[#fef3c7] text-[#92400e] border border-[#fcd34d]">
+        <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-[#fbf3e4] text-[#946315] border border-[#fcd34d]">
           2 incoming
         </span>
       ),
@@ -135,14 +135,14 @@ export function PropertySidebar({
 
       {/* Sidebar Rail - Light Theme */}
       <aside
-        className={`fixed md:sticky top-0 left-0 h-screen w-[240px] sm:w-[250px] bg-white border-r border-[#dfe6ef] text-[#102645] flex flex-col z-50 transition-transform duration-300 ease-in-out font-sans ${
+        className={`fixed md:sticky top-0 left-0 h-screen w-[240px] sm:w-[250px] bg-white border-r border-[#e2e5e5] text-[#183249] flex flex-col z-50 transition-transform duration-300 ease-in-out font-sans ${
           mobileOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
         }`}
       >
         {/* Brand & TPH Logo */}
-        <div className="p-4 border-b border-[#dfe6ef] flex items-center justify-between">
+        <div className="p-4 border-b border-[#e2e5e5] flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2.5 group">
-            <div className="bg-white rounded-lg p-1.5 border border-[#dfe6ef] shadow-xs flex items-center justify-center flex-shrink-0">
+            <div className="bg-white rounded-lg p-1.5 border border-[#e2e5e5] shadow-xs flex items-center justify-center flex-shrink-0">
               <img
                 src="/logo.png"
                 alt="The Property Helpline"
@@ -150,10 +150,10 @@ export function PropertySidebar({
               />
             </div>
             <div className="min-w-0">
-              <div className="font-bold text-[12px] tracking-tight leading-tight text-[#071d3b] group-hover:text-[#24754c] transition-colors truncate">
+              <div className="font-bold text-[12px] tracking-tight leading-tight text-[#0F1A2C] group-hover:text-[#28715e] transition-colors truncate">
                 The Property Helpline
               </div>
-              <div className="text-[7.5px] font-bold uppercase tracking-[1.4px] text-[#24754c] leading-tight mt-0.5">
+              <div className="text-[7.5px] font-bold uppercase tracking-[1.4px] text-[#28715e] leading-tight mt-0.5">
                 YOUR DIGITAL HOME
               </div>
             </div>
@@ -162,7 +162,7 @@ export function PropertySidebar({
           {/* Mobile Close Button */}
           <button
             onClick={() => setMobileOpen(false)}
-            className="md:hidden text-[#68788e] hover:text-[#102645] p-1 rounded-md"
+            className="md:hidden text-[#64727e] hover:text-[#183249] p-1 rounded-md"
             aria-label="Close menu"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -174,10 +174,10 @@ export function PropertySidebar({
         {/* This Home Header + Property Switcher */}
         <div className="px-4 pt-4 pb-2">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-[9px] font-bold uppercase tracking-[1.8px] text-[#68788e]">
+            <span className="text-[9px] font-bold uppercase tracking-[1.8px] text-[#64727e]">
               THIS HOME
             </span>
-            <span className="text-[9px] font-mono font-bold text-[#8b641c] bg-[#fff4df] px-1.5 py-0.5 rounded border border-[#ffe0a3]">
+            <span className="text-[9px] font-mono font-bold text-[#946315] bg-[#fbf3e4] px-1.5 py-0.5 rounded border border-[#ffe0a3]">
               {property.propId}
             </span>
           </div>
@@ -186,18 +186,18 @@ export function PropertySidebar({
           <div className="relative">
             <button
               onClick={() => setSwitcherOpen(!switcherOpen)}
-              className="w-full flex items-center justify-between p-2 rounded-lg bg-[#f8fafc] border border-[#dfe6ef] hover:border-[#cbd5e1] hover:bg-[#f1f5f9] transition-colors text-left group"
+              className="w-full flex items-center justify-between p-2 rounded-lg bg-[#f8fafc] border border-[#e2e5e5] hover:border-[#cbd5e1] hover:bg-[#f1f5f9] transition-colors text-left group"
             >
               <div className="min-w-0 pr-2">
-                <div className="text-[12px] font-bold text-[#102645] truncate group-hover:text-[#071d3b] transition-colors">
+                <div className="text-[12px] font-bold text-[#183249] truncate group-hover:text-[#0F1A2C] transition-colors">
                   {property.street}
                 </div>
-                <div className="text-[10px] text-[#68788e] truncate">
+                <div className="text-[10px] text-[#64727e] truncate">
                   {property.suburb} {property.state}
                 </div>
               </div>
               <svg
-                className={`w-3.5 h-3.5 text-[#68788e] transition-transform ${switcherOpen ? "rotate-180" : ""}`}
+                className={`w-3.5 h-3.5 text-[#64727e] transition-transform ${switcherOpen ? "rotate-180" : ""}`}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -207,8 +207,8 @@ export function PropertySidebar({
             </button>
 
             {switcherOpen && (
-              <div className="absolute top-full left-0 right-0 mt-1.5 bg-white border border-[#dfe6ef] rounded-xl shadow-lg p-1.5 z-30 space-y-1">
-                <div className="text-[9px] uppercase font-bold text-[#68788e] px-2 py-1">
+              <div className="absolute top-full left-0 right-0 mt-1.5 bg-white border border-[#e2e5e5] rounded-xl shadow-lg p-1.5 z-30 space-y-1">
+                <div className="text-[9px] uppercase font-bold text-[#64727e] px-2 py-1">
                   Switch Property
                 </div>
                 {PROPERTIES_LIST.map((p) => (
@@ -220,20 +220,20 @@ export function PropertySidebar({
                     }}
                     className={`w-full text-left p-2 rounded-lg text-xs flex items-center justify-between transition-colors ${
                       p.id === property.id
-                        ? "bg-[#eef4ff] text-[#071d3b] font-bold"
-                        : "text-[#5b6e84] hover:bg-[#f1f5f9] hover:text-[#102645]"
+                        ? "bg-[#eef4ff] text-[#0F1A2C] font-bold"
+                        : "text-[#5b6e84] hover:bg-[#f1f5f9] hover:text-[#183249]"
                     }`}
                   >
                     <span className="truncate pr-2">{p.street}</span>
                     {p.id === property.id && (
-                      <span className="text-[10px] text-[#24754c] font-bold">✓</span>
+                      <span className="text-[10px] text-[#28715e] font-bold">✓</span>
                     )}
                   </button>
                 ))}
-                <div className="pt-1 border-t border-[#dfe6ef] mt-1">
+                <div className="pt-1 border-t border-[#e2e5e5] mt-1">
                   <Link
                     href="/properties"
-                    className="block text-[10px] text-[#071d3b] hover:underline px-2 py-1 font-bold"
+                    className="block text-[10px] text-[#0F1A2C] hover:underline px-2 py-1 font-bold"
                   >
                     All properties →
                   </Link>
@@ -256,14 +256,14 @@ export function PropertySidebar({
                 }}
                 className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-left transition-all group ${
                   isActive
-                    ? "bg-[#071d3b] text-white shadow-xs"
-                    : "text-[#5b6e84] hover:bg-[#f3f6fb] hover:text-[#102645]"
+                    ? "bg-[#0F1A2C] text-white shadow-xs"
+                    : "text-[#5b6e84] hover:bg-[#F9F8F5] hover:text-[#183249]"
                 }`}
               >
                 <div className="flex items-center gap-3 min-w-0">
                   <span
                     className={`transition-colors flex-shrink-0 ${
-                      isActive ? "text-[#efbd66]" : "text-[#68788e] group-hover:text-[#102645]"
+                      isActive ? "text-[#C59B27]" : "text-[#64727e] group-hover:text-[#183249]"
                     }`}
                   >
                     {item.icon}
@@ -284,25 +284,25 @@ export function PropertySidebar({
         </nav>
 
         {/* Footer */}
-        <div className="p-3 border-t border-[#dfe6ef] space-y-1 text-[11px]">
+        <div className="p-3 border-t border-[#e2e5e5] space-y-1 text-[11px]">
           <Link
             href="/explore"
-            className="flex items-center justify-between px-3 py-1.5 text-[#5b6e84] hover:text-[#102645] hover:bg-[#f3f6fb] rounded-lg transition-colors"
+            className="flex items-center justify-between px-3 py-1.5 text-[#5b6e84] hover:text-[#183249] hover:bg-[#F9F8F5] rounded-lg transition-colors"
           >
             <span>Find a specialist</span>
             <span className="text-[10px] text-[#8a9bb0]">↗</span>
           </Link>
           <Link
             href="/pro"
-            className="flex items-center justify-between px-3 py-1.5 text-[#24754c] hover:bg-[#eaf5ef] rounded-lg transition-colors font-semibold"
+            className="flex items-center justify-between px-3 py-1.5 text-[#28715e] hover:bg-[#eaf4ef] rounded-lg transition-colors font-semibold"
           >
             <span>I'm a Pro</span>
             <span className="text-[10px]">↗</span>
           </Link>
 
-          <div className="pt-2 border-t border-[#dfe6ef] flex items-center justify-between px-3 py-1 text-[#68788e] text-[10px]">
+          <div className="pt-2 border-t border-[#e2e5e5] flex items-center justify-between px-3 py-1 text-[#64727e] text-[10px]">
             <span>Verified Owner</span>
-            <span className="font-semibold text-[#24754c]">Active</span>
+            <span className="font-semibold text-[#28715e]">Active</span>
           </div>
         </div>
       </aside>

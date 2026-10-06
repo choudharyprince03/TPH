@@ -209,35 +209,35 @@ export default function SpecialistMapSection() {
       {/* ── Section Title & Context ────────────────────────────────────────── */}
       <FadeUp className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-6">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#eaf5ef] text-[10px] font-bold uppercase tracking-[1.6px] text-[#24754c] mb-2 border border-[#c7e3d1]">
-            <span className="w-2 h-2 rounded-full bg-[#24754c] animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#eaf4ef] text-[10px] font-bold uppercase tracking-[1.6px] text-[#28715e] mb-2 border border-[#c7e3d1]">
+            <span className="w-2 h-2 rounded-full bg-[#28715e] animate-pulse" />
             <span>Interactive Local Map</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-semibold tracking-[-0.8px] text-[#102645]">
+          <h2 className="text-2xl sm:text-3xl font-semibold tracking-[-0.8px] text-[#183249]">
             Verified specialists in your area.
           </h2>
-          <p className="text-[#68788e] text-[13px] mt-1.5 max-w-2xl">
+          <p className="text-[#64727e] text-[13px] mt-1.5 max-w-2xl">
             Explore independent licensed builders, certifiers, conveyancers, and trade professionals active across Brisbane&apos;s Western Suburbs.
           </p>
         </div>
 
         <Link
           href="/explore"
-          className="text-[12px] font-semibold text-[#071d3b] hover:underline flex items-center gap-1 flex-shrink-0"
+          className="text-[12px] font-semibold text-[#0F1A2C] hover:underline flex items-center gap-1 flex-shrink-0"
         >
           <span>View all directory listings</span>
-          <span className="text-[#efbd66]">→</span>
+          <span className="text-[#C59B27]">→</span>
         </Link>
       </FadeUp>
 
       {/* ── Mobile View Toggle (Map vs List) ─────────────────────────────── */}
-      <div className="flex lg:hidden bg-white p-1 rounded-xl border border-[#dfe6ef] mb-4 shadow-2xs">
+      <div className="flex lg:hidden bg-white p-1 rounded-xl border border-[#e2e5e5] mb-4 shadow-2xs">
         <button
           onClick={() => setMobileTab("map")}
           className={`flex-1 py-2 text-[12px] font-semibold rounded-lg transition-colors flex items-center justify-center gap-1.5 ${
             mobileTab === "map"
-              ? "bg-[#071d3b] text-white shadow-xs"
-              : "text-[#68788e] hover:text-[#102645]"
+              ? "bg-[#0F1A2C] text-white shadow-xs"
+              : "text-[#64727e] hover:text-[#183249]"
           }`}
         >
           <span>🗺️ Map View</span>
@@ -246,8 +246,8 @@ export default function SpecialistMapSection() {
           onClick={() => setMobileTab("list")}
           className={`flex-1 py-2 text-[12px] font-semibold rounded-lg transition-colors flex items-center justify-center gap-1.5 ${
             mobileTab === "list"
-              ? "bg-[#071d3b] text-white shadow-xs"
-              : "text-[#68788e] hover:text-[#102645]"
+              ? "bg-[#0F1A2C] text-white shadow-xs"
+              : "text-[#64727e] hover:text-[#183249]"
           }`}
         >
           <span>👥 Specialists ({filteredSpecialists.length})</span>
@@ -291,7 +291,7 @@ export default function SpecialistMapSection() {
               </defs>
 
               {/* Base Map Fill */}
-              <rect width="1000" height="650" fill="#f4f6f8" />
+              <rect width="1000" height="650" fill="#F9F8F5" />
               <rect width="1000" height="650" fill="url(#streetGrid)" />
 
               {/* Nature Reserves & Green Spaces */}
@@ -361,7 +361,7 @@ export default function SpecialistMapSection() {
               {/* ── SHADED LOCAL SERVICE Catchment Area (Matching Screenshot) ── */}
               <polygon
                 points="360,210 520,130 730,170 810,360 720,530 450,540 350,430 330,310"
-                fill="#fef3c7"
+                fill="#fbf3e4"
                 fillOpacity="0.45"
                 stroke="#f59e0b"
                 strokeWidth="2"
@@ -375,7 +375,7 @@ export default function SpecialistMapSection() {
               <text
                 x="560"
                 y="160"
-                fill="#92400e"
+                fill="#946315"
                 fontSize="11"
                 fontWeight="700"
                 letterSpacing="1.2"
@@ -526,7 +526,7 @@ export default function SpecialistMapSection() {
                   {/* Pin Teardrop Shape */}
                   <path
                     d={`M ${pin.x} ${pin.y} C ${pin.x - 7} ${pin.y - 7} ${pin.x - 7} ${pin.y - 18} ${pin.x} ${pin.y - 18} C ${pin.x + 7} ${pin.y - 18} ${pin.x + 7} ${pin.y - 7} ${pin.x} ${pin.y} Z`}
-                    fill="#071d3b"
+                    fill="#0F1A2C"
                     filter="url(#pinShadow)"
                   />
                   {/* House Icon Center */}
@@ -541,7 +541,7 @@ export default function SpecialistMapSection() {
                         width="140"
                         height="22"
                         rx="6"
-                        fill="#071d3b"
+                        fill="#0F1A2C"
                         fillOpacity="0.95"
                       />
                       <text
@@ -575,7 +575,7 @@ export default function SpecialistMapSection() {
                       cx={pro.x}
                       cy={pro.y}
                       r="12"
-                      fill="#efbd66"
+                      fill="#C59B27"
                       fillOpacity={isSelected ? "0.45" : "0.2"}
                       className={isSelected ? "animate-ping" : ""}
                     />
@@ -606,7 +606,7 @@ export default function SpecialistMapSection() {
                     <text
                       x={pro.x}
                       y={pro.y - 14}
-                      fill="#071d3b"
+                      fill="#0F1A2C"
                       fontSize="8"
                       fontWeight="bold"
                       textAnchor="middle"
@@ -642,13 +642,13 @@ export default function SpecialistMapSection() {
                     initial={{ opacity: 0, scale: 0.9, y: 10 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.9 }}
-                    className="relative bg-white rounded-2xl p-4 shadow-[0_16px_35px_rgba(7,29,59,0.18)] border border-[#dfe6ef] w-[270px] sm:w-[300px]"
+                    className="relative bg-white rounded-2xl p-4 shadow-[0_16px_35px_rgba(7,29,59,0.18)] border border-[#e2e5e5] w-[270px] sm:w-[300px]"
                   >
                     {/* Close Button '✕' */}
                     <button
                       onClick={(e) => closePopup(pro.id, e)}
                       aria-label="Close popup"
-                      className="absolute top-3 right-3 text-[#94a3b8] hover:text-[#102645] hover:bg-[#f1f5f9] w-6 h-6 rounded-full flex items-center justify-center transition-colors text-[11px] font-bold"
+                      className="absolute top-3 right-3 text-[#94a3b8] hover:text-[#183249] hover:bg-[#f1f5f9] w-6 h-6 rounded-full flex items-center justify-center transition-colors text-[11px] font-bold"
                     >
                       ✕
                     </button>
@@ -656,7 +656,7 @@ export default function SpecialistMapSection() {
                     {/* Card Content Row */}
                     <div className="flex items-start gap-3 mb-3 pr-4">
                       {/* Avatar Image */}
-                      <div className="relative w-12 h-12 rounded-xl overflow-hidden flex-shrink-0 border border-[#dfe6ef] shadow-xs">
+                      <div className="relative w-12 h-12 rounded-xl overflow-hidden flex-shrink-0 border border-[#e2e5e5] shadow-xs">
                         <img
                           src={pro.avatarUrl}
                           alt={pro.name}
@@ -667,22 +667,22 @@ export default function SpecialistMapSection() {
                       {/* Info Column */}
                       <div className="min-w-0 flex-1">
                         <div className="flex items-center gap-1.5">
-                          <h4 className="text-[13px] font-bold text-[#102645] truncate">
+                          <h4 className="text-[13px] font-bold text-[#183249] truncate">
                             {pro.name}
                           </h4>
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#24754c] flex-shrink-0" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#28715e] flex-shrink-0" />
                         </div>
-                        <p className="text-[11px] font-semibold text-[#24754c] truncate">
+                        <p className="text-[11px] font-semibold text-[#28715e] truncate">
                           {pro.role}
                         </p>
-                        <p className="text-[10px] text-[#68788e] truncate mt-0.5">
+                        <p className="text-[10px] text-[#64727e] truncate mt-0.5">
                           {pro.business}
                         </p>
                         <div className="flex items-center gap-1 text-[10px] text-[#b45309] font-medium mt-1">
                           <span>★ {pro.rating.toFixed(1)}</span>
                           <span className="text-[#8a97a7]">({pro.reviewsCount})</span>
                           <span className="text-[#cbd5e1]">·</span>
-                          <span className="text-[#68788e] truncate">{pro.suburb}</span>
+                          <span className="text-[#64727e] truncate">{pro.suburb}</span>
                         </div>
                       </div>
                     </div>
@@ -690,10 +690,10 @@ export default function SpecialistMapSection() {
                     {/* Bottom Action Button (Dark Navy Matching Screenshot) */}
                     <Link
                       href={pro.profileUrl}
-                      className="w-full py-2 bg-[#071d3b] hover:bg-[#102d59] text-white font-semibold text-[11px] rounded-xl transition-colors shadow-2xs flex items-center justify-center gap-1.5 text-center"
+                      className="w-full py-2 bg-[#0F1A2C] hover:bg-[#102d59] text-white font-semibold text-[11px] rounded-xl transition-colors shadow-2xs flex items-center justify-center gap-1.5 text-center"
                     >
                       <span>Connect</span>
-                      <span className="text-[#efbd66]">→</span>
+                      <span className="text-[#C59B27]">→</span>
                     </Link>
 
                     {/* Downward Pointer Beak / Triangle */}
@@ -709,18 +709,18 @@ export default function SpecialistMapSection() {
           {/* ── MAP CONTROLS (Bottom Right) ────────────────────────────────── */}
           <div className="absolute bottom-4 right-4 z-20 flex flex-col items-end gap-2">
             {/* Zoom Button Stack */}
-            <div className="bg-white rounded-xl shadow-md border border-[#dfe6ef] overflow-hidden flex flex-col">
+            <div className="bg-white rounded-xl shadow-md border border-[#e2e5e5] overflow-hidden flex flex-col">
               <button
                 onClick={() => handleZoom(0.15)}
                 aria-label="Zoom in"
-                className="w-8 h-8 flex items-center justify-center text-[#102645] hover:bg-[#f1f5f9] text-base font-bold transition-colors border-b border-[#dfe6ef]"
+                className="w-8 h-8 flex items-center justify-center text-[#183249] hover:bg-[#f1f5f9] text-base font-bold transition-colors border-b border-[#e2e5e5]"
               >
                 +
               </button>
               <button
                 onClick={() => handleZoom(-0.15)}
                 aria-label="Zoom out"
-                className="w-8 h-8 flex items-center justify-center text-[#102645] hover:bg-[#f1f5f9] text-base font-bold transition-colors"
+                className="w-8 h-8 flex items-center justify-center text-[#183249] hover:bg-[#f1f5f9] text-base font-bold transition-colors"
               >
                 −
               </button>
@@ -730,7 +730,7 @@ export default function SpecialistMapSection() {
             <button
               onClick={resetZoom}
               title="Reset View"
-              className="bg-white px-2.5 py-1.5 rounded-lg shadow-md border border-[#dfe6ef] text-[10px] font-semibold text-[#68788e] hover:text-[#102645] hover:bg-[#f1f5f9] transition-colors flex items-center gap-1"
+              className="bg-white px-2.5 py-1.5 rounded-lg shadow-md border border-[#e2e5e5] text-[10px] font-semibold text-[#64727e] hover:text-[#183249] hover:bg-[#f1f5f9] transition-colors flex items-center gap-1"
             >
               <span>⤢</span>
               <span>Reset</span>
@@ -743,13 +743,13 @@ export default function SpecialistMapSection() {
           </div>
 
           {/* ── MAP PIN LEGEND (Top Right) ──────────────────────────────────── */}
-          <div className="hidden sm:flex absolute top-4 right-4 z-20 bg-white/90 backdrop-blur-xs px-3 py-1.5 rounded-xl border border-[#dfe6ef] shadow-xs items-center gap-3 text-[10px] text-[#475569]">
+          <div className="hidden sm:flex absolute top-4 right-4 z-20 bg-white/90 backdrop-blur-xs px-3 py-1.5 rounded-xl border border-[#e2e5e5] shadow-xs items-center gap-3 text-[10px] text-[#475569]">
             <div className="flex items-center gap-1.5 font-medium">
               <span className="w-2.5 h-2.5 rounded-full bg-[#d97706]" />
               <span>Verified Specialists</span>
             </div>
             <div className="flex items-center gap-1.5 font-medium">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#071d3b]" />
+              <span className="w-2.5 h-2.5 rounded-full bg-[#0F1A2C]" />
               <span>Prop ID Records</span>
             </div>
           </div>
@@ -757,21 +757,21 @@ export default function SpecialistMapSection() {
 
         {/* ── LEFT DOCKED / FLOATING SIDEBAR (Matching Screenshot) ───────── */}
         <div
-          className={`lg:absolute lg:top-4 lg:left-4 lg:bottom-4 lg:w-[340px] z-20 bg-white lg:bg-white/95 lg:backdrop-blur-md lg:rounded-2xl lg:border lg:border-[#dfe6ef] lg:shadow-xl flex flex-col p-4 sm:p-5 overflow-hidden ${
+          className={`lg:absolute lg:top-4 lg:left-4 lg:bottom-4 lg:w-[340px] z-20 bg-white lg:bg-white/95 lg:backdrop-blur-md lg:rounded-2xl lg:border lg:border-[#e2e5e5] lg:shadow-xl flex flex-col p-4 sm:p-5 overflow-hidden ${
             mobileTab === "map" ? "hidden lg:flex" : "flex"
           }`}
         >
           {/* Header */}
           <div className="mb-3.5">
             <div className="flex items-center justify-between">
-              <span className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c]">
+              <span className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#28715e]">
                 Local Area Network
               </span>
-              <span className="text-[10px] bg-[#eaf5ef] text-[#24754c] font-bold px-2 py-0.5 rounded-full">
+              <span className="text-[10px] bg-[#eaf4ef] text-[#28715e] font-bold px-2 py-0.5 rounded-full">
                 {filteredSpecialists.length} Active
               </span>
             </div>
-            <h3 className="text-base font-bold text-[#102645] mt-0.5">
+            <h3 className="text-base font-bold text-[#183249] mt-0.5">
               Specialists in Brisbane West
             </h3>
           </div>
@@ -791,12 +791,12 @@ export default function SpecialistMapSection() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search suburb, trade or name..."
-              className="w-full pl-9 pr-8 py-2 bg-[#f4f6f8] border border-[#dfe6ef] focus:border-[#071d3b] rounded-xl text-[12px] text-[#102645] placeholder-[#8a97a7] focus:outline-none transition-colors"
+              className="w-full pl-9 pr-8 py-2 bg-[#F9F8F5] border border-[#e2e5e5] focus:border-[#0F1A2C] rounded-xl text-[12px] text-[#183249] placeholder-[#8a97a7] focus:outline-none transition-colors"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery("")}
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-xs text-[#8a97a7] hover:text-[#102645]"
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-xs text-[#8a97a7] hover:text-[#183249]"
               >
                 ✕
               </button>
@@ -817,8 +817,8 @@ export default function SpecialistMapSection() {
                 onClick={() => setActiveCategory(chip.id)}
                 className={`px-2.5 py-1 rounded-lg text-[10px] font-semibold whitespace-nowrap transition-colors ${
                   activeCategory === chip.id
-                    ? "bg-[#071d3b] text-white shadow-2xs"
-                    : "bg-[#f4f6f8] text-[#68788e] hover:bg-[#e8edf4]"
+                    ? "bg-[#0F1A2C] text-white shadow-2xs"
+                    : "bg-[#F9F8F5] text-[#64727e] hover:bg-[#e8edf4]"
                 }`}
               >
                 {chip.label}
@@ -839,34 +839,34 @@ export default function SpecialistMapSection() {
                     onClick={() => handleSelectSpecialist(pro)}
                     className={`p-3 rounded-xl border transition-all cursor-pointer text-left flex items-start gap-3 group ${
                       isSelected
-                        ? "bg-[#f3f6fb] border-[#071d3b] shadow-xs"
-                        : "bg-white border-[#dfe6ef] hover:border-[#a0b3c6] hover:bg-[#fafbfd]"
+                        ? "bg-[#F9F8F5] border-[#0F1A2C] shadow-xs"
+                        : "bg-white border-[#e2e5e5] hover:border-[#a0b3c6] hover:bg-[#fafbfd]"
                     }`}
                   >
                     {/* Avatar Photo */}
-                    <div className="relative w-11 h-11 rounded-xl overflow-hidden flex-shrink-0 border border-[#dfe6ef]">
+                    <div className="relative w-11 h-11 rounded-xl overflow-hidden flex-shrink-0 border border-[#e2e5e5]">
                       <img
                         src={pro.avatarUrl}
                         alt={pro.name}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform"
                       />
-                      <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-[#24754c] border-2 border-white" />
+                      <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-[#28715e] border-2 border-white" />
                     </div>
 
                     {/* Specialist Info */}
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center justify-between">
-                        <h4 className="text-[12px] font-bold text-[#102645] truncate group-hover:text-[#071d3b]">
+                        <h4 className="text-[12px] font-bold text-[#183249] truncate group-hover:text-[#0F1A2C]">
                           {pro.name}
                         </h4>
                         <span className="text-[10px] text-[#b45309] font-bold">
                           ★ {pro.rating.toFixed(1)}
                         </span>
                       </div>
-                      <p className="text-[10.5px] font-semibold text-[#24754c] truncate mt-0.5">
+                      <p className="text-[10.5px] font-semibold text-[#28715e] truncate mt-0.5">
                         {pro.role}
                       </p>
-                      <p className="text-[10px] text-[#68788e] truncate">
+                      <p className="text-[10px] text-[#64727e] truncate">
                         {pro.business} · {pro.suburb}
                       </p>
 
@@ -877,7 +877,7 @@ export default function SpecialistMapSection() {
                         <Link
                           href={pro.profileUrl}
                           onClick={(e) => e.stopPropagation()}
-                          className="font-bold text-[#071d3b] hover:underline flex items-center gap-0.5"
+                          className="font-bold text-[#0F1A2C] hover:underline flex items-center gap-0.5"
                         >
                           <span>Profile</span>
                           <span>→</span>
@@ -888,14 +888,14 @@ export default function SpecialistMapSection() {
                 );
               })
             ) : (
-              <div className="py-8 text-center text-[#68788e] text-xs">
+              <div className="py-8 text-center text-[#64727e] text-xs">
                 <p>No specialists found for &ldquo;{searchQuery}&rdquo;.</p>
                 <button
                   onClick={() => {
                     setSearchQuery("");
                     setActiveCategory("all");
                   }}
-                  className="mt-2 text-[#071d3b] font-bold underline"
+                  className="mt-2 text-[#0F1A2C] font-bold underline"
                 >
                   Clear search filters
                 </button>
@@ -904,11 +904,11 @@ export default function SpecialistMapSection() {
           </div>
 
           {/* Directory Footer Link */}
-          <div className="pt-3 mt-2 border-t border-[#dfe6ef] flex items-center justify-between text-[11px]">
-            <span className="text-[#68788e]">All licensed &amp; vetted</span>
+          <div className="pt-3 mt-2 border-t border-[#e2e5e5] flex items-center justify-between text-[11px]">
+            <span className="text-[#64727e]">All licensed &amp; vetted</span>
             <Link
               href="/explore"
-              className="font-bold text-[#071d3b] hover:underline flex items-center gap-1"
+              className="font-bold text-[#0F1A2C] hover:underline flex items-center gap-1"
             >
               <span>Explore full directory</span>
               <span>→</span>

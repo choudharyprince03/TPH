@@ -36,7 +36,7 @@ const NAV_SECTIONS: NavSection[] = [
         href: "/pro/leads",
         label: "Leads",
         badge: "3",
-        badgeColor: "bg-[#fef3c7] text-[#92400e]",
+        badgeColor: "bg-[#fbf3e4] text-[#946315]",
         icon: (
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
@@ -149,11 +149,11 @@ export function ProSidebar() {
         {/* Company Card */}
         <div className="mt-3.5 pt-3 border-t border-[#1c3a54] flex items-center gap-2.5">
           <div className="w-[31px] h-[31px] bg-[#244159] text-[#dfc595] font-display text-[16px] font-bold rounded-lg flex items-center justify-center flex-shrink-0">
-            N
+            H
           </div>
           <div className="min-w-0">
             <div className="text-[12px] font-semibold text-white leading-tight truncate">
-              Northline Homes
+              Hart Homes
             </div>
             <div className="text-[9.5px] text-[#8ca4b7] truncate mt-0.5">
               QBCC #150821 · Active

@@ -132,7 +132,7 @@ body {
 
   /* Navigation & glass effects */
   .glass-nav {
-    background-color: #071d3b;
+    background-color: #0F1A2C;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
@@ -225,7 +225,7 @@ body {
     left: 0;
     right: 0;
     height: 2px;
-    background: #efbd66;
+    background: #C59B27;
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.22s ease;
@@ -247,7 +247,7 @@ body {
 
   /* Gradient text */
   .gradient-text {
-    background: linear-gradient(135deg, #efbd66 0%, #f8d79b 50%, #efbd66 100%);
+    background: linear-gradient(135deg, #C59B27 0%, #f8d79b 50%, #C59B27 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

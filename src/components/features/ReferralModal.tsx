@@ -89,7 +89,7 @@ export function ReferralModal({ isOpen, onClose, mode = "consumer" }: ReferralMo
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}
-          className="fixed inset-0 bg-[#071d3b]/60 backdrop-blur-xs"
+          className="fixed inset-0 bg-[#0F1A2C]/60 backdrop-blur-xs"
         />
 
         {/* Modal Dialog */}
@@ -98,10 +98,10 @@ export function ReferralModal({ isOpen, onClose, mode = "consumer" }: ReferralMo
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 14 }}
           transition={{ duration: 0.24, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="relative bg-white rounded-3xl max-w-xl w-full shadow-2xl border border-[#dfe6ef] overflow-hidden z-10 font-sans my-8"
+          className="relative bg-white rounded-3xl max-w-xl w-full shadow-2xl border border-[#e2e5e5] overflow-hidden z-10 font-sans my-8"
         >
           {/* Header */}
-          <div className="bg-[#071d3b] text-white p-6 sm:p-7 relative">
+          <div className="bg-[#0F1A2C] text-white p-6 sm:p-7 relative">
             <button
               onClick={onClose}
               className="absolute top-5 right-5 text-white/60 hover:text-white p-1 rounded-lg text-lg leading-none"
@@ -109,8 +109,8 @@ export function ReferralModal({ isOpen, onClose, mode = "consumer" }: ReferralMo
             >
               ✕
             </button>
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/10 border border-white/15 text-[10px] font-bold uppercase tracking-wider text-[#efbd66] mb-2">
-              <svg className="w-3.5 h-3.5 text-[#efbd66]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/10 border border-white/15 text-[10px] font-bold uppercase tracking-wider text-[#C59B27] mb-2">
+              <svg className="w-3.5 h-3.5 text-[#C59B27]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
               </svg>
               <span>{mode === "pro" ? "Pro Hub Network & Onboarding" : "TPH Referral & Invite"}</span>
@@ -135,7 +135,7 @@ export function ReferralModal({ isOpen, onClose, mode = "consumer" }: ReferralMo
                     }}
                     className={`flex-1 py-2 px-3 rounded-lg text-[12px] font-bold transition-all text-center flex items-center justify-center gap-1.5 ${
                       activeTab === "client"
-                        ? "bg-white text-[#071d3b] shadow-sm"
+                        ? "bg-white text-[#0F1A2C] shadow-sm"
                         : "text-white/80 hover:text-white hover:bg-white/5"
                     }`}
                   >
@@ -151,7 +151,7 @@ export function ReferralModal({ isOpen, onClose, mode = "consumer" }: ReferralMo
                     }}
                     className={`flex-1 py-2 px-3 rounded-lg text-[12px] font-bold transition-all text-center flex items-center justify-center gap-1.5 ${
                       activeTab === "pro"
-                        ? "bg-white text-[#071d3b] shadow-sm"
+                        ? "bg-white text-[#0F1A2C] shadow-sm"
                         : "text-white/80 hover:text-white hover:bg-white/5"
                     }`}
                   >
@@ -170,7 +170,7 @@ export function ReferralModal({ isOpen, onClose, mode = "consumer" }: ReferralMo
                     }}
                     className={`flex-1 py-2 px-3 rounded-lg text-[12px] font-bold transition-all text-center flex items-center justify-center gap-1.5 ${
                       activeTab === "pro"
-                        ? "bg-white text-[#071d3b] shadow-sm"
+                        ? "bg-white text-[#0F1A2C] shadow-sm"
                         : "text-white/80 hover:text-white hover:bg-white/5"
                     }`}
                   >
@@ -186,7 +186,7 @@ export function ReferralModal({ isOpen, onClose, mode = "consumer" }: ReferralMo
                     }}
                     className={`flex-1 py-2 px-3 rounded-lg text-[12px] font-bold transition-all text-center flex items-center justify-center gap-1.5 ${
                       activeTab === "friend"
-                        ? "bg-white text-[#071d3b] shadow-sm"
+                        ? "bg-white text-[#0F1A2C] shadow-sm"
                         : "text-white/80 hover:text-white hover:bg-white/5"
                     }`}
                   >
@@ -204,25 +204,25 @@ export function ReferralModal({ isOpen, onClose, mode = "consumer" }: ReferralMo
           <div className="p-6 sm:p-7 max-h-[68vh] overflow-y-auto">
             {formSubmitted ? (
               <div className="text-center py-8">
-                <div className="w-14 h-14 bg-[#eaf5ef] text-[#24754c] rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4 border border-[#d2e6d9]">
+                <div className="w-14 h-14 bg-[#eaf4ef] text-[#28715e] rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4 border border-[#d2e6d9]">
                   ✓
                 </div>
-                <h3 className="text-xl font-bold text-[#102645] mb-2">Invitation Prepared!</h3>
-                <p className="text-[13px] text-[#68788e] max-w-md mx-auto mb-6 leading-relaxed">
+                <h3 className="text-xl font-bold text-[#183249] mb-2">Invitation Prepared!</h3>
+                <p className="text-[13px] text-[#64727e] max-w-md mx-auto mb-6 leading-relaxed">
                   We have dispatched a private secure TrustLink™ invitation to{" "}
-                  <strong className="text-[#102645]">{submittedTarget}</strong>. Once they accept, they will
+                  <strong className="text-[#183249]">{submittedTarget}</strong>. Once they accept, they will
                   automatically appear in your connected workspace with zero manual chasing.
                 </p>
                 <div className="flex items-center justify-center gap-3">
                   <button
                     onClick={handleResetForm}
-                    className="px-4 py-2 bg-[#f4f6f8] hover:bg-[#e4ecf7] text-[#071d3b] font-semibold rounded-xl text-[12px] transition-colors"
+                    className="px-4 py-2 bg-[#F9F8F5] hover:bg-[#e4ecf7] text-[#0F1A2C] font-semibold rounded-xl text-[12px] transition-colors"
                   >
                     + Send Another Invite
                   </button>
                   <button
                     onClick={onClose}
-                    className="px-5 py-2 bg-[#071d3b] hover:bg-[#102d59] text-white font-semibold rounded-xl text-[12px] transition-colors"
+                    className="px-5 py-2 bg-[#0F1A2C] hover:bg-[#102d59] text-white font-semibold rounded-xl text-[12px] transition-colors"
                   >
                     Done
                   </button>
@@ -234,8 +234,8 @@ export function ReferralModal({ isOpen, onClose, mode = "consumer" }: ReferralMo
                 {mode === "pro" && activeTab === "client" && (
                   <div className="space-y-5">
                     <div className="bg-[#f0f4f9] border border-[#d8e3ef] rounded-2xl p-4 text-[12px] text-[#425872]">
-                      <div className="font-bold text-[#071d3b] mb-1 flex items-center gap-1.5">
-                        <svg className="w-4 h-4 text-[#efbd66]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div className="font-bold text-[#0F1A2C] mb-1 flex items-center gap-1.5">
+                        <svg className="w-4 h-4 text-[#C59B27]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                         </svg>
                         <span>Direct Collaboration · Digital Property Handover</span>
@@ -248,7 +248,7 @@ export function ReferralModal({ isOpen, onClose, mode = "consumer" }: ReferralMo
                     {/* Fast Direct Form */}
                     <form onSubmit={(e) => handleSubmit(e, clientName)} className="space-y-3.5">
                       <div>
-                        <label className="block text-[11px] font-bold uppercase tracking-wider text-[#68788e] mb-1">
+                        <label className="block text-[11px] font-bold uppercase tracking-wider text-[#64727e] mb-1">
                           Client / Homeowner Name
                         </label>
                         <input
@@ -257,13 +257,13 @@ export function ReferralModal({ isOpen, onClose, mode = "consumer" }: ReferralMo
                           value={clientName}
                           onChange={(e) => setClientName(e.target.value)}
                           placeholder="e.g. James & Sarah Davidson"
-                          className="w-full px-3.5 py-2.5 bg-[#fcfbf8] border border-[#dfe6ef] rounded-xl text-[13px] text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                          className="w-full px-3.5 py-2.5 bg-[#fcfbf8] border border-[#e2e5e5] rounded-xl text-[13px] text-[#183249] focus:outline-none focus:border-[#0F1A2C]"
                         />
                       </div>
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
-                          <label className="block text-[11px] font-bold uppercase tracking-wider text-[#68788e] mb-1">
+                          <label className="block text-[11px] font-bold uppercase tracking-wider text-[#64727e] mb-1">
                             Email or Mobile
                           </label>
                           <input
@@ -272,17 +272,17 @@ export function ReferralModal({ isOpen, onClose, mode = "consumer" }: ReferralMo
                             value={clientContact}
                             onChange={(e) => setClientContact(e.target.value)}
                             placeholder="e.g. sarah@davidson.com.au"
-                            className="w-full px-3.5 py-2.5 bg-[#fcfbf8] border border-[#dfe6ef] rounded-xl text-[13px] text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                            className="w-full px-3.5 py-2.5 bg-[#fcfbf8] border border-[#e2e5e5] rounded-xl text-[13px] text-[#183249] focus:outline-none focus:border-[#0F1A2C]"
                           />
                         </div>
                         <div>
-                          <label className="block text-[11px] font-bold uppercase tracking-wider text-[#68788e] mb-1">
+                          <label className="block text-[11px] font-bold uppercase tracking-wider text-[#64727e] mb-1">
                             Project Stage / Service
                           </label>
                           <select
                             value={projectStage}
                             onChange={(e) => setProjectStage(e.target.value)}
-                            className="w-full px-3.5 py-2.5 bg-[#fcfbf8] border border-[#dfe6ef] rounded-xl text-[13px] text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                            className="w-full px-3.5 py-2.5 bg-[#fcfbf8] border border-[#e2e5e5] rounded-xl text-[13px] text-[#183249] focus:outline-none focus:border-[#0F1A2C]"
                           >
                             <option value="New Build Handover">New Build Handover</option>
                             <option value="Contract & Scope Review">Contract & Scope Review</option>
@@ -293,7 +293,7 @@ export function ReferralModal({ isOpen, onClose, mode = "consumer" }: ReferralMo
                       </div>
 
                       <div>
-                        <label className="block text-[11px] font-bold uppercase tracking-wider text-[#68788e] mb-1">
+                        <label className="block text-[11px] font-bold uppercase tracking-wider text-[#64727e] mb-1">
                           Property Address / Prop ID (Optional)
                         </label>
                         <input
@@ -301,13 +301,13 @@ export function ReferralModal({ isOpen, onClose, mode = "consumer" }: ReferralMo
                           value={propertyAddress}
                           onChange={(e) => setPropertyAddress(e.target.value)}
                           placeholder="e.g. 18 Banksia Crescent, Kenmore QLD 4069"
-                          className="w-full px-3.5 py-2.5 bg-[#fcfbf8] border border-[#dfe6ef] rounded-xl text-[13px] text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                          className="w-full px-3.5 py-2.5 bg-[#fcfbf8] border border-[#e2e5e5] rounded-xl text-[13px] text-[#183249] focus:outline-none focus:border-[#0F1A2C]"
                         />
                       </div>
 
                       <button
                         type="submit"
-                        className="w-full py-3 bg-[#071d3b] hover:bg-[#102d59] text-white font-bold rounded-xl text-[12px] transition-colors shadow-sm flex items-center justify-center gap-2 mt-2"
+                        className="w-full py-3 bg-[#0F1A2C] hover:bg-[#102d59] text-white font-bold rounded-xl text-[12px] transition-colors shadow-sm flex items-center justify-center gap-2 mt-2"
                       >
                         <span>Send Client TrustLink™ Invitation</span>
                         <span>→</span>
@@ -315,8 +315,8 @@ export function ReferralModal({ isOpen, onClose, mode = "consumer" }: ReferralMo
                     </form>
 
                     {/* Direct Onboarding Link */}
-                    <div className="pt-4 border-t border-[#dfe6ef]">
-                      <div className="text-[11px] font-bold uppercase tracking-wider text-[#68788e] mb-1.5">
+                    <div className="pt-4 border-t border-[#e2e5e5]">
+                      <div className="text-[11px] font-bold uppercase tracking-wider text-[#64727e] mb-1.5">
                         Or Share Your Direct Client Onboarding Link
                       </div>
                       <div className="flex items-center gap-2">
@@ -324,11 +324,11 @@ export function ReferralModal({ isOpen, onClose, mode = "consumer" }: ReferralMo
                           type="text"
                           readOnly
                           value={proClientLink}
-                          className="flex-1 px-3 py-2 bg-[#f4f6f8] border border-[#dfe6ef] rounded-lg text-[11px] font-mono text-[#425872] select-all"
+                          className="flex-1 px-3 py-2 bg-[#F9F8F5] border border-[#e2e5e5] rounded-lg text-[11px] font-mono text-[#425872] select-all"
                         />
                         <button
                           onClick={() => handleCopy(proClientLink)}
-                          className="px-3.5 py-2 bg-[#f4f6f8] hover:bg-[#e4ebf5] text-[#071d3b] font-bold rounded-lg text-[11px] transition-colors border border-[#cbd5e2] whitespace-nowrap"
+                          className="px-3.5 py-2 bg-[#F9F8F5] hover:bg-[#e4ebf5] text-[#0F1A2C] font-bold rounded-lg text-[11px] transition-colors border border-[#cbd5e2] whitespace-nowrap"
                         >
                           {copied ? "Copied! ✓" : "Copy Link"}
                         </button>
@@ -340,9 +340,9 @@ export function ReferralModal({ isOpen, onClose, mode = "consumer" }: ReferralMo
                 {/* ── 2. PRO MODE: INVITE FELLOW PROFESSIONALS ── */}
                 {mode === "pro" && activeTab === "pro" && (
                   <div className="space-y-5">
-                    <div className="bg-[#eaf5ef] border border-[#c7e3d1] rounded-2xl p-4 text-[12px] text-[#2d6143]">
+                    <div className="bg-[#eaf4ef] border border-[#c7e3d1] rounded-2xl p-4 text-[12px] text-[#2d6143]">
                       <div className="font-bold text-[#1b4e31] mb-1 flex items-center gap-1.5">
-                        <svg className="w-4 h-4 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-4 h-4 text-[#28715e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg>
                         <span>Collaborate on Joint Building &amp; Property Projects</span>
@@ -353,7 +353,7 @@ export function ReferralModal({ isOpen, onClose, mode = "consumer" }: ReferralMo
 
                     <form onSubmit={(e) => handleSubmit(e, tradeName)} className="space-y-3.5">
                       <div>
-                        <label className="block text-[11px] font-bold uppercase tracking-wider text-[#68788e] mb-1">
+                        <label className="block text-[11px] font-bold uppercase tracking-wider text-[#64727e] mb-1">
                           Professional / Colleague Name
                         </label>
                         <input
@@ -362,19 +362,19 @@ export function ReferralModal({ isOpen, onClose, mode = "consumer" }: ReferralMo
                           value={tradeName}
                           onChange={(e) => setTradeName(e.target.value)}
                           placeholder="e.g. Dupont Inspections / Claire Dupont"
-                          className="w-full px-3.5 py-2.5 bg-[#fcfbf8] border border-[#dfe6ef] rounded-xl text-[13px] text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                          className="w-full px-3.5 py-2.5 bg-[#fcfbf8] border border-[#e2e5e5] rounded-xl text-[13px] text-[#183249] focus:outline-none focus:border-[#0F1A2C]"
                         />
                       </div>
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
-                          <label className="block text-[11px] font-bold uppercase tracking-wider text-[#68788e] mb-1">
+                          <label className="block text-[11px] font-bold uppercase tracking-wider text-[#64727e] mb-1">
                             Trade Discipline
                           </label>
                           <select
                             value={tradeDiscipline}
                             onChange={(e) => setTradeDiscipline(e.target.value)}
-                            className="w-full px-3.5 py-2.5 bg-[#fcfbf8] border border-[#dfe6ef] rounded-xl text-[13px] text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                            className="w-full px-3.5 py-2.5 bg-[#fcfbf8] border border-[#e2e5e5] rounded-xl text-[13px] text-[#183249] focus:outline-none focus:border-[#0F1A2C]"
                           >
                             <option value="Building Certifier">Building Certifier</option>
                             <option value="Structural Engineer">Structural Engineer</option>
@@ -388,7 +388,7 @@ export function ReferralModal({ isOpen, onClose, mode = "consumer" }: ReferralMo
                         </div>
 
                         <div>
-                          <label className="block text-[11px] font-bold uppercase tracking-wider text-[#68788e] mb-1">
+                          <label className="block text-[11px] font-bold uppercase tracking-wider text-[#64727e] mb-1">
                             Email or Mobile
                           </label>
                           <input
@@ -397,14 +397,14 @@ export function ReferralModal({ isOpen, onClose, mode = "consumer" }: ReferralMo
                             value={tradeContact}
                             onChange={(e) => setTradeContact(e.target.value)}
                             placeholder="e.g. info@dupontinspections.com.au"
-                            className="w-full px-3.5 py-2.5 bg-[#fcfbf8] border border-[#dfe6ef] rounded-xl text-[13px] text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                            className="w-full px-3.5 py-2.5 bg-[#fcfbf8] border border-[#e2e5e5] rounded-xl text-[13px] text-[#183249] focus:outline-none focus:border-[#0F1A2C]"
                           />
                         </div>
                       </div>
 
                       <button
                         type="submit"
-                        className="w-full py-3 bg-[#071d3b] hover:bg-[#102d59] text-white font-bold rounded-xl text-[12px] transition-colors shadow-sm flex items-center justify-center gap-2 mt-2"
+                        className="w-full py-3 bg-[#0F1A2C] hover:bg-[#102d59] text-white font-bold rounded-xl text-[12px] transition-colors shadow-sm flex items-center justify-center gap-2 mt-2"
                       >
                         <span>Send Professional Network Invitation</span>
                         <span>→</span>
@@ -412,8 +412,8 @@ export function ReferralModal({ isOpen, onClose, mode = "consumer" }: ReferralMo
                     </form>
 
                     {/* Direct Partner Referral Link */}
-                    <div className="pt-4 border-t border-[#dfe6ef]">
-                      <div className="text-[11px] font-bold uppercase tracking-wider text-[#68788e] mb-1.5">
+                    <div className="pt-4 border-t border-[#e2e5e5]">
+                      <div className="text-[11px] font-bold uppercase tracking-wider text-[#64727e] mb-1.5">
                         Your Unique Pro Referral Link
                       </div>
                       <div className="flex items-center gap-2">
@@ -421,11 +421,11 @@ export function ReferralModal({ isOpen, onClose, mode = "consumer" }: ReferralMo
                           type="text"
                           readOnly
                           value={proPartnerLink}
-                          className="flex-1 px-3 py-2 bg-[#f4f6f8] border border-[#dfe6ef] rounded-lg text-[11px] font-mono text-[#425872] select-all"
+                          className="flex-1 px-3 py-2 bg-[#F9F8F5] border border-[#e2e5e5] rounded-lg text-[11px] font-mono text-[#425872] select-all"
                         />
                         <button
                           onClick={() => handleCopy(proPartnerLink)}
-                          className="px-3.5 py-2 bg-[#f4f6f8] hover:bg-[#e4ebf5] text-[#071d3b] font-bold rounded-lg text-[11px] transition-colors border border-[#cbd5e2] whitespace-nowrap"
+                          className="px-3.5 py-2 bg-[#F9F8F5] hover:bg-[#e4ebf5] text-[#0F1A2C] font-bold rounded-lg text-[11px] transition-colors border border-[#cbd5e2] whitespace-nowrap"
                         >
                           {copied ? "Copied! ✓" : "Copy Link"}
                         </button>
@@ -438,8 +438,8 @@ export function ReferralModal({ isOpen, onClose, mode = "consumer" }: ReferralMo
                 {mode === "consumer" && activeTab === "pro" && (
                   <div className="space-y-5">
                     <div className="bg-[#f0ede5] border border-[#e2dcd0] rounded-2xl p-4 text-[12px] text-[#554b38]">
-                      <div className="font-bold text-[#102645] mb-1 flex items-center gap-1.5">
-                        <svg className="w-4 h-4 text-[#071d3b]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div className="font-bold text-[#183249] mb-1 flex items-center gap-1.5">
+                        <svg className="w-4 h-4 text-[#0F1A2C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                         </svg>
                         <span>Bring Your Own Trusted Tradie or Specialist</span>
@@ -450,7 +450,7 @@ export function ReferralModal({ isOpen, onClose, mode = "consumer" }: ReferralMo
 
                     <form onSubmit={(e) => handleSubmit(e, consumerProName)} className="space-y-3.5">
                       <div>
-                        <label className="block text-[11px] font-bold uppercase tracking-wider text-[#68788e] mb-1">
+                        <label className="block text-[11px] font-bold uppercase tracking-wider text-[#64727e] mb-1">
                           Specialist / Business Name
                         </label>
                         <input
@@ -459,19 +459,19 @@ export function ReferralModal({ isOpen, onClose, mode = "consumer" }: ReferralMo
                           value={consumerProName}
                           onChange={(e) => setConsumerProName(e.target.value)}
                           placeholder="e.g. Kenmore Electrical Services / Dave"
-                          className="w-full px-3.5 py-2.5 bg-[#fcfbf8] border border-[#dfe6ef] rounded-xl text-[13px] text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                          className="w-full px-3.5 py-2.5 bg-[#fcfbf8] border border-[#e2e5e5] rounded-xl text-[13px] text-[#183249] focus:outline-none focus:border-[#0F1A2C]"
                         />
                       </div>
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
-                          <label className="block text-[11px] font-bold uppercase tracking-wider text-[#68788e] mb-1">
+                          <label className="block text-[11px] font-bold uppercase tracking-wider text-[#64727e] mb-1">
                             Discipline / Service
                           </label>
                           <select
                             value={consumerProTrade}
                             onChange={(e) => setConsumerProTrade(e.target.value)}
-                            className="w-full px-3.5 py-2.5 bg-[#fcfbf8] border border-[#dfe6ef] rounded-xl text-[13px] text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                            className="w-full px-3.5 py-2.5 bg-[#fcfbf8] border border-[#e2e5e5] rounded-xl text-[13px] text-[#183249] focus:outline-none focus:border-[#0F1A2C]"
                           >
                             <option value="Custom Builder">Builder / Renovator</option>
                             <option value="Building & Pest Inspector">Building &amp; Pest Inspector</option>
@@ -483,7 +483,7 @@ export function ReferralModal({ isOpen, onClose, mode = "consumer" }: ReferralMo
                         </div>
 
                         <div>
-                          <label className="block text-[11px] font-bold uppercase tracking-wider text-[#68788e] mb-1">
+                          <label className="block text-[11px] font-bold uppercase tracking-wider text-[#64727e] mb-1">
                             Their Email or Mobile
                           </label>
                           <input
@@ -492,22 +492,22 @@ export function ReferralModal({ isOpen, onClose, mode = "consumer" }: ReferralMo
                             value={consumerProContact}
                             onChange={(e) => setConsumerProContact(e.target.value)}
                             placeholder="e.g. dave@kenmoreelectric.com.au"
-                            className="w-full px-3.5 py-2.5 bg-[#fcfbf8] border border-[#dfe6ef] rounded-xl text-[13px] text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                            className="w-full px-3.5 py-2.5 bg-[#fcfbf8] border border-[#e2e5e5] rounded-xl text-[13px] text-[#183249] focus:outline-none focus:border-[#0F1A2C]"
                           />
                         </div>
                       </div>
 
                       <button
                         type="submit"
-                        className="w-full py-3 bg-[#071d3b] hover:bg-[#102d59] text-white font-bold rounded-xl text-[12px] transition-colors shadow-sm flex items-center justify-center gap-2 mt-2"
+                        className="w-full py-3 bg-[#0F1A2C] hover:bg-[#102d59] text-white font-bold rounded-xl text-[12px] transition-colors shadow-sm flex items-center justify-center gap-2 mt-2"
                       >
                         <span>Invite Specialist to My Property Record</span>
                         <span>→</span>
                       </button>
                     </form>
 
-                    <div className="pt-4 border-t border-[#dfe6ef]">
-                      <div className="text-[11px] font-bold uppercase tracking-wider text-[#68788e] mb-1.5">
+                    <div className="pt-4 border-t border-[#e2e5e5]">
+                      <div className="text-[11px] font-bold uppercase tracking-wider text-[#64727e] mb-1.5">
                         Or Share General Pro Invitation Link
                       </div>
                       <div className="flex items-center gap-2">
@@ -515,11 +515,11 @@ export function ReferralModal({ isOpen, onClose, mode = "consumer" }: ReferralMo
                           type="text"
                           readOnly
                           value="https://thepropertyhelpline.com.au/pro/join?ref=ALEX-INVITE"
-                          className="flex-1 px-3 py-2 bg-[#f4f6f8] border border-[#dfe6ef] rounded-lg text-[11px] font-mono text-[#425872] select-all"
+                          className="flex-1 px-3 py-2 bg-[#F9F8F5] border border-[#e2e5e5] rounded-lg text-[11px] font-mono text-[#425872] select-all"
                         />
                         <button
                           onClick={() => handleCopy("https://thepropertyhelpline.com.au/pro/join?ref=ALEX-INVITE")}
-                          className="px-3.5 py-2 bg-[#f4f6f8] hover:bg-[#e4ebf5] text-[#071d3b] font-bold rounded-lg text-[11px] transition-colors border border-[#cbd5e2] whitespace-nowrap"
+                          className="px-3.5 py-2 bg-[#F9F8F5] hover:bg-[#e4ebf5] text-[#0F1A2C] font-bold rounded-lg text-[11px] transition-colors border border-[#cbd5e2] whitespace-nowrap"
                         >
                           {copied ? "Copied! ✓" : "Copy Link"}
                         </button>
@@ -531,9 +531,9 @@ export function ReferralModal({ isOpen, onClose, mode = "consumer" }: ReferralMo
                 {/* ── 4. CONSUMER MODE: REFER A FRIEND / NEIGHBOR ── */}
                 {mode === "consumer" && activeTab === "friend" && (
                   <div className="space-y-5">
-                    <div className="bg-[#eaf5ef] border border-[#c7e3d1] rounded-2xl p-4 text-[12px] text-[#2d6143]">
+                    <div className="bg-[#eaf4ef] border border-[#c7e3d1] rounded-2xl p-4 text-[12px] text-[#2d6143]">
                       <div className="font-bold text-[#1b4e31] mb-1 flex items-center gap-1.5">
-                        <svg className="w-4 h-4 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-4 h-4 text-[#28715e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v13m0-13V4.5a2.5 2.5 0 115 0V8h-5zm0 0H7a2.5 2.5 0 110-5 2.5 2.5 0 012.5 2.5V8H12zm-8 4h16v9a1 1 0 01-1 1H5a1 1 0 01-1-1v-9z" />
                         </svg>
                         <span>Share The Property Helpline</span>
@@ -543,7 +543,7 @@ export function ReferralModal({ isOpen, onClose, mode = "consumer" }: ReferralMo
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-bold uppercase tracking-wider text-[#68788e] mb-1.5">
+                      <label className="block text-[11px] font-bold uppercase tracking-wider text-[#64727e] mb-1.5">
                         Your Personal Invitation Link
                       </label>
                       <div className="flex items-center gap-2">
@@ -551,11 +551,11 @@ export function ReferralModal({ isOpen, onClose, mode = "consumer" }: ReferralMo
                           type="text"
                           readOnly
                           value={consumerReferralLink}
-                          className="flex-1 px-3.5 py-2.5 bg-[#f4f6f8] border border-[#dfe6ef] rounded-xl text-[12px] font-mono text-[#102645] select-all"
+                          className="flex-1 px-3.5 py-2.5 bg-[#F9F8F5] border border-[#e2e5e5] rounded-xl text-[12px] font-mono text-[#183249] select-all"
                         />
                         <button
                           onClick={() => handleCopy(consumerReferralLink)}
-                          className="px-4 py-2.5 bg-[#071d3b] hover:bg-[#102d59] text-white font-bold rounded-xl text-[12px] transition-colors whitespace-nowrap shadow-sm"
+                          className="px-4 py-2.5 bg-[#0F1A2C] hover:bg-[#102d59] text-white font-bold rounded-xl text-[12px] transition-colors whitespace-nowrap shadow-sm"
                         >
                           {copied ? "Copied! ✓" : "Copy Link"}
                         </button>
@@ -570,9 +570,9 @@ export function ReferralModal({ isOpen, onClose, mode = "consumer" }: ReferralMo
                         )}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-3 rounded-xl border border-[#dfe6ef] hover:bg-[#f4f6f8] flex items-center justify-center gap-2 text-[12px] font-semibold text-[#102645] transition-colors"
+                        className="p-3 rounded-xl border border-[#e2e5e5] hover:bg-[#F9F8F5] flex items-center justify-center gap-2 text-[12px] font-semibold text-[#183249] transition-colors"
                       >
-                        <svg className="w-4 h-4 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-4 h-4 text-[#28715e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                         </svg>
                         <span>Share on WhatsApp</span>
@@ -584,9 +584,9 @@ export function ReferralModal({ isOpen, onClose, mode = "consumer" }: ReferralMo
                           "Hey, I use The Property Helpline to manage our home's plans, certs, and connect with verified specialists. Check it out here: " +
                             consumerReferralLink
                         )}`}
-                        className="p-3 rounded-xl border border-[#dfe6ef] hover:bg-[#f4f6f8] flex items-center justify-center gap-2 text-[12px] font-semibold text-[#102645] transition-colors"
+                        className="p-3 rounded-xl border border-[#e2e5e5] hover:bg-[#F9F8F5] flex items-center justify-center gap-2 text-[12px] font-semibold text-[#183249] transition-colors"
                       >
-                        <svg className="w-4 h-4 text-[#071d3b]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-4 h-4 text-[#0F1A2C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                         </svg>
                         <span>Share via Email</span>
@@ -599,14 +599,14 @@ export function ReferralModal({ isOpen, onClose, mode = "consumer" }: ReferralMo
           </div>
 
           {/* Footer */}
-          <div className="p-4 px-6 sm:px-7 bg-[#fcfbf8] border-t border-[#dfe6ef] flex items-center justify-between text-[11px] text-[#68788e]">
+          <div className="p-4 px-6 sm:px-7 bg-[#fcfbf8] border-t border-[#e2e5e5] flex items-center justify-between text-[11px] text-[#64727e]">
             <div className="flex items-center gap-1.5">
-              <svg className="w-3.5 h-3.5 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-3.5 h-3.5 text-[#28715e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
               </svg>
               <span>Direct invite · Zero third-party marketing</span>
             </div>
-            <button onClick={onClose} className="hover:text-[#102645] font-semibold">
+            <button onClick={onClose} className="hover:text-[#183249] font-semibold">
               Close
             </button>
           </div>

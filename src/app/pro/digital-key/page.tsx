@@ -284,7 +284,7 @@ export default function ProDigitalKeyPage() {
       executionRoute: "Approved electronic signing (ETA 2001)",
       actionRequired: "Client Signature",
       status: "Signed / Executed",
-      statusColor: "bg-[#eaf5ef] text-[#24754c] border-[#c7e3d1]",
+      statusColor: "bg-[#eaf4ef] text-[#28715e] border-[#c7e3d1]",
       nextAction: "Work authorized to proceed onsite under QBCC s65",
       updatedAt: "Today 11:20 AM",
       trustlinkId: "TL-99214-B",
@@ -308,7 +308,7 @@ export default function ProDigitalKeyPage() {
       executionRoute: "Approved electronic signing (ETA 2001)",
       actionRequired: "Handover Acceptance",
       status: "Sent to Client",
-      statusColor: "bg-[#fff4df] text-[#8b641c] border-[#fce3b8]",
+      statusColor: "bg-[#fbf3e4] text-[#946315] border-[#fce3b8]",
       nextAction: "Waiting for homeowner digital receipt acceptance",
       updatedAt: "Today 10:48 AM",
       trustlinkId: "TL-99214-B",
@@ -335,7 +335,7 @@ export default function ProDigitalKeyPage() {
       executionRoute: "External e-conveyancing (PEXA)",
       actionRequired: "Review & Signoff",
       status: "Ready to Issue",
-      statusColor: "bg-[#eef4ff] text-[#071d3b] border-[#cbd5e2]",
+      statusColor: "bg-[#eef4ff] text-[#0F1A2C] border-[#cbd5e2]",
       nextAction: "Ready to issue to vendor before contract signing",
       updatedAt: "Yesterday 4:10 PM",
       trustlinkId: "TL-88301-A",
@@ -359,7 +359,7 @@ export default function ProDigitalKeyPage() {
       executionRoute: "Approved electronic signing (ETA 2001)",
       actionRequired: "Client Signature",
       status: "Ready to Issue",
-      statusColor: "bg-[#eef4ff] text-[#071d3b] border-[#cbd5e2]",
+      statusColor: "bg-[#eef4ff] text-[#0F1A2C] border-[#cbd5e2]",
       nextAction: "Tenant signature required within statutory 5-day window",
       updatedAt: "2 days ago",
       trustlinkId: "TL-76100-C",
@@ -384,7 +384,7 @@ export default function ProDigitalKeyPage() {
       executionRoute: "Approved electronic signing (ETA 2001)",
       actionRequired: "Review & Signoff",
       status: "Signed / Executed",
-      statusColor: "bg-[#eaf5ef] text-[#24754c] border-[#c7e3d1]",
+      statusColor: "bg-[#eaf4ef] text-[#28715e] border-[#c7e3d1]",
       nextAction: "Lender released final progress drawdown payment",
       updatedAt: "3 days ago",
       trustlinkId: "TL-99214-B",
@@ -500,7 +500,7 @@ export default function ProDigitalKeyPage() {
       executionRoute: studioExecutionRoute,
       actionRequired: studioFamily === "Sell a property" ? "Review & Signoff" : studioFamily === "Build & change" ? "Client Signature" : "Handover Acceptance",
       status: "Sent to Client",
-      statusColor: "bg-[#fff4df] text-[#8b641c] border-[#fce3b8]",
+      statusColor: "bg-[#fbf3e4] text-[#946315] border-[#fce3b8]",
       nextAction: "Pack published and sent to client via TrustLink.",
       updatedAt: "Just now",
       trustlinkId: prop.trustlinkId || "TL-99214-B",
@@ -522,30 +522,30 @@ export default function ProDigitalKeyPage() {
   });
 
   return (
-    <div className="p-6 sm:p-9 lg:p-11 max-w-[1240px] w-full font-sans text-[#102645] space-y-8">
+    <div className="p-6 sm:p-9 lg:p-11 max-w-[1240px] w-full font-sans text-[#183249] space-y-8">
       {/* ── Toast Notification ── */}
       {bannerToast && (
-        <div className="fixed top-5 right-5 z-50 bg-[#071d3b] text-white px-5 py-3.5 rounded-xl shadow-xl text-sm font-medium flex items-center gap-3 max-w-md border border-[#24754c]">
+        <div className="fixed top-5 right-5 z-50 bg-[#0F1A2C] text-white px-5 py-3.5 rounded-xl shadow-xl text-sm font-medium flex items-center gap-3 max-w-md border border-[#28715e]">
           <span className="w-2.5 h-2.5 rounded-full bg-[#10b981] flex-shrink-0 animate-pulse" />
           <span>{bannerToast}</span>
         </div>
       )}
 
       {/* ── Page Header Block ── */}
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-[#dfe6ef] pb-6">
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-[#e2e5e5] pb-6">
         <div>
           <div className="flex items-center gap-2 mb-1.5">
-            <span className="text-[10px] font-bold uppercase tracking-[1.6px] text-[#24754c] bg-[#eaf5ef] px-2.5 py-0.5 rounded-md border border-[#c7e3d1]">
+            <span className="text-[10px] font-bold uppercase tracking-[1.6px] text-[#28715e] bg-[#eaf4ef] px-2.5 py-0.5 rounded-md border border-[#c7e3d1]">
               QUEENSLAND REGULATORY WORKFLOW
             </span>
-            <span className="text-xs font-mono font-semibold text-[#68788e]">
+            <span className="text-xs font-mono font-semibold text-[#64727e]">
               PRO HUB ENGINE
             </span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#102645]">
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#183249]">
             Digital Key
           </h1>
-          <p className="text-[13.5px] text-[#68788e] mt-1 max-w-2xl leading-relaxed">
+          <p className="text-[13.5px] text-[#64727e] mt-1 max-w-2xl leading-relaxed">
             The place where property deals, statutory variations, tenancy leases and completions close. Assemble professional packs, enforce Queensland rules, and file immutable receipts.
           </p>
         </div>
@@ -556,14 +556,14 @@ export default function ProDigitalKeyPage() {
               setActiveTab("studio");
               showBannerToast("Ready to assemble a new document pack.");
             }}
-            className="px-4 py-2 bg-[#071d3b] hover:bg-[#15345d] text-white rounded-xl text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 cursor-pointer"
+            className="px-4 py-2 bg-[#0F1A2C] hover:bg-[#1c3a54] text-white rounded-xl text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 cursor-pointer"
           >
             <span className="text-sm font-mono">+</span>
             <span>New Pack</span>
           </button>
           <Link
             href="/pro/tradie"
-            className="px-4 py-2 bg-white border border-[#dfe6ef] hover:bg-[#f3f6fb] text-[#102645] rounded-xl text-xs font-semibold transition-colors"
+            className="px-4 py-2 bg-white border border-[#e2e5e5] hover:bg-[#F9F8F5] text-[#183249] rounded-xl text-xs font-semibold transition-colors"
           >
             Tradie Hub ↗
           </Link>
@@ -571,7 +571,7 @@ export default function ProDigitalKeyPage() {
       </div>
 
       {/* ── Top Navigation Tabs Bar ── */}
-      <div className="flex items-center justify-between gap-4 flex-wrap border-b border-[#dfe6ef]">
+      <div className="flex items-center justify-between gap-4 flex-wrap border-b border-[#e2e5e5]">
         <div className="flex items-center gap-2 overflow-x-auto">
           {[
             { id: "studio", label: "Create Pack" },
@@ -587,14 +587,14 @@ export default function ProDigitalKeyPage() {
                 onClick={() => setActiveTab(tab.id as typeof activeTab)}
                 className={`pb-3.5 px-3 text-xs sm:text-[13px] font-bold border-b-2 whitespace-nowrap transition-colors cursor-pointer flex items-center gap-1.5 ${
                   isActive
-                    ? "border-[#071d3b] text-[#071d3b]"
-                    : "border-transparent text-[#68788e] hover:text-[#102645]"
+                    ? "border-[#0F1A2C] text-[#0F1A2C]"
+                    : "border-transparent text-[#64727e] hover:text-[#183249]"
                 }`}
               >
                 <span>{tab.label}</span>
                 {tab.count !== undefined && (
                   <span className={`text-[10px] font-bold px-1.5 py-0.2 rounded-full ${
-                    isActive ? "bg-[#eef4ff] text-[#071d3b]" : "bg-[#f1f5f9] text-[#68788e]"
+                    isActive ? "bg-[#eef4ff] text-[#0F1A2C]" : "bg-[#f1f5f9] text-[#64727e]"
                   }`}>
                     {tab.count}
                   </span>
@@ -611,16 +611,16 @@ export default function ProDigitalKeyPage() {
       {activeTab === "studio" && (
         <div className="space-y-8">
           {/* Header Explanation Banner */}
-          <div className="bg-[#f8fafc] border border-[#dfe6ef] rounded-2xl p-6 shadow-2xs">
+          <div className="bg-[#f8fafc] border border-[#e2e5e5] rounded-2xl p-6 shadow-2xs">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c] block mb-1">
+                <span className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#28715e] block mb-1">
                   02 / PACK GENERATION PRINCIPLE
                 </span>
-                <h2 className="text-lg font-bold text-[#102645]">
+                <h2 className="text-lg font-bold text-[#183249]">
                   Let the Pro Hub request shape the pack.
                 </h2>
-                <p className="text-xs text-[#68788e] mt-1 max-w-2xl leading-relaxed">
+                <p className="text-xs text-[#64727e] mt-1 max-w-2xl leading-relaxed">
                   Each professional publishes a scoped, versioned requirement list. Queensland statutory rules constrain what that list can demand. The consumer approves the actual manifest.
                 </p>
               </div>
@@ -644,17 +644,17 @@ export default function ProDigitalKeyPage() {
           </div>
 
           {/* Form Grid */}
-          <form onSubmit={handlePublishStudioPack} className="bg-white border border-[#dfe6ef] rounded-2xl p-6 sm:p-8 shadow-sm space-y-7">
+          <form onSubmit={handlePublishStudioPack} className="bg-white border border-[#e2e5e5] rounded-2xl p-6 sm:p-8 shadow-sm space-y-7">
             {/* Step 1: Define Request Parameters */}
             <div>
               <div className="flex items-center gap-2 mb-3">
-                <span className="w-5 h-5 rounded-full bg-[#071d3b] text-white text-[11px] font-bold flex items-center justify-center">1</span>
-                <h3 className="text-sm font-bold text-[#102645]">Define Request &amp; Professional Role</h3>
+                <span className="w-5 h-5 rounded-full bg-[#0F1A2C] text-white text-[11px] font-bold flex items-center justify-center">1</span>
+                <h3 className="text-sm font-bold text-[#183249]">Define Request &amp; Professional Role</h3>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
-                  <label htmlFor="studio-role-select" className="block text-xs font-bold text-[#68788e] mb-1.5">
+                  <label htmlFor="studio-role-select" className="block text-xs font-bold text-[#64727e] mb-1.5">
                     Your Professional Role
                   </label>
                   <select
@@ -668,7 +668,7 @@ export default function ProDigitalKeyPage() {
                       else if (r === "Residential Property Manager") setStudioFamily("Appoint & lease");
                       else if (r === "Mortgage Broker & Lender") setStudioFamily("Finance a home");
                     }}
-                    className="w-full bg-[#f8fafc] border border-[#dfe6ef] rounded-xl px-3.5 py-2 text-xs font-semibold text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                    className="w-full bg-[#f8fafc] border border-[#e2e5e5] rounded-xl px-3.5 py-2 text-xs font-semibold text-[#183249] focus:outline-none focus:border-[#0F1A2C]"
                   >
                     <option value="Builder & Contractor">Builder &amp; Contractor</option>
                     <option value="Solicitor / Conveyancing Team">Solicitor / Conveyancing Team</option>
@@ -678,14 +678,14 @@ export default function ProDigitalKeyPage() {
                 </div>
 
                 <div>
-                  <label htmlFor="studio-family-select" className="block text-xs font-bold text-[#68788e] mb-1.5">
+                  <label htmlFor="studio-family-select" className="block text-xs font-bold text-[#64727e] mb-1.5">
                     Pack Family (6 Regulated Families)
                   </label>
                   <select
                     id="studio-family-select"
                     value={studioFamily}
                     onChange={(e) => setStudioFamily(e.target.value as PackFamily)}
-                    className="w-full bg-[#f8fafc] border border-[#dfe6ef] rounded-xl px-3.5 py-2 text-xs font-semibold text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                    className="w-full bg-[#f8fafc] border border-[#e2e5e5] rounded-xl px-3.5 py-2 text-xs font-semibold text-[#183249] focus:outline-none focus:border-[#0F1A2C]"
                   >
                     {PACK_FAMILIES_LIST.map((fam) => (
                       <option key={fam} value={fam}>{fam}</option>
@@ -694,14 +694,14 @@ export default function ProDigitalKeyPage() {
                 </div>
 
                 <div>
-                  <label htmlFor="studio-property-select" className="block text-xs font-bold text-[#68788e] mb-1.5">
+                  <label htmlFor="studio-property-select" className="block text-xs font-bold text-[#64727e] mb-1.5">
                     Target Property &amp; Sovereign Vault
                   </label>
                   <select
                     id="studio-property-select"
                     value={studioPropId}
                     onChange={(e) => setStudioPropId(e.target.value)}
-                    className="w-full bg-[#f8fafc] border border-[#dfe6ef] rounded-xl px-3.5 py-2 text-xs font-semibold text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                    className="w-full bg-[#f8fafc] border border-[#e2e5e5] rounded-xl px-3.5 py-2 text-xs font-semibold text-[#183249] focus:outline-none focus:border-[#0F1A2C]"
                   >
                     {PROPERTIES_LIST.map((p) => (
                       <option key={p.id} value={p.id}>
@@ -716,33 +716,33 @@ export default function ProDigitalKeyPage() {
             {/* Step 2: Branching Questions Engine (Page 3 Step 3 in Brief) */}
             <div className="pt-4 border-t border-[#f1f5f9]">
               <div className="flex items-center gap-2 mb-2">
-                <span className="w-5 h-5 rounded-full bg-[#071d3b] text-white text-[11px] font-bold flex items-center justify-center">2</span>
-                <h3 className="text-sm font-bold text-[#102645]">
+                <span className="w-5 h-5 rounded-full bg-[#0F1A2C] text-white text-[11px] font-bold flex items-center justify-center">2</span>
+                <h3 className="text-sm font-bold text-[#183249]">
                   Branching Questions (Statutory Rule Constraints)
                 </h3>
               </div>
-              <p className="text-xs text-[#68788e] mb-4">
+              <p className="text-xs text-[#64727e] mb-4">
                 A question changes the required list. Law-required items are attached automatically; unlawful extra requests are blocked.
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-[#f8fafc] p-4 rounded-xl border border-[#dfe6ef]">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-[#f8fafc] p-4 rounded-xl border border-[#e2e5e5]">
                 {studioFamily === "Sell a property" && (
                   <>
-                    <label className="flex items-center gap-2 text-xs font-semibold text-[#102645] cursor-pointer">
+                    <label className="flex items-center gap-2 text-xs font-semibold text-[#183249] cursor-pointer">
                       <input
                         type="checkbox"
                         checked={hasPool}
                         onChange={(e) => setHasPool(e.target.checked)}
-                        className="rounded text-[#071d3b] w-4 h-4 cursor-pointer"
+                        className="rounded text-[#0F1A2C] w-4 h-4 cursor-pointer"
                       />
                       <span>Property has a regulated swimming pool (Triggers QLD Form 23 Pool Safety Cert)</span>
                     </label>
-                    <label className="flex items-center gap-2 text-xs font-semibold text-[#102645] cursor-pointer">
+                    <label className="flex items-center gap-2 text-xs font-semibold text-[#183249] cursor-pointer">
                       <input
                         type="checkbox"
                         checked={isBodyCorporate}
                         onChange={(e) => setIsBodyCorporate(e.target.checked)}
-                        className="rounded text-[#071d3b] w-4 h-4 cursor-pointer"
+                        className="rounded text-[#0F1A2C] w-4 h-4 cursor-pointer"
                       />
                       <span>Community Title / Body Corporate (Triggers BCCM s206 Disclosure &amp; CMS)</span>
                     </label>
@@ -751,34 +751,34 @@ export default function ProDigitalKeyPage() {
 
                 {studioFamily === "Build & change" && (
                   <>
-                    <label className="flex items-center gap-2 text-xs font-semibold text-[#102645] cursor-pointer">
+                    <label className="flex items-center gap-2 text-xs font-semibold text-[#183249] cursor-pointer">
                       <input
                         type="checkbox"
                         checked={isUrgentVariation}
                         onChange={(e) => setIsUrgentVariation(e.target.checked)}
-                        className="rounded text-[#071d3b] w-4 h-4 cursor-pointer"
+                        className="rounded text-[#0F1A2C] w-4 h-4 cursor-pointer"
                       />
                       <span>Urgent-work exception claim (QBCC s65(4) limited exception)</span>
                     </label>
-                    <div className="text-xs text-[#68788e] flex items-center gap-2">
+                    <div className="text-xs text-[#64727e] flex items-center gap-2">
                       <span>Variation Delay Estimate:</span>
-                      <span className="font-bold text-[#102645] bg-white px-2 py-0.5 rounded border border-[#dfe6ef]">0 business days</span>
+                      <span className="font-bold text-[#183249] bg-white px-2 py-0.5 rounded border border-[#e2e5e5]">0 business days</span>
                     </div>
                   </>
                 )}
 
                 {studioFamily === "Appoint & lease" && (
                   <>
-                    <label className="flex items-center gap-2 text-xs font-semibold text-[#102645] cursor-pointer">
+                    <label className="flex items-center gap-2 text-xs font-semibold text-[#183249] cursor-pointer">
                       <input
                         type="checkbox"
                         checked={isNewLease}
                         onChange={(e) => setIsNewLease(e.target.checked)}
-                        className="rounded text-[#071d3b] w-4 h-4 cursor-pointer"
+                        className="rounded text-[#0F1A2C] w-4 h-4 cursor-pointer"
                       />
                       <span>New tenancy commencement (Attaches Form 1a Entry Condition Report &amp; Form 17a)</span>
                     </label>
-                    <div className="text-xs text-[#24754c] font-semibold">
+                    <div className="text-xs text-[#28715e] font-semibold">
                       ✓ RTA Form 22 Guardrails active: Max 2 docs per category enforced.
                     </div>
                   </>
@@ -787,11 +787,11 @@ export default function ProDigitalKeyPage() {
                 {studioFamily === "Finance a home" && (
                   <>
                     <div>
-                      <span className="text-xs font-bold text-[#68788e] block mb-1">Borrower Employment Classification</span>
+                      <span className="text-xs font-bold text-[#64727e] block mb-1">Borrower Employment Classification</span>
                       <select
                         value={borrowerType}
                         onChange={(e) => setBorrowerType(e.target.value as "PAYG" | "Self-Employed")}
-                        className="w-full bg-white border border-[#dfe6ef] rounded-lg px-2.5 py-1.5 text-xs text-[#102645]"
+                        className="w-full bg-white border border-[#e2e5e5] rounded-lg px-2.5 py-1.5 text-xs text-[#183249]"
                       >
                         <option value="PAYG">PAYG Full-time / Part-time</option>
                         <option value="Self-Employed">Self-Employed / Sole Trader (Requires 2Y Tax Returns)</option>
@@ -804,7 +804,7 @@ export default function ProDigitalKeyPage() {
                 )}
 
                 {(studioFamily === "Service & handover" || studioFamily === "My tenancy") && (
-                  <div className="text-xs text-[#68788e] col-span-2">
+                  <div className="text-xs text-[#64727e] col-span-2">
                     Standard Queensland statutory baseline loaded. No special branching overrides required.
                   </div>
                 )}
@@ -815,22 +815,22 @@ export default function ProDigitalKeyPage() {
             <div className="pt-4 border-t border-[#f1f5f9]">
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-2">
-                  <span className="w-5 h-5 rounded-full bg-[#071d3b] text-white text-[11px] font-bold flex items-center justify-center">3</span>
-                  <h3 className="text-sm font-bold text-[#102645]">
+                  <span className="w-5 h-5 rounded-full bg-[#0F1A2C] text-white text-[11px] font-bold flex items-center justify-center">3</span>
+                  <h3 className="text-sm font-bold text-[#183249]">
                     Generated Manifest ({dynamicallyAssembledItems.length} items)
                   </h3>
                 </div>
-                <span className="text-[11px] font-semibold text-[#24754c]">
+                <span className="text-[11px] font-semibold text-[#28715e]">
                   ✓ Verified against Queensland Rulebook
                 </span>
               </div>
 
-              <div className="border border-[#dfe6ef] rounded-xl overflow-hidden divide-y divide-[#f1f5f9]">
+              <div className="border border-[#e2e5e5] rounded-xl overflow-hidden divide-y divide-[#f1f5f9]">
                 {dynamicallyAssembledItems.map((item) => (
                   <div key={item.id} className="p-3.5 flex items-center justify-between gap-4 hover:bg-[#fafbfc] transition-colors">
                     <div className="min-w-0">
                       <div className="flex items-center gap-2 flex-wrap">
-                        <span className="text-xs font-bold text-[#102645] truncate">{item.title}</span>
+                        <span className="text-xs font-bold text-[#183249] truncate">{item.title}</span>
                         <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
                           item.defaultLabel === "Required by law"
                             ? "bg-[#fee2e2] text-[#991b1b]"
@@ -843,12 +843,12 @@ export default function ProDigitalKeyPage() {
                           {item.defaultLabel}
                         </span>
                       </div>
-                      <div className="text-[11px] text-[#68788e] mt-0.5 flex items-center gap-2">
+                      <div className="text-[11px] text-[#64727e] mt-0.5 flex items-center gap-2">
                         <span>{item.category}</span>
                         <span>·</span>
                         <span>{item.size}</span>
                         <span>·</span>
-                        <span className="font-mono text-[#071d3b]">{item.statutoryRef}</span>
+                        <span className="font-mono text-[#0F1A2C]">{item.statutoryRef}</span>
                       </div>
                     </div>
 
@@ -863,7 +863,7 @@ export default function ProDigitalKeyPage() {
                         source: item.source,
                         statutoryRef: item.statutoryRef,
                       })}
-                      className="px-3 py-1 bg-white border border-[#cbd5e1] hover:bg-[#f8fafc] text-xs font-semibold rounded-lg text-[#102645] cursor-pointer"
+                      className="px-3 py-1 bg-white border border-[#cbd5e1] hover:bg-[#f8fafc] text-xs font-semibold rounded-lg text-[#183249] cursor-pointer"
                     >
                       Inspect
                     </button>
@@ -875,20 +875,20 @@ export default function ProDigitalKeyPage() {
             {/* Step 4: Signing Route & Publish (Page 8 & 10) */}
             <div className="pt-4 border-t border-[#f1f5f9]">
               <div className="flex items-center gap-2 mb-3">
-                <span className="w-5 h-5 rounded-full bg-[#071d3b] text-white text-[11px] font-bold flex items-center justify-center">4</span>
-                <h3 className="text-sm font-bold text-[#102645]">Execution Route &amp; Issuance</h3>
+                <span className="w-5 h-5 rounded-full bg-[#0F1A2C] text-white text-[11px] font-bold flex items-center justify-center">4</span>
+                <h3 className="text-sm font-bold text-[#183249]">Execution Route &amp; Issuance</h3>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="studio-execution-route" className="block text-xs font-bold text-[#68788e] mb-1.5">
+                  <label htmlFor="studio-execution-route" className="block text-xs font-bold text-[#64727e] mb-1.5">
                     Execution Route (Page 8 of Brief)
                   </label>
                   <select
                     id="studio-execution-route"
                     value={studioExecutionRoute}
                     onChange={(e) => setStudioExecutionRoute(e.target.value as ExecutionRoute)}
-                    className="w-full bg-[#f8fafc] border border-[#dfe6ef] rounded-xl px-3.5 py-2 text-xs font-semibold text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                    className="w-full bg-[#f8fafc] border border-[#e2e5e5] rounded-xl px-3.5 py-2 text-xs font-semibold text-[#183249] focus:outline-none focus:border-[#0F1A2C]"
                   >
                     <option value="Approved electronic signing (ETA 2001)">Approved electronic signing (ETA 2001 s14)</option>
                     <option value="External e-conveyancing (PEXA)">External e-conveyancing (PEXA / ELNO)</option>
@@ -897,7 +897,7 @@ export default function ProDigitalKeyPage() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#68788e] mb-1.5">
+                  <label className="block text-xs font-bold text-[#64727e] mb-1.5">
                     Pack Title
                   </label>
                   <input
@@ -905,30 +905,30 @@ export default function ProDigitalKeyPage() {
                     required
                     value={studioTitle}
                     onChange={(e) => setStudioTitle(e.target.value)}
-                    className="w-full bg-[#f8fafc] border border-[#dfe6ef] rounded-xl px-3.5 py-2 text-xs text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                    className="w-full bg-[#f8fafc] border border-[#e2e5e5] rounded-xl px-3.5 py-2 text-xs text-[#183249] focus:outline-none focus:border-[#0F1A2C]"
                   />
                 </div>
               </div>
 
               <div className="mt-3">
-                <label className="block text-xs font-bold text-[#68788e] mb-1.5">
+                <label className="block text-xs font-bold text-[#64727e] mb-1.5">
                   Matter Purpose / Instruction Notes
                 </label>
                 <textarea
                   rows={2}
                   value={studioDescription}
                   onChange={(e) => setStudioDescription(e.target.value)}
-                  className="w-full bg-[#f8fafc] border border-[#dfe6ef] rounded-xl px-3.5 py-2 text-xs text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                  className="w-full bg-[#f8fafc] border border-[#e2e5e5] rounded-xl px-3.5 py-2 text-xs text-[#183249] focus:outline-none focus:border-[#0F1A2C]"
                 />
               </div>
 
               <div className="pt-4 flex items-center justify-between">
-                <p className="text-[11.5px] text-[#68788e]">
+                <p className="text-[11.5px] text-[#64727e]">
                   Freezes manifest. Generates cryptographic receipt hash upon client delivery.
                 </p>
                 <button
                   type="submit"
-                  className="px-5 py-2.5 bg-[#071d3b] hover:bg-[#15345d] text-white text-xs font-bold rounded-xl transition-all shadow-xs cursor-pointer"
+                  className="px-5 py-2.5 bg-[#0F1A2C] hover:bg-[#1c3a54] text-white text-xs font-bold rounded-xl transition-all shadow-xs cursor-pointer"
                 >
                   Publish &amp; Send to Client Pack →
                 </button>
@@ -944,11 +944,11 @@ export default function ProDigitalKeyPage() {
       {activeTab === "packs" && (
         <div className="space-y-6">
           {/* Dropdown Filters Bar */}
-          <div className="bg-white border border-[#dfe6ef] rounded-2xl p-4 shadow-2xs flex flex-wrap items-center justify-between gap-4">
+          <div className="bg-white border border-[#e2e5e5] rounded-2xl p-4 shadow-2xs flex flex-wrap items-center justify-between gap-4">
             <div className="flex flex-wrap items-center gap-3">
               {/* Category Dropdown (Requested by User!) */}
               <div className="flex items-center gap-2">
-                <label htmlFor="pro-family-filter" className="text-xs font-bold text-[#68788e]">
+                <label htmlFor="pro-family-filter" className="text-xs font-bold text-[#64727e]">
                   Pack Family:
                 </label>
                 <div className="relative min-w-[210px]">
@@ -956,14 +956,14 @@ export default function ProDigitalKeyPage() {
                     id="pro-family-filter"
                     value={selectedFamilyFilter}
                     onChange={(e) => setSelectedFamilyFilter(e.target.value)}
-                    className="w-full appearance-none bg-[#f8fafc] border border-[#dfe6ef] hover:border-[#cbd5e1] text-[#102645] font-bold text-xs rounded-xl px-3.5 py-2 pr-9 focus:outline-none focus:border-[#071d3b] cursor-pointer transition-colors"
+                    className="w-full appearance-none bg-[#f8fafc] border border-[#e2e5e5] hover:border-[#cbd5e1] text-[#183249] font-bold text-xs rounded-xl px-3.5 py-2 pr-9 focus:outline-none focus:border-[#0F1A2C] cursor-pointer transition-colors"
                   >
                     <option value="all">All Pack Families (6)</option>
                     {PACK_FAMILIES_LIST.map((fam) => (
                       <option key={fam} value={fam}>{fam}</option>
                     ))}
                   </select>
-                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-[#68788e]">
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-[#64727e]">
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                     </svg>
@@ -973,7 +973,7 @@ export default function ProDigitalKeyPage() {
 
               {/* Property / Client Dropdown */}
               <div className="flex items-center gap-2">
-                <label htmlFor="pro-prop-filter" className="text-xs font-bold text-[#68788e]">
+                <label htmlFor="pro-prop-filter" className="text-xs font-bold text-[#64727e]">
                   Property:
                 </label>
                 <div className="relative min-w-[210px]">
@@ -981,14 +981,14 @@ export default function ProDigitalKeyPage() {
                     id="pro-prop-filter"
                     value={selectedPropFilter}
                     onChange={(e) => setSelectedPropFilter(e.target.value)}
-                    className="w-full appearance-none bg-[#f8fafc] border border-[#dfe6ef] hover:border-[#cbd5e1] text-[#102645] font-bold text-xs rounded-xl px-3.5 py-2 pr-9 focus:outline-none focus:border-[#071d3b] cursor-pointer transition-colors"
+                    className="w-full appearance-none bg-[#f8fafc] border border-[#e2e5e5] hover:border-[#cbd5e1] text-[#183249] font-bold text-xs rounded-xl px-3.5 py-2 pr-9 focus:outline-none focus:border-[#0F1A2C] cursor-pointer transition-colors"
                   >
                     <option value="all">All Properties</option>
                     {PROPERTIES_LIST.map((p) => (
                       <option key={p.id} value={p.id}>{p.street}, {p.suburb}</option>
                     ))}
                   </select>
-                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-[#68788e]">
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-[#64727e]">
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                     </svg>
@@ -998,7 +998,7 @@ export default function ProDigitalKeyPage() {
 
               {/* Status Dropdown */}
               <div className="flex items-center gap-2">
-                <label htmlFor="pro-status-filter" className="text-xs font-bold text-[#68788e]">
+                <label htmlFor="pro-status-filter" className="text-xs font-bold text-[#64727e]">
                   Status:
                 </label>
                 <div className="relative min-w-[170px]">
@@ -1006,7 +1006,7 @@ export default function ProDigitalKeyPage() {
                     id="pro-status-filter"
                     value={selectedStatusFilter}
                     onChange={(e) => setSelectedStatusFilter(e.target.value)}
-                    className="w-full appearance-none bg-[#f8fafc] border border-[#dfe6ef] hover:border-[#cbd5e1] text-[#102645] font-bold text-xs rounded-xl px-3.5 py-2 pr-9 focus:outline-none focus:border-[#071d3b] cursor-pointer transition-colors"
+                    className="w-full appearance-none bg-[#f8fafc] border border-[#e2e5e5] hover:border-[#cbd5e1] text-[#183249] font-bold text-xs rounded-xl px-3.5 py-2 pr-9 focus:outline-none focus:border-[#0F1A2C] cursor-pointer transition-colors"
                   >
                     <option value="all">All Statuses</option>
                     <option value="Sent to Client">Sent to Client</option>
@@ -1014,7 +1014,7 @@ export default function ProDigitalKeyPage() {
                     <option value="Ready to Issue">Ready to Issue</option>
                     <option value="Fully Sealed to Vault">Fully Sealed</option>
                   </select>
-                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-[#68788e]">
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-[#64727e]">
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                     </svg>
@@ -1023,7 +1023,7 @@ export default function ProDigitalKeyPage() {
               </div>
             </div>
 
-            <span className="text-xs font-semibold text-[#68788e]">
+            <span className="text-xs font-semibold text-[#64727e]">
               Showing {filteredPacks.length} of {packsList.length} packs
             </span>
           </div>
@@ -1033,23 +1033,23 @@ export default function ProDigitalKeyPage() {
             {filteredPacks.map((pack) => (
               <div
                 key={pack.id}
-                className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm hover:border-[#cbd5e1] transition-all space-y-4"
+                className="bg-white border border-[#e2e5e5] rounded-2xl p-6 shadow-sm hover:border-[#cbd5e1] transition-all space-y-4"
               >
                 <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 pb-3 border-b border-[#f1f5f9]">
                   <div>
                     <div className="flex items-center gap-2 flex-wrap mb-1">
-                      <span className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c] bg-[#eaf5ef] px-2 py-0.5 rounded border border-[#d2e6d9]">
+                      <span className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#28715e] bg-[#eaf4ef] px-2 py-0.5 rounded border border-[#d2e6d9]">
                         {pack.family}
                       </span>
-                      <span className="text-xs font-mono font-bold text-[#68788e]">
+                      <span className="text-xs font-mono font-bold text-[#64727e]">
                         {pack.id}
                       </span>
                       <span className="text-xs text-[#8a9bb0]">
                         · Issuer: {pack.issuerRole}
                       </span>
                     </div>
-                    <h3 className="text-base font-bold text-[#102645]">{pack.title}</h3>
-                    <p className="text-xs text-[#68788e] mt-0.5">
+                    <h3 className="text-base font-bold text-[#183249]">{pack.title}</h3>
+                    <p className="text-xs text-[#64727e] mt-0.5">
                       {pack.propertyAddress} · {pack.clientName}
                     </p>
                   </div>
@@ -1060,7 +1060,7 @@ export default function ProDigitalKeyPage() {
                     </span>
                     <button
                       onClick={() => setSelectedPackModal(pack)}
-                      className="px-3 py-1.5 bg-[#071d3b] hover:bg-[#15345d] text-white rounded-xl text-xs font-bold transition-colors cursor-pointer"
+                      className="px-3 py-1.5 bg-[#0F1A2C] hover:bg-[#1c3a54] text-white rounded-xl text-xs font-bold transition-colors cursor-pointer"
                     >
                       View Manifest ({pack.items.length})
                     </button>
@@ -1070,10 +1070,10 @@ export default function ProDigitalKeyPage() {
                 {/* Pack items preview snippet */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
                   {pack.items.slice(0, 4).map((item) => (
-                    <div key={item.id} className="p-2.5 rounded-xl bg-[#f8fafc] border border-[#dfe6ef] flex items-center justify-between gap-2">
+                    <div key={item.id} className="p-2.5 rounded-xl bg-[#f8fafc] border border-[#e2e5e5] flex items-center justify-between gap-2">
                       <div className="min-w-0">
-                        <div className="font-semibold text-[#102645] truncate">{item.title}</div>
-                        <div className="text-[10.5px] text-[#68788e]">{item.category} · {item.size}</div>
+                        <div className="font-semibold text-[#183249] truncate">{item.title}</div>
+                        <div className="text-[10.5px] text-[#64727e]">{item.category} · {item.size}</div>
                       </div>
                       <span className={`text-[9.5px] font-bold px-2 py-0.5 rounded-full flex-shrink-0 ${
                         item.label === "Required by law"
@@ -1091,16 +1091,16 @@ export default function ProDigitalKeyPage() {
                 </div>
 
                 {/* Footer Next Action Bar */}
-                <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-[#68788e]">
+                <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-[#64727e]">
                   <div className="flex items-center gap-2">
-                    <span className="font-bold text-[#071d3b]">Next Action:</span>
+                    <span className="font-bold text-[#0F1A2C]">Next Action:</span>
                     <span>{pack.nextAction}</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <span className="font-mono text-[11px] text-[#8a9bb0]">{pack.updatedAt}</span>
                     <Link
                       href={pack.trustlinkHref}
-                      className="text-xs font-bold text-[#071d3b] hover:underline"
+                      className="text-xs font-bold text-[#0F1A2C] hover:underline"
                     >
                       Open TrustLink Workspace →
                     </Link>
@@ -1110,7 +1110,7 @@ export default function ProDigitalKeyPage() {
             ))}
 
             {filteredPacks.length === 0 && (
-              <div className="bg-white border border-[#dfe6ef] rounded-2xl p-12 text-center text-xs text-[#68788e]">
+              <div className="bg-white border border-[#e2e5e5] rounded-2xl p-12 text-center text-xs text-[#64727e]">
                 No digital key packs match the selected filters.
               </div>
             )}
@@ -1123,61 +1123,61 @@ export default function ProDigitalKeyPage() {
       ═════════════════════════════════════════════════════════════════ */}
       {activeTab === "builder-flow" && (
         <div className="space-y-6">
-          <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 sm:p-8 shadow-sm space-y-6">
+          <div className="bg-white border border-[#e2e5e5] rounded-2xl p-6 sm:p-8 shadow-sm space-y-6">
             <div>
-              <span className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c] block mb-1">
+              <span className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#28715e] block mb-1">
                 05 / BUILDER PACK SPECIFICATION
               </span>
-              <h2 className="text-xl font-bold text-[#102645]">
+              <h2 className="text-xl font-bold text-[#183249]">
                 A change request starts a controlled decision.
               </h2>
-              <p className="text-xs text-[#68788e] mt-1 max-w-3xl leading-relaxed">
+              <p className="text-xs text-[#64727e] mt-1 max-w-3xl leading-relaxed">
                 QBCC requires that agreement to a written variation precedes work. The variation records its description, date, price effect, delay estimate and timing. Keep the four events strictly distinct.
               </p>
             </div>
 
             {/* The 4 Distinct Events in Brief */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              <div className="bg-[#f8fafc] border border-[#dfe6ef] rounded-xl p-4 space-y-2">
+              <div className="bg-[#f8fafc] border border-[#e2e5e5] rounded-xl p-4 space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#68788e]">Moment 1</span>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#64727e]">Moment 1</span>
                   <span className="text-xs">📝</span>
                 </div>
-                <h4 className="text-sm font-bold text-[#102645]">Requested Change</h4>
-                <p className="text-[11.5px] text-[#68788e] leading-relaxed">
+                <h4 className="text-sm font-bold text-[#183249]">Requested Change</h4>
+                <p className="text-[11.5px] text-[#64727e] leading-relaxed">
                   Owner requests exact proposed finish or model. Explicitly labeled <em>"Request only — not approved work"</em>.
                 </p>
               </div>
 
               <div className="bg-[#eef4ff] border border-[#cbd5e2] rounded-xl p-4 space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#071d3b]">Moment 2</span>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#0F1A2C]">Moment 2</span>
                   <span className="text-xs">⚖️</span>
                 </div>
-                <h4 className="text-sm font-bold text-[#071d3b]">Approved Variation</h4>
-                <p className="text-[11.5px] text-[#68788e] leading-relaxed">
+                <h4 className="text-sm font-bold text-[#0F1A2C]">Approved Variation</h4>
+                <p className="text-[11.5px] text-[#64727e] leading-relaxed">
                   Builder assesses scope &amp; returns priced QBCC Form 7 ($840 incl GST, 0 days delay). Both parties sign executed variation.
                 </p>
               </div>
 
-              <div className="bg-[#f8fafc] border border-[#dfe6ef] rounded-xl p-4 space-y-2">
+              <div className="bg-[#f8fafc] border border-[#e2e5e5] rounded-xl p-4 space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#68788e]">Moment 3</span>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#64727e]">Moment 3</span>
                   <span className="text-xs">🔨</span>
                 </div>
-                <h4 className="text-sm font-bold text-[#102645]">Completed Work</h4>
-                <p className="text-[11.5px] text-[#68788e] leading-relaxed">
+                <h4 className="text-sm font-bold text-[#183249]">Completed Work</h4>
+                <p className="text-[11.5px] text-[#64727e] leading-relaxed">
                   Trades execute physical installation. Return serial numbers, manufacturer manuals, and revised as-built specs.
                 </p>
               </div>
 
-              <div className="bg-[#eaf5ef] border border-[#c7e3d1] rounded-xl p-4 space-y-2">
+              <div className="bg-[#eaf4ef] border border-[#c7e3d1] rounded-xl p-4 space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#24754c]">Moment 4</span>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#28715e]">Moment 4</span>
                   <span className="text-xs">🔑</span>
                 </div>
-                <h4 className="text-sm font-bold text-[#24754c]">Accepted Handover</h4>
-                <p className="text-[11.5px] text-[#68788e] leading-relaxed">
+                <h4 className="text-sm font-bold text-[#28715e]">Accepted Handover</h4>
+                <p className="text-[11.5px] text-[#64727e] leading-relaxed">
                   Form 16/43 certificates deposit into sovereign vault. Client records receipt without releasing quality claims.
                 </p>
               </div>
@@ -1185,33 +1185,33 @@ export default function ProDigitalKeyPage() {
 
             {/* Live Case Study: Kenmore Kitchen Variation */}
             <div className="pt-4 border-t border-[#f1f5f9] space-y-3">
-              <h3 className="text-sm font-bold text-[#102645]">
+              <h3 className="text-sm font-bold text-[#183249]">
                 Active Case Study: 18 Banksia Crescent — Variation Notice #04
               </h3>
-              <div className="bg-[#fcfdfe] border border-[#dfe6ef] rounded-xl p-5 space-y-3">
+              <div className="bg-[#fcfdfe] border border-[#e2e5e5] rounded-xl p-5 space-y-3">
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
                   <div>
-                    <span className="text-[#68788e] block text-[11px]">Proposed Item</span>
-                    <strong className="text-[#102645]">40mm Caesarstone Mitred Island</strong>
+                    <span className="text-[#64727e] block text-[11px]">Proposed Item</span>
+                    <strong className="text-[#183249]">40mm Caesarstone Mitred Island</strong>
                   </div>
                   <div>
-                    <span className="text-[#68788e] block text-[11px]">Contract Price Effect</span>
-                    <strong className="text-[#24754c]">+$840.00 AUD (incl. GST)</strong>
+                    <span className="text-[#64727e] block text-[11px]">Contract Price Effect</span>
+                    <strong className="text-[#28715e]">+$840.00 AUD (incl. GST)</strong>
                   </div>
                   <div>
-                    <span className="text-[#68788e] block text-[11px]">Estimated Delay</span>
-                    <strong className="text-[#102645]">0 Business Days</strong>
+                    <span className="text-[#64727e] block text-[11px]">Estimated Delay</span>
+                    <strong className="text-[#183249]">0 Business Days</strong>
                   </div>
                   <div>
-                    <span className="text-[#68788e] block text-[11px]">Executed Document</span>
-                    <strong className="text-[#071d3b]">Signed QBCC Form 7 ✓</strong>
+                    <span className="text-[#64727e] block text-[11px]">Executed Document</span>
+                    <strong className="text-[#0F1A2C]">Signed QBCC Form 7 ✓</strong>
                   </div>
                 </div>
                 <div className="pt-2 border-t border-[#f1f5f9] flex justify-between items-center text-xs">
-                  <span className="text-[#68788e]">
+                  <span className="text-[#64727e]">
                     Copy returned to client within 5 business days as mandated by QBCC Act s65.
                   </span>
-                  <span className="font-bold text-[#24754c] flex items-center gap-1">
+                  <span className="font-bold text-[#28715e] flex items-center gap-1">
                     <span>✓</span> Compliant Statutory Execution
                   </span>
                 </div>
@@ -1226,14 +1226,14 @@ export default function ProDigitalKeyPage() {
       ═════════════════════════════════════════════════════════════════ */}
       {activeTab === "ledger" && (
         <div className="space-y-6">
-          <div className="bg-[#f8fafc] border border-[#dfe6ef] rounded-2xl p-6 shadow-2xs">
-            <span className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c] block mb-1">
+          <div className="bg-[#f8fafc] border border-[#e2e5e5] rounded-2xl p-6 shadow-2xs">
+            <span className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#28715e] block mb-1">
               09 / IMPLEMENTATION CONTRACT
             </span>
-            <h2 className="text-lg font-bold text-[#102645]">
+            <h2 className="text-lg font-bold text-[#183249]">
               Immutable Exchange Receipts &amp; Cryptographic Ledgers
             </h2>
-            <p className="text-xs text-[#68788e] mt-1 max-w-3xl leading-relaxed">
+            <p className="text-xs text-[#64727e] mt-1 max-w-3xl leading-relaxed">
               Every completed transaction records separate send, transport delivery, viewing, acknowledgement, and validated return copy IDs. Duplicate callbacks are idempotent and never broaden access.
             </p>
           </div>
@@ -1242,50 +1242,50 @@ export default function ProDigitalKeyPage() {
             {receiptsList.map((rcpt) => (
               <div
                 key={rcpt.id}
-                className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm space-y-4"
+                className="bg-white border border-[#e2e5e5] rounded-2xl p-6 shadow-sm space-y-4"
               >
                 <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 pb-3 border-b border-[#f1f5f9]">
                   <div>
                     <div className="flex items-center gap-2 flex-wrap mb-1">
-                      <span className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c] bg-[#eaf5ef] px-2 py-0.5 rounded border border-[#d2e6d9]">
+                      <span className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#28715e] bg-[#eaf4ef] px-2 py-0.5 rounded border border-[#d2e6d9]">
                         {rcpt.family}
                       </span>
-                      <span className="font-mono text-xs font-bold text-[#071d3b]">
+                      <span className="font-mono text-xs font-bold text-[#0F1A2C]">
                         {rcpt.id}
                       </span>
                     </div>
-                    <h3 className="text-base font-bold text-[#102645]">{rcpt.packTitle}</h3>
-                    <p className="text-xs text-[#68788e] mt-0.5">
+                    <h3 className="text-base font-bold text-[#183249]">{rcpt.packTitle}</h3>
+                    <p className="text-xs text-[#64727e] mt-0.5">
                       {rcpt.propertyAddress} · Client: {rcpt.clientName}
                     </p>
                   </div>
 
                   <div className="text-right flex-shrink-0">
-                    <span className="text-xs text-[#24754c] font-bold block">Executed &amp; Filed</span>
+                    <span className="text-xs text-[#28715e] font-bold block">Executed &amp; Filed</span>
                     <span className="text-[11px] text-[#8a9bb0] font-mono">{rcpt.executedDate}</span>
                   </div>
                 </div>
 
                 <div className="space-y-2 text-xs">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <span className="text-[#68788e]">Sealed Documents:</span>
+                    <span className="text-[#64727e]">Sealed Documents:</span>
                     {rcpt.highlightDocs.map((doc, idx) => (
-                      <span key={idx} className="bg-[#f8fafc] border border-[#dfe6ef] px-2.5 py-1 rounded-lg font-semibold text-[#102645]">
+                      <span key={idx} className="bg-[#f8fafc] border border-[#e2e5e5] px-2.5 py-1 rounded-lg font-semibold text-[#183249]">
                         ✓ {doc}
                       </span>
                     ))}
                   </div>
 
                   <div className="flex items-center gap-2 flex-wrap">
-                    <span className="text-[#68788e]">Signatory Parties:</span>
+                    <span className="text-[#64727e]">Signatory Parties:</span>
                     {rcpt.signers.map((s, idx) => (
-                      <span key={idx} className="text-[11px] font-medium text-[#102645]">
+                      <span key={idx} className="text-[11px] font-medium text-[#183249]">
                         {s}{idx < rcpt.signers.length - 1 ? " · " : ""}
                       </span>
                     ))}
                   </div>
 
-                  <div className="pt-2 text-[11px] text-[#24754c] font-medium">
+                  <div className="pt-2 text-[11px] text-[#28715e] font-medium">
                     {rcpt.statutoryCertification}
                   </div>
                 </div>
@@ -1296,7 +1296,7 @@ export default function ProDigitalKeyPage() {
                   </span>
                   <button
                     onClick={() => alert(`Opening validated cryptographic receipt: ${rcpt.id}\nDigest: ${rcpt.hash}`)}
-                    className="text-xs font-bold text-[#071d3b] hover:underline cursor-pointer"
+                    className="text-xs font-bold text-[#0F1A2C] hover:underline cursor-pointer"
                   >
                     View Sealed Receipt →
                   </button>
@@ -1312,14 +1312,14 @@ export default function ProDigitalKeyPage() {
       ═════════════════════════════════════════════════════════════════ */}
       {activeTab === "rules" && (
         <div className="space-y-6">
-          <div className="bg-[#f8fafc] border border-[#dfe6ef] rounded-2xl p-6 shadow-2xs">
-            <span className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c] block mb-1">
+          <div className="bg-[#f8fafc] border border-[#e2e5e5] rounded-2xl p-6 shadow-2xs">
+            <span className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#28715e] block mb-1">
               PRIMARY SOURCE REGISTER
             </span>
-            <h2 className="text-lg font-bold text-[#102645]">
+            <h2 className="text-lg font-bold text-[#183249]">
               Queensland Rules &amp; Professional Routes [K01 - K16]
             </h2>
-            <p className="text-xs text-[#68788e] mt-1 max-w-3xl leading-relaxed">
+            <p className="text-xs text-[#64727e] mt-1 max-w-3xl leading-relaxed">
               Checked 30 September 2026. The Pro Hub Digital Key enforces factual statutory workflows directly aligned with primary sources from Queensland Government, OFT, RTA, QBCC, and Titles Queensland.
             </p>
           </div>
@@ -1328,25 +1328,25 @@ export default function ProDigitalKeyPage() {
             {PRIMARY_SOURCES.map((source) => (
               <div
                 key={source.code}
-                className="bg-white border border-[#dfe6ef] rounded-2xl p-5 shadow-sm space-y-3 hover:border-[#cbd5e1] transition-all"
+                className="bg-white border border-[#e2e5e5] rounded-2xl p-5 shadow-sm space-y-3 hover:border-[#cbd5e1] transition-all"
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-[#071d3b] text-white">
+                  <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-[#0F1A2C] text-white">
                     {source.code}
                   </span>
-                  <span className="text-[11px] font-bold text-[#24754c]">
+                  <span className="text-[11px] font-bold text-[#28715e]">
                     {source.authority}
                   </span>
                 </div>
 
                 <div>
-                  <h3 className="text-sm font-bold text-[#102645]">{source.title}</h3>
-                  <p className="text-xs text-[#68788e] mt-1 leading-relaxed">
+                  <h3 className="text-sm font-bold text-[#183249]">{source.title}</h3>
+                  <p className="text-xs text-[#64727e] mt-1 leading-relaxed">
                     {source.summary}
                   </p>
                 </div>
 
-                <div className="p-3 bg-[#f8fafc] rounded-xl border border-[#dfe6ef] text-[11.5px] text-[#071d3b] font-medium leading-relaxed">
+                <div className="p-3 bg-[#f8fafc] rounded-xl border border-[#e2e5e5] text-[11.5px] text-[#0F1A2C] font-medium leading-relaxed">
                   <strong>Statutory Constraint:</strong> {source.statutoryRule}
                 </div>
               </div>
@@ -1358,39 +1358,39 @@ export default function ProDigitalKeyPage() {
       {/* ── MODAL: PACK MANIFEST DETAIL ── */}
       {selectedPackModal && (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-xs z-50 flex items-center justify-center p-4">
-          <div className="bg-white border border-[#dfe6ef] rounded-2xl max-w-2xl w-full p-6 sm:p-7 shadow-2xl space-y-5 max-h-[90vh] overflow-y-auto">
-            <div className="flex items-start justify-between border-b border-[#dfe6ef] pb-3">
+          <div className="bg-white border border-[#e2e5e5] rounded-2xl max-w-2xl w-full p-6 sm:p-7 shadow-2xl space-y-5 max-h-[90vh] overflow-y-auto">
+            <div className="flex items-start justify-between border-b border-[#e2e5e5] pb-3">
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c]">
+                <span className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#28715e]">
                   {selectedPackModal.family}
                 </span>
-                <h3 className="text-lg font-bold text-[#102645]">{selectedPackModal.title}</h3>
-                <p className="text-xs text-[#68788e] mt-0.5">
+                <h3 className="text-lg font-bold text-[#183249]">{selectedPackModal.title}</h3>
+                <p className="text-xs text-[#64727e] mt-0.5">
                   {selectedPackModal.propertyAddress} · {selectedPackModal.clientName}
                 </p>
               </div>
               <button
                 onClick={() => setSelectedPackModal(null)}
-                className="text-[#64748b] hover:text-[#102645] p-1.5 cursor-pointer"
+                className="text-[#64748b] hover:text-[#183249] p-1.5 cursor-pointer"
               >
                 ✕
               </button>
             </div>
 
-            <p className="text-xs text-[#68788e] leading-relaxed">
+            <p className="text-xs text-[#64727e] leading-relaxed">
               {selectedPackModal.description}
             </p>
 
             <div className="space-y-2.5">
-              <h4 className="text-xs font-bold text-[#102645] uppercase tracking-wider">
+              <h4 className="text-xs font-bold text-[#183249] uppercase tracking-wider">
                 Frozen Manifest Items ({selectedPackModal.items.length})
               </h4>
-              <div className="border border-[#dfe6ef] rounded-xl divide-y divide-[#f1f5f9]">
+              <div className="border border-[#e2e5e5] rounded-xl divide-y divide-[#f1f5f9]">
                 {selectedPackModal.items.map((item) => (
                   <div key={item.id} className="p-3 flex items-center justify-between gap-3 text-xs">
                     <div className="min-w-0">
-                      <div className="font-semibold text-[#102645] truncate">{item.title}</div>
-                      <div className="text-[10.5px] text-[#68788e]">
+                      <div className="font-semibold text-[#183249] truncate">{item.title}</div>
+                      <div className="text-[10.5px] text-[#64727e]">
                         {item.category} · {item.size} · {item.source} {item.statutoryRef ? `· ${item.statutoryRef}` : ""}
                       </div>
                     </div>
@@ -1410,27 +1410,27 @@ export default function ProDigitalKeyPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-3 text-xs p-3 bg-[#f8fafc] rounded-xl border border-[#dfe6ef]">
+            <div className="grid grid-cols-2 gap-3 text-xs p-3 bg-[#f8fafc] rounded-xl border border-[#e2e5e5]">
               <div>
-                <span className="text-[#68788e] block text-[11px]">Execution Route</span>
-                <strong className="text-[#102645]">{selectedPackModal.executionRoute}</strong>
+                <span className="text-[#64727e] block text-[11px]">Execution Route</span>
+                <strong className="text-[#183249]">{selectedPackModal.executionRoute}</strong>
               </div>
               <div>
-                <span className="text-[#68788e] block text-[11px]">Next Action</span>
-                <strong className="text-[#071d3b]">{selectedPackModal.nextAction}</strong>
+                <span className="text-[#64727e] block text-[11px]">Next Action</span>
+                <strong className="text-[#0F1A2C]">{selectedPackModal.nextAction}</strong>
               </div>
             </div>
 
             <div className="pt-2 flex justify-end gap-2">
               <button
                 onClick={() => setSelectedPackModal(null)}
-                className="px-4 py-2 bg-white border border-[#cbd5e1] text-[#102645] text-xs font-semibold rounded-xl hover:bg-[#f8fafc] cursor-pointer"
+                className="px-4 py-2 bg-white border border-[#cbd5e1] text-[#183249] text-xs font-semibold rounded-xl hover:bg-[#f8fafc] cursor-pointer"
               >
                 Close
               </button>
               <Link
                 href={selectedPackModal.trustlinkHref}
-                className="px-4 py-2 bg-[#071d3b] text-white text-xs font-bold rounded-xl hover:bg-[#15345d] cursor-pointer"
+                className="px-4 py-2 bg-[#0F1A2C] text-white text-xs font-bold rounded-xl hover:bg-[#1c3a54] cursor-pointer"
               >
                 Open in TrustLink →
               </Link>
@@ -1442,17 +1442,17 @@ export default function ProDigitalKeyPage() {
       {/* ── MODAL: DOCUMENT INSPECTION ── */}
       {previewDocModal && (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-xs z-50 flex items-center justify-center p-4">
-          <div className="bg-white border border-[#dfe6ef] rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
-            <div className="flex items-start justify-between border-b border-[#dfe6ef] pb-3">
+          <div className="bg-white border border-[#e2e5e5] rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
+            <div className="flex items-start justify-between border-b border-[#e2e5e5] pb-3">
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c]">
+                <span className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#28715e]">
                   DOCUMENT INSPECTOR
                 </span>
-                <h3 className="text-base font-bold text-[#102645]">{previewDocModal.title}</h3>
+                <h3 className="text-base font-bold text-[#183249]">{previewDocModal.title}</h3>
               </div>
               <button
                 onClick={() => setPreviewDocModal(null)}
-                className="text-[#64748b] hover:text-[#102645] p-1 cursor-pointer"
+                className="text-[#64748b] hover:text-[#183249] p-1 cursor-pointer"
               >
                 ✕
               </button>
@@ -1460,25 +1460,25 @@ export default function ProDigitalKeyPage() {
 
             <div className="space-y-2.5 text-xs">
               <div className="flex justify-between py-1.5 border-b border-[#f1f5f9]">
-                <span className="text-[#68788e]">Statutory Requirement</span>
-                <span className="font-bold text-[#102645]">{previewDocModal.label}</span>
+                <span className="text-[#64727e]">Statutory Requirement</span>
+                <span className="font-bold text-[#183249]">{previewDocModal.label}</span>
               </div>
               <div className="flex justify-between py-1.5 border-b border-[#f1f5f9]">
-                <span className="text-[#68788e]">Category</span>
-                <span className="font-medium text-[#102645]">{previewDocModal.category}</span>
+                <span className="text-[#64727e]">Category</span>
+                <span className="font-medium text-[#183249]">{previewDocModal.category}</span>
               </div>
               <div className="flex justify-between py-1.5 border-b border-[#f1f5f9]">
-                <span className="text-[#68788e]">Source Entity</span>
-                <span className="font-medium text-[#102645]">{previewDocModal.source}</span>
+                <span className="text-[#64727e]">Source Entity</span>
+                <span className="font-medium text-[#183249]">{previewDocModal.source}</span>
               </div>
               <div className="flex justify-between py-1.5 border-b border-[#f1f5f9]">
-                <span className="text-[#68788e]">File Size</span>
-                <span className="font-medium text-[#102645]">{previewDocModal.size}</span>
+                <span className="text-[#64727e]">File Size</span>
+                <span className="font-medium text-[#183249]">{previewDocModal.size}</span>
               </div>
               {previewDocModal.statutoryRef && (
                 <div className="flex justify-between py-1.5 border-b border-[#f1f5f9]">
-                  <span className="text-[#68788e]">Queensland Legal Reference</span>
-                  <span className="font-mono font-bold text-[#071d3b]">{previewDocModal.statutoryRef}</span>
+                  <span className="text-[#64727e]">Queensland Legal Reference</span>
+                  <span className="font-mono font-bold text-[#0F1A2C]">{previewDocModal.statutoryRef}</span>
                 </div>
               )}
             </div>
@@ -1486,7 +1486,7 @@ export default function ProDigitalKeyPage() {
             <div className="pt-2 flex justify-end">
               <button
                 onClick={() => setPreviewDocModal(null)}
-                className="px-4 py-2 bg-[#071d3b] text-white text-xs font-bold rounded-xl cursor-pointer"
+                className="px-4 py-2 bg-[#0F1A2C] text-white text-xs font-bold rounded-xl cursor-pointer"
               >
                 Close Inspector
               </button>

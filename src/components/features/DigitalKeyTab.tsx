@@ -83,8 +83,8 @@ export function DigitalKeyTab({ property, onGoToMessages }: DigitalKeyTabProps) 
       senderRole: "Licensed Conveyancer",
       senderCompany: "River City Conveyancing",
       senderAvatar: "LV",
-      avatarBg: "bg-[#eaf5ef]",
-      avatarText: "text-[#24754c]",
+      avatarBg: "bg-[#eaf4ef]",
+      avatarText: "text-[#28715e]",
       packName: "Settlement & Title Transfer Documents",
       docCount: 3,
       docPreview: [
@@ -170,13 +170,13 @@ export function DigitalKeyTab({ property, onGoToMessages }: DigitalKeyTabProps) 
       {/* ── Page Header ── */}
       <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
         <div>
-          <div className="text-[10px] font-bold uppercase tracking-[2px] text-[#24754c] mb-1">
+          <div className="text-[10px] font-bold uppercase tracking-[2px] text-[#28715e] mb-1">
             YOUR RECORDS · YOUR DECISION
           </div>
-          <h1 className="text-3xl font-bold tracking-tight text-[#102645] mb-1.5">
+          <h1 className="text-3xl font-bold tracking-tight text-[#183249] mb-1.5">
             Digital Key
           </h1>
-          <p className="text-[13px] text-[#68788e]">
+          <p className="text-[13px] text-[#64727e]">
             Receive, keep and share the documents you control for {property.street}.
           </p>
         </div>
@@ -193,10 +193,10 @@ export function DigitalKeyTab({ property, onGoToMessages }: DigitalKeyTabProps) 
         <div className="space-y-3">
           {/* Section header */}
           <div className="flex items-center gap-2">
-            <span className="text-[10px] font-bold uppercase tracking-[1.5px] text-[#92400e]">
+            <span className="text-[10px] font-bold uppercase tracking-[1.5px] text-[#946315]">
               Incoming
             </span>
-            <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-[#fef3c7] text-[#92400e] border border-[#fcd34d]">
+            <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-[#fbf3e4] text-[#946315] border border-[#fcd34d]">
               {pendingPacks.length}
             </span>
           </div>
@@ -221,20 +221,20 @@ export function DigitalKeyTab({ property, onGoToMessages }: DigitalKeyTabProps) 
                     </div>
                     <div className="min-w-0">
                       <div className="flex items-center gap-2 flex-wrap">
-                        <span className="text-[13px] font-bold text-[#102645]">
+                        <span className="text-[13px] font-bold text-[#183249]">
                           {pack.senderName}
                         </span>
-                        <span className="text-[10px] font-medium text-[#92400e] bg-[#fef3c7] px-1.5 py-0.5 rounded border border-[#fcd34d]">
+                        <span className="text-[10px] font-medium text-[#946315] bg-[#fbf3e4] px-1.5 py-0.5 rounded border border-[#fcd34d]">
                           {pack.docCount} docs
                         </span>
                       </div>
-                      <div className="text-[11px] text-[#68788e] truncate">
+                      <div className="text-[11px] text-[#64727e] truncate">
                         {pack.packName} · {pack.senderCompany} · {pack.sentTime}
                       </div>
                     </div>
                   </div>
                   <svg
-                    className={`w-4 h-4 text-[#92400e] flex-shrink-0 transition-transform ${isExpanded ? "rotate-180" : ""}`}
+                    className={`w-4 h-4 text-[#946315] flex-shrink-0 transition-transform ${isExpanded ? "rotate-180" : ""}`}
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -250,31 +250,31 @@ export function DigitalKeyTab({ property, onGoToMessages }: DigitalKeyTabProps) 
 
                       {/* Left: document preview */}
                       <div className="flex-1 min-w-0">
-                        <div className="text-[10.5px] font-bold uppercase tracking-[1.2px] text-[#92400e] mb-2">
+                        <div className="text-[10.5px] font-bold uppercase tracking-[1.2px] text-[#946315] mb-2">
                           What's included
                         </div>
                         <div className="space-y-1.5">
                           {pack.docPreview.map((doc) => (
                             <div
                               key={doc}
-                              className="flex items-center gap-2 text-[12px] text-[#102645]"
+                              className="flex items-center gap-2 text-[12px] text-[#183249]"
                             >
-                              <span className="text-[#92400e]">📄</span>
+                              <span className="text-[#946315]">📄</span>
                               <span>{doc}</span>
                             </div>
                           ))}
                           {pack.docCount > pack.docPreview.length && (
-                            <div className="text-[11px] text-[#68788e] pl-5">
+                            <div className="text-[11px] text-[#64727e] pl-5">
                               + {pack.docCount - pack.docPreview.length} more documents included
                             </div>
                           )}
                         </div>
 
-                        <div className="mt-3 flex items-center gap-1.5 text-[11px] text-[#68788e]">
+                        <div className="mt-3 flex items-center gap-1.5 text-[11px] text-[#64727e]">
                           <span>Sent via</span>
                           <Link
                             href={pack.trustlinkHref}
-                            className="font-bold text-[#071d3b] hover:underline"
+                            className="font-bold text-[#0F1A2C] hover:underline"
                           >
                             {pack.senderName}'s connection →
                           </Link>
@@ -285,19 +285,19 @@ export function DigitalKeyTab({ property, onGoToMessages }: DigitalKeyTabProps) 
                       <div className="flex flex-col gap-2 sm:min-w-[180px]">
                         <button
                           onClick={() => acceptPack(pack.id)}
-                          className="w-full px-4 py-2.5 bg-[#071d3b] hover:bg-[#15345d] text-white font-bold text-xs rounded-xl transition-colors cursor-pointer shadow-sm text-center"
+                          className="w-full px-4 py-2.5 bg-[#0F1A2C] hover:bg-[#1c3a54] text-white font-bold text-xs rounded-xl transition-colors cursor-pointer shadow-sm text-center"
                         >
                           ✓ Accept & save to Digital Key
                         </button>
                         <button
                           onClick={onGoToMessages}
-                          className="w-full px-4 py-2.5 bg-white hover:bg-[#f8fafc] text-[#102645] font-semibold text-xs rounded-xl border border-[#dfe6ef] transition-colors cursor-pointer text-center"
+                          className="w-full px-4 py-2.5 bg-white hover:bg-[#f8fafc] text-[#183249] font-semibold text-xs rounded-xl border border-[#e2e5e5] transition-colors cursor-pointer text-center"
                         >
                           💬 Ask {pack.senderName.split(" ")[0]} a question
                         </button>
                         <button
                           onClick={() => dismissPack(pack.id)}
-                          className="w-full px-4 py-2 text-[#a44042] hover:text-[#7f1d1d] font-semibold text-[11px] transition-colors cursor-pointer text-center"
+                          className="w-full px-4 py-2 text-[#a34b43] hover:text-[#7f1d1d] font-semibold text-[11px] transition-colors cursor-pointer text-center"
                         >
                           Decline
                         </button>
@@ -315,14 +315,14 @@ export function DigitalKeyTab({ property, onGoToMessages }: DigitalKeyTabProps) 
       <div className="space-y-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="text-[10px] font-bold uppercase tracking-[1.5px] text-[#24754c]">
+            <span className="text-[10px] font-bold uppercase tracking-[1.5px] text-[#28715e]">
               SAVED DIGITAL HANDOVERS
             </span>
             <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-[#dcfce7] text-[#166534] border border-[#86efac]">
               {savedHandovers.length} Permanent Records
             </span>
           </div>
-          <span className="text-[11px] text-[#68788e]">
+          <span className="text-[11px] text-[#64727e]">
             Secured in Digital Key · Sovereign property vault
           </span>
         </div>
@@ -346,15 +346,15 @@ export function DigitalKeyTab({ property, onGoToMessages }: DigitalKeyTabProps) 
                         <span>✓</span>
                         <span>Verified Handover</span>
                       </span>
-                      <span className="text-[10px] font-semibold text-[#68788e]">
+                      <span className="text-[10px] font-semibold text-[#64727e]">
                         Accepted {sh.acceptedDate}
                       </span>
                     </div>
-                    <h3 className="text-base font-bold text-[#102645]">
+                    <h3 className="text-base font-bold text-[#183249]">
                       {sh.packName}
                     </h3>
-                    <p className="text-[12px] text-[#68788e] mt-0.5">
-                      Delivered by <strong className="text-[#102645]">{sh.senderName}</strong> · {sh.senderCompany} · {sh.docCount} verified records attached
+                    <p className="text-[12px] text-[#64727e] mt-0.5">
+                      Delivered by <strong className="text-[#183249]">{sh.senderName}</strong> · {sh.senderCompany} · {sh.docCount} verified records attached
                     </p>
                   </div>
                 </div>
@@ -369,7 +369,7 @@ export function DigitalKeyTab({ property, onGoToMessages }: DigitalKeyTabProps) 
                   </button>
                   <button
                     onClick={() => alert(`Downloading verified ZIP archive for ${sh.packName}...`)}
-                    className="px-3.5 py-2 rounded-xl bg-[#071d3b] hover:bg-[#15345d] text-white text-xs font-bold transition-colors cursor-pointer shadow-2xs"
+                    className="px-3.5 py-2 rounded-xl bg-[#0F1A2C] hover:bg-[#1c3a54] text-white text-xs font-bold transition-colors cursor-pointer shadow-2xs"
                   >
                     ⬇ Download ZIP
                   </button>
@@ -379,7 +379,7 @@ export function DigitalKeyTab({ property, onGoToMessages }: DigitalKeyTabProps) 
               {/* Expanded File Register */}
               {isExpanded && (
                 <div className="px-5 py-4 border-t border-[#bbf7d0] bg-white divide-y divide-[#f1f5f9]">
-                  <div className="text-[10.5px] font-bold uppercase tracking-[1.2px] text-[#24754c] pb-2">
+                  <div className="text-[10.5px] font-bold uppercase tracking-[1.2px] text-[#28715e] pb-2">
                     Verified Documents Included in this Handover
                   </div>
                   {sh.documents.map((doc, idx) => (
@@ -390,21 +390,21 @@ export function DigitalKeyTab({ property, onGoToMessages }: DigitalKeyTabProps) 
                       <div className="flex items-center gap-2.5 min-w-0">
                         <span className="text-base text-[#166534]">📄</span>
                         <div className="min-w-0">
-                          <span className="font-semibold text-[#102645] truncate block">
+                          <span className="font-semibold text-[#183249] truncate block">
                             {doc.title}
                           </span>
-                          <span className="text-[10.5px] text-[#68788e]">
+                          <span className="text-[10.5px] text-[#64727e]">
                             {doc.cat} · {doc.size}
                           </span>
                         </div>
                       </div>
                       <div className="flex items-center gap-2 flex-shrink-0">
-                        <span className="text-[9.5px] font-bold px-1.5 py-0.2 rounded bg-[#eaf5ef] text-[#24754c]">
+                        <span className="text-[9.5px] font-bold px-1.5 py-0.2 rounded bg-[#eaf4ef] text-[#28715e]">
                           Verified
                         </span>
                         <button
                           onClick={() => alert(`Opening ${doc.title}`)}
-                          className="text-[11px] text-[#071d3b] hover:underline font-bold"
+                          className="text-[11px] text-[#0F1A2C] hover:underline font-bold"
                         >
                           View
                         </button>
@@ -419,17 +419,17 @@ export function DigitalKeyTab({ property, onGoToMessages }: DigitalKeyTabProps) 
       </div>
 
       {/* ── YOUR SAVED DOCUMENTS ── */}
-      <div className="bg-white border border-[#dfe6ef] rounded-2xl shadow-sm overflow-hidden">
-        <div className="px-5 py-4 border-b border-[#dfe6ef] flex items-center justify-between">
+      <div className="bg-white border border-[#e2e5e5] rounded-2xl shadow-sm overflow-hidden">
+        <div className="px-5 py-4 border-b border-[#e2e5e5] flex items-center justify-between">
           <div>
-            <h3 className="text-sm font-bold text-[#102645]">Your Documents</h3>
-            <p className="text-[11px] text-[#68788e]">
+            <h3 className="text-sm font-bold text-[#183249]">Your Documents</h3>
+            <p className="text-[11px] text-[#64727e]">
               {property.documents.length} verified files saved to your Digital Key.
             </p>
           </div>
           <button
             onClick={() => alert("Upload a document directly to your Digital Key.")}
-            className="text-xs font-bold text-[#071d3b] hover:underline"
+            className="text-xs font-bold text-[#0F1A2C] hover:underline"
           >
             + Upload
           </button>
@@ -444,19 +444,19 @@ export function DigitalKeyTab({ property, onGoToMessages }: DigitalKeyTabProps) 
               <div className="flex items-center gap-3 min-w-0">
                 <span className="text-lg">📄</span>
                 <div className="min-w-0">
-                  <div className="text-[13px] font-semibold text-[#102645] truncate">{doc.title}</div>
-                  <div className="text-[11px] text-[#68788e]">{doc.cat} · {doc.size}</div>
+                  <div className="text-[13px] font-semibold text-[#183249] truncate">{doc.title}</div>
+                  <div className="text-[11px] text-[#64727e]">{doc.cat} · {doc.size}</div>
                 </div>
               </div>
               <div className="flex items-center gap-2 flex-shrink-0">
                 {doc.shared && (
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#eaf5ef] text-[#24754c] border border-[#d2e6d9]">
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#eaf4ef] text-[#28715e] border border-[#d2e6d9]">
                     Shared
                   </span>
                 )}
                 <button
                   onClick={() => alert(`View/download: ${doc.title}`)}
-                  className="text-xs text-[#071d3b] hover:underline font-semibold"
+                  className="text-xs text-[#0F1A2C] hover:underline font-semibold"
                 >
                   View
                 </button>
@@ -467,70 +467,70 @@ export function DigitalKeyTab({ property, onGoToMessages }: DigitalKeyTabProps) 
       </div>
 
       {/* ── TRANSFER OWNERSHIP ── */}
-      <div className="bg-white border border-[#dfe6ef] rounded-2xl p-5 shadow-sm">
+      <div className="bg-white border border-[#e2e5e5] rounded-2xl p-5 shadow-sm">
         <button
           onClick={() => setTransferOpen(!transferOpen)}
           className="w-full flex items-center justify-between text-left group"
         >
           <div>
-            <div className="text-sm font-bold text-[#102645] group-hover:text-[#24754c] transition-colors">
+            <div className="text-sm font-bold text-[#183249] group-hover:text-[#28715e] transition-colors">
               ► Transfer to a new owner
             </div>
-            <div className="text-[11px] text-[#68788e] mt-0.5">
+            <div className="text-[11px] text-[#64727e] mt-0.5">
               When you sell, hand over your entire Digital Key to the new owner.
             </div>
           </div>
-          <span className="text-[#68788e] group-hover:text-[#24754c] transition-colors text-xs font-bold">
+          <span className="text-[#64727e] group-hover:text-[#28715e] transition-colors text-xs font-bold">
             {transferOpen ? "Collapse" : "Expand"}
           </span>
         </button>
 
         {transferOpen && (
           <form
-            className="mt-4 pt-4 border-t border-[#dfe6ef] space-y-3"
+            className="mt-4 pt-4 border-t border-[#e2e5e5] space-y-3"
             onSubmit={(e) => { e.preventDefault(); alert("Transfer initiated. Requires two-factor authentication to finalise."); }}
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label className="block text-[10.5px] font-bold text-[#102645] uppercase mb-1">
+                <label className="block text-[10.5px] font-bold text-[#183249] uppercase mb-1">
                   New Owner Full Name
                 </label>
                 <input
                   type="text"
                   required
                   placeholder="e.g. Eleanor Vance"
-                  className="w-full bg-[#f8fafc] border border-[#cbd5e1] rounded-lg px-3 py-2 text-xs text-[#102645] placeholder-[#94a3b8] focus:outline-none focus:border-[#071d3b]"
+                  className="w-full bg-[#f8fafc] border border-[#cbd5e1] rounded-lg px-3 py-2 text-xs text-[#183249] placeholder-[#94a3b8] focus:outline-none focus:border-[#0F1A2C]"
                 />
               </div>
               <div>
-                <label className="block text-[10.5px] font-bold text-[#102645] uppercase mb-1">
+                <label className="block text-[10.5px] font-bold text-[#183249] uppercase mb-1">
                   New Owner Email
                 </label>
                 <input
                   type="email"
                   required
                   placeholder="e.g. eleanor@example.com"
-                  className="w-full bg-[#f8fafc] border border-[#cbd5e1] rounded-lg px-3 py-2 text-xs text-[#102645] placeholder-[#94a3b8] focus:outline-none focus:border-[#071d3b]"
+                  className="w-full bg-[#f8fafc] border border-[#cbd5e1] rounded-lg px-3 py-2 text-xs text-[#183249] placeholder-[#94a3b8] focus:outline-none focus:border-[#0F1A2C]"
                 />
               </div>
               <div>
-                <label className="block text-[10.5px] font-bold text-[#102645] uppercase mb-1">
+                <label className="block text-[10.5px] font-bold text-[#183249] uppercase mb-1">
                   Settlement Date
                 </label>
                 <input
                   type="date"
                   required
-                  className="w-full bg-[#f8fafc] border border-[#cbd5e1] rounded-lg px-3 py-2 text-xs text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                  className="w-full bg-[#f8fafc] border border-[#cbd5e1] rounded-lg px-3 py-2 text-xs text-[#183249] focus:outline-none focus:border-[#0F1A2C]"
                 />
               </div>
               <div>
-                <label className="block text-[10.5px] font-bold text-[#102645] uppercase mb-1">
+                <label className="block text-[10.5px] font-bold text-[#183249] uppercase mb-1">
                   Conveyancer Ref #
                 </label>
                 <input
                   type="text"
                   placeholder="e.g. CNV-2024-88"
-                  className="w-full bg-[#f8fafc] border border-[#cbd5e1] rounded-lg px-3 py-2 text-xs text-[#102645] placeholder-[#94a3b8] focus:outline-none focus:border-[#071d3b]"
+                  className="w-full bg-[#f8fafc] border border-[#cbd5e1] rounded-lg px-3 py-2 text-xs text-[#183249] placeholder-[#94a3b8] focus:outline-none focus:border-[#0F1A2C]"
                 />
               </div>
             </div>
@@ -540,7 +540,7 @@ export function DigitalKeyTab({ property, onGoToMessages }: DigitalKeyTabProps) 
               </span>
               <button
                 type="submit"
-                className="px-4 py-2 bg-[#efbd66] hover:bg-[#dfac55] text-[#071d3b] font-bold text-xs rounded-lg transition-colors cursor-pointer"
+                className="px-4 py-2 bg-[#C59B27] hover:bg-[#b58b20] text-[#0F1A2C] font-bold text-xs rounded-lg transition-colors cursor-pointer"
               >
                 Initiate Transfer
               </button>

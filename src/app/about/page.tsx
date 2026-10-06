@@ -111,30 +111,30 @@ export default function AboutPage() {
   const [activePillar, setActivePillar] = useState<string>("trustlink");
 
   return (
-    <PageTransition className="w-full flex-1 flex flex-col bg-[#f4f6f8] text-[#102645] font-sans pb-16">
+    <PageTransition className="w-full flex-1 flex flex-col bg-[#F9F8F5] text-[#183249] font-sans pb-16">
       
       {/* ── Main Container ───────────────────────────────────────────── */}
       <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-9 py-6 sm:py-8 lg:py-10 w-full flex-1">
         
         {/* Breadcrumbs */}
-        <nav className="flex items-center gap-2 text-[12px] text-[#68788e] mb-6" aria-label="Breadcrumb">
-          <Link href="/" className="hover:underline text-[#68788e]">Home</Link>
+        <nav className="flex items-center gap-2 text-[12px] text-[#64727e] mb-6" aria-label="Breadcrumb">
+          <Link href="/" className="hover:underline text-[#64727e]">Home</Link>
           <span className="text-[#a4b2c2]">›</span>
-          <span className="text-[#102645] font-semibold">About Us</span>
+          <span className="text-[#183249] font-semibold">About Us</span>
         </nav>
 
         {/* ── Philosophy & How It Works ── */}
         <FadeUp>
-        <section className="bg-white border border-[#dfe6ef] rounded-3xl p-6 sm:p-8 lg:p-12 mb-12 sm:mb-16 shadow-2xs">
+        <section className="bg-white border border-[#e2e5e5] rounded-3xl p-6 sm:p-8 lg:p-12 mb-12 sm:mb-16 shadow-2xs">
           
           {/* Subtle Editorial Header */}
           <div className="max-w-3xl mb-10">
-            <span className="text-[10px] font-bold uppercase tracking-[2px] text-[#24754c] block mb-2">
+            <span className="text-[10px] font-bold uppercase tracking-[2px] text-[#28715e] block mb-2">
               About The Property Helpline
             </span>
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-[#102645] tracking-tight leading-[1.25]">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-[#183249] tracking-tight leading-[1.25]">
               We don’t provide properties.<br />
-              <span className="font-serif italic font-normal text-[#071d3b]">We provide the professionals who help you get services done.</span>
+              <span className="font-serif italic font-normal text-[#0F1A2C]">We provide the professionals who help you get services done.</span>
             </h1>
             <p className="text-[13px] sm:text-[14px] text-[#556b83] mt-3.5 leading-relaxed">
               We are not a real estate agency or listing board. We connect property owners, renovators, and managers with vetted independent Australian specialists — and provide practical digital tools so you can work together with confidence and clarity.
@@ -145,40 +145,40 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 pt-8 border-t border-[#f0f4f8]">
             <div className="flex flex-col">
               <div className="flex items-center gap-2.5 mb-2.5">
-                <span className="w-6 h-6 rounded-full bg-[#eaf5ef] text-[#24754c] text-[11px] font-bold flex items-center justify-center">1</span>
-                <h4 className="text-[14px] font-bold text-[#102645]">Organise your property</h4>
+                <span className="w-6 h-6 rounded-full bg-[#eaf4ef] text-[#28715e] text-[11px] font-bold flex items-center justify-center">1</span>
+                <h4 className="text-[14px] font-bold text-[#183249]">Organise your property</h4>
               </div>
-              <p className="text-[12px] text-[#68788e] leading-relaxed">
-                Add your home or project to your private <strong className="text-[#102645]">My Property World</strong>. Store plans, site info, and notes in your private space.
+              <p className="text-[12px] text-[#64727e] leading-relaxed">
+                Add your home or project to your private <strong className="text-[#183249]">My Property World</strong>. Store plans, site info, and notes in your private space.
               </p>
             </div>
 
             <div className="flex flex-col">
               <div className="flex items-center gap-2.5 mb-2.5">
-                <span className="w-6 h-6 rounded-full bg-[#eaf5ef] text-[#24754c] text-[11px] font-bold flex items-center justify-center">2</span>
-                <h4 className="text-[14px] font-bold text-[#102645]">Enquire via TrustLink™</h4>
+                <span className="w-6 h-6 rounded-full bg-[#eaf4ef] text-[#28715e] text-[11px] font-bold flex items-center justify-center">2</span>
+                <h4 className="text-[14px] font-bold text-[#183249]">Enquire via TrustLink™</h4>
               </div>
-              <p className="text-[12px] text-[#68788e] leading-relaxed">
+              <p className="text-[12px] text-[#64727e] leading-relaxed">
                 Choose a vetted specialist and start with a question. Your phone and email are never auctioned to telemarketers.
               </p>
             </div>
 
             <div className="flex flex-col">
               <div className="flex items-center gap-2.5 mb-2.5">
-                <span className="w-6 h-6 rounded-full bg-[#eaf5ef] text-[#24754c] text-[11px] font-bold flex items-center justify-center">3</span>
-                <h4 className="text-[14px] font-bold text-[#102645]">Build trust &amp; keep records</h4>
+                <span className="w-6 h-6 rounded-full bg-[#eaf4ef] text-[#28715e] text-[11px] font-bold flex items-center justify-center">3</span>
+                <h4 className="text-[14px] font-bold text-[#183249]">Build trust &amp; keep records</h4>
               </div>
-              <p className="text-[12px] text-[#68788e] leading-relaxed">
-                Share relevant site data for accurate upfront quotes. Once finished, certificates and warranties are anchored to your <strong className="text-[#102645]">Prop ID™</strong> for life.
+              <p className="text-[12px] text-[#64727e] leading-relaxed">
+                Share relevant site data for accurate upfront quotes. Once finished, certificates and warranties are anchored to your <strong className="text-[#183249]">Prop ID™</strong> for life.
               </p>
             </div>
           </div>
 
           {/* Creative Interactive Pillar Spotlight */}
-          <div className="border border-[#dfe6ef] rounded-2xl overflow-hidden bg-[#fafbfc] mb-10">
+          <div className="border border-[#e2e5e5] rounded-2xl overflow-hidden bg-[#fafbfc] mb-10">
             
             {/* Minimalist Tab Navigation */}
-            <div className="grid grid-cols-2 md:grid-cols-4 border-b border-[#dfe6ef] bg-[#f4f6f8]">
+            <div className="grid grid-cols-2 md:grid-cols-4 border-b border-[#e2e5e5] bg-[#F9F8F5]">
               {PILLARS.map((p) => {
                 const isActive = activePillar === p.id;
                 return (
@@ -187,12 +187,12 @@ export default function AboutPage() {
                     onClick={() => setActivePillar(p.id)}
                     className={`p-4 sm:p-5 text-left transition-all relative ${
                       isActive
-                        ? "bg-white text-[#102645] shadow-xs"
-                        : "text-[#68788e] hover:bg-[#ebf0f5] hover:text-[#102645]"
+                        ? "bg-white text-[#183249] shadow-xs"
+                        : "text-[#64727e] hover:bg-[#ebf0f5] hover:text-[#183249]"
                     }`}
                   >
                     {isActive && (
-                      <span className="absolute top-0 left-0 right-0 h-[2.5px] bg-[#071d3b]" />
+                      <span className="absolute top-0 left-0 right-0 h-[2.5px] bg-[#0F1A2C]" />
                     )}
                     <span className="text-[10px] font-mono font-bold tracking-widest text-[#a4b2c2] block mb-1">
                       {p.num}
@@ -200,7 +200,7 @@ export default function AboutPage() {
                     <strong className="block text-[13px] font-bold tracking-tight">
                       {p.label}
                     </strong>
-                    <span className="text-[10px] text-[#68788e] block mt-0.5 truncate">
+                    <span className="text-[10px] text-[#64727e] block mt-0.5 truncate">
                       {p.tagline}
                     </span>
                   </button>
@@ -217,10 +217,10 @@ export default function AboutPage() {
                     
                     {/* Left Narrative (7 cols) */}
                     <div className="lg:col-span-7">
-                      <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#eaf5ef] text-[#24754c] text-[10px] font-bold uppercase tracking-wider mb-2">
+                      <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#eaf4ef] text-[#28715e] text-[10px] font-bold uppercase tracking-wider mb-2">
                         <span>✦</span> {p.tagline}
                       </div>
-                      <h3 className="text-xl sm:text-2xl font-bold text-[#102645] tracking-tight mb-2.5">
+                      <h3 className="text-xl sm:text-2xl font-bold text-[#183249] tracking-tight mb-2.5">
                         {p.title}
                       </h3>
                       <p className="text-[13px] text-[#556b83] leading-relaxed mb-6">
@@ -238,10 +238,10 @@ export default function AboutPage() {
                           </span>
                         </div>
                         <div className="p-3.5 rounded-xl bg-[#f0f5fa] border border-[#cbdceb]">
-                          <span className="text-[9px] font-bold uppercase tracking-wider text-[#24754c] block mb-1">
+                          <span className="text-[9px] font-bold uppercase tracking-wider text-[#28715e] block mb-1">
                             On The Property Helpline
                           </span>
-                          <span className="text-[#102645] font-medium leading-snug block">
+                          <span className="text-[#183249] font-medium leading-snug block">
                             {p.inside}
                           </span>
                         </div>
@@ -249,7 +249,7 @@ export default function AboutPage() {
 
                       <Link
                         href={p.ctaHref}
-                        className="inline-flex items-center gap-2 text-[12px] font-bold text-[#071d3b] hover:text-[#24754c] transition-colors"
+                        className="inline-flex items-center gap-2 text-[12px] font-bold text-[#0F1A2C] hover:text-[#28715e] transition-colors"
                       >
                         <span>{p.cta}</span>
                         <span>→</span>
@@ -257,35 +257,35 @@ export default function AboutPage() {
                     </div>
 
                     {/* Right Creative Interactive Artifact Mockup (5 cols) */}
-                    <div className="lg:col-span-5 bg-[#f8fafc] border border-[#dfe6ef] rounded-2xl p-5 shadow-2xs">
-                      <div className="flex items-center justify-between pb-3 border-b border-[#dfe6ef] text-[10px]">
-                        <span className="font-mono font-bold text-[#24754c] flex items-center gap-1.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#24754c] inline-block animate-pulse" />
+                    <div className="lg:col-span-5 bg-[#f8fafc] border border-[#e2e5e5] rounded-2xl p-5 shadow-2xs">
+                      <div className="flex items-center justify-between pb-3 border-b border-[#e2e5e5] text-[10px]">
+                        <span className="font-mono font-bold text-[#28715e] flex items-center gap-1.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#28715e] inline-block animate-pulse" />
                           {p.widget.badge}
                         </span>
                         <span className="text-[#8a97a7]">TPH Protocol</span>
                       </div>
 
                       <div className="py-4 space-y-2 text-[11px]">
-                        <div className="p-2.5 rounded-lg bg-white border border-[#e2e8f0] flex items-center gap-2 text-[#102645]">
-                          <svg className="w-4 h-4 text-[#24754c] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div className="p-2.5 rounded-lg bg-white border border-[#e2e8f0] flex items-center gap-2 text-[#183249]">
+                          <svg className="w-4 h-4 text-[#28715e] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                           </svg>
                           <span>{p.widget.item1}</span>
                         </div>
-                        <div className="p-2.5 rounded-lg bg-white border border-[#e2e8f0] flex items-center gap-2 text-[#102645]">
-                          <svg className="w-4 h-4 text-[#071d3b] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div className="p-2.5 rounded-lg bg-white border border-[#e2e8f0] flex items-center gap-2 text-[#183249]">
+                          <svg className="w-4 h-4 text-[#0F1A2C] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                           </svg>
                           <span>{p.widget.item2}</span>
                         </div>
                       </div>
 
-                      <div className="pt-3 border-t border-[#dfe6ef] flex items-center justify-between text-[10px] text-[#68788e]">
+                      <div className="pt-3 border-t border-[#e2e5e5] flex items-center justify-between text-[10px] text-[#64727e]">
                         <span>{p.widget.action}</span>
-                        <span className="text-[#24754c] font-semibold inline-flex items-center gap-1">
+                        <span className="text-[#28715e] font-semibold inline-flex items-center gap-1">
                           Active
-                          <svg className="w-3 h-3 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-3 h-3 text-[#28715e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
                           </svg>
                         </span>
@@ -300,18 +300,18 @@ export default function AboutPage() {
           </div>
 
           {/* Minimalist Specialists Directory Strip */}
-          <div className="pt-6 border-t border-[#dfe6ef] flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-[12px]">
-            <div className="flex items-center gap-2 flex-wrap text-[#68788e]">
-              <span className="font-bold text-[#102645]">Key Disciplines:</span>
-              <span className="px-2.5 py-0.5 rounded-md bg-[#f4f6f8] text-[#102645] font-medium text-[11px]">Builders</span>
-              <span className="px-2.5 py-0.5 rounded-md bg-[#f4f6f8] text-[#102645] font-medium text-[11px]">Building &amp; Pest Inspectors</span>
-              <span className="px-2.5 py-0.5 rounded-md bg-[#f4f6f8] text-[#102645] font-medium text-[11px]">Architects</span>
-              <span className="px-2.5 py-0.5 rounded-md bg-[#f4f6f8] text-[#102645] font-medium text-[11px]">Conveyancers</span>
-              <span className="px-2.5 py-0.5 rounded-md bg-[#f4f6f8] text-[#102645] font-medium text-[11px]">Certifiers</span>
+          <div className="pt-6 border-t border-[#e2e5e5] flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-[12px]">
+            <div className="flex items-center gap-2 flex-wrap text-[#64727e]">
+              <span className="font-bold text-[#183249]">Key Disciplines:</span>
+              <span className="px-2.5 py-0.5 rounded-md bg-[#F9F8F5] text-[#183249] font-medium text-[11px]">Builders</span>
+              <span className="px-2.5 py-0.5 rounded-md bg-[#F9F8F5] text-[#183249] font-medium text-[11px]">Building &amp; Pest Inspectors</span>
+              <span className="px-2.5 py-0.5 rounded-md bg-[#F9F8F5] text-[#183249] font-medium text-[11px]">Architects</span>
+              <span className="px-2.5 py-0.5 rounded-md bg-[#F9F8F5] text-[#183249] font-medium text-[11px]">Conveyancers</span>
+              <span className="px-2.5 py-0.5 rounded-md bg-[#F9F8F5] text-[#183249] font-medium text-[11px]">Certifiers</span>
             </div>
             <Link
               href="/explore"
-              className="text-[12px] font-bold text-[#071d3b] hover:text-[#24754c] flex items-center gap-1.5 whitespace-nowrap self-start sm:self-auto"
+              className="text-[12px] font-bold text-[#0F1A2C] hover:text-[#28715e] flex items-center gap-1.5 whitespace-nowrap self-start sm:self-auto"
             >
               <span>Explore Specialist Directory</span>
               <span>→</span>
@@ -325,13 +325,13 @@ export default function AboutPage() {
         <FadeUp>
         <div className="bg-[#f0ede5] rounded-2xl p-6 sm:p-7 lg:p-9 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 sm:gap-6 mb-8">
           <div>
-            <div className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c] mb-1">
+            <div className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#28715e] mb-1">
               Private by default
             </div>
-            <h3 className="text-lg sm:text-xl font-bold text-[#102645]">
+            <h3 className="text-lg sm:text-xl font-bold text-[#183249]">
               You choose what to share, with whom, and for how long.
             </h3>
-            <p className="text-[13px] text-[#68788e] mt-1 max-w-xl">
+            <p className="text-[13px] text-[#64727e] mt-1 max-w-xl">
               The Property Helpline never sells your data to third-party telemarketers. All property documents remain private to your account.
             </p>
           </div>
@@ -339,7 +339,7 @@ export default function AboutPage() {
             <MagneticButton>
               <Link
                 href="/explore"
-                className="px-4 py-2.5 bg-[#071d3b] hover:bg-[#102d59] text-white font-semibold rounded-xl text-[12px] transition-colors shadow-2xs tap-target"
+                className="px-4 py-2.5 bg-[#0F1A2C] hover:bg-[#102d59] text-white font-semibold rounded-xl text-[12px] transition-colors shadow-2xs tap-target"
               >
                 Find specialists
               </Link>
@@ -347,7 +347,7 @@ export default function AboutPage() {
             <MagneticButton>
               <Link
                 href="/properties"
-                className="px-4 py-2.5 bg-white border border-[#cbd5e2] hover:bg-[#f3f6fb] text-[#102645] font-semibold rounded-xl text-[12px] transition-colors shadow-2xs tap-target"
+                className="px-4 py-2.5 bg-white border border-[#cbd5e2] hover:bg-[#F9F8F5] text-[#183249] font-semibold rounded-xl text-[12px] transition-colors shadow-2xs tap-target"
               >
                 Open My World
               </Link>

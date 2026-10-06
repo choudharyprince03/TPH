@@ -217,28 +217,28 @@ export function CareRenewalTab({ property, onOpenTrustLink }: CareRenewalTabProp
   });
 
   return (
-    <div className="space-y-6 max-w-[1060px] mx-auto pb-12 font-sans text-[#102645]">
+    <div className="space-y-6 max-w-[1060px] mx-auto pb-12 font-sans text-[#183249]">
       {/* ── Page Header ────────────────────────────────────────── */}
       <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
         <div>
-          <span className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c] block mb-1">
+          <span className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#28715e] block mb-1">
             KEEP YOUR HOME RUNNING
           </span>
-          <h1 className="text-3xl font-bold tracking-tight text-[#102645] mb-1.5">
+          <h1 className="text-3xl font-bold tracking-tight text-[#183249] mb-1.5">
             Care &amp; renewal tasks
           </h1>
-          <p className="text-[13px] text-[#68788e]">
+          <p className="text-[13px] text-[#64727e]">
             Organise routine maintenance, warranty expirations, and scheduled service jobs that keep your home running.
           </p>
         </div>
 
         <div className="flex items-center gap-3 self-start">
-          <span className="text-[11px] text-[#24754c] font-semibold flex items-center gap-1.5 bg-[#eaf5ef] px-3 py-1 rounded-full border border-[#d2e6d9] shadow-2xs">
+          <span className="text-[11px] text-[#28715e] font-semibold flex items-center gap-1.5 bg-[#eaf4ef] px-3 py-1 rounded-full border border-[#d2e6d9] shadow-2xs">
             <span>🔒</span> Private by default
           </span>
           <button
             onClick={() => setAddTaskModalOpen(true)}
-            className="px-4 py-2 bg-[#071d3b] hover:bg-[#15345d] text-white rounded-xl text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 cursor-pointer"
+            className="px-4 py-2 bg-[#0F1A2C] hover:bg-[#1c3a54] text-white rounded-xl text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 cursor-pointer"
           >
             <span className="text-sm leading-none">+</span>
             <span>Add task</span>
@@ -248,31 +248,31 @@ export function CareRenewalTab({ property, onOpenTrustLink }: CareRenewalTabProp
 
       {/* ── Quick Metrics Bar ──────────────────────────────────── */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <div className="bg-white border border-[#dfe6ef] rounded-xl p-3.5 shadow-2xs">
-          <div className="text-[10px] uppercase font-bold text-[#68788e] tracking-wider">Pending tasks</div>
-          <div className="text-xl font-bold text-[#102645] mt-1">{pendingTasks.length} items</div>
+        <div className="bg-white border border-[#e2e5e5] rounded-xl p-3.5 shadow-2xs">
+          <div className="text-[10px] uppercase font-bold text-[#64727e] tracking-wider">Pending tasks</div>
+          <div className="text-xl font-bold text-[#183249] mt-1">{pendingTasks.length} items</div>
           <div className="text-[11px] text-[#b45309] font-medium mt-0.5">Keep property in warranty</div>
         </div>
-        <div className="bg-white border border-[#dfe6ef] rounded-xl p-3.5 shadow-2xs">
-          <div className="text-[10px] uppercase font-bold text-[#68788e] tracking-wider">Active warranties</div>
-          <div className="text-xl font-bold text-[#24754c] mt-1">2 systems</div>
-          <div className="text-[11px] text-[#68788e] mt-0.5">Rheem (2031) · Daikin (2031)</div>
+        <div className="bg-white border border-[#e2e5e5] rounded-xl p-3.5 shadow-2xs">
+          <div className="text-[10px] uppercase font-bold text-[#64727e] tracking-wider">Active warranties</div>
+          <div className="text-xl font-bold text-[#28715e] mt-1">2 systems</div>
+          <div className="text-[11px] text-[#64727e] mt-0.5">Rheem (2031) · Daikin (2031)</div>
         </div>
-        <div className="bg-white border border-[#dfe6ef] rounded-xl p-3.5 shadow-2xs">
-          <div className="text-[10px] uppercase font-bold text-[#68788e] tracking-wider">Next scheduled</div>
-          <div className="text-xl font-bold text-[#071d3b] mt-1">28 Oct 2026</div>
-          <div className="text-[11px] text-[#68788e] mt-0.5">Daikin AC Filter Service</div>
+        <div className="bg-white border border-[#e2e5e5] rounded-xl p-3.5 shadow-2xs">
+          <div className="text-[10px] uppercase font-bold text-[#64727e] tracking-wider">Next scheduled</div>
+          <div className="text-xl font-bold text-[#0F1A2C] mt-1">28 Oct 2026</div>
+          <div className="text-[11px] text-[#64727e] mt-0.5">Daikin AC Filter Service</div>
         </div>
-        <div className="bg-white border border-[#dfe6ef] rounded-xl p-3.5 shadow-2xs">
-          <div className="text-[10px] uppercase font-bold text-[#68788e] tracking-wider">Completed logs</div>
+        <div className="bg-white border border-[#e2e5e5] rounded-xl p-3.5 shadow-2xs">
+          <div className="text-[10px] uppercase font-bold text-[#64727e] tracking-wider">Completed logs</div>
           <div className="text-xl font-bold text-[#475569] mt-1">{completedTasks.length} recorded</div>
-          <div className="text-[11px] text-[#24754c] font-medium mt-0.5">Statutory certs signed</div>
+          <div className="text-[11px] text-[#28715e] font-medium mt-0.5">Statutory certs signed</div>
         </div>
       </div>
 
       {/* ── Category Filter Dropdown ──────────────────────────────────── */}
       <div className="flex items-center gap-3">
-        <label htmlFor="care-category-filter" className="text-xs font-bold text-[#68788e]">
+        <label htmlFor="care-category-filter" className="text-xs font-bold text-[#64727e]">
           Category:
         </label>
         <div className="relative inline-block min-w-[240px]">
@@ -280,7 +280,7 @@ export function CareRenewalTab({ property, onOpenTrustLink }: CareRenewalTabProp
             id="care-category-filter"
             value={filter}
             onChange={(e) => setFilter(e.target.value as TaskFilter)}
-            className="w-full appearance-none bg-white border border-[#dfe6ef] hover:border-[#cbd5e1] text-[#102645] font-bold text-xs rounded-xl px-4 py-2 pr-9 shadow-2xs focus:outline-none focus:border-[#071d3b] cursor-pointer transition-colors"
+            className="w-full appearance-none bg-white border border-[#e2e5e5] hover:border-[#cbd5e1] text-[#183249] font-bold text-xs rounded-xl px-4 py-2 pr-9 shadow-2xs focus:outline-none focus:border-[#0F1A2C] cursor-pointer transition-colors"
           >
             <option value="all">All tasks ({tasks.length})</option>
             <option value="upcoming">Upcoming ({pendingTasks.length})</option>
@@ -288,7 +288,7 @@ export function CareRenewalTab({ property, onOpenTrustLink }: CareRenewalTabProp
             <option value="renewals">Warranties &amp; Renewals</option>
             <option value="completed">Completed ({completedTasks.length})</option>
           </select>
-          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-[#68788e]">
+          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-[#64727e]">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
             </svg>
@@ -303,19 +303,19 @@ export function CareRenewalTab({ property, onOpenTrustLink }: CareRenewalTabProp
         ═════════════════════════════════════════════════════════════ */}
         <div className="space-y-5">
           {/* Main Tasks Card */}
-          <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm space-y-4">
-            <div className="flex items-center justify-between pb-3 border-b border-[#dfe6ef]">
+          <div className="bg-white border border-[#e2e5e5] rounded-2xl p-6 shadow-sm space-y-4">
+            <div className="flex items-center justify-between pb-3 border-b border-[#e2e5e5]">
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c] block mb-0.5">
+                <span className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#28715e] block mb-0.5">
                   PROPERTY WORKLIST
                 </span>
-                <h3 className="text-base font-bold text-[#102645]">
+                <h3 className="text-base font-bold text-[#183249]">
                   Scheduled jobs &amp; reminders
                 </h3>
               </div>
               <button
                 onClick={() => setAddTaskModalOpen(true)}
-                className="px-3 py-1.5 bg-white border border-[#cbd5e1] hover:bg-[#f8fafc] text-[#102645] rounded-xl text-xs font-semibold transition-colors cursor-pointer flex items-center gap-1"
+                className="px-3 py-1.5 bg-white border border-[#cbd5e1] hover:bg-[#f8fafc] text-[#183249] rounded-xl text-xs font-semibold transition-colors cursor-pointer flex items-center gap-1"
               >
                 <span>+ Add task</span>
               </button>
@@ -323,8 +323,8 @@ export function CareRenewalTab({ property, onOpenTrustLink }: CareRenewalTabProp
 
             {/* Task Items */}
             {filteredTasks.length === 0 ? (
-              <div className="py-8 text-center text-[#68788e] text-xs">
-                No tasks match this filter. Click <span className="font-bold text-[#071d3b] cursor-pointer" onClick={() => setAddTaskModalOpen(true)}>+ Add task</span> to create a new reminder.
+              <div className="py-8 text-center text-[#64727e] text-xs">
+                No tasks match this filter. Click <span className="font-bold text-[#0F1A2C] cursor-pointer" onClick={() => setAddTaskModalOpen(true)}>+ Add task</span> to create a new reminder.
               </div>
             ) : (
               <div className="space-y-3">
@@ -336,7 +336,7 @@ export function CareRenewalTab({ property, onOpenTrustLink }: CareRenewalTabProp
                       className={`p-4 rounded-xl border transition-all ${
                         isDone
                           ? "bg-[#f8fafc] border-[#e2e8f0] opacity-75"
-                          : "bg-white border-[#dfe6ef] hover:border-[#cbd5e1] hover:shadow-2xs"
+                          : "bg-white border-[#e2e5e5] hover:border-[#cbd5e1] hover:shadow-2xs"
                       }`}
                     >
                       <div className="flex items-start justify-between gap-3">
@@ -345,12 +345,12 @@ export function CareRenewalTab({ property, onOpenTrustLink }: CareRenewalTabProp
                             type="checkbox"
                             checked={isDone}
                             onChange={() => handleToggleTask(t.id)}
-                            className="mt-1 w-4 h-4 rounded text-[#071d3b] focus:ring-0 cursor-pointer border-[#cbd5e1]"
+                            className="mt-1 w-4 h-4 rounded text-[#0F1A2C] focus:ring-0 cursor-pointer border-[#cbd5e1]"
                           />
                           <div className="min-w-0">
                             <div className="flex items-center gap-2 flex-wrap">
                               <h4
-                                className={`text-[13.5px] font-bold text-[#102645] ${
+                                className={`text-[13.5px] font-bold text-[#183249] ${
                                   isDone ? "line-through text-[#64748b]" : ""
                                 }`}
                               >
@@ -363,7 +363,7 @@ export function CareRenewalTab({ property, onOpenTrustLink }: CareRenewalTabProp
                                   t.priority === "High"
                                     ? "bg-[#fef2f2] text-[#991b1b] border-[#fecaca]"
                                     : t.priority === "Medium"
-                                    ? "bg-[#fffbeb] text-[#92400e] border-[#fde68a]"
+                                    ? "bg-[#fffbeb] text-[#946315] border-[#fde68a]"
                                     : "bg-[#f1f5f9] text-[#475569] border-[#cbd5e1]"
                                 }`}
                               >
@@ -376,14 +376,14 @@ export function CareRenewalTab({ property, onOpenTrustLink }: CareRenewalTabProp
                               </span>
 
                               {/* Recurrence Badge */}
-                              <span className="text-[9.5px] font-medium text-[#68788e]">
+                              <span className="text-[9.5px] font-medium text-[#64727e]">
                                 🔁 {t.recurrence}
                               </span>
                             </div>
 
                             {/* System linkage */}
                             {t.systemLinked && (
-                              <div className="text-[11px] text-[#24754c] font-medium mt-1 flex items-center gap-1">
+                              <div className="text-[11px] text-[#28715e] font-medium mt-1 flex items-center gap-1">
                                 <span>🔧 Linked to:</span>
                                 <span>{t.systemLinked}</span>
                               </div>
@@ -391,13 +391,13 @@ export function CareRenewalTab({ property, onOpenTrustLink }: CareRenewalTabProp
 
                             {/* Notes */}
                             {t.notes && (
-                              <p className="text-[12px] text-[#68788e] mt-1 leading-relaxed">
+                              <p className="text-[12px] text-[#64727e] mt-1 leading-relaxed">
                                 {t.notes}
                               </p>
                             )}
 
                             {/* Due date */}
-                            <div className="text-[11px] text-[#68788e] mt-2 flex items-center gap-1.5 font-medium">
+                            <div className="text-[11px] text-[#64727e] mt-2 flex items-center gap-1.5 font-medium">
                               <span>📅</span>
                               <span>
                                 {isDone ? "Completed · " : "Due: "}
@@ -413,8 +413,8 @@ export function CareRenewalTab({ property, onOpenTrustLink }: CareRenewalTabProp
                             onClick={() => handleToggleTask(t.id)}
                             className={`px-2.5 py-1 text-[11px] font-semibold rounded-lg border transition-colors cursor-pointer ${
                               isDone
-                                ? "bg-white text-[#68788e] border-[#cbd5e1] hover:bg-[#f1f5f9]"
-                                : "bg-[#eaf5ef] text-[#24754c] border-[#c2e2cf] hover:bg-[#d8eedf]"
+                                ? "bg-white text-[#64727e] border-[#cbd5e1] hover:bg-[#f1f5f9]"
+                                : "bg-[#eaf4ef] text-[#28715e] border-[#c2e2cf] hover:bg-[#d8eedf]"
                             }`}
                           >
                             {isDone ? "Reopen" : "Done ✓"}
@@ -437,16 +437,16 @@ export function CareRenewalTab({ property, onOpenTrustLink }: CareRenewalTabProp
 
           {/* ── Callout Box (from screenshot) ── */}
           <div className="border-2 border-dashed border-[#cbd5e1] bg-[#fcfdfe] rounded-2xl p-6 text-center space-y-2">
-            <h4 className="text-sm font-bold text-[#102645]">
+            <h4 className="text-sm font-bold text-[#183249]">
               Stay ahead of the next job.
             </h4>
-            <p className="text-xs text-[#68788e] max-w-md mx-auto">
+            <p className="text-xs text-[#64727e] max-w-md mx-auto">
               Add a service, maintenance job or renewal date. Keep the task with this property.
             </p>
             <div className="pt-1">
               <button
                 onClick={() => setAddTaskModalOpen(true)}
-                className="px-4 py-2 bg-[#071d3b] hover:bg-[#15345d] text-white rounded-xl text-xs font-bold transition-all shadow-xs inline-flex items-center gap-1.5 cursor-pointer"
+                className="px-4 py-2 bg-[#0F1A2C] hover:bg-[#1c3a54] text-white rounded-xl text-xs font-bold transition-all shadow-xs inline-flex items-center gap-1.5 cursor-pointer"
               >
                 <span>+ Add task</span>
               </button>
@@ -459,13 +459,13 @@ export function CareRenewalTab({ property, onOpenTrustLink }: CareRenewalTabProp
         ═════════════════════════════════════════════════════════════ */}
         <div className="space-y-5">
           {/* Linked Documents Card */}
-          <div className="bg-white border border-[#dfe6ef] rounded-2xl p-6 shadow-sm space-y-4">
-            <div className="flex items-center justify-between pb-3 border-b border-[#dfe6ef]">
+          <div className="bg-white border border-[#e2e5e5] rounded-2xl p-6 shadow-sm space-y-4">
+            <div className="flex items-center justify-between pb-3 border-b border-[#e2e5e5]">
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#24754c] block mb-0.5">
+                <span className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#28715e] block mb-0.5">
                   SUPPORTING EVIDENCE
                 </span>
-                <h3 className="text-base font-bold text-[#102645]">
+                <h3 className="text-base font-bold text-[#183249]">
                   Linked documents
                 </h3>
               </div>
@@ -479,19 +479,19 @@ export function CareRenewalTab({ property, onOpenTrustLink }: CareRenewalTabProp
               {linkedDocs.map((doc) => (
                 <div
                   key={doc.id}
-                  className="p-3 rounded-xl border border-[#dfe6ef] bg-[#fafbfc] hover:bg-[#f1f5f9] transition-colors flex items-center justify-between gap-3"
+                  className="p-3 rounded-xl border border-[#e2e5e5] bg-[#fafbfc] hover:bg-[#f1f5f9] transition-colors flex items-center justify-between gap-3"
                 >
                   <div className="min-w-0">
-                    <div className="text-[12.5px] font-semibold text-[#102645] truncate">
+                    <div className="text-[12.5px] font-semibold text-[#183249] truncate">
                       {doc.title}
                     </div>
-                    <div className="text-[10.5px] text-[#68788e] truncate mt-0.5">
+                    <div className="text-[10.5px] text-[#64727e] truncate mt-0.5">
                       {doc.category} · {doc.source} · {doc.visibility}
                     </div>
                   </div>
                   <button
                     onClick={() => alert(`Opening preview for ${doc.title}`)}
-                    className="px-3 py-1 bg-white border border-[#cbd5e1] hover:bg-[#f8fafc] text-[#102645] text-xs font-semibold rounded-lg transition-colors cursor-pointer flex-shrink-0"
+                    className="px-3 py-1 bg-white border border-[#cbd5e1] hover:bg-[#f8fafc] text-[#183249] text-xs font-semibold rounded-lg transition-colors cursor-pointer flex-shrink-0"
                   >
                     Open
                   </button>
@@ -503,13 +503,13 @@ export function CareRenewalTab({ property, onOpenTrustLink }: CareRenewalTabProp
             <div className="pt-2 flex items-center gap-2">
               <button
                 onClick={() => setLinkDocModalOpen(true)}
-                className="flex-1 py-2 px-3 bg-white border border-[#cbd5e1] hover:bg-[#f8fafc] text-[#102645] text-xs font-bold rounded-xl transition-colors cursor-pointer text-center"
+                className="flex-1 py-2 px-3 bg-white border border-[#cbd5e1] hover:bg-[#f8fafc] text-[#183249] text-xs font-bold rounded-xl transition-colors cursor-pointer text-center"
               >
                 Link existing
               </button>
               <button
                 onClick={() => alert("Upload a new warranty or service certificate to link to Care & Renewal.")}
-                className="flex-1 py-2 px-3 bg-[#071d3b] hover:bg-[#15345d] text-white text-xs font-bold rounded-xl transition-colors cursor-pointer text-center flex items-center justify-center gap-1"
+                className="flex-1 py-2 px-3 bg-[#0F1A2C] hover:bg-[#1c3a54] text-white text-xs font-bold rounded-xl transition-colors cursor-pointer text-center flex items-center justify-center gap-1"
               >
                 <span>+ Add document</span>
               </button>
@@ -521,16 +521,16 @@ export function CareRenewalTab({ property, onOpenTrustLink }: CareRenewalTabProp
           </div>
 
           {/* Need help with a job card */}
-          <div className="bg-[#f8fafc] border border-[#dfe6ef] rounded-2xl p-5 shadow-2xs space-y-3">
-            <h4 className="text-sm font-bold text-[#102645]">
+          <div className="bg-[#f8fafc] border border-[#e2e5e5] rounded-2xl p-5 shadow-2xs space-y-3">
+            <h4 className="text-sm font-bold text-[#183249]">
               Need help with a job?
             </h4>
-            <p className="text-xs text-[#68788e] leading-relaxed">
+            <p className="text-xs text-[#64727e] leading-relaxed">
               Choose a professional and review exactly which documents and maintenance records you want to share.
             </p>
             <button
               onClick={onOpenTrustLink}
-              className="text-xs font-bold text-[#071d3b] hover:underline flex items-center gap-1 cursor-pointer"
+              className="text-xs font-bold text-[#0F1A2C] hover:underline flex items-center gap-1 cursor-pointer"
             >
               <span>Find property help</span>
               <span>→</span>
@@ -541,7 +541,7 @@ export function CareRenewalTab({ property, onOpenTrustLink }: CareRenewalTabProp
           <div className="px-2">
             <button
               onClick={() => alert("Viewing complete service and maintenance history log for this property.")}
-              className="text-xs text-[#68788e] hover:text-[#102645] font-semibold flex items-center gap-1 cursor-pointer"
+              className="text-xs text-[#64727e] hover:text-[#183249] font-semibold flex items-center gap-1 cursor-pointer"
             >
               <span>View property history</span>
               <span>→</span>
@@ -553,17 +553,17 @@ export function CareRenewalTab({ property, onOpenTrustLink }: CareRenewalTabProp
       {/* ── Add Task Modal ────────────────────────────────────────── */}
       {addTaskModalOpen && (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-xs z-50 flex items-center justify-center p-4">
-          <div className="bg-white border border-[#dfe6ef] rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
-            <div className="flex items-center justify-between border-b border-[#dfe6ef] pb-3">
+          <div className="bg-white border border-[#e2e5e5] rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
+            <div className="flex items-center justify-between border-b border-[#e2e5e5] pb-3">
               <div>
-                <h3 className="text-base font-bold text-[#102645]">Add Care &amp; Renewal Task</h3>
-                <p className="text-xs text-[#68788e]">
+                <h3 className="text-base font-bold text-[#183249]">Add Care &amp; Renewal Task</h3>
+                <p className="text-xs text-[#64727e]">
                   Schedule routine service, warranty inspection or renewal.
                 </p>
               </div>
               <button
                 onClick={() => setAddTaskModalOpen(false)}
-                className="text-[#64748b] hover:text-[#102645] p-1 cursor-pointer"
+                className="text-[#64748b] hover:text-[#183249] p-1 cursor-pointer"
               >
                 ✕
               </button>
@@ -571,7 +571,7 @@ export function CareRenewalTab({ property, onOpenTrustLink }: CareRenewalTabProp
 
             <form onSubmit={handleCreateTask} className="space-y-3 text-xs">
               <div>
-                <label className="block text-[11px] font-bold text-[#102645] mb-1">
+                <label className="block text-[11px] font-bold text-[#183249] mb-1">
                   Task Title *
                 </label>
                 <input
@@ -580,19 +580,19 @@ export function CareRenewalTab({ property, onOpenTrustLink }: CareRenewalTabProp
                   value={newTaskTitle}
                   onChange={(e) => setNewTaskTitle(e.target.value)}
                   placeholder="e.g. Annual Termite Barrier Inspection"
-                  className="w-full bg-[#f8fafc] border border-[#cbd5e1] rounded-xl px-3 py-2 text-xs text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                  className="w-full bg-[#f8fafc] border border-[#cbd5e1] rounded-xl px-3 py-2 text-xs text-[#183249] focus:outline-none focus:border-[#0F1A2C]"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-[11px] font-bold text-[#102645] mb-1">
+                  <label className="block text-[11px] font-bold text-[#183249] mb-1">
                     Category
                   </label>
                   <select
                     value={newTaskCategory}
                     onChange={(e) => setNewTaskCategory(e.target.value as CareRenewalTask["category"])}
-                    className="w-full bg-[#f8fafc] border border-[#cbd5e1] rounded-xl px-3 py-2 text-xs text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                    className="w-full bg-[#f8fafc] border border-[#cbd5e1] rounded-xl px-3 py-2 text-xs text-[#183249] focus:outline-none focus:border-[#0F1A2C]"
                   >
                     <option value="Maintenance">Maintenance</option>
                     <option value="Warranty">Warranty</option>
@@ -603,7 +603,7 @@ export function CareRenewalTab({ property, onOpenTrustLink }: CareRenewalTabProp
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-bold text-[#102645] mb-1">
+                  <label className="block text-[11px] font-bold text-[#183249] mb-1">
                     Due Date *
                   </label>
                   <input
@@ -611,20 +611,20 @@ export function CareRenewalTab({ property, onOpenTrustLink }: CareRenewalTabProp
                     required
                     value={newTaskDueDate}
                     onChange={(e) => setNewTaskDueDate(e.target.value)}
-                    className="w-full bg-[#f8fafc] border border-[#cbd5e1] rounded-xl px-3 py-2 text-xs text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                    className="w-full bg-[#f8fafc] border border-[#cbd5e1] rounded-xl px-3 py-2 text-xs text-[#183249] focus:outline-none focus:border-[#0F1A2C]"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-[11px] font-bold text-[#102645] mb-1">
+                  <label className="block text-[11px] font-bold text-[#183249] mb-1">
                     Frequency
                   </label>
                   <select
                     value={newTaskRecurrence}
                     onChange={(e) => setNewTaskRecurrence(e.target.value as CareRenewalTask["recurrence"])}
-                    className="w-full bg-[#f8fafc] border border-[#cbd5e1] rounded-xl px-3 py-2 text-xs text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                    className="w-full bg-[#f8fafc] border border-[#cbd5e1] rounded-xl px-3 py-2 text-xs text-[#183249] focus:outline-none focus:border-[#0F1A2C]"
                   >
                     <option value="One-off">One-off</option>
                     <option value="Quarterly">Quarterly</option>
@@ -636,13 +636,13 @@ export function CareRenewalTab({ property, onOpenTrustLink }: CareRenewalTabProp
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-bold text-[#102645] mb-1">
+                  <label className="block text-[11px] font-bold text-[#183249] mb-1">
                     Priority
                   </label>
                   <select
                     value={newTaskPriority}
                     onChange={(e) => setNewTaskPriority(e.target.value as CareRenewalTask["priority"])}
-                    className="w-full bg-[#f8fafc] border border-[#cbd5e1] rounded-xl px-3 py-2 text-xs text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                    className="w-full bg-[#f8fafc] border border-[#cbd5e1] rounded-xl px-3 py-2 text-xs text-[#183249] focus:outline-none focus:border-[#0F1A2C]"
                   >
                     <option value="Medium">Medium</option>
                     <option value="High">High</option>
@@ -652,7 +652,7 @@ export function CareRenewalTab({ property, onOpenTrustLink }: CareRenewalTabProp
               </div>
 
               <div>
-                <label className="block text-[11px] font-bold text-[#102645] mb-1">
+                <label className="block text-[11px] font-bold text-[#183249] mb-1">
                   Linked System or Appliance (Optional)
                 </label>
                 <input
@@ -660,12 +660,12 @@ export function CareRenewalTab({ property, onOpenTrustLink }: CareRenewalTabProp
                   value={newTaskSystem}
                   onChange={(e) => setNewTaskSystem(e.target.value)}
                   placeholder="e.g. Daikin Inverter AC / Rheem Heat Pump"
-                  className="w-full bg-[#f8fafc] border border-[#cbd5e1] rounded-xl px-3 py-2 text-xs text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                  className="w-full bg-[#f8fafc] border border-[#cbd5e1] rounded-xl px-3 py-2 text-xs text-[#183249] focus:outline-none focus:border-[#0F1A2C]"
                 />
               </div>
 
               <div>
-                <label className="block text-[11px] font-bold text-[#102645] mb-1">
+                <label className="block text-[11px] font-bold text-[#183249] mb-1">
                   Notes / Instructions
                 </label>
                 <textarea
@@ -673,7 +673,7 @@ export function CareRenewalTab({ property, onOpenTrustLink }: CareRenewalTabProp
                   value={newTaskNotes}
                   onChange={(e) => setNewTaskNotes(e.target.value)}
                   placeholder="Additional details, service trade contacts or warranty notes..."
-                  className="w-full bg-[#f8fafc] border border-[#cbd5e1] rounded-xl px-3 py-2 text-xs text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                  className="w-full bg-[#f8fafc] border border-[#cbd5e1] rounded-xl px-3 py-2 text-xs text-[#183249] focus:outline-none focus:border-[#0F1A2C]"
                 />
               </div>
 
@@ -681,13 +681,13 @@ export function CareRenewalTab({ property, onOpenTrustLink }: CareRenewalTabProp
                 <button
                   type="button"
                   onClick={() => setAddTaskModalOpen(false)}
-                  className="px-4 py-2 bg-white border border-[#cbd5e1] text-[#102645] rounded-xl text-xs font-semibold hover:bg-[#f8fafc] cursor-pointer"
+                  className="px-4 py-2 bg-white border border-[#cbd5e1] text-[#183249] rounded-xl text-xs font-semibold hover:bg-[#f8fafc] cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-[#071d3b] text-white rounded-xl text-xs font-bold hover:bg-[#15345d] cursor-pointer"
+                  className="px-4 py-2 bg-[#0F1A2C] text-white rounded-xl text-xs font-bold hover:bg-[#1c3a54] cursor-pointer"
                 >
                   Save Task
                 </button>
@@ -700,15 +700,15 @@ export function CareRenewalTab({ property, onOpenTrustLink }: CareRenewalTabProp
       {/* ── Link Existing Document Modal ──────────────────────────── */}
       {linkDocModalOpen && (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-xs z-50 flex items-center justify-center p-4">
-          <div className="bg-white border border-[#dfe6ef] rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
-            <div className="flex items-center justify-between border-b border-[#dfe6ef] pb-3">
+          <div className="bg-white border border-[#e2e5e5] rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
+            <div className="flex items-center justify-between border-b border-[#e2e5e5] pb-3">
               <div>
-                <h3 className="text-base font-bold text-[#102645]">Link an Existing Document</h3>
-                <p className="text-xs text-[#68788e]">Select a document from your property vault.</p>
+                <h3 className="text-base font-bold text-[#183249]">Link an Existing Document</h3>
+                <p className="text-xs text-[#64727e]">Select a document from your property vault.</p>
               </div>
               <button
                 onClick={() => setLinkDocModalOpen(false)}
-                className="text-[#64748b] hover:text-[#102645] p-1 cursor-pointer"
+                className="text-[#64748b] hover:text-[#183249] p-1 cursor-pointer"
               >
                 ✕
               </button>
@@ -719,13 +719,13 @@ export function CareRenewalTab({ property, onOpenTrustLink }: CareRenewalTabProp
                 <div
                   key={doc.title}
                   onClick={() => handleLinkExistingDoc(doc.title, doc.cat)}
-                  className="p-3 rounded-xl border border-[#dfe6ef] hover:border-[#071d3b] hover:bg-[#f8fafc] cursor-pointer transition-colors flex items-center justify-between"
+                  className="p-3 rounded-xl border border-[#e2e5e5] hover:border-[#0F1A2C] hover:bg-[#f8fafc] cursor-pointer transition-colors flex items-center justify-between"
                 >
                   <div className="min-w-0">
-                    <div className="text-xs font-bold text-[#102645] truncate">{doc.title}</div>
-                    <div className="text-[10px] text-[#68788e]">{doc.cat} · {doc.size}</div>
+                    <div className="text-xs font-bold text-[#183249] truncate">{doc.title}</div>
+                    <div className="text-[10px] text-[#64727e]">{doc.cat} · {doc.size}</div>
                   </div>
-                  <span className="text-xs font-bold text-[#24754c]">+ Link</span>
+                  <span className="text-xs font-bold text-[#28715e]">+ Link</span>
                 </div>
               ))}
             </div>
@@ -733,7 +733,7 @@ export function CareRenewalTab({ property, onOpenTrustLink }: CareRenewalTabProp
             <div className="pt-2 flex justify-end">
               <button
                 onClick={() => setLinkDocModalOpen(false)}
-                className="px-4 py-2 bg-white border border-[#cbd5e1] text-[#102645] rounded-xl text-xs font-semibold hover:bg-[#f8fafc] cursor-pointer"
+                className="px-4 py-2 bg-white border border-[#cbd5e1] text-[#183249] rounded-xl text-xs font-semibold hover:bg-[#f8fafc] cursor-pointer"
               >
                 Cancel
               </button>

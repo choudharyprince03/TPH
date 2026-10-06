@@ -50,8 +50,8 @@ export function Header() {
       <header
         className={`w-full text-white relative z-30 transition-all duration-300 ${
           scrolled
-            ? "bg-[#051122]/95 backdrop-blur-md shadow-[0_4px_24px_rgba(2,8,18,0.4)] border-b border-white/[0.08]"
-            : "bg-[#07172e] border-b border-white/[0.08]"
+            ? "bg-[#0b2034]/95 backdrop-blur-md shadow-[0_4px_24px_rgba(2,8,18,0.4)] border-b border-white/[0.08]"
+            : "bg-[#0F1A2C] border-b border-white/[0.08]"
         }`}
       >
         <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-10 h-[68px] sm:h-[78px] flex items-center justify-between gap-4 sm:gap-6">
@@ -70,10 +70,10 @@ export function Header() {
               />
             </motion.div>
             <div className="text-left">
-              <div className="font-bold text-[15px] sm:text-[16px] tracking-tight leading-tight text-white group-hover:text-[#efbd66] transition-colors">
+              <div className="font-bold text-[15px] sm:text-[16px] tracking-tight leading-tight text-white group-hover:text-[#C59B27] transition-colors">
                 The Property Helpline
               </div>
-              <div className="text-[7.5px] sm:text-[8px] font-semibold uppercase tracking-[2.4px] text-[#efbd66] leading-tight mt-0.5">
+              <div className="text-[7.5px] sm:text-[8px] font-semibold uppercase tracking-[2.4px] text-[#C59B27] leading-tight mt-0.5">
                 YOUR DIGITAL HOME
               </div>
             </div>
@@ -102,7 +102,7 @@ export function Header() {
               href="/properties"
               className={`px-3 sm:px-3.5 py-1.5 rounded-[7px] text-[13px] font-semibold transition-all border ${
                 isWorld
-                  ? "bg-[#efbd66] text-[#071d3b] border-[#efbd66] shadow-sm"
+                  ? "bg-[#C59B27] text-[#0F1A2C] border-[#C59B27] shadow-sm"
                   : "bg-white/10 text-white border-white/20 hover:bg-white/15"
               }`}
             >
@@ -124,7 +124,7 @@ export function Header() {
                 href="/properties"
                 className="flex items-center gap-2 border border-white/25 hover:border-white/40 text-white px-3 py-1.5 rounded-[8px] text-[12px] font-semibold transition-all bg-white/5 hover:bg-white/10"
               >
-                <svg className="w-4 h-4 text-[#efbd66]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 text-[#C59B27]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
                 <span className="hidden xs:inline">Alex</span>
@@ -134,10 +134,10 @@ export function Header() {
             {/* Desktop Referral Button */}
             <button
               onClick={() => setReferralOpen(true)}
-              className="hidden sm:inline-flex items-center gap-1.5 text-[11px] font-semibold text-[#efbd66] hover:text-white px-2.5 py-1.5 rounded-[8px] border border-[#efbd66]/35 hover:border-[#efbd66] hover:bg-[#efbd66]/10 transition-all cursor-pointer"
+              className="hidden sm:inline-flex items-center gap-1.5 text-[11px] font-semibold text-[#C59B27] hover:text-white px-2.5 py-1.5 rounded-[8px] border border-[#C59B27]/35 hover:border-[#C59B27] hover:bg-[#C59B27]/10 transition-all cursor-pointer"
               title="Invite a specialist or refer friends"
             >
-              <svg className="w-3.5 h-3.5 text-[#efbd66]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-3.5 h-3.5 text-[#C59B27]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v13m0-13V4.5a2.5 2.5 0 115 0V8h-5zm0 0H7a2.5 2.5 0 110-5 2.5 2.5 0 012.5 2.5V8H12zm-8 4h16v9a1 1 0 01-1 1H5a1 1 0 01-1-1v-9z" />
               </svg>
               <span>Refer / Invite</span>
@@ -189,7 +189,7 @@ export function Header() {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.28, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="md:hidden bg-[#07172e] border-t border-white/10 overflow-hidden"
+              className="md:hidden bg-[#0F1A2C] border-t border-white/10 overflow-hidden"
             >
               <div className="px-5 py-4 space-y-1">
                 {[
@@ -207,7 +207,7 @@ export function Header() {
                       href={item.href}
                       onClick={() => setMobileOpen(false)}
                       className={`block text-sm py-2.5 tap-target ${
-                        item.gold ? "text-[#efbd66] font-semibold" : "text-[#d4dce8] hover:text-white"
+                        item.gold ? "text-[#C59B27] font-semibold" : "text-[#d4dce8] hover:text-white"
                       }`}
                     >
                       {item.label}
@@ -225,9 +225,9 @@ export function Header() {
                       setMobileOpen(false);
                       setReferralOpen(true);
                     }}
-                    className="w-full text-left text-xs text-[#efbd66] font-semibold py-1.5 flex items-center gap-1.5 tap-target"
+                    className="w-full text-left text-xs text-[#C59B27] font-semibold py-1.5 flex items-center gap-1.5 tap-target"
                   >
-                    <svg className="w-3.5 h-3.5 text-[#efbd66]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-3.5 h-3.5 text-[#C59B27]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v13m0-13V4.5a2.5 2.5 0 115 0V8h-5zm0 0H7a2.5 2.5 0 110-5 2.5 2.5 0 012.5 2.5V8H12zm-8 4h16v9a1 1 0 01-1 1H5a1 1 0 01-1-1v-9z" />
                     </svg>
                     <span>Refer a Friend or Pro</span>

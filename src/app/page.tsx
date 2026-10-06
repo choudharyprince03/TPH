@@ -27,10 +27,10 @@ export default function Home() {
   };
 
   return (
-    <PageTransition className="w-full flex-1 flex flex-col bg-[#fcfbf8] text-[#102645]">
+    <PageTransition className="w-full flex-1 flex flex-col bg-[#fcfbf8] text-[#183249]">
 
       {/* ── 1. HERO SECTION ──────────────────────────────────────────────────── */}
-      <section className="bg-[#07172e] text-white relative pt-10 pb-16 lg:pb-20 overflow-hidden">
+      <section className="bg-[#0F1A2C] text-white relative pt-10 pb-16 lg:pb-20 overflow-hidden">
 
         {/* Animated background orbs */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -46,15 +46,15 @@ export default function Home() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#102d59] border border-white/15 text-[#efbd66] text-[11px] font-bold uppercase tracking-[2px] mb-5 shadow-sm"
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#102d59] border border-white/15 text-[#C59B27] text-[11px] font-bold uppercase tracking-[2px] mb-5 shadow-sm"
             >
-              <span className="w-2 h-2 rounded-full bg-[#efbd66] animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-[#C59B27] animate-pulse" />
               <span>Prop ID</span>
             </motion.div>
 
             <h1 className="text-3xl sm:text-4xl lg:text-[50px] font-bold leading-[1.12] tracking-[-1.5px] text-white mb-5">
               One property.{" "}
-              <span className="text-[#efbd66] font-normal italic font-serif block sm:inline">
+              <span className="text-[#C59B27] font-normal italic font-serif block sm:inline">
                 One shared workspace.
               </span>
             </h1>
@@ -81,9 +81,9 @@ export default function Home() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.6 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-white/10 border border-white/15 text-[12px] font-semibold text-[#efbd66]"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-white/10 border border-white/15 text-[12px] font-semibold text-[#C59B27]"
             >
-              <svg className="w-4 h-4 text-[#efbd66]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 text-[#C59B27]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
               </svg>
               <span>You control who sees what.</span>
@@ -108,18 +108,18 @@ export default function Home() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.55, delay: 0.75, type: "spring", stiffness: 200 }}
-                className="bg-[#fcfbf8] text-[#102645] p-3 sm:p-4 rounded-xl shadow-[0_12px_35px_rgba(0,0,0,0.18)] flex items-center gap-3 border border-[#dfe6ef]"
+                className="bg-[#fcfbf8] text-[#183249] p-3 sm:p-4 rounded-xl shadow-[0_12px_35px_rgba(0,0,0,0.18)] flex items-center gap-3 border border-[#e2e5e5]"
               >
-                <div className="w-8 h-8 rounded-lg bg-[#eaf5ef] text-[#24754c] flex items-center justify-center flex-shrink-0">
+                <div className="w-8 h-8 rounded-lg bg-[#eaf4ef] text-[#28715e] flex items-center justify-center flex-shrink-0">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                   </svg>
                 </div>
                 <div>
-                  <strong className="block text-[12px] sm:text-[13px] font-semibold leading-tight text-[#102645]">
+                  <strong className="block text-[12px] sm:text-[13px] font-semibold leading-tight text-[#183249]">
                     More peace of mind. Less running around.
                   </strong>
-                  <small className="text-[10px] sm:text-[11px] text-[#68788e] leading-tight">
+                  <small className="text-[10px] sm:text-[11px] text-[#64727e] leading-tight">
                     A home for the story of your property.
                   </small>
                 </div>
@@ -142,21 +142,21 @@ export default function Home() {
         >
           <form
             onSubmit={handleSearch}
-            className="bg-white border border-[#dfe6ef] rounded-2xl p-4 sm:p-6 shadow-[0_16px_40px_rgba(7,29,59,0.08)] grid grid-cols-1 md:grid-cols-[1.1fr_1fr_auto] items-end gap-4 sm:gap-6"
+            className="bg-white border border-[#e2e5e5] rounded-2xl p-4 sm:p-6 shadow-[0_16px_40px_rgba(7,29,59,0.08)] grid grid-cols-1 md:grid-cols-[1.1fr_1fr_auto] items-end gap-4 sm:gap-6"
           >
             {/* Service selector */}
-            <div className="md:border-r md:border-[#dfe6ef] md:pr-6">
-              <label className="block text-[10px] uppercase font-bold tracking-[1.2px] text-[#68788e] mb-1.5">
+            <div className="md:border-r md:border-[#e2e5e5] md:pr-6">
+              <label className="block text-[10px] uppercase font-bold tracking-[1.2px] text-[#64727e] mb-1.5">
                 What would you like help with?
               </label>
               <div className="flex items-center gap-2.5">
-                <svg className="w-4 h-4 text-[#68788e] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 text-[#64727e] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
                 <select
                   value={selectedService}
                   onChange={(e) => setSelectedService(e.target.value)}
-                  className="w-full bg-transparent border-0 p-0 text-[14px] sm:text-[15px] font-semibold text-[#102645] focus:outline-none cursor-pointer"
+                  className="w-full bg-transparent border-0 p-0 text-[14px] sm:text-[15px] font-semibold text-[#183249] focus:outline-none cursor-pointer"
                 >
                   <option value="builder">Building, renovations or handover</option>
                   <option value="conveyancer">Conveyancing &amp; contract review</option>
@@ -170,11 +170,11 @@ export default function Home() {
 
             {/* Suburb / Postcode */}
             <div>
-              <label className="block text-[10px] uppercase font-bold tracking-[1.2px] text-[#68788e] mb-1.5">
+              <label className="block text-[10px] uppercase font-bold tracking-[1.2px] text-[#64727e] mb-1.5">
                 Suburb or postcode
               </label>
               <div className="flex items-center gap-2.5">
-                <svg className="w-4 h-4 text-[#68788e] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 text-[#64727e] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
@@ -183,7 +183,7 @@ export default function Home() {
                   value={suburb}
                   onChange={(e) => setSuburb(e.target.value)}
                   placeholder="e.g. Kenmore QLD 4069"
-                  className="w-full bg-transparent border-0 p-0 text-[14px] sm:text-[15px] font-semibold text-[#102645] focus:outline-none"
+                  className="w-full bg-transparent border-0 p-0 text-[14px] sm:text-[15px] font-semibold text-[#183249] focus:outline-none"
                 />
               </div>
             </div>
@@ -192,7 +192,7 @@ export default function Home() {
             <MagneticButton>
               <button
                 type="submit"
-                className="w-full md:w-auto bg-[#071d3b] hover:bg-[#102d59] text-white px-6 sm:px-7 py-3 rounded-xl text-[13px] font-semibold transition-colors flex items-center justify-center gap-2 shadow-sm tap-target"
+                className="w-full md:w-auto bg-[#0F1A2C] hover:bg-[#102d59] text-white px-6 sm:px-7 py-3 rounded-xl text-[13px] font-semibold transition-colors flex items-center justify-center gap-2 shadow-sm tap-target"
               >
                 <span>Find help</span>
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -207,19 +207,19 @@ export default function Home() {
         <section className="pt-8 sm:pt-10 pb-6 sm:pb-8">
           <FadeUp className="flex items-end justify-between gap-4 mb-8">
             <div>
-              <div className="text-[10px] font-bold uppercase tracking-[1.8px] text-[#24754c] mb-2">
+              <div className="text-[10px] font-bold uppercase tracking-[1.8px] text-[#28715e] mb-2">
                 Find your people
               </div>
-              <h2 className="text-2xl sm:text-3xl font-semibold tracking-[-0.8px] text-[#102645]">
+              <h2 className="text-2xl sm:text-3xl font-semibold tracking-[-0.8px] text-[#183249]">
                 A good place to start.
               </h2>
-              <p className="text-[#68788e] text-[13px] mt-1.5">
+              <p className="text-[#64727e] text-[13px] mt-1.5">
                 Explore verified professionals near western Brisbane.
               </p>
             </div>
-            <Link href="/explore" className="text-[12px] font-semibold text-[#071d3b] hover:underline flex items-center gap-1 flex-shrink-0">
+            <Link href="/explore" className="text-[12px] font-semibold text-[#0F1A2C] hover:underline flex items-center gap-1 flex-shrink-0">
               <span>View all</span>
-              <span className="text-[#efbd66]">→</span>
+              <span className="text-[#C59B27]">→</span>
             </Link>
           </FadeUp>
 
@@ -261,13 +261,13 @@ export default function Home() {
             ].map((pro, i) => (
               <StaggerItem key={i}>
                 <CardHover>
-                  <div className="bg-white border border-[#dfe6ef] hover:border-[#cbd5e2] rounded-2xl p-5 sm:p-6 flex flex-col justify-between shadow-sm h-full group transition-all">
+                  <div className="bg-white border border-[#e2e5e5] hover:border-[#cbd5e2] rounded-2xl p-5 sm:p-6 flex flex-col justify-between shadow-sm h-full group transition-all">
                     <div>
                       {/* Photo Avatar & Identity */}
                       <div className="flex items-center gap-3 sm:gap-3.5 mb-4">
                         <Link
                           href={pro.profileUrl}
-                          className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl overflow-hidden bg-[#e6eaf3] border border-[#dfe6ef] flex-shrink-0 shadow-xs block group-hover:scale-105 transition-transform"
+                          className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl overflow-hidden bg-[#e6eaf3] border border-[#e2e5e5] flex-shrink-0 shadow-xs block group-hover:scale-105 transition-transform"
                         >
                           <img
                             src={pro.avatarUrl}
@@ -278,22 +278,22 @@ export default function Home() {
                         <div className="min-w-0 flex-1">
                           <Link
                             href={pro.profileUrl}
-                            className="text-base font-bold text-[#102645] hover:text-[#071d3b] leading-tight block truncate group-hover:underline"
+                            className="text-base font-bold text-[#183249] hover:text-[#0F1A2C] leading-tight block truncate group-hover:underline"
                           >
                             {pro.name}
                           </Link>
-                          <p className="text-[11px] text-[#68788e] truncate mt-0.5">{pro.role}</p>
-                          <span className="text-[10px] text-[#24754c] font-semibold block mt-0.5">{pro.area}</span>
+                          <p className="text-[11px] text-[#64727e] truncate mt-0.5">{pro.role}</p>
+                          <span className="text-[10px] text-[#28715e] font-semibold block mt-0.5">{pro.area}</span>
                         </div>
                       </div>
-                      <p className="text-[12px] text-[#68788e] leading-[1.65] mb-4">{pro.desc}</p>
+                      <p className="text-[12px] text-[#64727e] leading-[1.65] mb-4">{pro.desc}</p>
                     </div>
 
                     {/* Dual Action Buttons: View Profile & Connect */}
-                    <div className="pt-4 border-t border-[#dfe6ef] flex items-center justify-between gap-2.5">
+                    <div className="pt-4 border-t border-[#e2e5e5] flex items-center justify-between gap-2.5">
                       <Link
                         href={pro.profileUrl}
-                        className="px-3 py-1.5 bg-[#f3f6fb] hover:bg-[#e2eaf4] text-[#071d3b] font-semibold rounded-lg transition-colors tap-target text-[11px] flex items-center gap-1"
+                        className="px-3 py-1.5 bg-[#F9F8F5] hover:bg-[#e2eaf4] text-[#0F1A2C] font-semibold rounded-lg transition-colors tap-target text-[11px] flex items-center gap-1"
                       >
                         <span>View Profile</span>
                         <span>→</span>
@@ -301,10 +301,10 @@ export default function Home() {
                       <MagneticButton>
                         <Link
                           href={pro.link}
-                          className="px-3.5 py-1.5 bg-[#071d3b] hover:bg-[#102d59] text-white font-semibold rounded-lg transition-colors tap-target text-[11px] flex items-center gap-1"
+                          className="px-3.5 py-1.5 bg-[#0F1A2C] hover:bg-[#102d59] text-white font-semibold rounded-lg transition-colors tap-target text-[11px] flex items-center gap-1"
                         >
                           <span>Connect</span>
-                          <span className="text-[#efbd66]">→</span>
+                          <span className="text-[#C59B27]">→</span>
                         </Link>
                       </MagneticButton>
                     </div>
@@ -317,15 +317,15 @@ export default function Home() {
 
         {/* ── CLAIM YOUR FREE DIGITAL HOME BANNER ────────────────────────── */}
         <FadeUp delay={0.15}>
-          <div className="mt-8 sm:mt-10 bg-[#071d3b] text-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-[#0f2d59] relative overflow-hidden shadow-lg">
+          <div className="mt-8 sm:mt-10 bg-[#0F1A2C] text-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-[#0f2d59] relative overflow-hidden shadow-lg">
             {/* Subtle glow elements */}
-            <div className="absolute top-0 right-0 w-80 h-80 bg-[#efbd66]/10 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute bottom-0 left-1/3 w-64 h-64 bg-[#24754c]/15 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute top-0 right-0 w-80 h-80 bg-[#C59B27]/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute bottom-0 left-1/3 w-64 h-64 bg-[#28715e]/15 rounded-full blur-3xl pointer-events-none" />
 
             <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6 lg:gap-10">
               <div className="max-w-xl">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[11px] font-bold uppercase tracking-wider text-[#efbd66] mb-3 border border-white/10">
-                  <span className="w-2 h-2 rounded-full bg-[#efbd66]" />
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[11px] font-bold uppercase tracking-wider text-[#C59B27] mb-3 border border-white/10">
+                  <span className="w-2 h-2 rounded-full bg-[#C59B27]" />
                   <span>The Property Helpline · One property free</span>
                 </div>
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white mb-3">
@@ -334,8 +334,8 @@ export default function Home() {
                 <p className="text-[14px] sm:text-[15px] text-[#b9c8db] leading-relaxed mb-4">
                   Your property’s paperwork, people and history—in one place. You control who sees what.
                 </p>
-                <div className="flex items-center gap-2 text-[12px] text-[#efbd66] font-medium">
-                  <svg className="w-4 h-4 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="flex items-center gap-2 text-[12px] text-[#C59B27] font-medium">
+                  <svg className="w-4 h-4 text-[#28715e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                   </svg>
                   <span>Secure cloud storage · Independent Australian platform</span>
@@ -346,7 +346,7 @@ export default function Home() {
                 <MagneticButton>
                   <Link
                     href="/signup"
-                    className="px-6 py-3.5 bg-[#efbd66] hover:bg-[#e4b257] text-[#071d3b] font-bold text-[14px] rounded-xl transition-all shadow-md flex items-center justify-center gap-2 text-center"
+                    className="px-6 py-3.5 bg-[#C59B27] hover:bg-[#e4b257] text-[#0F1A2C] font-bold text-[14px] rounded-xl transition-all shadow-md flex items-center justify-center gap-2 text-center"
                   >
                     <span>Claim my digital home</span>
                     <span>→</span>
@@ -364,13 +364,13 @@ export default function Home() {
         <section className="pt-12 sm:pt-14 pb-10 sm:pb-12">
           <FadeUp className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-8">
             <div>
-              <div className="text-[10px] font-bold uppercase tracking-[1.8px] text-[#24754c] mb-2">
+              <div className="text-[10px] font-bold uppercase tracking-[1.8px] text-[#28715e] mb-2">
                 Start where you are
               </div>
-              <h2 className="text-2xl sm:text-3xl font-semibold tracking-[-0.8px] text-[#102645]">
+              <h2 className="text-2xl sm:text-3xl font-semibold tracking-[-0.8px] text-[#183249]">
                 A clearer next step.
               </h2>
-              <p className="text-[#68788e] text-[13px] mt-1.5">
+              <p className="text-[#64727e] text-[13px] mt-1.5">
                 One place to get help and keep life with property organised.
               </p>
             </div>
@@ -382,24 +382,24 @@ export default function Home() {
               <CardHover>
                 <Link
                   href="/properties"
-                  className="bg-white border border-[#dfe6ef] hover:border-[#a0b3c6] rounded-2xl p-6 sm:p-7 flex flex-col justify-between min-h-[200px] sm:min-h-[220px] group block"
+                  className="bg-white border border-[#e2e5e5] hover:border-[#a0b3c6] rounded-2xl p-6 sm:p-7 flex flex-col justify-between min-h-[200px] sm:min-h-[220px] group block"
                 >
                   <div>
-                    <div className="w-10 h-10 rounded-xl bg-[#eaf5ef] text-[#24754c] flex items-center justify-center mb-4 sm:mb-5 icon-hover">
+                    <div className="w-10 h-10 rounded-xl bg-[#eaf4ef] text-[#28715e] flex items-center justify-center mb-4 sm:mb-5 icon-hover">
                       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                       </svg>
                     </div>
-                    <h3 className="text-lg sm:text-xl font-semibold text-[#102645] mb-2">
+                    <h3 className="text-lg sm:text-xl font-semibold text-[#183249] mb-2">
                       Organise my property
                     </h3>
-                    <p className="text-[12px] text-[#68788e] leading-relaxed">
+                    <p className="text-[12px] text-[#64727e] leading-relaxed">
                       Keep documents, jobs and trusted connections together in your living Prop ID record.
                     </p>
                   </div>
-                  <div className="flex items-center gap-1 text-[12px] font-semibold text-[#071d3b] group-hover:translate-x-1 transition-transform mt-4">
+                  <div className="flex items-center gap-1 text-[12px] font-semibold text-[#0F1A2C] group-hover:translate-x-1 transition-transform mt-4">
                     <span>Open my space</span>
-                    <span className="text-[#efbd66]">→</span>
+                    <span className="text-[#C59B27]">→</span>
                   </div>
                 </Link>
               </CardHover>
@@ -410,7 +410,7 @@ export default function Home() {
               <CardHover>
                 <Link
                   href="/explore"
-                  className="bg-white border border-[#dfe6ef] hover:border-[#a0b3c6] rounded-2xl p-6 sm:p-7 flex flex-col justify-between min-h-[200px] sm:min-h-[220px] group block"
+                  className="bg-white border border-[#e2e5e5] hover:border-[#a0b3c6] rounded-2xl p-6 sm:p-7 flex flex-col justify-between min-h-[200px] sm:min-h-[220px] group block"
                 >
                   <div>
                     <div className="w-10 h-10 rounded-xl bg-[#eef4ff] text-[#2563eb] flex items-center justify-center mb-4 sm:mb-5 icon-hover">
@@ -418,16 +418,16 @@ export default function Home() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                       </svg>
                     </div>
-                    <h3 className="text-lg sm:text-xl font-semibold text-[#102645] mb-2">
+                    <h3 className="text-lg sm:text-xl font-semibold text-[#183249] mb-2">
                       Find a specialist
                     </h3>
-                    <p className="text-[12px] text-[#68788e] leading-relaxed">
+                    <p className="text-[12px] text-[#64727e] leading-relaxed">
                       Connect with independent verified builders, certifiers, conveyancers and trade specialists.
                     </p>
                   </div>
-                  <div className="flex items-center gap-1 text-[12px] font-semibold text-[#071d3b] group-hover:translate-x-1 transition-transform mt-4">
+                  <div className="flex items-center gap-1 text-[12px] font-semibold text-[#0F1A2C] group-hover:translate-x-1 transition-transform mt-4">
                     <span>Explore specialists</span>
-                    <span className="text-[#efbd66]">→</span>
+                    <span className="text-[#C59B27]">→</span>
                   </div>
                 </Link>
               </CardHover>
@@ -438,24 +438,24 @@ export default function Home() {
               <CardHover>
                 <Link
                   href="/trustlinks/welcome"
-                  className="bg-white border border-[#dfe6ef] hover:border-[#a0b3c6] rounded-2xl p-6 sm:p-7 flex flex-col justify-between min-h-[200px] sm:min-h-[220px] group block sm:col-span-2 md:col-span-1"
+                  className="bg-white border border-[#e2e5e5] hover:border-[#a0b3c6] rounded-2xl p-6 sm:p-7 flex flex-col justify-between min-h-[200px] sm:min-h-[220px] group block sm:col-span-2 md:col-span-1"
                 >
                   <div>
-                    <div className="w-10 h-10 rounded-xl bg-[#fff4df] text-[#8b641c] flex items-center justify-center mb-4 sm:mb-5 icon-hover">
+                    <div className="w-10 h-10 rounded-xl bg-[#fbf3e4] text-[#946315] flex items-center justify-center mb-4 sm:mb-5 icon-hover">
                       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                       </svg>
                     </div>
-                    <h3 className="text-lg sm:text-xl font-semibold text-[#102645] mb-2">
+                    <h3 className="text-lg sm:text-xl font-semibold text-[#183249] mb-2">
                       Receive my handover
                     </h3>
-                    <p className="text-[12px] text-[#68788e] leading-relaxed">
+                    <p className="text-[12px] text-[#64727e] leading-relaxed">
                       Your new home's plans, warranties and practical completion documents from Hart Homes.
                     </p>
                   </div>
-                  <div className="flex items-center gap-1 text-[12px] font-semibold text-[#071d3b] group-hover:translate-x-1 transition-transform mt-4">
+                  <div className="flex items-center gap-1 text-[12px] font-semibold text-[#0F1A2C] group-hover:translate-x-1 transition-transform mt-4">
                     <span>Open handover pack</span>
-                    <span className="text-[#efbd66]">→</span>
+                    <span className="text-[#C59B27]">→</span>
                   </div>
                 </Link>
               </CardHover>
@@ -465,7 +465,7 @@ export default function Home() {
 
         {/* ── 4. PROMISE STRIP ──────────────────────────────────────────────── */}
         <FadeUp>
-          <div className="py-6 border-y border-[#dfe6ef] grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6 text-[12px]">
+          <div className="py-6 border-y border-[#e2e5e5] grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6 text-[12px]">
             {[
               {
                 icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z",
@@ -484,12 +484,12 @@ export default function Home() {
               },
             ].map((item, i) => (
               <div key={i} className="flex items-center gap-3">
-                <svg className="w-5 h-5 text-[#24754c] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-[#28715e] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={item.icon} />
                 </svg>
                 <div>
-                  <strong className="text-[#102645] font-semibold">{item.title}</strong>
-                  <small className="block text-[#68788e] text-[10px]">{item.sub}</small>
+                  <strong className="text-[#183249] font-semibold">{item.title}</strong>
+                  <small className="block text-[#64727e] text-[10px]">{item.sub}</small>
                 </div>
               </div>
             ))}
@@ -500,22 +500,22 @@ export default function Home() {
         <FadeUp>
           <section className="my-8 sm:my-10 bg-[#eaf0f6] rounded-2xl p-6 sm:p-8 lg:p-12 grid grid-cols-1 lg:grid-cols-[1fr_0.9fr] items-center gap-8 lg:gap-10">
             <SlideIn direction="left">
-              <div className="text-[10px] font-bold uppercase tracking-[1.8px] text-[#24754c] mb-2">
+              <div className="text-[10px] font-bold uppercase tracking-[1.8px] text-[#28715e] mb-2">
                 Meet Prop ID
               </div>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-[-1px] text-[#102645] mb-4 leading-tight">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-[-1px] text-[#183249] mb-4 leading-tight">
                 A living memory<br />of your property.
               </h2>
-              <p className="text-[13px] text-[#68788e] leading-[1.8] max-w-[400px] mb-6">
+              <p className="text-[13px] text-[#64727e] leading-[1.8] max-w-[400px] mb-6">
                 From the appliance manual you can never find to the work done last year. Give the important things a permanent home, ready for whatever comes next.
               </p>
               <MagneticButton>
                 <Link
                   href="/properties/TPH-KEN-018"
-                  className="inline-flex items-center gap-2 bg-[#071d3b] hover:bg-[#102d59] text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl text-[13px] font-semibold transition-colors shadow-sm"
+                  className="inline-flex items-center gap-2 bg-[#0F1A2C] hover:bg-[#102d59] text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl text-[13px] font-semibold transition-colors shadow-sm"
                 >
                   <span>Explore a property record</span>
-                  <span className="text-[#efbd66]">→</span>
+                  <span className="text-[#C59B27]">→</span>
                 </Link>
               </MagneticButton>
             </SlideIn>
@@ -523,24 +523,24 @@ export default function Home() {
             <SlideIn direction="right">
               <motion.div
                 whileHover={{ rotate: 0, scale: 1.01 }}
-                className="bg-white border border-[#dfe6ef] rounded-2xl p-5 sm:p-6 shadow-[0_18px_35px_rgba(7,29,59,0.06)] lg:rotate-1 transition-transform"
+                className="bg-white border border-[#e2e5e5] rounded-2xl p-5 sm:p-6 shadow-[0_18px_35px_rgba(7,29,59,0.06)] lg:rotate-1 transition-transform"
               >
-                <div className="flex items-center gap-3 pb-4 border-b border-[#dfe6ef]">
-                  <div className="w-10 h-10 rounded-lg bg-[#071d3b] text-[#efbd66] flex items-center justify-center font-bold text-sm">
-                    <svg className="w-5 h-5 text-[#efbd66]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="flex items-center gap-3 pb-4 border-b border-[#e2e5e5]">
+                  <div className="w-10 h-10 rounded-lg bg-[#0F1A2C] text-[#C59B27] flex items-center justify-center font-bold text-sm">
+                    <svg className="w-5 h-5 text-[#C59B27]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                     </svg>
                   </div>
                   <div>
-                    <h3 className="text-base font-bold text-[#102645]">18 Banksia Crescent</h3>
-                    <small className="text-[11px] text-[#68788e]">Kenmore, Queensland 4069 · Prop ID: TPH-KEN-018</small>
+                    <h3 className="text-base font-bold text-[#183249]">18 Banksia Crescent</h3>
+                    <small className="text-[11px] text-[#64727e]">Kenmore, Queensland 4069 · Prop ID: TPH-KEN-018</small>
                   </div>
                 </div>
-                <div className="divide-y divide-[#dfe6ef] text-[12px] my-3">
+                <div className="divide-y divide-[#e2e5e5] text-[12px] my-3">
                   {[
                     {
                       icon: (
-                        <svg className="w-4 h-4 text-[#071d3b]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-4 h-4 text-[#0F1A2C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
                       ),
@@ -549,7 +549,7 @@ export default function Home() {
                     },
                     {
                       icon: (
-                        <svg className="w-4 h-4 text-[#071d3b]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-4 h-4 text-[#0F1A2C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                         </svg>
                       ),
@@ -558,7 +558,7 @@ export default function Home() {
                     },
                     {
                       icon: (
-                        <svg className="w-4 h-4 text-[#071d3b]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-4 h-4 text-[#0F1A2C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                         </svg>
                       ),
@@ -574,15 +574,15 @@ export default function Home() {
                       viewport={{ once: true }}
                       transition={{ delay: 0.1 + i * 0.08 }}
                     >
-                      <span className="flex items-center gap-2 text-[#68788e]">
+                      <span className="flex items-center gap-2 text-[#64727e]">
                         <span>{row.icon}</span> {row.label}
                       </span>
-                      <span className="text-[#24754c] font-semibold text-[11px]">{row.value}</span>
+                      <span className="text-[#28715e] font-semibold text-[11px]">{row.value}</span>
                     </motion.div>
                   ))}
                 </div>
-                <div className="pt-3 border-t border-[#dfe6ef] text-[11px] text-[#68788e] flex items-center gap-1.5">
-                  <svg className="w-3.5 h-3.5 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="pt-3 border-t border-[#e2e5e5] text-[11px] text-[#64727e] flex items-center gap-1.5">
+                  <svg className="w-3.5 h-3.5 text-[#28715e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                   </svg>
                   <span>Private until you choose to share.</span>
@@ -596,20 +596,20 @@ export default function Home() {
         <FadeUp>
           <div className="bg-[#f0ede5] rounded-2xl p-6 sm:p-7 lg:p-9 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 sm:gap-6 mb-12 sm:mb-16">
             <div>
-              <h3 className="text-lg sm:text-xl font-bold text-[#102645] mb-1">
+              <h3 className="text-lg sm:text-xl font-bold text-[#183249] mb-1">
                 What is The Property Helpline?
               </h3>
-              <p className="text-[13px] text-[#68788e]">
+              <p className="text-[13px] text-[#64727e]">
                 Learn about who we are and what we provide to help you on your property journey.
               </p>
             </div>
             <MagneticButton className="flex-shrink-0 self-start sm:self-auto">
               <Link
                 href="/about"
-                className="px-4 sm:px-5 py-2.5 bg-white border border-[#cbd5e2] hover:bg-[#f3f6fb] text-[#102645] font-semibold rounded-xl text-[12px] transition-colors flex items-center gap-2 whitespace-nowrap shadow-sm"
+                className="px-4 sm:px-5 py-2.5 bg-white border border-[#cbd5e2] hover:bg-[#F9F8F5] text-[#183249] font-semibold rounded-xl text-[12px] transition-colors flex items-center gap-2 whitespace-nowrap shadow-sm"
               >
                 <span>About Us</span>
-                <span className="text-[#24754c]">→</span>
+                <span className="text-[#28715e]">→</span>
               </Link>
             </MagneticButton>
           </div>
@@ -619,10 +619,10 @@ export default function Home() {
 
       {/* ── FOOTER ────────────────────────────────────────────────────────── */}
       <FadeUp>
-        <footer className="border-t border-[#dfe6ef] bg-[#fcfbf8] py-8 sm:py-10 mt-auto text-[11px] text-[#68788e]">
+        <footer className="border-t border-[#e2e5e5] bg-[#fcfbf8] py-8 sm:py-10 mt-auto text-[11px] text-[#64727e]">
           <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-9 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 sm:gap-6">
             <div className="flex items-center gap-3">
-              <div className="bg-white rounded-xl p-1.5 border border-[#dfe6ef] shadow-2xs flex items-center justify-center flex-shrink-0">
+              <div className="bg-white rounded-xl p-1.5 border border-[#e2e5e5] shadow-2xs flex items-center justify-center flex-shrink-0">
                 <img
                   src="/logo.png"
                   alt="The Property Helpline"
@@ -630,7 +630,7 @@ export default function Home() {
                 />
               </div>
               <div>
-                <div className="font-semibold text-[14px] text-[#071d3b]">The Property Helpline</div>
+                <div className="font-semibold text-[14px] text-[#0F1A2C]">The Property Helpline</div>
                 <p className="mt-0.5 max-w-sm text-[11px]">Your digital home for every property journey. Independent Australian platform.</p>
               </div>
             </div>
@@ -638,7 +638,7 @@ export default function Home() {
               <Link href="/explore" className="hover:underline tap-target">Find help</Link>
               <Link href="/about" className="hover:underline tap-target">About Us</Link>
               <Link href="/properties" className="hover:underline tap-target">My Property World</Link>
-              <Link href="/pro" className="hover:underline font-semibold text-[#071d3b] tap-target">I'm a Pro ↗</Link>
+              <Link href="/pro" className="hover:underline font-semibold text-[#0F1A2C] tap-target">I'm a Pro ↗</Link>
             </div>
           </div>
         </footer>

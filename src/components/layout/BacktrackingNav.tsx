@@ -33,7 +33,7 @@ export function BacktrackingNav({
   };
 
   return (
-    <div className="bg-white border-b border-[#dfe6ef] sticky top-0 z-40 shadow-[0_2px_8px_rgba(7,29,59,0.02)]">
+    <div className="bg-white border-b border-[#e2e5e5] sticky top-0 z-40 shadow-[0_2px_8px_rgba(7,29,59,0.02)]">
       <div className="max-w-[1512px] mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-3">
         
         {/* Left: Back Button + Breadcrumb Trail */}
@@ -41,7 +41,7 @@ export function BacktrackingNav({
           {/* Back Button */}
           <button
             onClick={handleBack}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#f4f6f8] hover:bg-[#e6ebf2] text-[#071d3b] text-[12px] font-bold rounded-lg border border-[#cbd5e2] transition-colors shadow-2xs group"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#F9F8F5] hover:bg-[#e6ebf2] text-[#0F1A2C] text-[12px] font-bold rounded-lg border border-[#cbd5e2] transition-colors shadow-2xs group"
             title="Go back to previous page"
             aria-label="Back"
           >
@@ -49,10 +49,10 @@ export function BacktrackingNav({
             <span>Back</span>
           </button>
 
-          <span className="h-4 w-px bg-[#dfe6ef] hidden sm:block" />
+          <span className="h-4 w-px bg-[#e2e5e5] hidden sm:block" />
 
           {/* Breadcrumbs */}
-          <nav className="flex items-center gap-1.5 text-[12px] text-[#68788e]" aria-label="Breadcrumb">
+          <nav className="flex items-center gap-1.5 text-[12px] text-[#64727e]" aria-label="Breadcrumb">
             {breadcrumbs.map((crumb, idx) => {
               const isLast = idx === breadcrumbs.length - 1;
               return (
@@ -61,12 +61,12 @@ export function BacktrackingNav({
                   {crumb.href && !isLast ? (
                     <Link
                       href={crumb.href}
-                      className="hover:text-[#102645] hover:underline font-medium transition-colors"
+                      className="hover:text-[#183249] hover:underline font-medium transition-colors"
                     >
                       {crumb.label}
                     </Link>
                   ) : (
-                    <span className={`font-semibold ${isLast ? "text-[#102645]" : "text-[#68788e]"}`}>
+                    <span className={`font-semibold ${isLast ? "text-[#183249]" : "text-[#64727e]"}`}>
                       {crumb.label}
                     </span>
                   )}
@@ -80,7 +80,7 @@ export function BacktrackingNav({
         <div className="flex items-center gap-3 ml-auto">
           {pageTag && (
             <div className="hidden md:flex items-center gap-1.5 px-2.5 py-1 bg-[#eaf0f6] rounded-md text-[11px] font-semibold text-[#3a5370] border border-[#d8e3ee]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#24754c]" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#28715e]" />
               <span>{pageTag}</span>
             </div>
           )}

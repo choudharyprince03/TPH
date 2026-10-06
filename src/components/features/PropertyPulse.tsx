@@ -544,18 +544,18 @@ export function PropertyPulseNotification({
               : "opacity-100 translate-y-0 scale-100"
           }`}
         >
-          <div className="bg-white/95 backdrop-blur-md border border-[#b8dec4] rounded-2xl shadow-2xl p-4 sm:p-5 text-[#102645] relative overflow-hidden ring-1 ring-black/5">
+          <div className="bg-white/95 backdrop-blur-md border border-[#b8dec4] rounded-2xl shadow-2xl p-4 sm:p-5 text-[#183249] relative overflow-hidden ring-1 ring-black/5">
             {/* Top green accent strip */}
-            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#24754c] via-[#48996e] to-[#24754c]" />
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#28715e] via-[#48996e] to-[#28715e]" />
 
             {/* Header row */}
             <div className="flex items-start justify-between gap-3 mb-2.5">
               <div className="flex items-center gap-2">
                 <span className="relative flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#24754c] opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#24754c]" />
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#28715e] opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#28715e]" />
                 </span>
-                <span className="text-[10px] font-bold uppercase tracking-[1.3px] text-[#24754c]">
+                <span className="text-[10px] font-bold uppercase tracking-[1.3px] text-[#28715e]">
                   Property Pulse · {currentMode === "pro" ? "Live Notification" : "Live Update"}
                 </span>
               </div>
@@ -563,7 +563,7 @@ export function PropertyPulseNotification({
               <button
                 onClick={handleDismiss}
                 aria-label="Close notification"
-                className="text-[#8ca395] hover:text-[#102645] text-xs p-1 rounded-md hover:bg-[#f0f4f2] transition-colors cursor-pointer"
+                className="text-[#8ca395] hover:text-[#183249] text-xs p-1 rounded-md hover:bg-[#f0f4f2] transition-colors cursor-pointer"
               >
                 ✕
               </button>
@@ -571,10 +571,10 @@ export function PropertyPulseNotification({
 
             {/* Property & status info */}
             <div className="flex items-baseline justify-between gap-2 mb-1">
-              <h4 className="text-[13px] font-bold text-[#102645] truncate">
+              <h4 className="text-[13px] font-bold text-[#183249] truncate">
                 {propertyTitle}
               </h4>
-              <span className="text-[10px] font-bold px-2 py-0.5 bg-[#eaf5ef] text-[#24754c] rounded-md shrink-0">
+              <span className="text-[10px] font-bold px-2 py-0.5 bg-[#eaf4ef] text-[#28715e] rounded-md shrink-0">
                 {data.badge || "Live"}
               </span>
             </div>
@@ -582,7 +582,7 @@ export function PropertyPulseNotification({
             <p className="text-[11px] text-[#5b6e84] mb-2.5">
               {clientText ? (
                 <>
-                  Client: <span className="font-semibold text-[#102645]">{clientText}</span> ·{" "}
+                  Client: <span className="font-semibold text-[#183249]">{clientText}</span> ·{" "}
                 </>
               ) : null}
               {suburbText ? `${suburbText} ` : ""}
@@ -591,7 +591,7 @@ export function PropertyPulseNotification({
 
             {/* Minimal brief notification box */}
             <div className="bg-[#f0f7f3] border border-[#c7e4d0] rounded-xl p-2.5 text-[11px] text-[#1e3a2f] mb-3 leading-relaxed">
-              <span className="font-semibold text-[#24754c]">
+              <span className="font-semibold text-[#28715e]">
                 {currentMode === "pro" ? "Latest Site Pulse: " : "Latest Property Pulse: "}
               </span>
               {briefText}
@@ -602,7 +602,7 @@ export function PropertyPulseNotification({
               <div className="mb-3 space-y-1 text-[11px] text-[#264e3b]">
                 {items.slice(0, 2).map((item, idx) => (
                   <div key={idx} className="flex items-start gap-1.5">
-                    <span className="text-[#24754c] text-[10px] mt-0.5 font-bold">✓</span>
+                    <span className="text-[#28715e] text-[10px] mt-0.5 font-bold">✓</span>
                     <span className="truncate">{item}</span>
                   </div>
                 ))}
@@ -614,7 +614,7 @@ export function PropertyPulseNotification({
               <Link
                 href={targetLink}
                 onClick={handleDismiss}
-                className="text-[11px] font-bold text-[#071d3b] hover:text-[#24754c] flex items-center gap-1 group"
+                className="text-[11px] font-bold text-[#0F1A2C] hover:text-[#28715e] flex items-center gap-1 group"
               >
                 <span>{actionText}</span>
                 <span className="group-hover:translate-x-0.5 transition-transform">→</span>
@@ -622,7 +622,7 @@ export function PropertyPulseNotification({
 
               <button
                 onClick={handleDismiss}
-                className="text-[11px] text-[#68788e] hover:text-[#102645] font-medium px-2 py-1 rounded-lg hover:bg-[#f4f6f8] cursor-pointer transition-colors"
+                className="text-[11px] text-[#64727e] hover:text-[#183249] font-medium px-2 py-1 rounded-lg hover:bg-[#F9F8F5] cursor-pointer transition-colors"
               >
                 Dismiss
               </button>
@@ -638,13 +638,13 @@ export function PropertyPulseNotification({
             setAnimatingOut(false);
             setVisible(true);
           }}
-          className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-[240] px-3.5 py-2 bg-white/95 backdrop-blur-md border border-[#b8dec4] hover:border-[#24754c] text-[#24754c] rounded-full shadow-lg text-xs font-semibold flex items-center gap-2 cursor-pointer transition-all hover:scale-105 ring-1 ring-black/5"
+          className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-[240] px-3.5 py-2 bg-white/95 backdrop-blur-md border border-[#b8dec4] hover:border-[#28715e] text-[#28715e] rounded-full shadow-lg text-xs font-semibold flex items-center gap-2 cursor-pointer transition-all hover:scale-105 ring-1 ring-black/5"
           title="Open Property Pulse Notification"
           aria-label="Open Property Pulse"
         >
           <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#24754c] opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#24754c]" />
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#28715e] opacity-75" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#28715e]" />
           </span>
           <span>Property Pulse</span>
         </button>
@@ -856,42 +856,42 @@ export function PropertyPulse({
 
   return (
     <section
-      className={`bg-white border border-[#dfe6ef] rounded-2xl shadow-xs overflow-hidden ${className}`}
+      className={`bg-white border border-[#e2e5e5] rounded-2xl shadow-xs overflow-hidden ${className}`}
       aria-label="Property Pulse"
     >
       {/* ── Top Header with Radar Indicator ──────────────────────────── */}
-      <div className="p-5 sm:p-6 border-b border-[#dfe6ef] bg-[#fafbfc] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <div className="p-5 sm:p-6 border-b border-[#e2e5e5] bg-[#fafbfc] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1 flex-wrap">
             <span className="relative flex h-2.5 w-2.5">
               <span
                 className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${
-                  isPro ? "bg-[#efbd66]" : "bg-[#24754c]"
+                  isPro ? "bg-[#C59B27]" : "bg-[#28715e]"
                 }`}
               />
               <span
                 className={`relative inline-flex rounded-full h-2.5 w-2.5 ${
-                  isPro ? "bg-[#efbd66]" : "bg-[#24754c]"
+                  isPro ? "bg-[#C59B27]" : "bg-[#28715e]"
                 }`}
               />
             </span>
-            <span className="text-[9px] font-bold uppercase tracking-[1.5px] text-[#24754c]">
+            <span className="text-[9px] font-bold uppercase tracking-[1.5px] text-[#28715e]">
               Property Pulse · Live Feed
             </span>
             {filterPropId && (
-              <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-[#eaf5ef] text-[#24754c] border border-[#c7e3d1]">
+              <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-[#eaf4ef] text-[#28715e] border border-[#c7e3d1]">
                 {filterPropId}
               </span>
             )}
-            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#fff4df] text-[#8b641c]">
+            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#fbf3e4] text-[#946315]">
               {todayCount} Due Today
             </span>
           </div>
 
-          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-[#102645]">
+          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-[#183249]">
             {title || "Property Pulse"}
           </h2>
-          <p className="text-[12px] sm:text-[13px] text-[#68788e] mt-0.5">
+          <p className="text-[12px] sm:text-[13px] text-[#64727e] mt-0.5">
             {subtitle ||
               (isPro
                 ? "Today's site milestones, pending trade sign-offs & field tasks organized by property."
@@ -903,16 +903,16 @@ export function PropertyPulse({
           <button
             type="button"
             onClick={() => setShowAddTaskModal(true)}
-            className="px-3.5 py-2 bg-[#071d3b] hover:bg-[#102d59] text-white rounded-xl text-xs font-bold transition-colors shadow-2xs inline-flex items-center gap-1.5 cursor-pointer"
+            className="px-3.5 py-2 bg-[#0F1A2C] hover:bg-[#102d59] text-white rounded-xl text-xs font-bold transition-colors shadow-2xs inline-flex items-center gap-1.5 cursor-pointer"
           >
-            <span className="text-[#efbd66] font-bold">+</span>
+            <span className="text-[#C59B27] font-bold">+</span>
             <span>Add Pulse Task</span>
           </button>
 
           <button
             type="button"
             onClick={() => setShowCompleted(!showCompleted)}
-            className="px-3 py-2 bg-white border border-[#cbd5e2] hover:bg-[#f3f6fb] text-[#102645] rounded-xl text-xs font-semibold transition-colors cursor-pointer"
+            className="px-3 py-2 bg-white border border-[#cbd5e2] hover:bg-[#F9F8F5] text-[#183249] rounded-xl text-xs font-semibold transition-colors cursor-pointer"
           >
             {showCompleted ? "Hide Done" : "Show All"}
           </button>
@@ -921,16 +921,16 @@ export function PropertyPulse({
 
       {/* ── Optional Modal for Adding New Task ────────────────────────── */}
       {showAddTaskModal && (
-        <div className="p-4 sm:p-5 bg-[#f0f4f9] border-b border-[#dfe6ef]">
+        <div className="p-4 sm:p-5 bg-[#f0f4f9] border-b border-[#e2e5e5]">
           <form onSubmit={handleCreateTask} className="space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-[#102645]">
+              <span className="text-xs font-bold text-[#183249]">
                 + Add New Property Pulse Task {filterPropId ? `for ${filterPropId}` : ""}
               </span>
               <button
                 type="button"
                 onClick={() => setShowAddTaskModal(false)}
-                className="text-xs text-[#68788e] hover:text-[#102645]"
+                className="text-xs text-[#64727e] hover:text-[#183249]"
               >
                 ✕ Cancel
               </button>
@@ -942,7 +942,7 @@ export function PropertyPulse({
                 value={newTaskTitle}
                 onChange={(e) => setNewTaskTitle(e.target.value)}
                 placeholder="What needs to happen? (e.g. Sign waterproofing cert)"
-                className="sm:col-span-2 px-3 py-2 bg-white border border-[#dfe6ef] rounded-xl text-xs text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                className="sm:col-span-2 px-3 py-2 bg-white border border-[#e2e5e5] rounded-xl text-xs text-[#183249] focus:outline-none focus:border-[#0F1A2C]"
                 autoFocus
                 required
               />
@@ -950,7 +950,7 @@ export function PropertyPulse({
               <select
                 value={newTaskCategory}
                 onChange={(e) => setNewTaskCategory(e.target.value as any)}
-                className="px-3 py-2 bg-white border border-[#dfe6ef] rounded-xl text-xs text-[#102645] focus:outline-none"
+                className="px-3 py-2 bg-white border border-[#e2e5e5] rounded-xl text-xs text-[#183249] focus:outline-none"
               >
                 <option value="Trade">Trade / Site</option>
                 <option value="Handover">Handover</option>
@@ -962,11 +962,11 @@ export function PropertyPulse({
 
             <div className="flex items-center justify-between gap-3 pt-1">
               <div className="flex items-center gap-2 text-xs">
-                <label className="text-[#68788e]">Priority:</label>
+                <label className="text-[#64727e]">Priority:</label>
                 <select
                   value={newTaskPriority}
                   onChange={(e) => setNewTaskPriority(e.target.value as any)}
-                  className="px-2 py-1 bg-white border border-[#dfe6ef] rounded-lg text-xs text-[#102645]"
+                  className="px-2 py-1 bg-white border border-[#e2e5e5] rounded-lg text-xs text-[#183249]"
                 >
                   <option value="High">High</option>
                   <option value="Medium">Medium</option>
@@ -976,7 +976,7 @@ export function PropertyPulse({
 
               <button
                 type="submit"
-                className="px-4 py-1.5 bg-[#071d3b] hover:bg-[#102d59] text-white text-xs font-bold rounded-lg transition-colors cursor-pointer"
+                className="px-4 py-1.5 bg-[#0F1A2C] hover:bg-[#102d59] text-white text-xs font-bold rounded-lg transition-colors cursor-pointer"
               >
                 Save Task to Pulse
               </button>
@@ -987,20 +987,20 @@ export function PropertyPulse({
 
       {/* ── Property Filter Pills (shown unless hideFilterBar is true) ── */}
       {!hideFilterBar && (
-        <div className="p-3.5 sm:p-4 bg-white border-b border-[#dfe6ef] flex items-center gap-2 overflow-x-auto">
+        <div className="p-3.5 sm:p-4 bg-white border-b border-[#e2e5e5] flex items-center gap-2 overflow-x-auto">
           <button
             type="button"
             onClick={() => setSelectedPropertyFilter("all")}
             className={`px-3 py-1.5 rounded-full text-[11px] font-bold transition-all whitespace-nowrap cursor-pointer inline-flex items-center gap-1.5 ${
               selectedPropertyFilter === "all"
-                ? "bg-[#071d3b] text-white shadow-2xs"
-                : "bg-[#f4f6f8] text-[#5b6e84] hover:bg-[#eaf0f6] hover:text-[#102645]"
+                ? "bg-[#0F1A2C] text-white shadow-2xs"
+                : "bg-[#F9F8F5] text-[#5b6e84] hover:bg-[#eaf0f6] hover:text-[#183249]"
             }`}
           >
             <span>All Properties</span>
             <span
               className={`text-[9.5px] px-1.5 py-0.2 rounded-full font-bold ${
-                selectedPropertyFilter === "all" ? "bg-white/20 text-white" : "bg-[#dfe6ef] text-[#071d3b]"
+                selectedPropertyFilter === "all" ? "bg-white/20 text-white" : "bg-[#e2e5e5] text-[#0F1A2C]"
               }`}
             >
               {tasks.filter((t) => !t.completed).length}
@@ -1017,17 +1017,17 @@ export function PropertyPulse({
                 onClick={() => setSelectedPropertyFilter(prop.name)}
                 className={`px-3 py-1.5 rounded-full text-[11px] font-semibold transition-all whitespace-nowrap cursor-pointer inline-flex items-center gap-1.5 border ${
                   isSelected
-                    ? "border-[#071d3b] bg-[#f0f4f9] text-[#071d3b] font-bold shadow-2xs"
-                    : "border-[#dfe6ef] text-[#5b6e84] hover:bg-[#f4f6f8] hover:text-[#102645]"
+                    ? "border-[#0F1A2C] bg-[#f0f4f9] text-[#0F1A2C] font-bold shadow-2xs"
+                    : "border-[#e2e5e5] text-[#5b6e84] hover:bg-[#F9F8F5] hover:text-[#183249]"
                 }`}
               >
-                <span className="font-mono text-[10px] text-[#24754c] font-bold">{prop.propId}</span>
+                <span className="font-mono text-[10px] text-[#28715e] font-bold">{prop.propId}</span>
                 <span>·</span>
                 <span>{shortName}</span>
                 {prop.pendingCount > 0 && (
                   <span
                     className={`text-[9.5px] px-1.5 py-0.2 rounded-full font-bold ${
-                      isSelected ? "bg-[#071d3b] text-white" : "bg-[#fff4df] text-[#8b641c]"
+                      isSelected ? "bg-[#0F1A2C] text-white" : "bg-[#fbf3e4] text-[#946315]"
                     }`}
                   >
                     {prop.pendingCount}
@@ -1040,16 +1040,16 @@ export function PropertyPulse({
       )}
 
       {/* ── Active Tasks Feed ────────────────────────────────────────── */}
-      <div className="divide-y divide-[#dfe6ef] p-2 sm:p-3">
+      <div className="divide-y divide-[#e2e5e5] p-2 sm:p-3">
         {filteredTasks.length === 0 ? (
           <div className="py-10 text-center">
-            <div className="w-10 h-10 rounded-xl bg-[#eaf5ef] text-[#24754c] flex items-center justify-center mx-auto mb-2.5">
-              <svg className="w-5 h-5 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="w-10 h-10 rounded-xl bg-[#eaf4ef] text-[#28715e] flex items-center justify-center mx-auto mb-2.5">
+              <svg className="w-5 h-5 text-[#28715e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <strong className="block text-[13px] text-[#102645]">All caught up for this property record!</strong>
-            <p className="text-[11px] text-[#68788e] mt-0.5">
+            <strong className="block text-[13px] text-[#183249]">All caught up for this property record!</strong>
+            <p className="text-[11px] text-[#64727e] mt-0.5">
               Zero pending items or overdue tasks.
             </p>
           </div>
@@ -1066,7 +1066,7 @@ export function PropertyPulse({
                   type="checkbox"
                   checked={task.completed}
                   onChange={() => toggleTask(task.id)}
-                  className="w-4 h-4 rounded text-[#071d3b] cursor-pointer mt-1 flex-shrink-0"
+                  className="w-4 h-4 rounded text-[#0F1A2C] cursor-pointer mt-1 flex-shrink-0"
                   aria-label={`Mark "${task.title}" as complete`}
                 />
 
@@ -1074,7 +1074,7 @@ export function PropertyPulse({
                   <div className="flex items-center gap-2 flex-wrap mb-1">
                     <strong
                       className={`text-[13px] font-bold ${
-                        task.completed ? "line-through text-[#8a97a7]" : "text-[#102645]"
+                        task.completed ? "line-through text-[#8a97a7]" : "text-[#183249]"
                       }`}
                     >
                       {task.title}
@@ -1082,13 +1082,13 @@ export function PropertyPulse({
 
                     {/* Today Badge */}
                     {task.isToday && (
-                      <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-[#fff4df] text-[#8b641c] border border-[#f5e3ba]">
+                      <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-[#fbf3e4] text-[#946315] border border-[#f5e3ba]">
                         Today
                       </span>
                     )}
 
                     {/* Category Badge */}
-                    <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-[#f0f4f9] text-[#071d3b]">
+                    <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-[#f0f4f9] text-[#0F1A2C]">
                       {task.category}
                     </span>
 
@@ -1100,12 +1100,12 @@ export function PropertyPulse({
                     )}
                   </div>
 
-                  <div className="text-[11px] text-[#68788e] flex items-center gap-2 flex-wrap">
-                    <span className="font-semibold text-[#102645]">{task.property}</span>
+                  <div className="text-[11px] text-[#64727e] flex items-center gap-2 flex-wrap">
+                    <span className="font-semibold text-[#183249]">{task.property}</span>
                     <span>·</span>
-                    <span className="font-mono text-[#24754c] font-semibold text-[10px]">{task.propId}</span>
+                    <span className="font-mono text-[#28715e] font-semibold text-[10px]">{task.propId}</span>
                     <span>·</span>
-                    <span className="font-medium text-[#071d3b]">Due: {task.due}</span>
+                    <span className="font-medium text-[#0F1A2C]">Due: {task.due}</span>
                     {task.assignee && (
                       <>
                         <span>·</span>
@@ -1124,7 +1124,7 @@ export function PropertyPulse({
               <div className="flex items-center gap-2 self-start sm:self-auto flex-shrink-0 ml-7 sm:ml-0">
                 <Link
                   href={task.actionHref}
-                  className="px-3 py-1.5 bg-[#f3f6fb] hover:bg-[#e4ecf7] text-[#071d3b] font-bold rounded-lg text-[11px] transition-colors whitespace-nowrap"
+                  className="px-3 py-1.5 bg-[#F9F8F5] hover:bg-[#e4ecf7] text-[#0F1A2C] font-bold rounded-lg text-[11px] transition-colors whitespace-nowrap"
                 >
                   {task.actionLabel}
                 </Link>
@@ -1135,9 +1135,9 @@ export function PropertyPulse({
       </div>
 
       {/* ── Footer Summary Strip ─────────────────────────────────────── */}
-      <div className="p-3.5 sm:p-4 border-t border-[#dfe6ef] bg-[#fafbfc] text-[11px] text-[#68788e] flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+      <div className="p-3.5 sm:p-4 border-t border-[#e2e5e5] bg-[#fafbfc] text-[11px] text-[#64727e] flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div className="flex items-center gap-2 flex-wrap">
-          <span className="font-semibold text-[#102645]">Pulse Status:</span>
+          <span className="font-semibold text-[#183249]">Pulse Status:</span>
           <span>{todayCount} active items scheduled for today</span>
           <span>·</span>
           <span>{totalCompleted} completed this cycle</span>
@@ -1146,7 +1146,7 @@ export function PropertyPulse({
         <div className="flex items-center gap-3">
           <Link
             href={isPro ? "/pro/tasks" : "/trustlinks"}
-            className="font-bold text-[#071d3b] hover:text-[#24754c] hover:underline self-start sm:self-auto"
+            className="font-bold text-[#0F1A2C] hover:text-[#28715e] hover:underline self-start sm:self-auto"
           >
             {isPro ? "Open All Follow-ups & Tasks →" : "View All Property Workspaces →"}
           </Link>

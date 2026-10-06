@@ -96,7 +96,7 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
       recipient: "Hart Homes (Olivia Hart)",
       recipientRole: "Licensed Builder · QBCC #150821",
       status: builderHandoverAccepted ? "Fully Executed & Sealed" : "Signed by You / Waiting",
-      statusColor: builderHandoverAccepted ? "bg-[#eaf5ef] text-[#24754c] border-[#c7e3d1]" : "bg-[#fff4df] text-[#8b641c] border-[#fce3b8]",
+      statusColor: builderHandoverAccepted ? "bg-[#eaf4ef] text-[#28715e] border-[#c7e3d1]" : "bg-[#fbf3e4] text-[#946315] border-[#fce3b8]",
       updatedAt: "Today 10:48 AM",
       trustlinkId: "TL-99214-B",
       trustlinkHref: "/trustlinks/TL-99214-B",
@@ -115,7 +115,7 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
       recipient: "Hart Homes (Olivia Hart)",
       recipientRole: "Licensed Builder · QBCC #150821",
       status: variationAccepted ? "Fully Executed & Sealed" : "Approved to Share",
-      statusColor: variationAccepted ? "bg-[#eaf5ef] text-[#24754c] border-[#c7e3d1]" : "bg-[#f0f4f9] text-[#071d3b] border-[#cbd5e2]",
+      statusColor: variationAccepted ? "bg-[#eaf4ef] text-[#28715e] border-[#c7e3d1]" : "bg-[#f0f4f9] text-[#0F1A2C] border-[#cbd5e2]",
       updatedAt: "Yesterday 3:15 PM",
       trustlinkId: "TL-99214-B",
       trustlinkHref: "/trustlinks/TL-99214-B",
@@ -131,7 +131,7 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
       recipient: "River City Conveyancing (Lachlan Vance)",
       recipientRole: "Solicitor / Conveyancing Team",
       status: "Draft",
-      statusColor: "bg-[#f1f5f9] text-[#5b6e84] border-[#dfe6ef]",
+      statusColor: "bg-[#f1f5f9] text-[#5b6e84] border-[#e2e5e5]",
       updatedAt: "2 days ago",
       trustlinkId: "TL-88301-A",
       trustlinkHref: "/trustlinks/TL-88301-A",
@@ -202,7 +202,7 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
       recipient: newRecipient.trim() || "Assigned Professional",
       recipientRole: newRecipientRole,
       status: "Assembled",
-      statusColor: "bg-[#eef4ff] text-[#071d3b] border-[#cbd5e2]",
+      statusColor: "bg-[#eef4ff] text-[#0F1A2C] border-[#cbd5e2]",
       items: chosenItems,
       updatedAt: "Just now",
       trustlinkId: property.trustlinkId || "TL-99214-B",
@@ -225,7 +225,7 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
           ? {
               ...p,
               status: "Fully Executed & Sealed",
-              statusColor: "bg-[#eaf5ef] text-[#24754c] border-[#c7e3d1]",
+              statusColor: "bg-[#eaf4ef] text-[#28715e] border-[#c7e3d1]",
               updatedAt: "Just now",
             }
           : p
@@ -256,24 +256,24 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
   });
 
   return (
-    <div className="space-y-6 text-[#102645] font-sans max-w-[1120px] mx-auto pb-12">
+    <div className="space-y-6 text-[#183249] font-sans max-w-[1120px] mx-auto pb-12">
       
       {/* ── Top Header & Context Banner ───────────────────────────────── */}
-      <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 pb-4 border-b border-[#dfe6ef]">
+      <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 pb-4 border-b border-[#e2e5e5]">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-[9.5px] font-bold uppercase tracking-[1.4px] text-[#24754c]">
+            <span className="text-[9.5px] font-bold uppercase tracking-[1.4px] text-[#28715e]">
               My Property World · Digital Key
             </span>
-            <span className="w-1.5 h-1.5 rounded-full bg-[#24754c]" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#28715e]" />
             <span className="text-[10px] text-[#5b6e84] font-semibold font-mono">
               {property.propId}
             </span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#102645]">
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#183249]">
             Digital Key for {property.street}
           </h1>
-          <p className="text-xs text-[#68788e] mt-1 max-w-2xl leading-relaxed">
+          <p className="text-xs text-[#64727e] mt-1 max-w-2xl leading-relaxed">
             The place to complete deals and exchanges. Assemble scoped packs, review original statutory forms, approve requests, and keep returned executed copies linked to your property record.
           </p>
         </div>
@@ -282,14 +282,14 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
           {onOpenTrustLink && (
             <button
               onClick={onOpenTrustLink}
-              className="px-3.5 py-2 bg-white border border-[#cbd5e2] hover:bg-[#f3f6fb] text-[#102645] rounded-xl text-xs font-semibold transition-colors shadow-2xs flex items-center gap-1.5 cursor-pointer"
+              className="px-3.5 py-2 bg-white border border-[#cbd5e2] hover:bg-[#F9F8F5] text-[#183249] rounded-xl text-xs font-semibold transition-colors shadow-2xs flex items-center gap-1.5 cursor-pointer"
             >
               <span>🛡️ TrustLink Access</span>
             </button>
           )}
           <button
             onClick={() => setCreateModalOpen(true)}
-            className="px-4 py-2 bg-[#071d3b] hover:bg-[#15345d] text-white rounded-xl text-xs font-bold transition-colors shadow-xs flex items-center gap-1.5 cursor-pointer"
+            className="px-4 py-2 bg-[#0F1A2C] hover:bg-[#1c3a54] text-white rounded-xl text-xs font-bold transition-colors shadow-xs flex items-center gap-1.5 cursor-pointer"
           >
             <span>🔑</span>
             <span>+ Assemble Record Pack</span>
@@ -298,32 +298,32 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
       </div>
 
       {/* ── Main Navigation Tabs ───────────────────────────────────────── */}
-      <div className="flex items-center justify-between border-b border-[#dfe6ef] pb-0.5 gap-2 overflow-x-auto">
+      <div className="flex items-center justify-between border-b border-[#e2e5e5] pb-0.5 gap-2 overflow-x-auto">
         <div className="flex items-center gap-2">
           {[
             {
               id: "decisions",
               label: "Overview",
               badge: !builderHandoverAccepted ? "1 Action Waiting" : "Up to date",
-              badgeColor: !builderHandoverAccepted ? "bg-[#fff4df] text-[#8b641c] border-[#fce3b8]" : "bg-[#eaf5ef] text-[#24754c] border-[#c7e3d1]",
+              badgeColor: !builderHandoverAccepted ? "bg-[#fbf3e4] text-[#946315] border-[#fce3b8]" : "bg-[#eaf4ef] text-[#28715e] border-[#c7e3d1]",
             },
             {
               id: "packs",
               label: "Document Packs",
               badge: `${packsList.length} Packs`,
-              badgeColor: "bg-[#f1f5f9] text-[#071d3b] border-[#cbd5e2]",
+              badgeColor: "bg-[#f1f5f9] text-[#0F1A2C] border-[#cbd5e2]",
             },
             {
               id: "sent-returned",
               label: "Signed History",
               badge: `${receipts.length} Signed`,
-              badgeColor: "bg-[#f1f5f9] text-[#071d3b] border-[#cbd5e2]",
+              badgeColor: "bg-[#f1f5f9] text-[#0F1A2C] border-[#cbd5e2]",
             },
             {
               id: "rules",
               label: "Legal Rules",
               badge: "Regulations",
-              badgeColor: "bg-[#f0f4f9] text-[#24754c] border-[#c7e3d1]",
+              badgeColor: "bg-[#f0f4f9] text-[#28715e] border-[#c7e3d1]",
             },
           ].map((tab) => {
             const isActive = activeTab === tab.id;
@@ -333,8 +333,8 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
                 onClick={() => setActiveTab(tab.id as typeof activeTab)}
                 className={`px-3.5 py-2.5 rounded-t-xl text-xs font-bold transition-all flex items-center gap-2 whitespace-nowrap cursor-pointer border-b-2 ${
                   isActive
-                    ? "border-[#071d3b] text-[#071d3b] bg-white shadow-2xs"
-                    : "border-transparent text-[#68788e] hover:text-[#102645] hover:bg-[#f4f6f8]"
+                    ? "border-[#0F1A2C] text-[#0F1A2C] bg-white shadow-2xs"
+                    : "border-transparent text-[#64727e] hover:text-[#183249] hover:bg-[#F9F8F5]"
                 }`}
               >
                 <span>{tab.label}</span>
@@ -355,15 +355,15 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
 
           {/* 1. Pending Action Banner: Builder Handover */}
           {!builderHandoverAccepted ? (
-            <div className="bg-[#071d3b] text-white rounded-2xl p-5 sm:p-6 shadow-sm relative overflow-hidden space-y-4">
+            <div className="bg-[#0F1A2C] text-white rounded-2xl p-5 sm:p-6 shadow-sm relative overflow-hidden space-y-4">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-white/10">
                 <div className="flex items-center gap-2">
-                  <span className="text-[9.5px] font-bold uppercase tracking-[1.4px] bg-[#efbd66] text-[#071d3b] px-2 py-0.5 rounded">
+                  <span className="text-[9.5px] font-bold uppercase tracking-[1.4px] bg-[#C59B27] text-[#0F1A2C] px-2 py-0.5 rounded">
                     Action Required · Deal Handover
                   </span>
                   <span className="text-xs text-[#b9c8db]">Issuer: Hart Homes (QBCC #150821)</span>
                 </div>
-                <span className="text-xs text-[#efbd66] font-semibold">
+                <span className="text-xs text-[#C59B27] font-semibold">
                   Due: Practical Completion Stage
                 </span>
               </div>
@@ -397,7 +397,7 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
                 <div className="flex flex-col sm:flex-row lg:flex-col items-stretch gap-2.5 min-w-[200px] flex-shrink-0">
                   <button
                     onClick={handleAcceptHandover}
-                    className="px-4 py-2.5 bg-[#efbd66] hover:bg-[#dfac55] text-[#071d3b] rounded-xl text-xs font-bold transition-colors shadow-2xs text-center cursor-pointer flex items-center justify-center gap-1.5"
+                    className="px-4 py-2.5 bg-[#C59B27] hover:bg-[#b58b20] text-[#0F1A2C] rounded-xl text-xs font-bold transition-colors shadow-2xs text-center cursor-pointer flex items-center justify-center gap-1.5"
                   >
                     <span>✓ Accept &amp; Seal to Vault</span>
                   </button>
@@ -411,19 +411,19 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
               </div>
             </div>
           ) : (
-            <div className="bg-[#f0fbf7] border border-[#c7e3d1] rounded-2xl p-5 text-xs text-[#24754c] flex items-center justify-between gap-4">
+            <div className="bg-[#f0fbf7] border border-[#c7e3d1] rounded-2xl p-5 text-xs text-[#28715e] flex items-center justify-between gap-4">
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-[#24754c] text-white flex items-center justify-center text-base font-bold flex-shrink-0">
+                <div className="w-9 h-9 rounded-xl bg-[#28715e] text-white flex items-center justify-center text-base font-bold flex-shrink-0">
                   ✓
                 </div>
                 <div>
-                  <strong className="block text-sm font-bold text-[#102645]">
+                  <strong className="block text-sm font-bold text-[#183249]">
                     Handover Executed &amp; Sealed to Property Logbook
                   </strong>
                   <span>All 5 statutory documents, Form 16/43 certs, and warranties are permanently recorded under {property.propId}.</span>
                 </div>
               </div>
-              <span className="text-[11px] font-mono font-bold bg-white px-3 py-1.5 rounded-lg border border-[#c7e3d1] text-[#071d3b]">
+              <span className="text-[11px] font-mono font-bold bg-white px-3 py-1.5 rounded-lg border border-[#c7e3d1] text-[#0F1A2C]">
                 Executed Receipt #RCPT-90124
               </span>
             </div>
@@ -431,66 +431,66 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
 
           {/* 2. Outstanding Decisions & Packs Overview */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-white border border-[#dfe6ef] rounded-2xl p-4 shadow-2xs space-y-2">
+            <div className="bg-white border border-[#e2e5e5] rounded-2xl p-4 shadow-2xs space-y-2">
               <div className="flex items-center justify-between">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-[#68788e]">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-[#64727e]">
                   Active Pack Families
                 </span>
-                <span className="text-xs font-bold text-[#071d3b]">3 Families</span>
+                <span className="text-xs font-bold text-[#0F1A2C]">3 Families</span>
               </div>
-              <div className="text-xl font-bold text-[#102645]">
+              <div className="text-xl font-bold text-[#183249]">
                 {packsList.length} Assembled Manifests
               </div>
-              <p className="text-[11px] text-[#68788e]">
+              <p className="text-[11px] text-[#64727e]">
                 Service &amp; Handover, Build &amp; Change, Sell Disclosure
               </p>
             </div>
 
-            <div className="bg-white border border-[#dfe6ef] rounded-2xl p-4 shadow-2xs space-y-2">
+            <div className="bg-white border border-[#e2e5e5] rounded-2xl p-4 shadow-2xs space-y-2">
               <div className="flex items-center justify-between">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-[#24754c]">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-[#28715e]">
                   Executed Receipts
                 </span>
-                <span className="text-xs font-bold text-[#24754c]">Verified</span>
+                <span className="text-xs font-bold text-[#28715e]">Verified</span>
               </div>
-              <div className="text-xl font-bold text-[#24754c]">
+              <div className="text-xl font-bold text-[#28715e]">
                 {receipts.length} Returned Records
               </div>
-              <p className="text-[11px] text-[#68788e]">
+              <p className="text-[11px] text-[#64727e]">
                 Signed title deeds &amp; structural engineering signoffs
               </p>
             </div>
 
-            <div className="bg-white border border-[#dfe6ef] rounded-2xl p-4 shadow-2xs space-y-2">
+            <div className="bg-white border border-[#e2e5e5] rounded-2xl p-4 shadow-2xs space-y-2">
               <div className="flex items-center justify-between">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-[#071d3b]">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-[#0F1A2C]">
                   TrustLink Boundaries
                 </span>
-                <span className="text-xs font-bold text-[#071d3b]">Scoped</span>
+                <span className="text-xs font-bold text-[#0F1A2C]">Scoped</span>
               </div>
-              <div className="text-xl font-bold text-[#071d3b]">
+              <div className="text-xl font-bold text-[#0F1A2C]">
                 Private Vault Protected
               </div>
-              <p className="text-[11px] text-[#68788e]">
+              <p className="text-[11px] text-[#64727e]">
                 Zero blanket access · Scoped party permissions only
               </p>
             </div>
           </div>
 
           {/* 3. The 6 Queensland Pack Families Reference Strip */}
-          <div className="bg-white border border-[#dfe6ef] rounded-2xl p-5 shadow-2xs space-y-3">
-            <div className="flex items-center justify-between pb-2 border-b border-[#dfe6ef]">
+          <div className="bg-white border border-[#e2e5e5] rounded-2xl p-5 shadow-2xs space-y-3">
+            <div className="flex items-center justify-between pb-2 border-b border-[#e2e5e5]">
               <div>
-                <h3 className="text-sm font-bold text-[#102645]">
+                <h3 className="text-sm font-bold text-[#183249]">
                   Queensland Pack Families &amp; Main Jobs
                 </h3>
-                <p className="text-[11.5px] text-[#68788e]">
+                <p className="text-[11.5px] text-[#64727e]">
                   Every Digital Key pack follows structured statutory rules for Queensland property transactions.
                 </p>
               </div>
               <button
                 onClick={() => setCreateModalOpen(true)}
-                className="text-xs font-bold text-[#071d3b] hover:underline cursor-pointer"
+                className="text-xs font-bold text-[#0F1A2C] hover:underline cursor-pointer"
               >
                 + Assemble New Pack
               </button>
@@ -505,12 +505,12 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
                 { family: "Finance a Home", icon: "🏦", job: "Named mortgage broker / lender evidence; payslips & valuation." },
                 { family: "My Tenancy", icon: "🔑", job: "Form 22 application, lease/bond records, renewal permission requests." },
               ].map((item, idx) => (
-                <div key={idx} className="p-3 rounded-xl bg-[#fafbfc] border border-[#dfe6ef] space-y-1">
-                  <div className="flex items-center gap-2 font-bold text-[#102645]">
+                <div key={idx} className="p-3 rounded-xl bg-[#fafbfc] border border-[#e2e5e5] space-y-1">
+                  <div className="flex items-center gap-2 font-bold text-[#183249]">
                     <span>{item.icon}</span>
                     <span>{item.family}</span>
                   </div>
-                  <p className="text-[11px] text-[#68788e] leading-snug">
+                  <p className="text-[11px] text-[#64727e] leading-snug">
                     {item.job}
                   </p>
                 </div>
@@ -526,7 +526,7 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
       {activeTab === "packs" && (
         <div className="space-y-5">
           {/* Family Filter Toolbar */}
-          <div className="flex items-center justify-between gap-3 flex-wrap bg-white border border-[#dfe6ef] rounded-2xl p-3 shadow-2xs">
+          <div className="flex items-center justify-between gap-3 flex-wrap bg-white border border-[#e2e5e5] rounded-2xl p-3 shadow-2xs">
             <div className="flex items-center gap-1.5 overflow-x-auto">
               {[
                 { id: "all", label: "All Pack Families" },
@@ -540,8 +540,8 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
                   onClick={() => setSelectedFamilyFilter(f.id)}
                   className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap ${
                     selectedFamilyFilter === f.id
-                      ? "bg-[#071d3b] text-white shadow-2xs"
-                      : "bg-[#f4f6f8] text-[#5b6e84] hover:bg-[#e8edf2]"
+                      ? "bg-[#0F1A2C] text-white shadow-2xs"
+                      : "bg-[#F9F8F5] text-[#5b6e84] hover:bg-[#e8edf2]"
                   }`}
                 >
                   {f.label}
@@ -551,7 +551,7 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
 
             <button
               onClick={() => setCreateModalOpen(true)}
-              className="px-3.5 py-1.5 bg-[#071d3b] hover:bg-[#15345d] text-white rounded-xl text-xs font-bold transition-colors shadow-2xs cursor-pointer flex items-center gap-1.5"
+              className="px-3.5 py-1.5 bg-[#0F1A2C] hover:bg-[#1c3a54] text-white rounded-xl text-xs font-bold transition-colors shadow-2xs cursor-pointer flex items-center gap-1.5"
             >
               <span>+ Create Record Pack</span>
             </button>
@@ -562,14 +562,14 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
             {filteredPacks.map((pack) => (
               <div
                 key={pack.id}
-                className="bg-white border border-[#dfe6ef] rounded-2xl p-5 shadow-2xs space-y-3.5 hover:border-[#cbd5e1] transition-all"
+                className="bg-white border border-[#e2e5e5] rounded-2xl p-5 shadow-2xs space-y-3.5 hover:border-[#cbd5e1] transition-all"
               >
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-[#dfe6ef]">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-[#e2e5e5]">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <span className="text-[10px] font-bold font-mono px-2 py-0.5 rounded bg-[#f0f4f8] text-[#071d3b] border border-[#cbd5e2]">
+                    <span className="text-[10px] font-bold font-mono px-2 py-0.5 rounded bg-[#f0f4f8] text-[#0F1A2C] border border-[#cbd5e2]">
                       {pack.id}
                     </span>
-                    <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[#f4f6f8] text-[#24754c] border border-[#d2e6d9]">
+                    <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[#F9F8F5] text-[#28715e] border border-[#d2e6d9]">
                       {pack.family}
                     </span>
                     <span className={`text-[10px] font-bold px-2 py-0.5 rounded border ${pack.statusColor}`}>
@@ -583,27 +583,27 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
                 </div>
 
                 <div className="space-y-1">
-                  <h3 className="text-base font-bold text-[#102645]">
+                  <h3 className="text-base font-bold text-[#183249]">
                     {pack.title}
                   </h3>
                   <p className="text-xs text-[#5b6e84]">
-                    Target Recipient: <strong className="text-[#102645]">{pack.recipient}</strong> ({pack.recipientRole})
+                    Target Recipient: <strong className="text-[#183249]">{pack.recipient}</strong> ({pack.recipientRole})
                   </p>
                 </div>
 
                 {/* Document Items Table with 4 Requirement Labels */}
                 <div className="space-y-1.5">
-                  <div className="text-[10.5px] font-bold text-[#68788e] uppercase tracking-wider">
+                  <div className="text-[10.5px] font-bold text-[#64727e] uppercase tracking-wider">
                     Assembled Pack Manifest ({pack.items.length} records):
                   </div>
 
-                  <div className="divide-y divide-[#f0f4f8] border border-[#dfe6ef] rounded-xl overflow-hidden bg-[#fafbfc]">
+                  <div className="divide-y divide-[#f0f4f8] border border-[#e2e5e5] rounded-xl overflow-hidden bg-[#fafbfc]">
                     {pack.items.map((item, idx) => (
                       <div key={idx} className="p-2.5 flex items-center justify-between gap-3 text-xs">
                         <div className="flex items-center gap-2.5 min-w-0">
                           <span className="text-base">📄</span>
                           <div className="min-w-0">
-                            <div className="font-semibold text-[#102645] truncate">
+                            <div className="font-semibold text-[#183249] truncate">
                               {item.title}
                             </div>
                             <div className="text-[10px] text-[#8a9bb0]">
@@ -629,7 +629,7 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
 
                           <button
                             onClick={() => setPreviewModalDoc(item)}
-                            className="px-2 py-1 bg-white border border-[#cbd5e2] hover:bg-[#f4f6f8] text-[#102645] text-[10.5px] font-bold rounded cursor-pointer"
+                            className="px-2 py-1 bg-white border border-[#cbd5e2] hover:bg-[#F9F8F5] text-[#183249] text-[10.5px] font-bold rounded cursor-pointer"
                           >
                             Review
                           </button>
@@ -644,7 +644,7 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
                   <div className="flex items-center gap-2">
                     <Link
                       href={pack.trustlinkHref || trustlinkUrl}
-                      className="px-3.5 py-1.5 bg-[#071d3b] hover:bg-[#15345d] text-white text-xs font-bold rounded-lg transition-colors flex items-center gap-1 shadow-2xs"
+                      className="px-3.5 py-1.5 bg-[#0F1A2C] hover:bg-[#1c3a54] text-white text-xs font-bold rounded-lg transition-colors flex items-center gap-1 shadow-2xs"
                     >
                       <span>🛡️ Manage via TrustLink</span>
                       <span>→</span>
@@ -666,17 +666,17 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
          ═════════════════════════════════════════════════════════════════ */}
       {activeTab === "sent-returned" && (
         <div className="space-y-4">
-          <div className="bg-white border border-[#dfe6ef] rounded-2xl p-5 shadow-2xs space-y-2">
+          <div className="bg-white border border-[#e2e5e5] rounded-2xl p-5 shadow-2xs space-y-2">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="text-sm font-bold text-[#102645]">
+                <h3 className="text-sm font-bold text-[#183249]">
                   Executed Exchange Ledger &amp; Returned Copies
                 </h3>
-                <p className="text-xs text-[#68788e]">
+                <p className="text-xs text-[#64727e]">
                   Every completed signing, settlement, or handover creates an immutable returned record receipt filed to your property vault.
                 </p>
               </div>
-              <span className="text-xs font-mono font-bold bg-[#eaf5ef] text-[#24754c] px-3 py-1 rounded-lg border border-[#c7e3d1]">
+              <span className="text-xs font-mono font-bold bg-[#eaf4ef] text-[#28715e] px-3 py-1 rounded-lg border border-[#c7e3d1]">
                 {receipts.length} Executed Receipts
               </span>
             </div>
@@ -686,14 +686,14 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
             {receipts.map((rcpt) => (
               <div
                 key={rcpt.id}
-                className="bg-white border border-[#dfe6ef] rounded-2xl p-5 shadow-2xs space-y-3"
+                className="bg-white border border-[#e2e5e5] rounded-2xl p-5 shadow-2xs space-y-3"
               >
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-[#dfe6ef]">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-[#e2e5e5]">
                   <div className="flex items-center gap-2">
-                    <span className="font-mono text-[10.5px] font-bold px-2 py-0.5 rounded bg-[#eaf5ef] text-[#24754c] border border-[#c7e3d1]">
+                    <span className="font-mono text-[10.5px] font-bold px-2 py-0.5 rounded bg-[#eaf4ef] text-[#28715e] border border-[#c7e3d1]">
                       {rcpt.id}
                     </span>
-                    <span className="text-xs font-bold text-[#102645]">
+                    <span className="text-xs font-bold text-[#183249]">
                       {rcpt.packTitle}
                     </span>
                   </div>
@@ -703,21 +703,21 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
                 </div>
 
                 <div className="text-xs space-y-1">
-                  <div>Recipent / Counterparty: <strong className="text-[#102645]">{rcpt.recipient}</strong></div>
+                  <div>Recipent / Counterparty: <strong className="text-[#183249]">{rcpt.recipient}</strong></div>
                   <div className="font-mono text-[10.5px] text-[#5b6e84]">Verification Hash: {rcpt.hash}</div>
                 </div>
 
                 <div>
-                  <div className="text-[10.5px] font-bold text-[#68788e] uppercase mb-1">
+                  <div className="text-[10.5px] font-bold text-[#64727e] uppercase mb-1">
                     Returned Documents ({rcpt.documentsCount} files total):
                   </div>
                   <div className="flex flex-wrap gap-1.5">
                     {rcpt.highlightDocs.map((doc, idx) => (
                       <span
                         key={idx}
-                        className="text-[11px] bg-[#f8fafc] text-[#102645] px-2.5 py-1 rounded-md border border-[#dfe6ef] flex items-center gap-1 font-semibold"
+                        className="text-[11px] bg-[#f8fafc] text-[#183249] px-2.5 py-1 rounded-md border border-[#e2e5e5] flex items-center gap-1 font-semibold"
                       >
-                        <span className="text-[#24754c]">✓</span>
+                        <span className="text-[#28715e]">✓</span>
                         <span>{doc}</span>
                       </span>
                     ))}
@@ -734,17 +734,17 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
          ═════════════════════════════════════════════════════════════════ */}
       {activeTab === "rules" && (
         <div className="space-y-4">
-          <div className="bg-white border border-[#dfe6ef] rounded-2xl p-5 shadow-2xs space-y-3">
-            <h3 className="text-base font-bold text-[#102645]">
+          <div className="bg-white border border-[#e2e5e5] rounded-2xl p-5 shadow-2xs space-y-3">
+            <h3 className="text-base font-bold text-[#183249]">
               Queensland Statutory Rules &amp; Privacy Guardrails
             </h3>
-            <p className="text-xs text-[#68788e] leading-relaxed">
+            <p className="text-xs text-[#64727e] leading-relaxed">
               Digital Key enforces statutory compliance rules for Queensland property workflows. Ownership, tenancy rights, agent appointments, and mortgage applications operate under distinct privacy boundaries.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2 text-xs">
-              <div className="p-3 rounded-xl bg-[#fafbfc] border border-[#dfe6ef] space-y-1">
-                <strong className="block text-[#102645] font-bold">
+              <div className="p-3 rounded-xl bg-[#fafbfc] border border-[#e2e5e5] space-y-1">
+                <strong className="block text-[#183249] font-bold">
                   A Shared Property Does Not Mean a Shared Vault
                 </strong>
                 <p className="text-[11px] text-[#5b6e84]">
@@ -752,8 +752,8 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
                 </p>
               </div>
 
-              <div className="p-3 rounded-xl bg-[#fafbfc] border border-[#dfe6ef] space-y-1">
-                <strong className="block text-[#102645] font-bold">
+              <div className="p-3 rounded-xl bg-[#fafbfc] border border-[#e2e5e5] space-y-1">
+                <strong className="block text-[#183249] font-bold">
                   Queensland Seller Disclosure Scheme (Aug 2025)
                 </strong>
                 <p className="text-[11px] text-[#5b6e84]">
@@ -761,8 +761,8 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
                 </p>
               </div>
 
-              <div className="p-3 rounded-xl bg-[#fafbfc] border border-[#dfe6ef] space-y-1">
-                <strong className="block text-[#102645] font-bold">
+              <div className="p-3 rounded-xl bg-[#fafbfc] border border-[#e2e5e5] space-y-1">
+                <strong className="block text-[#183249] font-bold">
                   QBCC Construction Variation Rules
                 </strong>
                 <p className="text-[11px] text-[#5b6e84]">
@@ -770,8 +770,8 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
                 </p>
               </div>
 
-              <div className="p-3 rounded-xl bg-[#fafbfc] border border-[#dfe6ef] space-y-1">
-                <strong className="block text-[#102645] font-bold">
+              <div className="p-3 rounded-xl bg-[#fafbfc] border border-[#e2e5e5] space-y-1">
+                <strong className="block text-[#183249] font-bold">
                   RTA Rental Recipient Retention Limits
                 </strong>
                 <p className="text-[11px] text-[#5b6e84]">
@@ -786,17 +786,17 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
       {/* ── Modal: Assemble Record Pack ───────────────────────────────── */}
       {createModalOpen && (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-xs z-50 flex items-center justify-center p-4">
-          <div className="bg-white border border-[#dfe6ef] rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between pb-2 border-b border-[#dfe6ef]">
+          <div className="bg-white border border-[#e2e5e5] rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between pb-2 border-b border-[#e2e5e5]">
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-[#24754c]">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-[#28715e]">
                   Digital Key Pack Generator
                 </span>
-                <h3 className="text-lg font-bold text-[#102645]">Assemble Record Pack</h3>
+                <h3 className="text-lg font-bold text-[#183249]">Assemble Record Pack</h3>
               </div>
               <button
                 onClick={() => setCreateModalOpen(false)}
-                className="w-7 h-7 rounded-full bg-[#f4f6f8] text-[#5b6e84] hover:bg-[#e2eaf4] flex items-center justify-center text-sm font-bold cursor-pointer"
+                className="w-7 h-7 rounded-full bg-[#F9F8F5] text-[#5b6e84] hover:bg-[#e2eaf4] flex items-center justify-center text-sm font-bold cursor-pointer"
               >
                 ✕
               </button>
@@ -804,13 +804,13 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
 
             <form onSubmit={handleCreatePackSubmit} className="space-y-3.5 text-xs">
               <div>
-                <label className="block font-bold text-[#102645] mb-1">
+                <label className="block font-bold text-[#183249] mb-1">
                   1. Select Pack Family *
                 </label>
                 <select
                   value={newFamily}
                   onChange={(e) => setNewFamily(e.target.value as PackFamily)}
-                  className="w-full px-3 py-2 bg-[#f4f6f8] border border-[#dfe6ef] rounded-lg text-xs text-[#102645] font-semibold focus:outline-none focus:border-[#071d3b]"
+                  className="w-full px-3 py-2 bg-[#F9F8F5] border border-[#e2e5e5] rounded-lg text-xs text-[#183249] font-semibold focus:outline-none focus:border-[#0F1A2C]"
                 >
                   <option value="Service & Handover">Service &amp; Handover (Practical Completion, Form 16/43)</option>
                   <option value="Build & Change">Build &amp; Change (Variations, Color &amp; Equipment Spec)</option>
@@ -822,7 +822,7 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
               </div>
 
               <div>
-                <label className="block font-bold text-[#102645] mb-1">
+                <label className="block font-bold text-[#183249] mb-1">
                   2. Pack Title *
                 </label>
                 <input
@@ -831,13 +831,13 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
                   value={newTitle}
                   onChange={(e) => setNewTitle(e.target.value)}
                   placeholder="e.g. Practical Completion & Statutory Handover Pack"
-                  className="w-full px-3 py-2 bg-[#f4f6f8] border border-[#dfe6ef] rounded-lg text-xs text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                  className="w-full px-3 py-2 bg-[#F9F8F5] border border-[#e2e5e5] rounded-lg text-xs text-[#183249] focus:outline-none focus:border-[#0F1A2C]"
                 />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block font-bold text-[#102645] mb-1">
+                  <label className="block font-bold text-[#183249] mb-1">
                     Recipient Name
                   </label>
                   <input
@@ -845,18 +845,18 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
                     value={newRecipient}
                     onChange={(e) => setNewRecipient(e.target.value)}
                     placeholder="e.g. River City Conveyancing"
-                    className="w-full px-3 py-2 bg-[#f4f6f8] border border-[#dfe6ef] rounded-lg text-xs text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                    className="w-full px-3 py-2 bg-[#F9F8F5] border border-[#e2e5e5] rounded-lg text-xs text-[#183249] focus:outline-none focus:border-[#0F1A2C]"
                   />
                 </div>
 
                 <div>
-                  <label className="block font-bold text-[#102645] mb-1">
+                  <label className="block font-bold text-[#183249] mb-1">
                     Recipient Role
                   </label>
                   <select
                     value={newRecipientRole}
                     onChange={(e) => setNewRecipientRole(e.target.value)}
-                    className="w-full px-3 py-2 bg-[#f4f6f8] border border-[#dfe6ef] rounded-lg text-xs text-[#102645] focus:outline-none focus:border-[#071d3b]"
+                    className="w-full px-3 py-2 bg-[#F9F8F5] border border-[#e2e5e5] rounded-lg text-xs text-[#183249] focus:outline-none focus:border-[#0F1A2C]"
                   >
                     <option value="Solicitor / Conveyancing Team">Solicitor / Conveyancing Team</option>
                     <option value="Selling Agent / Agency">Selling Agent / Agency</option>
@@ -869,10 +869,10 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
               </div>
 
               <div>
-                <label className="block font-bold text-[#102645] mb-1.5">
+                <label className="block font-bold text-[#183249] mb-1.5">
                   3. Select Documents from Property Vault ({selectedDocTitles.length} selected)
                 </label>
-                <div className="space-y-1.5 max-h-40 overflow-y-auto p-2 bg-[#f8fafc] border border-[#dfe6ef] rounded-xl">
+                <div className="space-y-1.5 max-h-40 overflow-y-auto p-2 bg-[#f8fafc] border border-[#e2e5e5] rounded-xl">
                   {property.documents.map((doc) => {
                     const isChecked = selectedDocTitles.includes(doc.title);
                     return (
@@ -887,9 +887,9 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
                               setSelectedDocTitles([...selectedDocTitles, doc.title]);
                             }
                           }}
-                          className="rounded border-[#cbd5e1] text-[#071d3b]"
+                          className="rounded border-[#cbd5e1] text-[#0F1A2C]"
                         />
-                        <span className="text-[#102645] font-semibold truncate">{doc.title}</span>
+                        <span className="text-[#183249] font-semibold truncate">{doc.title}</span>
                         <span className="text-[10px] text-[#8a9bb0] ml-auto whitespace-nowrap">{doc.cat}</span>
                       </label>
                     );
@@ -897,7 +897,7 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
                 </div>
               </div>
 
-              <div className="p-3 bg-[#eaf5ef] rounded-xl border border-[#c7e3d1] text-[11px] text-[#24754c]">
+              <div className="p-3 bg-[#eaf4ef] rounded-xl border border-[#c7e3d1] text-[11px] text-[#28715e]">
                 🔑 When created, this pack creates a frozen manifest. External recipients access it under scoped TrustLink permissions without seeing your private vault.
               </div>
 
@@ -905,13 +905,13 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
                 <button
                   type="button"
                   onClick={() => setCreateModalOpen(false)}
-                  className="px-4 py-2 bg-white border border-[#cbd5e2] text-[#5b6e84] rounded-xl font-semibold hover:bg-[#f4f6f8] cursor-pointer"
+                  className="px-4 py-2 bg-white border border-[#cbd5e2] text-[#5b6e84] rounded-xl font-semibold hover:bg-[#F9F8F5] cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-[#071d3b] hover:bg-[#15345d] text-white font-bold rounded-xl shadow-xs cursor-pointer"
+                  className="px-4 py-2 bg-[#0F1A2C] hover:bg-[#1c3a54] text-white font-bold rounded-xl shadow-xs cursor-pointer"
                 >
                   Assemble Pack &amp; Freeze Manifest
                 </button>
@@ -924,33 +924,33 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
       {/* ── Modal: Document Preview / Review ──────────────────────────── */}
       {previewModalDoc && (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-xs z-50 flex items-center justify-center p-4">
-          <div className="bg-white border border-[#dfe6ef] rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
-            <div className="flex items-center justify-between pb-2 border-b border-[#dfe6ef]">
+          <div className="bg-white border border-[#e2e5e5] rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
+            <div className="flex items-center justify-between pb-2 border-b border-[#e2e5e5]">
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-[#24754c]">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-[#28715e]">
                   Document Review
                 </span>
-                <h3 className="text-base font-bold text-[#102645]">
+                <h3 className="text-base font-bold text-[#183249]">
                   {previewModalDoc.title}
                 </h3>
               </div>
               <button
                 onClick={() => setPreviewModalDoc(null)}
-                className="w-7 h-7 rounded-full bg-[#f4f6f8] text-[#5b6e84] hover:bg-[#e2eaf4] flex items-center justify-center text-sm font-bold cursor-pointer"
+                className="w-7 h-7 rounded-full bg-[#F9F8F5] text-[#5b6e84] hover:bg-[#e2eaf4] flex items-center justify-center text-sm font-bold cursor-pointer"
               >
                 ✕
               </button>
             </div>
 
             <div className="space-y-2 text-xs">
-              <div className="p-3 bg-[#fafbfc] rounded-xl border border-[#dfe6ef] space-y-1">
-                <div>Category: <strong className="text-[#102645]">{previewModalDoc.category}</strong></div>
+              <div className="p-3 bg-[#fafbfc] rounded-xl border border-[#e2e5e5] space-y-1">
+                <div>Category: <strong className="text-[#183249]">{previewModalDoc.category}</strong></div>
                 <div>Statutory Label: <strong className="text-[#991b1b]">{previewModalDoc.label}</strong></div>
-                <div>Source: <strong className="text-[#102645]">{previewModalDoc.source || "Property Vault"}</strong></div>
+                <div>Source: <strong className="text-[#183249]">{previewModalDoc.source || "Property Vault"}</strong></div>
                 <div>File Size: <span className="text-[#5b6e84]">{previewModalDoc.size || "1.4 MB"}</span></div>
               </div>
 
-              <div className="p-3 bg-[#f0f4f9] rounded-xl text-[11px] text-[#071d3b]">
+              <div className="p-3 bg-[#f0f4f9] rounded-xl text-[11px] text-[#0F1A2C]">
                 ✓ Immutable original hash verified under Queensland Electronic Transactions Act.
               </div>
             </div>
@@ -958,7 +958,7 @@ export function DigitalKeyView({ property, onOpenTrustLink }: DigitalKeyViewProp
             <div className="flex items-center justify-end gap-2 pt-2">
               <button
                 onClick={() => setPreviewModalDoc(null)}
-                className="px-4 py-2 bg-[#071d3b] hover:bg-[#15345d] text-white font-bold rounded-xl text-xs cursor-pointer shadow-xs"
+                className="px-4 py-2 bg-[#0F1A2C] hover:bg-[#1c3a54] text-white font-bold rounded-xl text-xs cursor-pointer shadow-xs"
               >
                 Close Review
               </button>

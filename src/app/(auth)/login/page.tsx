@@ -18,11 +18,11 @@ export default function LoginPage() {
         
         {/* Brand Card Header */}
         <div className="mb-7">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#f0f4f9] border border-[#dfe6ef] text-[11px] font-bold text-[#071d3b] uppercase tracking-wider mb-3">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#24754c] inline-block" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#f0f4f9] border border-[#e2e5e5] text-[11px] font-bold text-[#0F1A2C] uppercase tracking-wider mb-3">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#28715e] inline-block" />
             <span>Secure Portal Sign In</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-[#102645] tracking-tight mb-1.5">
+          <h1 className="text-2xl sm:text-3xl font-bold text-[#183249] tracking-tight mb-1.5">
             Welcome back
           </h1>
           <p className="text-sm text-[#556b83]">
@@ -31,17 +31,17 @@ export default function LoginPage() {
         </div>
 
         {/* Role selector */}
-        <div className="flex rounded-xl border border-[#dfe6ef] p-1 mb-6 bg-[#f0f4f9]">
+        <div className="flex rounded-xl border border-[#e2e5e5] p-1 mb-6 bg-[#f0f4f9]">
           <button
             type="button"
             onClick={() => setRole("owner")}
             className={`flex-1 py-2.5 px-3 rounded-lg text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 ${
               role === "owner"
-                ? "bg-[#071d3b] text-white shadow-sm"
-                : "text-[#556b83] hover:text-[#071d3b]"
+                ? "bg-[#0F1A2C] text-white shadow-sm"
+                : "text-[#556b83] hover:text-[#0F1A2C]"
             }`}
           >
-            <svg className="w-4 h-4 text-[#efbd66]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 text-[#C59B27]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
             </svg>
             <span>Property Owner</span>
@@ -51,11 +51,11 @@ export default function LoginPage() {
             onClick={() => setRole("pro")}
             className={`flex-1 py-2.5 px-3 rounded-lg text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 ${
               role === "pro"
-                ? "bg-[#071d3b] text-white shadow-sm"
-                : "text-[#556b83] hover:text-[#071d3b]"
+                ? "bg-[#0F1A2C] text-white shadow-sm"
+                : "text-[#556b83] hover:text-[#0F1A2C]"
             }`}
           >
-            <svg className="w-4 h-4 text-[#24754c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 text-[#28715e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
             </svg>
             <span>Professional / Builder</span>
@@ -64,16 +64,16 @@ export default function LoginPage() {
 
         {/* Role context notice */}
         {role === "pro" ? (
-          <div className="mb-5 flex items-center gap-2.5 p-3 bg-[#eaf5ef] border border-[#c7e3d1] rounded-xl text-left">
-            <span className="w-2 h-2 rounded-full bg-[#24754c] flex-shrink-0 animate-pulse" />
+          <div className="mb-5 flex items-center gap-2.5 p-3 bg-[#eaf4ef] border border-[#c7e3d1] rounded-xl text-left">
+            <span className="w-2 h-2 rounded-full bg-[#28715e] flex-shrink-0 animate-pulse" />
             <span className="text-xs font-semibold text-[#1b4e31]">
               Pro Hub · Tradie network, TrustLinks, Digital Handover &amp; Prop ID management
             </span>
           </div>
         ) : (
           <div className="mb-5 flex items-center gap-2.5 p-3 bg-[#f0f4f9] border border-[#d8e3ef] rounded-xl text-left">
-            <span className="w-2 h-2 rounded-full bg-[#efbd66] flex-shrink-0" />
-            <span className="text-xs font-semibold text-[#071d3b]">
+            <span className="w-2 h-2 rounded-full bg-[#C59B27] flex-shrink-0" />
+            <span className="text-xs font-semibold text-[#0F1A2C]">
               My Property World · Permanent Vault, warranties &amp; verified connections
             </span>
           </div>
@@ -82,7 +82,7 @@ export default function LoginPage() {
         <form onSubmit={(e) => { e.preventDefault(); router.push(role === "pro" ? "/pro" : "/properties"); }}>
           <div className="space-y-4">
             <div>
-              <label className="block text-xs font-bold text-[#102645] mb-1.5">
+              <label className="block text-xs font-bold text-[#183249] mb-1.5">
                 Email address
               </label>
               <input
@@ -91,11 +91,11 @@ export default function LoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder={role === "pro" ? "alex@banksiahomes.com.au" : "emily@email.com.au"}
-                className="w-full px-4 py-3 border border-[#dfe6ef] rounded-xl text-sm bg-white text-[#102645] placeholder:text-[#8a9cae] focus:outline-none focus:ring-2 focus:ring-[#071d3b]/15 focus:border-[#071d3b] transition-all"
+                className="w-full px-4 py-3 border border-[#e2e5e5] rounded-xl text-sm bg-white text-[#183249] placeholder:text-[#8a9cae] focus:outline-none focus:ring-2 focus:ring-[#0F1A2C]/15 focus:border-[#0F1A2C] transition-all"
               />
             </div>
             <div>
-              <label className="block text-xs font-bold text-[#102645] mb-1.5">
+              <label className="block text-xs font-bold text-[#183249] mb-1.5">
                 Password
               </label>
               <div className="relative">
@@ -105,18 +105,18 @@ export default function LoginPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full px-4 py-3 border border-[#dfe6ef] rounded-xl text-sm bg-white text-[#102645] placeholder:text-[#8a9cae] focus:outline-none focus:ring-2 focus:ring-[#071d3b]/15 focus:border-[#071d3b] transition-all pr-14"
+                  className="w-full px-4 py-3 border border-[#e2e5e5] rounded-xl text-sm bg-white text-[#183249] placeholder:text-[#8a9cae] focus:outline-none focus:ring-2 focus:ring-[#0F1A2C]/15 focus:border-[#0F1A2C] transition-all pr-14"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#68788e] hover:text-[#102645] text-xs font-semibold"
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#64727e] hover:text-[#183249] text-xs font-semibold"
                 >
                   {showPassword ? "Hide" : "Show"}
                 </button>
               </div>
               <div className="flex justify-end mt-1.5">
-                <Link href="#" className="text-xs text-[#071d3b] hover:text-[#efbd66] font-semibold transition-colors">
+                <Link href="#" className="text-xs text-[#0F1A2C] hover:text-[#C59B27] font-semibold transition-colors">
                   Forgot password?
                 </Link>
               </div>
@@ -125,7 +125,7 @@ export default function LoginPage() {
 
           <button
             type="submit"
-            className="w-full mt-6 py-3.5 rounded-xl text-sm font-bold text-white transition-all bg-[#071d3b] hover:bg-[#041226] border border-[#0f2d59] shadow-sm hover:shadow active:scale-[0.99] flex items-center justify-center gap-2"
+            className="w-full mt-6 py-3.5 rounded-xl text-sm font-bold text-white transition-all bg-[#0F1A2C] hover:bg-[#041226] border border-[#0f2d59] shadow-sm hover:shadow active:scale-[0.99] flex items-center justify-center gap-2"
           >
             <span>Sign in to {role === "pro" ? "Pro Hub" : "My Property World"}</span>
             <span>→</span>
@@ -135,10 +135,10 @@ export default function LoginPage() {
         {/* Or divider */}
         <div className="relative my-6">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-[#dfe6ef]" />
+            <div className="w-full border-t border-[#e2e5e5]" />
           </div>
           <div className="relative flex justify-center">
-            <span className="bg-[#fcfbf8] px-3 text-xs text-[#68788e] font-medium">or continue with</span>
+            <span className="bg-[#fcfbf8] px-3 text-xs text-[#64727e] font-medium">or continue with</span>
           </div>
         </div>
 
@@ -159,7 +159,7 @@ export default function LoginPage() {
             {
               name: "Apple",
               icon: (
-                <svg className="w-4 h-4 text-[#102645]" viewBox="0 0 24 24" fill="currentColor">
+                <svg className="w-4 h-4 text-[#183249]" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98l-.09.06c-.22.14-2.24 1.31-2.21 3.92.03 3.12 2.73 4.16 2.76 4.17l-.1.49zM13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
                 </svg>
               ),
@@ -168,7 +168,7 @@ export default function LoginPage() {
             <button
               key={provider.name}
               type="button"
-              className="flex items-center justify-center gap-2 py-3 border border-[#dfe6ef] rounded-xl text-sm font-semibold text-[#102645] bg-white hover:bg-[#f0f4f9] transition-colors"
+              className="flex items-center justify-center gap-2 py-3 border border-[#e2e5e5] rounded-xl text-sm font-semibold text-[#183249] bg-white hover:bg-[#f0f4f9] transition-colors"
             >
               {provider.icon}
               <span>{provider.name}</span>
@@ -178,15 +178,15 @@ export default function LoginPage() {
 
         <p className="text-center text-sm text-[#556b83] mt-8">
           Don&apos;t have an account?{" "}
-          <Link href="/signup" className="font-bold text-[#071d3b] hover:text-[#efbd66] hover:underline transition-colors">
+          <Link href="/signup" className="font-bold text-[#0F1A2C] hover:text-[#C59B27] hover:underline transition-colors">
             Sign up free
           </Link>
         </p>
 
-        <p className="text-center text-[11px] text-[#68788e] mt-4 leading-relaxed">
+        <p className="text-center text-[11px] text-[#64727e] mt-4 leading-relaxed">
           By signing in you agree to our{" "}
-          <Link href="#" className="underline hover:text-[#102645]">Terms of Service</Link> and{" "}
-          <Link href="#" className="underline hover:text-[#102645]">Privacy Policy</Link>.
+          <Link href="#" className="underline hover:text-[#183249]">Terms of Service</Link> and{" "}
+          <Link href="#" className="underline hover:text-[#183249]">Privacy Policy</Link>.
           <br />Your data is stored securely in Australia (AWS ap-southeast-2).
         </p>
       </div>
