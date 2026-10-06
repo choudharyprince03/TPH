@@ -30,31 +30,51 @@ export default function Home() {
     <PageTransition className="w-full flex-1 flex flex-col bg-[#fcfbf8] text-[#183249]">
 
       {/* ── 1. HERO SECTION ──────────────────────────────────────────────────── */}
-      <section className="bg-[#0F1A2C] text-white relative pt-10 pb-16 lg:pb-20 overflow-hidden">
+      <section className="bg-[#0F1A2C] text-white relative pt-[124px] pb-20 lg:pt-[140px] lg:pb-24 overflow-hidden">
 
-        {/* Animated background orbs */}
+        {/* Background: soft orbs + faint architectural grid */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-32 -left-32 w-[500px] h-[500px] rounded-full bg-[#102d59] opacity-35 animate-gradient-shift blur-3xl" />
-          <div className="absolute -bottom-24 -right-24 w-[450px] h-[450px] rounded-full bg-[#122e58] opacity-30 animate-gradient-shift-delayed blur-3xl" />
+          <div className="absolute -top-32 -left-32 w-[500px] h-[500px] rounded-full bg-[#1c3a54] opacity-40 animate-gradient-shift blur-3xl" />
+          <div className="absolute -bottom-24 -right-24 w-[450px] h-[450px] rounded-full bg-[#3A506B] opacity-25 animate-gradient-shift-delayed blur-3xl" />
+          <div
+            className="absolute inset-0 opacity-[0.05]"
+            style={{
+              backgroundImage:
+                "linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)",
+              backgroundSize: "56px 56px",
+              maskImage: "radial-gradient(ellipse at 30% 40%, #000 20%, transparent 70%)",
+              WebkitMaskImage: "radial-gradient(ellipse at 30% 40%, #000 20%, transparent 70%)",
+            }}
+          />
         </div>
 
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-9 grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] items-center gap-10 lg:gap-16 relative z-10">
-          
+        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-9 grid grid-cols-1 lg:grid-cols-[1.05fr_1fr] items-center gap-12 lg:gap-16 relative z-10">
+
           {/* Left Hero Copy */}
           <div>
+            {/* Prop ID — credential-style eyebrow */}
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#102d59] border border-white/15 text-[#C59B27] text-[11px] font-bold uppercase tracking-[2px] mb-5 shadow-sm"
+              className="flex items-center gap-3 mb-6"
             >
-              <span className="w-2 h-2 rounded-full bg-[#C59B27] animate-pulse" />
-              <span>Prop ID</span>
+              <span className="inline-flex items-stretch rounded-lg overflow-hidden border border-[#C59B27]/40 shadow-[0_0_0_4px_rgba(197,155,39,0.06)]">
+                <span className="flex items-center justify-center w-8 bg-[#C59B27] text-[#0F1A2C]">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2" />
+                  </svg>
+                </span>
+                <span className="px-3 py-1.5 bg-[#C59B27]/10 text-[#e3c46f] text-[11px] font-bold uppercase tracking-[2.4px]">
+                  Prop ID
+                </span>
+              </span>
+              <span className="hidden sm:block h-px w-16 bg-gradient-to-r from-[#C59B27]/60 to-transparent" />
             </motion.div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-[50px] font-bold leading-[1.12] tracking-[-1.5px] text-white mb-5">
+            <h1 className="text-[34px] sm:text-[44px] lg:text-[54px] font-bold leading-[1.08] tracking-[-1.6px] text-white mb-6 font-headline">
               One property.{" "}
-              <span className="text-[#C59B27] font-normal italic font-serif block sm:inline">
+              <span className="text-[#C59B27] font-normal italic font-serif block">
                 One shared workspace.
               </span>
             </h1>
@@ -63,7 +83,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="text-[#d8e3f0] text-[16px] sm:text-[17px] font-medium leading-relaxed max-w-[460px] mb-3"
+              className="text-[#e6edf4] text-[16px] sm:text-[18px] font-medium leading-relaxed max-w-[470px] mb-3"
             >
               Your property paperwork, tasks and the right people—together.
             </motion.p>
@@ -72,7 +92,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.45 }}
-              className="text-[#9ab1cb] text-[13px] sm:text-[14px] leading-relaxed max-w-[440px] mb-6"
+              className="text-[#9ab1cb] text-[13px] sm:text-[14px] leading-relaxed max-w-[440px] mb-7 pl-4 border-l-2 border-[#C59B27]/40"
             >
               Review requests, approve next steps and see what needs your attention.
             </motion.p>
@@ -81,11 +101,13 @@ export default function Home() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.6 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-white/10 border border-white/15 text-[12px] font-semibold text-[#C59B27]"
+              className="inline-flex items-center gap-2.5 text-[12.5px] font-medium text-[#d7e0e7]"
             >
-              <svg className="w-4 h-4 text-[#C59B27]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-              </svg>
+              <span className="w-7 h-7 rounded-full border border-[#C59B27]/50 bg-[#C59B27]/10 flex items-center justify-center">
+                <svg className="w-3.5 h-3.5 text-[#C59B27]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+              </span>
               <span>You control who sees what.</span>
             </motion.div>
           </div>
@@ -95,15 +117,40 @@ export default function Home() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.65, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="relative h-[260px] sm:h-[320px] lg:h-[360px] w-full"
+            className="relative h-[270px] sm:h-[330px] lg:h-[380px] w-full"
           >
-            <img
-              src="/images/hero-real-estate.jpg"
-              alt="Contemporary Australian home surrounded by a subtropical garden"
-              className="w-full h-full object-cover shadow-2xl rounded-tl-[7px] rounded-tr-[56px] rounded-bl-[7px] rounded-br-[7px]"
-            />
+            {/* Gold architectural frame offset behind photo */}
+            <div className="absolute inset-0 translate-x-3 translate-y-3 sm:translate-x-4 sm:translate-y-4 border border-[#C59B27]/45 rounded-tl-[7px] rounded-tr-[56px] rounded-bl-[7px] rounded-br-[7px] pointer-events-none" />
+
+            <div className="relative w-full h-full overflow-hidden shadow-2xl rounded-tl-[7px] rounded-tr-[56px] rounded-bl-[7px] rounded-br-[7px]">
+              <img
+                src="/images/hero-real-estate.jpg"
+                alt="Contemporary Australian home surrounded by a subtropical garden"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0F1A2C]/55 via-transparent to-transparent" />
+            </div>
+
+            {/* Floating Prop ID credential card */}
+            <FloatLoop className="absolute top-4 left-4 sm:top-5 sm:left-5" amplitude={4} duration={4.4}>
+              <motion.div
+                initial={{ opacity: 0, y: -12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.9 }}
+                className="bg-[#0F1A2C]/75 backdrop-blur-md border border-white/15 rounded-xl px-3.5 py-2.5 shadow-[0_10px_30px_rgba(0,0,0,0.3)]"
+              >
+                <div className="flex items-center gap-2 text-[9px] font-bold uppercase tracking-[1.8px] text-[#C59B27]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#28715e] ring-2 ring-[#28715e]/30" />
+                  Prop ID
+                </div>
+                <div className="font-mono text-[13px] font-semibold text-white tracking-[1.5px] mt-0.5">
+                  TPH-KEN-018
+                </div>
+              </motion.div>
+            </FloatLoop>
+
             {/* Floating Photo Caption Badge */}
-            <FloatLoop className="absolute -bottom-4 sm:bottom-4 -left-3 sm:-left-6" amplitude={6} duration={3.8}>
+            <FloatLoop className="absolute -bottom-5 sm:bottom-5 -left-3 sm:-left-8" amplitude={6} duration={3.8}>
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}

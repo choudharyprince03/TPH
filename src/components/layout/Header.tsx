@@ -41,125 +41,117 @@ export function Header() {
   const isFind =
     pathname.startsWith("/explore") || pathname.startsWith("/inquiry");
   const isAbout = pathname.startsWith("/about");
+  const isHome = pathname === "/";
+  const solid = scrolled || mobileOpen || !isHome;
+
+  const navItems = [
+    { href: "/explore", label: "Find help", active: isFind },
+    { href: "/about", label: "About Us", active: isAbout },
+    { href: "/properties", label: "My Property World", active: isWorld },
+  ];
 
   return (
     <>
-      
-
       {/* Main Consumer Header */}
       <header
-        className={`w-full text-white relative z-30 transition-all duration-300 ${
-          scrolled
-            ? "bg-[#0b2034]/95 backdrop-blur-md shadow-[0_4px_24px_rgba(2,8,18,0.4)] border-b border-white/[0.08]"
-            : "bg-[#0F1A2C] border-b border-white/[0.08]"
+        className={`w-full text-white z-50 transition-all duration-300 ${
+          isHome ? "fixed top-0 inset-x-0" : "relative"
+        } ${
+          solid
+            ? scrolled
+              ? "bg-[#0F1A2C]/85 backdrop-blur-md shadow-[0_8px_30px_rgba(2,8,18,0.35)]"
+              : "bg-[#0F1A2C]"
+            : "bg-transparent"
         }`}
       >
-        <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-10 h-[68px] sm:h-[78px] flex items-center justify-between gap-4 sm:gap-6">
+        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-9 h-[76px] grid grid-cols-[auto_1fr_auto] md:grid-cols-[1fr_auto_1fr] items-center gap-4">
 
-          {/* Brand Logo */}
-          <Link href="/" className="flex items-center gap-3 sm:gap-3.5 flex-shrink-0 group">
+          {/* Brand */}
+          <Link href="/" className="flex items-center gap-3 group justify-self-start">
             <motion.div
               whileHover={{ scale: 1.04 }}
               transition={{ type: "spring", stiffness: 380, damping: 20 }}
-              className="bg-white rounded-xl px-2 py-1.5 sm:px-2.5 sm:py-2 flex items-center justify-center shadow-sm border border-white/20 flex-shrink-0"
+              className="w-11 h-11 bg-white rounded-xl flex items-center justify-center shadow-[0_4px_14px_rgba(0,0,0,0.25)] ring-1 ring-[#C59B27]/30 flex-shrink-0"
             >
-              <img
-                src="/logo.png"
-                alt="The Property Helpline"
-                className="h-10 sm:h-12 w-auto object-contain"
-              />
+              <img src="/logo.png" alt="The Property Helpline" className="h-8 w-auto object-contain" />
             </motion.div>
-            <div className="text-left">
-              <div className="font-bold text-[15px] sm:text-[16px] tracking-tight leading-tight text-white group-hover:text-[#C59B27] transition-colors">
+            <div className="leading-tight">
+              <div className="font-headline font-bold text-[15px] tracking-tight text-white group-hover:text-[#C59B27] transition-colors">
                 The Property Helpline
               </div>
-              <div className="text-[7.5px] sm:text-[8px] font-semibold uppercase tracking-[2.4px] text-[#C59B27] leading-tight mt-0.5">
-                YOUR DIGITAL HOME
+              <div className="text-[8px] font-semibold uppercase tracking-[2.6px] text-[#C59B27] mt-1">
+                Your digital home
               </div>
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-5 lg:gap-7 text-[13px] font-medium ml-4">
-            {[
-              { href: "/explore", label: "Find help", active: isFind },
-              { href: "/about", label: "About Us", active: isAbout },
-            ].map((item) => (
+          {/* Centre Navigation */}
+          <nav className="hidden md:flex items-center gap-1 p-1 rounded-full bg-white/[0.04] border border-white/[0.08]">
+            {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`transition-colors py-2 relative nav-link-underline ${
+                className={`h-8 px-4 rounded-full inline-flex items-center text-[12.5px] font-medium transition-all ${
                   item.active
-                    ? "text-white font-semibold active"
-                    : "text-[#d4dce8] hover:text-white"
+                    ? "bg-[#C59B27] text-[#0F1A2C] font-semibold shadow-sm"
+                    : "text-[#d4dce8] hover:text-white hover:bg-white/[0.06]"
                 }`}
               >
                 {item.label}
               </Link>
             ))}
-
-            <Link
-              href="/properties"
-              className={`px-3 sm:px-3.5 py-1.5 rounded-[7px] text-[13px] font-semibold transition-all border ${
-                isWorld
-                  ? "bg-[#C59B27] text-[#0F1A2C] border-[#C59B27] shadow-sm"
-                  : "bg-white/10 text-white border-white/20 hover:bg-white/15"
-              }`}
-            >
-              My Property World
-            </Link>
           </nav>
 
-          {/* Right Action & Account */}
-          <div className="flex items-center gap-3 sm:gap-4 ml-auto">
+          {/* Right Actions */}
+          <div className="flex items-center gap-2 justify-self-end">
             <Link
               href="/pro"
-              className="text-[12px] text-[#adbed3] hover:text-white transition-colors flex items-center gap-1 font-medium hidden sm:flex"
+              className="hidden lg:inline-flex h-9 px-3 items-center gap-1 text-[12px] font-medium text-[#adbed3] hover:text-white transition-colors"
             >
               I'm a Pro <span className="text-[11px]">↗</span>
             </Link>
 
-            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}>
-              <Link
-                href="/properties"
-                className="flex items-center gap-2 border border-white/25 hover:border-white/40 text-white px-3 py-1.5 rounded-[8px] text-[12px] font-semibold transition-all bg-white/5 hover:bg-white/10"
-              >
-                <svg className="w-4 h-4 text-[#C59B27]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-                <span className="hidden xs:inline">Alex</span>
-              </Link>
-            </motion.div>
-
-            {/* Desktop Referral Button */}
             <button
               onClick={() => setReferralOpen(true)}
-              className="hidden sm:inline-flex items-center gap-1.5 text-[11px] font-semibold text-[#C59B27] hover:text-white px-2.5 py-1.5 rounded-[8px] border border-[#C59B27]/35 hover:border-[#C59B27] hover:bg-[#C59B27]/10 transition-all cursor-pointer"
+              className="hidden sm:inline-flex h-9 px-3.5 items-center gap-1.5 rounded-full text-[12px] font-semibold text-[#C59B27] border border-[#C59B27]/40 hover:border-[#C59B27] hover:bg-[#C59B27]/10 transition-all cursor-pointer"
               title="Invite a specialist or refer friends"
             >
-              <svg className="w-3.5 h-3.5 text-[#C59B27]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v13m0-13V4.5a2.5 2.5 0 115 0V8h-5zm0 0H7a2.5 2.5 0 110-5 2.5 2.5 0 012.5 2.5V8H12zm-8 4h16v9a1 1 0 01-1 1H5a1 1 0 01-1-1v-9z" />
               </svg>
               <span>Refer / Invite</span>
             </button>
 
-            {/* Desktop Log Out Button */}
+            <span className="hidden sm:block w-px h-5 bg-white/15 mx-1" />
+
+            {/* Account */}
+            <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
+              <Link
+                href="/properties"
+                className="w-9 h-9 rounded-full bg-[#1c3a54] ring-1 ring-[#C59B27]/50 hover:ring-[#C59B27] text-[#e3c46f] text-[12px] font-bold flex items-center justify-center transition-all"
+                title="Alex · My account"
+              >
+                A
+              </Link>
+            </motion.div>
+
+            {/* Log Out */}
             <Link
               href="/login"
-              className="hidden sm:inline-flex items-center gap-1.5 text-[11px] font-medium text-[#adbed3] hover:text-white px-2.5 py-1.5 rounded-[8px] border border-white/15 hover:border-white/30 hover:bg-white/10 transition-all"
-              title="Sign out of account"
+              className="hidden sm:inline-flex w-9 h-9 rounded-full items-center justify-center text-[#adbed3] hover:text-white border border-white/15 hover:border-white/30 hover:bg-white/[0.06] transition-all"
+              title="Log out"
+              aria-label="Log out"
             >
-              <svg className="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
               </svg>
-              <span>Log Out</span>
             </Link>
 
             {/* Mobile menu trigger */}
             <motion.button
               whileTap={{ scale: 0.92 }}
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="flex md:hidden items-center justify-center p-2 text-white/80 hover:text-white"
+              className="flex md:hidden items-center justify-center w-9 h-9 text-white/80 hover:text-white"
               aria-label="Toggle menu"
             >
               <motion.svg
@@ -180,6 +172,12 @@ export function Header() {
           </div>
         </div>
 
+        {/* Gold hairline — only once the page scrolls */}
+        <div
+          className={`h-px w-full bg-gradient-to-r from-transparent via-[#C59B27]/35 to-transparent transition-opacity duration-300 ${
+            scrolled || !isHome ? "opacity-100" : "opacity-0"
+          }`}
+        />
         {/* Mobile Dropdown — AnimatePresence for smooth open/close */}
         <AnimatePresence>
           {mobileOpen && (
