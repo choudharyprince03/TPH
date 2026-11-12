@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 
 @theme {
@@ -23,6 +23,7 @@
   --font-sans: "Inter", "Avenir Next", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
   --font-headline: "Manrope", sans-serif;
   --font-display: "Manrope", Georgia, "Fraunces", ui-serif, serif;
+  --font-editorial: "Fraunces", Georgia, "Times New Roman", ui-serif, serif;
 }
 
 :root {
@@ -281,6 +282,10 @@ body {
   /* ── Stitch Design Tokens & Components ────────────────────── */
   .font-headline {
     font-family: var(--font-headline);
+  }
+
+  .font-editorial {
+    font-family: var(--font-editorial);
   }
 
   .material-swatch {
